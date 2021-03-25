@@ -6,8 +6,8 @@ import App from './app';
 const MOUNT_NODE = document.getElementById('root');
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  MOUNT_NODE,
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	MOUNT_NODE
 );
