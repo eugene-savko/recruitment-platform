@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 import java.util.Arrays;
 
+@Deprecated
 @SpringBootApplication
 @Resource
 @Configuration()
@@ -18,6 +19,7 @@ public class RecruitmentPlatformApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RecruitmentPlatformApplication.class, args);
 	}
+	//SecuringWebApplication.class, args
 //	@Bean
 //	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 //		return args -> {
