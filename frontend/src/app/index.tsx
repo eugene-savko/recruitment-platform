@@ -7,11 +7,11 @@ import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Pages
-import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import NotFoundPage from './pages/NotFoundPage';
+import { Layout } from './components/Layout';
+import { HomePage } from './pages/HomePage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
-const App: React.FunctionComponent = () => (
+export const App: React.FunctionComponent = () => (
 	<>
 		<CssBaseline />
 		<BrowserRouter>
@@ -24,5 +24,3 @@ const App: React.FunctionComponent = () => (
 		</BrowserRouter>
 	</>
 );
-
-export default App;
