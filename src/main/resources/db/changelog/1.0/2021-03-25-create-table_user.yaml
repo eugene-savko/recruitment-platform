@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: alex_over
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: skype
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: country
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: photo
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cv
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: phone
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
