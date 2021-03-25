@@ -3,6 +3,7 @@
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "editor.fontSize": 12,
+    "editor.tabSize": 2,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
     "[javascript]": {
