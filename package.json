@@ -1,32 +1,33 @@
 {
-  "name": "frontend",
+  "name": "recruitment-platform",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/material-ui": "^0.21.8",
-    "@types/node": "^12.0.0",
-    "@types/prop-types": "^15.7.3",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@material-ui/icons": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.21",
+    "@types/node": "^12.20.6",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
     "@types/react-router-dom": "^5.1.7",
-    "prop-types": "^15.7.2",
+    "@types/styled-components": "^5.1.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^6.15.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.2.3"
+    "styled-components": "^5.2.1",
+    "typescript": "^4.2.3",
+    "web-vitals": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "precommit": "npx prettier --write src/** && npx eslint --ext .ts,.tsx src/**"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

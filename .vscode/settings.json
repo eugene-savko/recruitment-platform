@@ -1,8 +1,8 @@
 {
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "editor.fontSize": 12,
+    "editor.fontSize": 14,
     "editor.tabSize": 2,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
