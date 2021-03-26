@@ -23,6 +23,9 @@
         "prettier"
     ],
     "rules": {
+        "prettier/prettier": ["error",{
+            "endOfLine": "auto"}
+          ],
       "import/extensions": "off",
       "import/no-unresolved": "off",
       "import/prefer-default-export": "off",

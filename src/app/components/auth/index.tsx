@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { Grid, TextField, Typography, Box } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,6 +8,17 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { SPaper, SAvatar, SButton, SNavLink, SError } from './styled/style';
 
 // ________________________________________
+
+interface ITypeData {
+	status: number;
+	data: {
+		user: {
+			name: string,
+			password: string,
+			role: string,
+		},
+	};
+}
 
 interface IFormInputs {
 	email: string;
@@ -21,12 +33,37 @@ const defaultValues = {
 };
 
 export const Auth: React.FunctionComponent = () => {
+	const history = useHistory();
 	const { handleSubmit, errors, register, control } = useForm<IFormInputs>({
 		defaultValues,
 	});
 
+	const mocaServer = (data: IFormInputs) =>
+		new Promise<string>((resolved) => {
+			setTimeout(
+				() =>
+					resolved(
+						JSON.stringify({
+							status: 200,
+							data: {
+								user: {
+									name: data.email,
+									password: data.password,
+									role: 'admin',
+								},
+							},
+						})
+					),
+				2000
+			);
+		});
+
 	const onSubmit = async (dataLogin: IFormInputs) => {
-		console.log(dataLogin);
+		const dataFromServer = await mocaServer(dataLogin);
+		const value: ITypeData = JSON.parse(dataFromServer);
+		if (value.status <= 200) {
+			history.push('/recruiter');
+		}
 	};
 
 	return (

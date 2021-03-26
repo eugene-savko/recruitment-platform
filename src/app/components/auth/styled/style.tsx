@@ -4,9 +4,10 @@ import { Avatar, Button, Paper } from '@material-ui/core';
 
 export const SPaper = styled(Paper)`
 	padding: 20px;
-	height: 450px;
+	min-height: 350px;
 	width: 280px;
 	margin: 70px auto;
+	transition: all 0.5s ease-in;
 `;
 
 export const SAvatar = styled(Avatar)`
@@ -27,6 +28,8 @@ export const SNavLink = styled(NavLink)`
 `;
 
 export const SError = styled.p`
+	margin: 2px;
 	color: red;
 	font-size: 12px;
+	/* position: absolute; */
 `;
