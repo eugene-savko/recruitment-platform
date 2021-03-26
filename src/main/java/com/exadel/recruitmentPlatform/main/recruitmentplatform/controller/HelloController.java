@@ -1,4 +1,4 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform;
+package com.exadel.recruitmentPlatform.main.recruitmentplatform.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;

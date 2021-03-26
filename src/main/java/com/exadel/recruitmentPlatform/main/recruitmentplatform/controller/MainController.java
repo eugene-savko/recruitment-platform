@@ -1,4 +1,4 @@
-package com.exadel.controllers;
+package com.exadel.recruitmentPlatform.main.recruitmentplatform.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
