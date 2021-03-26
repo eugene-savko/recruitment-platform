@@ -10,12 +10,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import Header from './components/Layout/Header';
 
 export const App: React.FunctionComponent = () => (
 	<>
 		<CssBaseline />
 		<BrowserRouter>
 			<Layout>
+				<Header />
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route component={NotFoundPage} />
