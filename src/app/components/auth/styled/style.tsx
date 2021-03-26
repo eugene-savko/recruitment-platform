@@ -4,7 +4,7 @@ import { Avatar, Button, Paper } from '@material-ui/core';
 
 export const SPaper = styled(Paper)`
 	padding: 20px;
-	height: 400px;
+	height: 450px;
 	width: 280px;
 	margin: 70px auto;
 `;
