@@ -5,7 +5,9 @@ const WrapperHeader = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	height: 40px;
+	margin: 0 auto;
+	max-width: 1200px;
+	height: 78px;
 `;
 
 export default WrapperHeader;
