@@ -1,17 +1,18 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import ToolBar from '@material-ui/core/Toolbar';
 import Logo from './Logo';
 import NavLinks from './NavLinks';
 
+import HeaderTheme from '../../../components/Header/Header';
+import WrapperHeader from '../../../components/Header/WrapperHeader';
+
 const Header: React.FunctionComponent = () => (
 	<>
-		<AppBar>
-			<ToolBar>
+		<HeaderTheme>
+			<WrapperHeader>
 				<Logo />
 				<NavLinks />
-			</ToolBar>
-		</AppBar>
+			</WrapperHeader>
+		</HeaderTheme>
 	</>
 );
 
