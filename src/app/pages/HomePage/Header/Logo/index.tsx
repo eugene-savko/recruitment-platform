@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@material-ui/core/Link';
+import LogoTheme from '../../../../components/Header/LogoTheme';
 
 const Logo: React.FunctionComponent = () => (
 	<>
@@ -26,9 +27,9 @@ const Logo: React.FunctionComponent = () => (
 					</defs>
 				</symbol>
 			</svg>
-			<svg>
+			<LogoTheme>
 				<use xlinkHref="#Логотип" />
-			</svg>
+			</LogoTheme>
 		</Link>
 	</>
 );
