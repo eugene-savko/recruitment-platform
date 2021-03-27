@@ -1,10 +1,12 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import LogoTheme from '../../../../components/Header/LogoTheme';
 
-const Logo: React.FunctionComponent = () => (
+import { Link as MaterialLink } from '@material-ui/core';
+
+import { LogoWrapper } from '../components/LogoWrapper';
+
+export const Logo: React.FunctionComponent = () => (
 	<>
-		<Link color="inherit" href="https://exadel.com/" noWrap>
+		<MaterialLink color="inherit" href="https://exadel.com/" noWrap>
 			<svg width="0" height="0" className="hidden">
 				<symbol
 					fill="none"
@@ -27,11 +29,9 @@ const Logo: React.FunctionComponent = () => (
 					</defs>
 				</symbol>
 			</svg>
-			<LogoTheme>
+			<LogoWrapper>
 				<use xlinkHref="#Логотип" />
-			</LogoTheme>
-		</Link>
+			</LogoWrapper>
+		</MaterialLink>
 	</>
 );
-
-export default Logo;
