@@ -1,3 +1,5 @@
+import { Control } from 'react-hook-form';
+
 export interface ITypeData {
 	status: number;
 	data: {
@@ -14,3 +16,9 @@ export interface IFormInputs {
 	password: string;
 	checkbox?: boolean;
 }
+
+export interface PropsCheck {
+	control: Control<IFormInputs>;
+}
+
+export interface IPropsInput { }
