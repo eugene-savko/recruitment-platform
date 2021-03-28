@@ -31,5 +31,4 @@ export const SError = styled.p`
 	margin: 2px;
 	color: red;
 	font-size: 12px;
-	/* position: absolute; */
 `;

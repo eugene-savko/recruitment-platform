@@ -1,30 +1,19 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
-import { Grid, TextField, Typography, Box } from '@material-ui/core';
+import { Grid, TextField, Typography, Box, Button } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Alert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
-import { SPaper, SAvatar, SButton, SNavLink, SError } from './styled/style';
-
-// ________________________________________
-
-interface ITypeData {
-	status: number;
-	data: {
-		user: {
-			name: string,
-			password: string,
-			role: string,
-		},
-	};
-}
-
-interface IFormInputs {
-	email: string;
-	password: string;
-	checkbox: boolean;
-}
+import { IFormInputs } from 'app/components/Auth/types/AuthTypes';
+import {
+	SPaper,
+	SAvatar,
+	SButton,
+	SNavLink,
+	SError,
+} from 'app/components/Auth/styled/style';
+import useMocoServer from './hooks/useMocoServer';
 
 const defaultValues = {
 	email: '',
@@ -32,38 +21,15 @@ const defaultValues = {
 	checkbox: false,
 };
 
-export const Auth: React.FunctionComponent = () => {
-	const history = useHistory();
+export const Auth: React.FC = () => {
+	const { setDataFromUser, handleLogin, isAuth, setIsAuth } = useMocoServer();
 	const { handleSubmit, errors, register, control } = useForm<IFormInputs>({
 		defaultValues,
 	});
 
-	const mocaServer = (data: IFormInputs) =>
-		new Promise<string>((resolved) => {
-			setTimeout(
-				() =>
-					resolved(
-						JSON.stringify({
-							status: 200,
-							data: {
-								user: {
-									name: data.email,
-									password: data.password,
-									role: 'admin',
-								},
-							},
-						})
-					),
-				2000
-			);
-		});
-
-	const onSubmit = async (dataLogin: IFormInputs) => {
-		const dataFromServer = await mocaServer(dataLogin);
-		const value: ITypeData = JSON.parse(dataFromServer);
-		if (value.status <= 200) {
-			history.push('/recruiter');
-		}
+	const onSubmit = (dataLogin: IFormInputs) => {
+		setDataFromUser(dataLogin);
+		handleLogin();
 	};
 
 	return (
@@ -95,6 +61,7 @@ export const Auth: React.FunctionComponent = () => {
 							name="email"
 							label="Email"
 							placeholder="Enter email"
+							defaultValue=""
 							fullWidth
 						/>
 						{errors.email && <SError>{errors.email.message}</SError>}
@@ -111,6 +78,7 @@ export const Auth: React.FunctionComponent = () => {
 							name="password"
 							label="Password"
 							placeholder="Enter password"
+							defaultValue=""
 							type="password"
 							fullWidth
 						/>
@@ -121,9 +89,9 @@ export const Auth: React.FunctionComponent = () => {
 							<Controller
 								name="checkbox"
 								control={control}
-								rules={{ required: true }}
 								render={(props) => (
 									<Checkbox
+										defaultValue=""
 										color="primary"
 										onChange={(e) => props.onChange(e.target.checked)}
 										checked={props.value}
@@ -144,6 +112,19 @@ export const Auth: React.FunctionComponent = () => {
 					</Typography>
 				</form>
 			</SPaper>
+
+			{isAuth && <Alert severity="success">Auth Successfull</Alert>}
+			{isAuth && (
+				<Button
+					variant="contained"
+					color="secondary"
+					onClick={() => {
+						setIsAuth(false);
+					}}
+				>
+					Logout
+				</Button>
+			)}
 		</Grid>
 	);
 };

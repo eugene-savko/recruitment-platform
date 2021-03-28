@@ -1,4 +1,4 @@
 import React from 'react';
-import { AppAUTH } from '../../components/auth/appTEMP/AppTEMP';
+import { Auth } from '../../components/Auth/index';
 
-export const HomePage: React.FunctionComponent = () => <AppAUTH />;
+export const HomePage: React.FunctionComponent = () => <Auth />;
