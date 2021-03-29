@@ -11,7 +11,7 @@ export const InputLastName: React.FunctionComponent = () => (
 			name="Last name"
 			label="Last name"
 			variant="outlined"
-			inputProps={{ maxlength: '65' }}
+			inputProps={{ maxLength: '65' }}
 			required
 		/>
 	</>
