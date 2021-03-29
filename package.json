@@ -31,7 +31,7 @@
     "eject": "react-scripts eject",
     "eslint": "npx eslint --ext .ts,.tsx src/**",
     "prettier": "npx prettier --write src/**",
-    "postinstall": "npx husky install .config/husky && npm install"
+    "postinstall": "npx husky install .config/husky"
   },
   "eslintConfig": {
     "extends": [

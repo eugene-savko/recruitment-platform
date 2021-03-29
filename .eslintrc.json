@@ -23,9 +23,7 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": ["error",{
-            "endOfLine": "auto"}
-          ],
+      "linebreak-style": ["error", "unix"], 
       "import/extensions": "off",
       "import/no-unresolved": "off",
       "import/prefer-default-export": "off",

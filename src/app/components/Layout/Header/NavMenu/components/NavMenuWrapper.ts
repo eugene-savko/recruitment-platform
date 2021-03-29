@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 export const NavMenuWrapper = styled.ul`
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
-
-	margin-left: 100px;
 
 	display: flex;
 	list-style: none;

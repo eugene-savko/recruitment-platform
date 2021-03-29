@@ -14,6 +14,6 @@ export const MenuItem: React.FunctionComponent<IMenuItemProps> = ({
 	path,
 }) => (
 	<Wrapper>
-		<Link href="/">{label}</Link>
+		<Link href={path}>{label}</Link>
 	</Wrapper>
 );

@@ -2,12 +2,7 @@
     "workbench.iconTheme": "vscode-icons",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-<<<<<<< Updated upstream
     "editor.fontSize": 14,
-=======
-    "editor.fontSize": 12,
-    "editor.insertSpaces": false,
->>>>>>> Stashed changes
     "editor.tabSize": 2,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
@@ -24,5 +19,5 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "editor.detectIndentation": false,
+    "files.eol": "\n",
 }
