@@ -5,5 +5,5 @@ export const LegendStyled = styled.legend`
 	font-size: 30px;
 	line-height: 21px;
 	color: #40bfef;
-	margin-bottom: 40px;
+	margin: 40px 97px;
 `;
