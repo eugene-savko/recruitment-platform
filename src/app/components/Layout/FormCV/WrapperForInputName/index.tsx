@@ -1,22 +1,26 @@
 import React from 'react';
 
-import { Input } from './InputText';
+import { InputFirstName } from './InputFirstName';
+import { InputLastName } from './InputLastName';
+import { InputEmail } from './InputEmail';
+import { InputPhone } from './InputPhone';
 
 import { WrapperForTowColomn } from './component/WrapperForTowColomn';
+import { BlockForInputs } from './component/BlokForInputs';
 
 export const WrapperForInputName: React.FunctionComponent = () => (
 	<>
 		<WrapperForTowColomn>
-			<div>
-				<Input />
-				<Input />
-				<Input />
-			</div>
-			<div>
-				<Input />
-				<Input />
-				<Input />
-			</div>
+			<BlockForInputs>
+				<InputFirstName />
+				<InputEmail />
+				<InputLastName />
+			</BlockForInputs>
+			<BlockForInputs>
+				<InputLastName />
+				<InputPhone />
+				<InputLastName />
+			</BlockForInputs>
 		</WrapperForTowColomn>
 	</>
 );
