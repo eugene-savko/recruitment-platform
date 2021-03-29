@@ -1,0 +1,15 @@
+databaseChangeLog:
+- changeSet:
+    id: 2021-03-29-add-foreign-key-internship_user-internship
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: internship_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_internship_user_internship
+                  references: internship(id)
