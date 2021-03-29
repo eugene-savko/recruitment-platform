@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Internship implements BaseEntity {
 
     @Id
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -37,11 +37,6 @@ public class Internship implements BaseEntity {
     private LocalDate endDate;
 
     @Column(name = "status")
-    private String status;
+    private InternshipStatus status;
 
-    @Column(name = "english_level")
-    private String englishLevel;
-
-    @Column(name = "primary_skill")
-    private String primarySkill;
 }
