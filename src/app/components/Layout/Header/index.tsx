@@ -28,14 +28,14 @@ const MenuItemsData: Array<IMenuItemData> = [
 ];
 
 const Header: React.FunctionComponent = () => (
-	<>
+	<React.Fragment>
 		<Wrapper>
 			<Container>
 				<Logo />
 				<NavMenu menuItemsData={MenuItemsData} />
 			</Container>
 		</Wrapper>
-	</>
+	</React.Fragment>
 );
 
 export default Header;

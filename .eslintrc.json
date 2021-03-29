@@ -30,7 +30,8 @@
       "no-use-before-define": "off",
       "no-unused-vars": "off",
       "react/prop-types": "off",
-      "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }]
+      "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+      "react/jsx-fragments": ["error", "element"]
     },
     "settings": {
     }

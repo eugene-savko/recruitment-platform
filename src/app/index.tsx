@@ -13,7 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import ROUTES from './routes';
 
 export const App: React.FunctionComponent = () => (
-	<>
+	<React.Fragment>
 		<CssBaseline />
 		<BrowserRouter>
 			<Layout>
@@ -30,5 +30,5 @@ export const App: React.FunctionComponent = () => (
 				</Switch>
 			</Layout>
 		</BrowserRouter>
-	</>
+	</React.Fragment>
 );

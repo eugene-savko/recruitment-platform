@@ -13,7 +13,7 @@ interface INavMenuProps {
 export const NavMenu: React.FunctionComponent<INavMenuProps> = ({
 	menuItemsData,
 }) => (
-	<>
+	<React.Fragment>
 		<Wrapper>
 			{menuItemsData?.map((menuItem) => (
 				<MenuItem
@@ -24,5 +24,5 @@ export const NavMenu: React.FunctionComponent<INavMenuProps> = ({
 				/>
 			))}
 		</Wrapper>
-	</>
+	</React.Fragment>
 );

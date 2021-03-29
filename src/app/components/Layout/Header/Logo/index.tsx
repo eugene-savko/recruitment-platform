@@ -5,7 +5,7 @@ import { Link as MaterialLink } from '@material-ui/core';
 import { LogoWrapper } from '../components/LogoWrapper';
 
 export const Logo: React.FunctionComponent = () => (
-	<>
+	<React.Fragment>
 		<MaterialLink color="inherit" href="https://exadel.com/" noWrap>
 			<svg width="0" height="0" className="hidden">
 				<symbol
@@ -33,5 +33,5 @@ export const Logo: React.FunctionComponent = () => (
 				<use xlinkHref="#Логотип" />
 			</LogoWrapper>
 		</MaterialLink>
-	</>
+	</React.Fragment>
 );
