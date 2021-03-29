@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
 	Select,
 	FormControl,
@@ -8,7 +8,7 @@ import {
 
 import SearchIcon from '@material-ui/icons/Search';
 import { uid } from 'react-uid';
-import { string } from 'prop-types';
+import { FilterContext } from 'app/context/FilterContext';
 import { SelectOption } from './SelectedOptions';
 import { FilterMenuWrapper } from './components/FilterMenuWrapper';
 import { FilterDropdown } from './components/FilterDropdown';
@@ -20,23 +20,26 @@ import { DropdownIcon } from './components/DropdowIcon';
 
 export const FilterMenu: React.FunctionComponent<IFilterMenuProps> = ({
 	dataOptions,
-	search,
 }) => {
+	const filterContext = useContext(FilterContext);
 	const [filterMenuState, setFilterMenuState] = useState<IFilterMenuState>({
 		specialization: 'Любая специальность',
 		destination: 'Беларусь',
-		name: '',
 	});
-	const { destination, specialization } = dataOptions;
-
+	const handleClickSearch = () => {
+		filterContext.specialization = filterMenuState.specialization;
+		filterContext.destination = filterMenuState.destination;
+		console.log(filterMenuState);
+		console.log(filterContext);
+	};
 	const handleChange = (event: React.ChangeEvent<IChangeEvent>) => {
 		setFilterMenuState({
 			...filterMenuState,
 			[`${event.target.name}`]: event.target.value,
 		});
 	};
+	const { destination, specialization } = dataOptions;
 
-	const menuState = { ...filterMenuState };
 	return (
 		<FilterMenuWrapper>
 			<>
@@ -90,7 +93,7 @@ export const FilterMenu: React.FunctionComponent<IFilterMenuProps> = ({
 						</FilterDropdown>
 					</FormControled>
 				</DropdownWrapper>
-				<SearchButton aria-label="search" onClick={() => search(menuState)}>
+				<SearchButton aria-label="search" onClick={handleClickSearch}>
 					<SearchIcon />
 				</SearchButton>
 			</>

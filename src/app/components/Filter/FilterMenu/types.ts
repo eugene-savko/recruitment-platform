@@ -3,7 +3,6 @@ import { IdataSelectedOptions } from '../types';
 export interface IFilterMenuState {
 	specialization: string;
 	destination: string;
-	name: string;
 }
 export interface IChangeEvent {
 	name?: string;
@@ -12,5 +11,4 @@ export interface IChangeEvent {
 
 export interface IFilterMenuProps {
 	dataOptions: IdataSelectedOptions;
-	search: Function;
 }

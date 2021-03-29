@@ -5,7 +5,6 @@ interface ISelectOptionProps {
 	value: string;
 }
 export const SelectOption: React.FunctionComponent<ISelectOptionProps> = ({
-	id,
 	value,
 }) => (
 	<>

@@ -1,31 +1,61 @@
-import React, { useState } from 'react';
+import { FilterContext } from 'app/context/FilterContext';
+import React, { useContext, useEffect } from 'react';
 import { dataInternshipList } from './dataInternshipList';
 import { dataSelectedOptions } from './dataSelecledOptions';
 import { FilterMenu } from './FilterMenu';
 import { InternshipList } from './InternshipList';
-import { IFilterState } from './types';
 
 export const Filter: React.FunctionComponent = () => {
-	const [filterState, setFilterState] = useState<IFilterState>({
-		specialization: '',
-		destination: '',
+	const filterContext = useContext(FilterContext);
+	useEffect(() => {
+		console.log(filterContext);
+	}, []);
+	const filteredInternshipList = dataInternshipList.filter((internship) => {
+		switch (true) {
+			case filterContext.specialization === 'Любая специальность':
+				if (internship.country === filterContext.destination) {
+					return true;
+				}
+				if (filterContext.destination === 'Все') {
+					return true;
+				}
+				if (!filterContext.destination && !filterContext.specialization) {
+					return true;
+				}
+				return false;
+
+			case filterContext.destination === 'Все':
+				if (internship.profession === filterContext.specialization) {
+					return true;
+				}
+				return false;
+			case internship.country === filterContext.destination &&
+				internship.profession === filterContext.specialization:
+				return true;
+			case !filterContext.destination && !filterContext.specialization:
+				return true;
+			case internship.country !== filterContext.destination &&
+				internship.profession !== filterContext.specialization:
+				return false;
+			case internship.country !== filterContext.destination ||
+				internship.profession !== filterContext.specialization:
+				return false;
+			default:
+				return true;
+		}
 	});
-	const handleClickSearch = (dataSelect: IFilterState) => {
-		const { specialization, destination } = dataSelect;
-		setFilterState((prev) => ({
-			...prev,
-			specialization,
-			destination,
-		}));
-	};
-	const dataOption = { ...filterState };
 	return (
 		<>
-			<FilterMenu
-				dataOptions={dataSelectedOptions}
-				search={handleClickSearch}
-			/>
-			<InternshipList dataList={dataInternshipList} dataOption={dataOption} />
+			<FilterContext.Provider
+				value={{
+					specialization: 'Любая специальность',
+					destination: 'Беларусь',
+					internshipList: filteredInternshipList,
+				}}
+			>
+				<FilterMenu dataOptions={dataSelectedOptions} />
+				<InternshipList />
+			</FilterContext.Provider>
 		</>
 	);
 };
