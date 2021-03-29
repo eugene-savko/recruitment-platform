@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-03-29-create-table_skills.yaml
+      author: aliaksandrKryvulko
+      changes:
+        - createTable:
+            tableName: skills
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sybtype
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
