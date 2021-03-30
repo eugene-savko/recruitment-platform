@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import { TextareaAutosize as MaterialTextarea } from '@material-ui/core';
-
-export const TextareaAutosize = styled(MaterialTextarea)`
+export const TextAreaField = styled.textarea`
 	box-sizing: border-box;
 	width: 87.5%;
 	min-height: 50px;
@@ -15,7 +13,7 @@ export const TextareaAutosize = styled(MaterialTextarea)`
 	line-height: 16px;
 	resize: none;
 	color: #4e4e4e;
-	background: #ffffff;
+	background: inherit;
 	:focus {
 		outline: none;
 	}
