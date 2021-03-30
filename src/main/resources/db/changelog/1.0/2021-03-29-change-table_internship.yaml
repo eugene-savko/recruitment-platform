@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-03-29-change-table_internship
+      author: valery_z
+      changes:
+        - dropColumn:
+             tableName: internship
+             columns:
+               - column:
+                   name: english_level
+               - column:
+                   name: primary_skill
