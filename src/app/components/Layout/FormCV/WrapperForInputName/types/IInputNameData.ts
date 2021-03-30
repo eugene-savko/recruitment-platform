@@ -4,7 +4,6 @@ interface IInputNameData {
 	title: string;
 	label: string;
 	type: string;
-	maxLength?: number;
 }
 
 export default IInputNameData;
