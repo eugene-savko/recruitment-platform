@@ -1,9 +1,26 @@
 import React from 'react';
 
-import { InputText } from './component/InputStyle';
+import IInputNameData from './types/IInputNameData';
 
-export const Input: React.FunctionComponent = () => (
+import { InputStyle } from './component/InputStyle';
+
+interface INavMenuProps {
+	inputNameData: IInputNameData;
+}
+
+export const InputText: React.FunctionComponent<INavMenuProps> = ({
+	inputNameData,
+}) => (
 	<>
-		<InputText placeholder="Name" />
+		<InputStyle
+			name={inputNameData.name}
+			placeholder={inputNameData.placeholder}
+			title={inputNameData.title}
+			label={inputNameData.label}
+			type={inputNameData.type}
+			variant="outlined"
+			inputProps={{ maxLength: '65' }}
+			required
+		/>
 	</>
 );
