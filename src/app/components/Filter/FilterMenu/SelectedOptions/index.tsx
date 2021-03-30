@@ -6,8 +6,11 @@ interface ISelectOptionProps {
 }
 export const SelectOption: React.FunctionComponent<ISelectOptionProps> = ({
 	value,
+	id,
 }) => (
 	<>
-		<option value={value}>{value}</option>
+		<option id={`${id}`} value={value}>
+			{value}
+		</option>
 	</>
 );

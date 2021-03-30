@@ -1,25 +1,29 @@
-import { Button } from '@material-ui/core';
 import React from 'react';
+
 import { ListItemProps } from './types';
+import { ListItemWrapper } from './components/ListItemWrapper';
+import { MainInfo } from './components/MainInfo';
+import { Details } from './components/Details';
+import { DescriptionInternship } from './components/DescrtiptionInternship';
+import { TypographyH4 } from './components/TypographyH4';
+import { TypographyH2 } from './components/TypographyH2';
+import { StatusButton } from './components/StatusButton';
 
 export const ListItem: React.FunctionComponent<ListItemProps> = ({
 	course,
 	destination,
 	info,
+	status,
 }) => (
 	<>
-		<div className="list-item">
-			<div className="mainInfo">
-				<h2>{course}</h2>
-				<h4>{destination}</h4>
-				<Button variant="contained" color="secondary">
-					Hot
-				</Button>
-			</div>
-			<p className="description">{info}</p>
-			<Button variant="contained" color="primary">
-				Подробнее
-			</Button>
-		</div>
+		<ListItemWrapper>
+			<MainInfo>
+				<TypographyH2>{course}</TypographyH2>
+				<TypographyH4>{destination}</TypographyH4>
+				<StatusButton>{status}</StatusButton>
+			</MainInfo>
+			<DescriptionInternship>{info}</DescriptionInternship>
+			<Details>Подробнее</Details>
+		</ListItemWrapper>
 	</>
 );

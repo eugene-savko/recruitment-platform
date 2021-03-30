@@ -8,6 +8,11 @@ export interface IdataInternshipList {
 	profession: string;
 	country: string;
 	info: string;
+	status: string;
+}
+export interface IChangeEvent {
+	name?: string;
+	value: unknown;
 }
 export interface IdataSelectedOption {
 	destination: Array<{ id: number, country: string }>;

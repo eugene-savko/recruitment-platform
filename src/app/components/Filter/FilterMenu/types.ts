@@ -1,14 +1,13 @@
-import { IdataSelectedOptions } from '../types';
+import { IdataSelectedOptions, IFilterState } from '../types';
 
 export interface IFilterMenuState {
 	specialization: string;
 	destination: string;
 }
-export interface IChangeEvent {
-	name?: string;
-	value: unknown;
-}
 
 export interface IFilterMenuProps {
 	dataOptions: IdataSelectedOptions;
+	change: Function;
+	click: Function;
+	state: IFilterState;
 }

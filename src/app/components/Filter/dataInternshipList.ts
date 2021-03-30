@@ -6,6 +6,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship JavaScript Developer',
 		profession: 'Javascript',
 		country: 'Украина',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -14,6 +15,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship JavaScript Developer',
 		profession: 'Javascript',
 		country: 'Россия',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -22,6 +24,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship JavaScript Developer',
 		profession: 'Javascript',
 		country: 'Казахстан',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -30,6 +33,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship JavaScript Developer',
 		profession: 'Javascript',
 		country: 'Беларусь',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -38,6 +42,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Java Developer',
 		profession: 'Java',
 		country: 'Россия',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -46,6 +51,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Java Developer',
 		profession: 'Java',
 		country: 'Украина',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -54,6 +60,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Java Developer',
 		profession: 'Java',
 		country: 'Казахстан',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -62,6 +69,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Java Developer',
 		profession: 'Java',
 		country: 'Беларусь',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -70,6 +78,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Python Developer',
 		profession: 'Python',
 		country: 'Украина',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -78,6 +87,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Python Developer',
 		profession: 'Python',
 		country: 'Россия',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -86,6 +96,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Python Developer',
 		profession: 'Python',
 		country: 'Казахстан',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -94,6 +105,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship Python Developer',
 		profession: 'Python',
 		country: 'Беларусь',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -102,6 +114,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship QA Engineer',
 		profession: 'QA',
 		country: 'Украина',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -110,6 +123,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship QA Engineer',
 		profession: 'QA',
 		country: 'Россия',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -118,6 +132,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship QA Engineer',
 		profession: 'QA',
 		country: 'Казахстан',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},
@@ -126,6 +141,7 @@ export const dataInternshipList: Array<IdataInternshipList> = [
 		course: 'Internship QA Engineer',
 		profession: 'QA',
 		country: 'Беларусь',
+		status: 'hot',
 		info:
 			'We’re seeking a Middle Business System Analyst to join our international team! As a Business System Analyst, your main duties will be to synthesize information from many sources, produce recommendations, orga...',
 	},

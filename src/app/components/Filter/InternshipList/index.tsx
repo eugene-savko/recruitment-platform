@@ -1,6 +1,8 @@
 import { FilterContext } from 'app/context/FilterContext';
 import React, { useContext } from 'react';
 import { uid } from 'react-uid';
+import { OtherCourses } from './components/OtherCourses';
+import { InternshipListWrappper } from './components/InternshipListWrapper';
 import { ListItem } from './ListItem';
 
 export const InternshipList: React.FunctionComponent = () => {
@@ -8,14 +10,18 @@ export const InternshipList: React.FunctionComponent = () => {
 	const dataList = [...filterContext.internshipList];
 	return (
 		<>
-			{dataList.map((internship) => (
-				<ListItem
-					key={uid(internship.id)}
-					course={internship.course}
-					destination={internship.country}
-					info={internship.info}
-				/>
-			))}
+			<InternshipListWrappper>
+				{dataList.map((internship) => (
+					<ListItem
+						key={uid(internship.id)}
+						course={internship.course}
+						destination={internship.country}
+						info={internship.info}
+						status={internship.status}
+					/>
+				))}
+				<OtherCourses>Загрузить больше предложений</OtherCourses>
+			</InternshipListWrappper>
 		</>
 	);
 };
