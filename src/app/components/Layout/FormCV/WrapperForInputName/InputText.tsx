@@ -11,7 +11,7 @@ interface INavMenuProps {
 export const InputText: React.FunctionComponent<INavMenuProps> = ({
 	inputNameData,
 }) => (
-	<>
+	<React.Fragment>
 		<InputStyle
 			name={inputNameData.name}
 			placeholder={inputNameData.placeholder}
@@ -22,5 +22,5 @@ export const InputText: React.FunctionComponent<INavMenuProps> = ({
 			inputProps={{ maxLength: '65' }}
 			required
 		/>
-	</>
+	</React.Fragment>
 );

@@ -3,7 +3,7 @@ import React from 'react';
 import { TextareaAutosize } from './component/TextAreaStyle';
 
 export const TextAreaField: React.FunctionComponent = () => (
-	<>
+	<React.Fragment>
 		<TextareaAutosize
 			aria-label="Other information"
 			rowsMin={6}
@@ -11,5 +11,5 @@ export const TextAreaField: React.FunctionComponent = () => (
 			placeholder="Other information"
 			title="Other information"
 		/>
-	</>
+	</React.Fragment>
 );

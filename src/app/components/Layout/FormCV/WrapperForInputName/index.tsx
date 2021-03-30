@@ -45,7 +45,7 @@ const InputEmailData: IInputNameData = {
 };
 
 export const WrapperForInputName: React.FunctionComponent = () => (
-	<>
+	<React.Fragment>
 		<WrapperForTowColomn>
 			<BlockForInputs>
 				<InputText inputNameData={InputFirstNameData} />
@@ -58,5 +58,5 @@ export const WrapperForInputName: React.FunctionComponent = () => (
 				<SelectCourse />
 			</BlockForInputs>
 		</WrapperForTowColomn>
-	</>
+	</React.Fragment>
 );
