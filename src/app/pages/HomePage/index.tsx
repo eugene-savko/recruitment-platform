@@ -1,4 +1,4 @@
 import React from 'react';
-import { Auth } from '../../components/Auth/index';
+import { Auth } from 'app/components/Auth';
 
 export const HomePage: React.FunctionComponent = () => <Auth />;

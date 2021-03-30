@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
-import { STextField } from '../../styled/style';
-import { IPropsInput } from '../../types/AuthTypes';
 
-export const InputPassword = forwardRef<HTMLInputElement, IPropsInput>(
+import { AuthInput } from './styled';
+
+interface IPropsInputPassword {}
+
+const InputPassword = forwardRef<HTMLInputElement, IPropsInputPassword>(
 	(props, ref) => (
-		<STextField
+		<AuthInput
 			type="password"
 			name="password"
 			label="Password"
@@ -18,3 +20,5 @@ export const InputPassword = forwardRef<HTMLInputElement, IPropsInput>(
 		/>
 	)
 );
+
+export default InputPassword;

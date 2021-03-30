@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { forwardRef } from 'react';
 
-import { STextField } from '../../styled/style';
-import { IPropsInput } from '../../types/AuthTypes';
+import { AuthInput } from './styled';
 
-export const InputEmail = forwardRef<HTMLInputElement, IPropsInput>(
+interface IPropsInputEmail {}
+
+const InputEmail = forwardRef<HTMLInputElement, IPropsInputEmail>(
 	(props, ref) => (
-		<STextField
+		<AuthInput
 			type="email"
 			name="email"
 			label="Email"
@@ -19,3 +20,5 @@ export const InputEmail = forwardRef<HTMLInputElement, IPropsInput>(
 		/>
 	)
 );
+
+export default InputEmail;

@@ -1,10 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import { IFormInputs } from 'app/components/Auth/types/AuthTypes';
+import { IFormInput } from 'app/components/Auth/types';
 
 const useMocoServer = () => {
+	// eslint-disable-next-line no-unused-vars
 	const [dataFromServer, setDataFromServer] = useState();
-	const [dataFromUser, setDataFromUser] = useState<IFormInputs | null>(null);
+	// eslint-disable-next-line no-unused-vars
+	const [dataFromUser, setDataFromUser] = useState<IFormInput | null>(null);
 	const [isAuth, setIsAuth] = useState(false);
 
 	const mocaServer = () =>
