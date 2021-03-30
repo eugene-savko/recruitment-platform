@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: 2021-03-25-insert-user
       author: alex_over
       changes:
         -  sqlFile:

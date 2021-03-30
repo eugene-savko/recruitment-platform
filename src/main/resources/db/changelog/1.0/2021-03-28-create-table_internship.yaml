@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 21
+      id: 2021-03-28-create-table_internship
       author: valery_z
       changes:
         - createTable:
