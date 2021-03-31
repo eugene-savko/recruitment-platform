@@ -1,6 +1,6 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.service;
+package com.exadel.recruitmentPlatform.service;
 
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.BaseDto;
+import com.exadel.recruitmentPlatform.dto.BaseDto;
 
 public interface BaseService<Dto extends BaseDto> {
     Dto save(final Dto dto);

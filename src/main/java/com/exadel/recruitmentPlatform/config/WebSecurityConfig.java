@@ -1,4 +1,4 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.config;
+package com.exadel.recruitmentPlatform.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
