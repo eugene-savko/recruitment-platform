@@ -1,5 +1,5 @@
-import { Filter } from 'app/components/Filter';
+import { Training } from 'app/components/Trainings';
 
 import React from 'react';
 
-export const HomePage: React.FunctionComponent = () => <Filter />;
+export const HomePage: React.FunctionComponent = () => <Training />;
