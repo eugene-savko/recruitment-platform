@@ -5,7 +5,7 @@ import com.exadel.recruitmentPlatform.main.recruitmentplatform.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper implements BaseMapper<User, UserDto>{
+public class UserMapper extends BaseMapper<User, UserDto>{
 
     @Override
     public User map(UserDto userDto) {
@@ -20,7 +20,7 @@ public class UserMapper implements BaseMapper<User, UserDto>{
                 .photo(userDto.getPhoto())
                 .cv(userDto.getCv())
                 .phone(userDto.getPhone())
-                .status(userDto.getStatus())
+                .englishLevel(userDto.getEnglishLevel())
                 .build();
     }
 
@@ -37,7 +37,7 @@ public class UserMapper implements BaseMapper<User, UserDto>{
                 .photo(user.getPhoto())
                 .cv(user.getCv())
                 .phone(user.getPhone())
-                .status(user.getStatus())
+                .englishLevel(user.getEnglishLevel())
                 .build();
 
     }

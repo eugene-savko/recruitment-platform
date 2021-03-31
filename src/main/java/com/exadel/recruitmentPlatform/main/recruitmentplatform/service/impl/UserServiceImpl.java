@@ -6,8 +6,10 @@ import com.exadel.recruitmentPlatform.main.recruitmentplatform.repository.UserRe
 import com.exadel.recruitmentPlatform.main.recruitmentplatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
@@ -21,7 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findById(Long id) {
-        return userRepository.findById(id).map(userMapper::map).orElseThrow();
+        return userRepository.findById(id).map(userMapper::map)
+                .orElseThrow(() -> new NullPointerException("User with id=" + id + " doesn't exist"));
     }
 
     @Override

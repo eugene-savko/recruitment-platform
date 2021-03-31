@@ -1,6 +1,5 @@
 package com.exadel.recruitmentPlatform.main.recruitmentplatform.entity;
 
-import jdk.jfr.Enabled;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,10 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "internship")
-public class Internship implements BaseEntity {
-
-    @Id
-    private Long id;
+public class Internship extends BaseEntity {
 
     @Column(name = "name")
     private String name;

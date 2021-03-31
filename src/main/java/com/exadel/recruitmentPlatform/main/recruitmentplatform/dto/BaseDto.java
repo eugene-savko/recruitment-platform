@@ -1,4 +1,12 @@
 package com.exadel.recruitmentPlatform.main.recruitmentplatform.dto;
 
-public interface BaseDto {
+import lombok.Getter;
+import lombok.Setter;
+
+public abstract class BaseDto {
+
+        @Setter
+        @Getter
+        protected Long Id;
+
 }

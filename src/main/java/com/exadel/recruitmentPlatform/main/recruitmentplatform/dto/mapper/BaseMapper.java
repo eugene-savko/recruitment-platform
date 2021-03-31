@@ -3,10 +3,10 @@ package com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.mapper;
 import com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.BaseDto;
 import com.exadel.recruitmentPlatform.main.recruitmentplatform.entity.BaseEntity;
 
-public interface BaseMapper<E extends BaseEntity, D extends BaseDto> {
+public abstract class BaseMapper<E extends BaseEntity, D extends BaseDto> {
 
-    E map(final D dto);
+    abstract E map(D dto);
 
-    D map(final E entity);
+    abstract D map(E entity);
 
 }
