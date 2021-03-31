@@ -46,7 +46,7 @@ databaseChangeLog:
                   onUpdate: CASCADE
 
 - changeSet:
-    id: 2021-03-30-add-column_primary-skill
+    id: 2021-03-30-add-column-to-user-internship_primary-skill
     author: ZheltokMariya
     changes:
       - addColumn:
@@ -56,4 +56,30 @@ databaseChangeLog:
                 name: primary_skill
                 type: varchar(50)
                 constraints:
-                  nullable: true
+                  nullable: false
+
+- changeSet:
+    id: 2021-03-31-add-column-to-user-internship_english-level
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: english_level
+                type: varchar(50)
+                constraints:
+                  nullable: false
+
+- changeSet:
+    id: 2021-03-31-add-column-to-user-internship_cv
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: cv
+                type: varchar(50)
+                constraints:
+                  nullable: false
