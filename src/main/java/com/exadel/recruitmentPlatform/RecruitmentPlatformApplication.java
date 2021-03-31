@@ -1,4 +1,4 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform;
+package com.exadel.recruitmentPlatform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

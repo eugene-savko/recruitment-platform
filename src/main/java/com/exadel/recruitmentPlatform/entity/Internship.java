@@ -1,25 +1,16 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.entity;
+package com.exadel.recruitmentPlatform.entity;
 
-import jdk.jfr.Enabled;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "internship")
-public class Internship implements BaseEntity {
-
-    @Id
-    private Long id;
+public class Internship extends BaseEntity {
 
     @Column(name = "name")
     private String name;
@@ -37,6 +28,7 @@ public class Internship implements BaseEntity {
     private LocalDate endDate;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private InternshipStatus status;
 
 }
