@@ -3,30 +3,42 @@ import React, { useState } from 'react';
 import { InputLabel, MenuItem, Select } from '@material-ui/core/';
 import { SelectStyle } from './component/SelectStyle';
 
-export default function SelectCourse() {
+// interface
+import ISelectNameData from './types/ISelectNameData';
+
+interface ISelectProps {
+	selectItemsData: Array<ISelectNameData>;
+}
+
+export const InputSelect: React.FunctionComponent<ISelectProps> = ({
+	selectItemsData,
+}) => {
 	const [course, setCourse] = useState('');
 	const handleChange = (event: React.ChangeEvent<{ value: any }>) => {
+		// Syntax error Prettire
 		const setValue = event.target.value;
 		setCourse(setValue);
 	};
 
 	return (
 		<SelectStyle variant="outlined">
-			<InputLabel id="customized select label">Desired course</InputLabel>
+			<InputLabel id="customized select label">
+				{selectItemsData[0].title}
+			</InputLabel>
 			<Select
 				labelId="customized select course"
 				id="customized select"
 				required
 				value={course}
 				onChange={handleChange}
-				label="Select Course"
+				label={selectItemsData[0].title}
 			>
-				<MenuItem value="course 1">
-					<li>course 1</li>
-				</MenuItem>
-				<MenuItem value="course 2">course 2</MenuItem>
-				<MenuItem value="course 3">course 3</MenuItem>
+				{selectItemsData?.map((item) => (
+					<MenuItem value={item.name}>
+						<span>{item.name}</span>
+					</MenuItem>
+				))}
 			</Select>
 		</SelectStyle>
 	);
-}
+};
