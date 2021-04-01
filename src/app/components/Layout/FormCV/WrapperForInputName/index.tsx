@@ -2,12 +2,15 @@ import React from 'react';
 
 import { InputText } from './InputText';
 import { InputSelect } from './InputSelect';
+import { SelectCounty } from './SelectCounty';
 import { WrapperForTowColomn } from './component/WrapperForTowColomn';
 import { BlockForInputs } from './component/BlokForInputs';
 
 // interface
 import IInputNameData from './types/IInputNameData';
 import ISelectNameData from './types/ISelectNameData';
+import ISelectCountry from './types/ISelectCountry';
+import ISelectCity from './types/ISelectCity';
 
 const InputFirstNameData: IInputNameData = {
 	name: 'First name',
@@ -57,6 +60,60 @@ const IselectLevelEnglish: Array<ISelectNameData> = [
 	{ name: 'C1 Advanced' },
 ];
 
+const IUserselectCountry: Array<ISelectCountry> = [
+	{ data: 'Belarus', title: 'Country' },
+	{ data: 'Georgia' },
+	{ data: 'Lithuania' },
+	{ data: 'Poland' },
+	{ data: 'Russia' },
+	{ data: 'Ukraine' },
+	{ data: 'United States' },
+	{ data: 'Uzbekistan' },
+];
+
+const IUserselectCity: Array<ISelectCity> = [
+	{
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Brest' },
+			{ city: 'Gomel' },
+			{ city: 'Grodno' },
+			{ city: 'Minsk' },
+			{ city: 'Vitebsk' },
+		],
+	},
+	{ data: [{ city: 'Any city' }, { city: 'Tbilisi' }] },
+	{ data: [{ city: 'Any city' }, { city: 'Klaipeda' }, { city: 'Vilnius' }] },
+	{
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Bialystok' },
+			{ city: 'Poznan' },
+			{ city: 'Szczecin' },
+			{ city: 'Warsaw' },
+		],
+	},
+	{
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Chelyabinsk' },
+			{ city: 'Yekaterinburg' },
+		],
+	},
+	{
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Kharkiv' },
+			{ city: 'Kiev' },
+			{ city: 'Lviv' },
+			{ city: 'Odessa' },
+			{ city: 'Vinnytsia' },
+		],
+	},
+	{ data: [{ city: 'Any city' }, { city: 'Boulder' }] },
+	{ data: [{ city: 'Any city' }, { city: 'Tashkent' }] },
+];
+
 export const WrapperForInputName: React.FunctionComponent = () => (
 	<React.Fragment>
 		<WrapperForTowColomn>
@@ -71,5 +128,9 @@ export const WrapperForInputName: React.FunctionComponent = () => (
 				<InputSelect selectItemsData={IselectCourse} />
 			</BlockForInputs>
 		</WrapperForTowColomn>
+		<SelectCounty
+			selectCountryData={IUserselectCountry}
+			selectCityyData={IUserselectCity}
+		/>
 	</React.Fragment>
 );
