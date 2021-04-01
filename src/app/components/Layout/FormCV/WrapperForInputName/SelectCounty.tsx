@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
+// styles
 import { InputLabel, MenuItem, Select } from '@material-ui/core/';
 import { SelectStyle } from './component/SelectStyle';
 import { WrapperForTowColomn } from './component/WrapperForTowColomn';
 import { BlockForInputs } from './component/BlokForInputs';
 
 // interface
-import ISelectCountry from './types/ISelectCountry';
-import ISelectCity from './types/ISelectCity';
+import { ISelectCountry, ISelectCity } from './types/types';
 
 interface ISelectProps {
 	selectCountryData: Array<ISelectCountry>;

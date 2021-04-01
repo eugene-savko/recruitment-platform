@@ -1,15 +1,16 @@
 import React from 'react';
 
+// components
 import { InputText } from './InputText';
 import { InputSelect } from './InputSelect';
 import { SelectCounty } from './SelectCounty';
+
+// styles
 import { WrapperForTowColomn } from './component/WrapperForTowColomn';
 import { BlockForInputs } from './component/BlokForInputs';
 
 // interface
-import ISelectNameData from './types/ISelectNameData';
-import ISelectCountry from './types/ISelectCountry';
-import ISelectCity from './types/ISelectCity';
+import { ISelectNameData, ISelectCountry, ISelectCity } from './types/types';
 
 // data
 import {
