@@ -4,6 +4,7 @@ import { AppBar, Toolbar } from '@material-ui/core';
 
 import { Logo } from './Logo';
 import { Burger } from './Burger';
+import { ToolBarButtons } from './ToolBarButtons';
 
 export const Header = () => {
 	console.log('Header');
@@ -11,6 +12,7 @@ export const Header = () => {
 		<AppBar>
 			<Toolbar>
 				<Logo />
+				<ToolBarButtons />
 				<Burger />
 			</Toolbar>
 		</AppBar>
