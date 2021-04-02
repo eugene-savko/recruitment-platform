@@ -1,0 +1,85 @@
+databaseChangeLog:
+- changeSet:
+    id: 2021-03-29-create-table_user-internship
+    author: ZheltokMariya
+    changes:
+      - createTable:
+          tableName: user_internship
+          columns:
+            - column:
+                name: id
+                type: BIGINT
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: status
+                type: varchar(50)
+                constraints:
+                  nullable: false
+            - column:
+                name: user_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_user_user_internship
+                  references: user(id)
+                  onDelete: RESTRICT
+                  onUpdate: CASCADE
+
+- changeSet:
+    id: 2021-03-29-add-foreign-key-internship_user-internship
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: internship_id
+                type: BIGINT
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_internship_user_internship
+                  references: internship(id)
+                  onDelete: RESTRICT
+                  onUpdate: CASCADE
+
+- changeSet:
+    id: 2021-03-30-add-column-to-user-internship_primary-skill
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: primary_skill
+                type: varchar(50)
+                constraints:
+                  nullable: false
+
+- changeSet:
+    id: 2021-03-31-add-column-to-user-internship_english-level
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: english_level
+                type: varchar(50)
+                constraints:
+                  nullable: false
+
+- changeSet:
+    id: 2021-03-31-add-column-to-user-internship_cv
+    author: ZheltokMariya
+    changes:
+      - addColumn:
+          tableName: user_internship
+          columns:
+            - column:
+                name: cv
+                type: varchar(50)
+                constraints:
+                  nullable: false
