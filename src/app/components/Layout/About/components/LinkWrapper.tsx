@@ -1,60 +1,32 @@
 import styled from 'styled-components';
 
 type LinkWrapperProps = {
-	arrow: boolean,
+	linkUrl: string,
 };
 
 export const LinkWrapper = styled.a`
-	.arrow {
-		display: (
-			${(props: LinkWrapperProps) => (props.arrow ? 'inline' : 'none')}
-		);
+	display: inline-block;
+	padding-top: 5px;
+	color: #0082ca;
+	font-weight: 600;
+	font-size: 1.25rem;
+	line-height: 150%;
+	text-decoration: none;
+	&:hover {
+		color: #40bfef;
 	}
 	.arrow {
 		font-size: 1.25rem;
-		font-weight: 600;
 		line-height: 150%;
 		cursor: pointer;
 		text-align: left;
 		border: none;
 		display: inline-block;
-		color: #0082ca;
 		margin-top: 40px;
 	}
 
 	.arrow .anim-arrow {
 		top: 2px;
-	}
-
-	.arrow.arrow--white {
-		color: #fff;
-	}
-
-	.arrow.arrow--white:hover {
-		color: #fff;
-	}
-
-	.arrow.arrow--white:hover .anim-arrow__shaft {
-		background-color: #fff;
-	}
-
-	.arrow.arrow--white:hover .anim-arrow__shaft:before,
-	.arrow.arrow--white:hover .anim-arrow__shaft:after {
-		background-color: #fff;
-	}
-
-	.arrow--lseagreen {
-		color: #40bfef;
-		margin-top: 0;
-	}
-
-	.arrow--black {
-		color: #222;
-		margin-top: 0;
-	}
-
-	.row__blue .et_pb_column:last-child .arrow--white {
-		justify-content: flex-end;
 	}
 
 	.anim-arrow {
@@ -66,39 +38,8 @@ export const LinkWrapper = styled.a`
 		padding-bottom: 8px;
 		margin-left: 15px;
 		position: relative;
-		top: 4px;
+		top: 2px;
 		overflow: hidden;
-	}
-
-	.anim-arrow--left {
-		transform: rotate(180deg);
-	}
-
-	.anim-arrow--white .anim-arrow__shaft {
-		background-color: #fff;
-	}
-
-	.anim-arrow--white .anim-arrow__shaft:before,
-	.anim-arrow--white .anim-arrow__shaft:after {
-		background-color: #fff;
-	}
-
-	.anim-arrow--lseagreen .anim-arrow__shaft {
-		background-color: #40bfef;
-	}
-
-	.anim-arrow--lseagreen .anim-arrow__shaft:before,
-	.anim-arrow--lseagreen .anim-arrow__shaft:after {
-		background-color: #40bfef;
-	}
-
-	.anim-arrow--black .anim-arrow__shaft {
-		background-color: #222;
-	}
-
-	.anim-arrow--black .anim-arrow__shaft:before,
-	.anim-arrow--black .anim-arrow__shaft:after {
-		background-color: #222;
 	}
 
 	.anim-arrow__shaft {
@@ -181,17 +122,16 @@ export const LinkWrapper = styled.a`
 		}
 	}
 
-	.arrow:hover .anim-arrow__shaft,
-	.anim-arrow__in-viewport .anim-arrow__shaft {
+	&:hover .anim-arrow__shaft {
 		animation-name: aaFramesShaft;
 		animation-duration: 0.9s;
 		animation-timing-function: linear;
 		animation-delay: 0.2s;
 	}
 
-	.arrow:hover .anim-arrow__shaft:before,
+	&:hover .anim-arrow__shaft:before,
 	.anim-arrow__in-viewport .anim-arrow__shaft:before,
-	.arrow:hover .anim-arrow__shaft:after,
+	&:hover .anim-arrow__shaft:after,
 	.anim-arrow__in-viewport .anim-arrow__shaft:after {
 		width: 8px;
 		animation-duration: calc(0.9s + 0.9s);
@@ -199,39 +139,29 @@ export const LinkWrapper = styled.a`
 		animation-delay: 0.2s;
 	}
 
-	.arrow:hover .anim-arrow__shaft:before,
+	&:hover .anim-arrow__shaft:before,
 	.anim-arrow__in-viewport .anim-arrow__shaft:before {
 		animation-name: aaFramesHeadTop;
 	}
 
-	.arrow:hover .anim-arrow__shaft:after,
+	&:hover .anim-arrow__shaft:after,
 	.anim-arrow__in-viewport .anim-arrow__shaft:after {
 		animation-name: aaFramesHeadBottom;
 	}
 
-	.arrow:hover {
+	&:hover {
 		color: #40bfef;
 	}
 
-	.arrow:hover .anim-arrow__shaft {
+	&:hover .anim-arrow__shaft {
 		background-color: #40bfef;
 	}
 
-	.arrow:hover .anim-arrow__shaft:before {
+	&:hover .anim-arrow__shaft:before {
 		background-color: #40bfef;
 	}
 
-	.arrow:hover .anim-arrow__shaft:after {
+	&:hover .anim-arrow__shaft:after {
 		background-color: #40bfef;
-	}
-
-	.link__standard {
-		color: #0082ca;
-		border-bottom: 2px solid #0082ca;
-	}
-
-	.link__standard:hover {
-		color: #40bfef;
-		border-bottom: 2px solid #40bfef;
 	}
 `;

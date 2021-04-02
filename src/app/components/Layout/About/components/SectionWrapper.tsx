@@ -24,7 +24,7 @@ export const SectionWrapper = styled.section`
 	& > * {
 		width: 60%;
 	}
-	&:nth-of-type(even) {
+	& + .leftAside {
 		background-position: left;
 		align-items: flex-end;
 	}

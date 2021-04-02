@@ -9,7 +9,9 @@ export const AboutPage: React.FunctionComponent = () => (
 				title={section.title}
 				text={section.text}
 				background={section.background}
+				backgroundAside={section.backgroundAside}
 				linkText={section.linkText}
+				linkUrl={section.linkUrl}
 			/>
 		))}
 	</React.Fragment>

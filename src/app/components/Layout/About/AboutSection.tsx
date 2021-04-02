@@ -6,19 +6,26 @@ type AboutSectionProps = {
 	title: string,
 	text: string,
 	background: string,
+	backgroundAside: boolean,
 	linkText: string | undefined,
+	linkUrl: string | undefined,
 };
 
 export const AboutSection: React.FC<AboutSectionProps> = ({
-	background,
 	title,
 	text,
+	background,
+	backgroundAside,
 	linkText,
+	linkUrl,
 }) => (
-	<SectionWrapper background={background}>
+	<SectionWrapper
+		background={background}
+		className={backgroundAside ? 'leftAside' : ''}
+	>
 		<h2>{title}</h2>
 		<p>{text}</p>
 
-		{linkText ? <ArrowLink arrow>{linkText}</ArrowLink> : ''}
+		{linkText ? <ArrowLink linkUrl={linkUrl}>{linkText}</ArrowLink> : ''}
 	</SectionWrapper>
 );
