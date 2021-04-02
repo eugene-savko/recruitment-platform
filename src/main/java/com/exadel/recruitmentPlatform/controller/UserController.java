@@ -1,8 +1,10 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.controller;
+package com.exadel.recruitmentPlatform.controller;
 
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.service.UserService;
+import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.service.UserService;
+
 import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping ("/user")
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;

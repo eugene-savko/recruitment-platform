@@ -1,16 +1,17 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.mapper;
+package com.exadel.recruitmentPlatform.dto.mapper;
 
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.entity.User;
+import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.entity.User;
+
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper extends BaseMapper<User, UserDto>{
+public class UserMapper implements BaseMapper<User, UserDto>{
 
     @Override
     public User map(UserDto userDto) {
         return User.builder()
-                .id(userDto.getId())
+                //.id(userDto.getId())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
@@ -27,7 +28,7 @@ public class UserMapper extends BaseMapper<User, UserDto>{
     @Override
     public UserDto map(User user) {
         return UserDto.builder()
-                .id(user.getId())
+                //.id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())

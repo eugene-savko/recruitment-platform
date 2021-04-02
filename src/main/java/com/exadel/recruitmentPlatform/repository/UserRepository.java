@@ -1,6 +1,7 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.repository;
+package com.exadel.recruitmentPlatform.repository;
 
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.entity.User;
+import com.exadel.recruitmentPlatform.entity.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

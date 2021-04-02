@@ -1,9 +1,10 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.service.impl;
+package com.exadel.recruitmentPlatform.service.impl;
 
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.dto.mapper.UserMapper;
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.repository.UserRepository;
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.service.UserService;
+import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
+import com.exadel.recruitmentPlatform.repository.UserRepository;
+import com.exadel.recruitmentPlatform.service.UserService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

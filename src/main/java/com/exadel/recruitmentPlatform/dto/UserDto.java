@@ -1,21 +1,16 @@
-package com.exadel.recruitmentPlatform.main.recruitmentplatform.dto;
-
-import com.exadel.recruitmentPlatform.main.recruitmentplatform.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+package com.exadel.recruitmentPlatform.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
 @Getter
 @Setter
+@SuperBuilder
 public class UserDto extends BaseDto {
 
     @NotBlank
