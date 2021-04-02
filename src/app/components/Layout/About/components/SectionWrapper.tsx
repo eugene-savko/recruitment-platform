@@ -7,7 +7,6 @@ type SectionWrapperProps = {
 export const SectionWrapper = styled.section`
 	background-image: url(${(props: SectionWrapperProps) =>
 		props.background || ''});
-	font-family: poppins, open sans, Arial, sans-serif;
 	width: 100%;
 	max-width: 1000px;
 	min-height: 300px;
@@ -21,6 +20,7 @@ export const SectionWrapper = styled.section`
 	background-position: right top;
 	margin-bottom: 60px;
 	padding-top: 20px;
+	line-height: 180%;
 	& > * {
 		width: 60%;
 	}
