@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TrainingListWrappper = styled.div`
-	margin: 0px 97px 123px 97px;
+	margin: 0px 97px 123px 117px;
 	padding: 0px 53px 0px 53px;
 	display: flex;
 	flex-direction: column;

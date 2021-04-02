@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-import FilterBg from 'app/assets/img/filter-bg.svg';
-import { Container } from '@material-ui/core';
+import FilterBg from 'app/assets/img/dropdown-bg.png';
 
-const FilterMenuWrapper = styled(Container)`
+const FilterMenuWrapper = styled.div`
 	margin: 0 auto;
-	padding: 133px 74px 29px 161px;
+	padding: 133px 75px 29px 76px;
+	min-height: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: url(${FilterBg}) 100% / contain no-repeat;
+	background: url(${FilterBg});
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	margin-top: 0;
 `;
 
 export default FilterMenuWrapper;
