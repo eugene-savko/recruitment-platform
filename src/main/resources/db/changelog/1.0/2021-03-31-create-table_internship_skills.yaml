@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-03-31-create-table_internship_skills
+      author: vadim_stradze
+      changes:
+        - createTable:
+            tableName: internship_skills
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: internship_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_internship_internship_skills
+                    references: internship(id)
+                    nullable: false
+              - column:
+                  name: skill_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_skills_internship_skills
+                    references: skills(id)
