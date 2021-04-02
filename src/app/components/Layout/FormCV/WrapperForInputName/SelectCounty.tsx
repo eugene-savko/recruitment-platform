@@ -11,7 +11,7 @@ import { ISelectCountry, ISelectCity } from './types/types';
 
 interface ISelectProps {
 	selectCountryData: Array<ISelectCountry>;
-	selectCityyData: Array<ISelectCity>;
+	selectCityData: Array<ISelectCity>;
 }
 
 interface ICityName {
@@ -29,14 +29,14 @@ interface ISelecDataCitys {
 
 export const SelectCounty: React.FunctionComponent<ISelectProps> = ({
 	selectCountryData,
-	selectCityyData,
+	selectCityData,
 }) => {
 	const [country, setCountry] = useState<ICountryName>({
 		title: 'Country',
 		data: '',
 	});
 	const [selecDataCitys, setSelecDataCitys] = useState<ISelecDataCitys>({
-		order: selectCityyData[0].data,
+		order: selectCityData[0].data,
 	});
 
 	const [city, setCity] = useState<ICityName>();
@@ -48,28 +48,28 @@ export const SelectCounty: React.FunctionComponent<ISelectProps> = ({
 
 		switch (selectTarget) {
 			case 'Belarus':
-				setSelecDataCitys({ order: selectCityyData[0].data });
+				setSelecDataCitys({ order: selectCityData[0].data });
 				break;
 			case 'Georgia':
-				setSelecDataCitys({ order: selectCityyData[1].data });
+				setSelecDataCitys({ order: selectCityData[1].data });
 				break;
 			case 'Lithuania':
-				setSelecDataCitys({ order: selectCityyData[2].data });
+				setSelecDataCitys({ order: selectCityData[2].data });
 				break;
 			case 'Poland':
-				setSelecDataCitys({ order: selectCityyData[3].data });
+				setSelecDataCitys({ order: selectCityData[3].data });
 				break;
 			case 'Russia':
-				setSelecDataCitys({ order: selectCityyData[4].data });
+				setSelecDataCitys({ order: selectCityData[4].data });
 				break;
 			case 'Ukraine':
-				setSelecDataCitys({ order: selectCityyData[5].data });
+				setSelecDataCitys({ order: selectCityData[5].data });
 				break;
 			case 'United States':
-				setSelecDataCitys({ order: selectCityyData[6].data });
+				setSelecDataCitys({ order: selectCityData[6].data });
 				break;
 			case 'Uzbekistan':
-				setSelecDataCitys({ order: selectCityyData[7].data });
+				setSelecDataCitys({ order: selectCityData[7].data });
 				break;
 			default:
 				break;

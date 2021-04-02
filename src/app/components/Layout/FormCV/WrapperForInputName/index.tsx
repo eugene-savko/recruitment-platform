@@ -49,6 +49,7 @@ const IUserselectCountry: Array<ISelectCountry> = [
 
 const IUserselectCity: Array<ISelectCity> = [
 	{
+		title: 'City',
 		data: [
 			{ city: 'Any city' },
 			{ city: 'Brest' },
@@ -58,9 +59,13 @@ const IUserselectCity: Array<ISelectCity> = [
 			{ city: 'Vitebsk' },
 		],
 	},
-	{ data: [{ city: 'Any city' }, { city: 'Tbilisi' }] },
-	{ data: [{ city: 'Any city' }, { city: 'Klaipeda' }, { city: 'Vilnius' }] },
+	{ title: 'City', data: [{ city: 'Any city' }, { city: 'Tbilisi' }] },
 	{
+		title: 'City',
+		data: [{ city: 'Any city' }, { city: 'Klaipeda' }, { city: 'Vilnius' }],
+	},
+	{
+		title: 'City',
 		data: [
 			{ city: 'Any city' },
 			{ city: 'Bialystok' },
@@ -70,6 +75,7 @@ const IUserselectCity: Array<ISelectCity> = [
 		],
 	},
 	{
+		title: 'City',
 		data: [
 			{ city: 'Any city' },
 			{ city: 'Chelyabinsk' },
@@ -77,6 +83,7 @@ const IUserselectCity: Array<ISelectCity> = [
 		],
 	},
 	{
+		title: 'City',
 		data: [
 			{ city: 'Any city' },
 			{ city: 'Kharkiv' },
@@ -86,8 +93,8 @@ const IUserselectCity: Array<ISelectCity> = [
 			{ city: 'Vinnytsia' },
 		],
 	},
-	{ data: [{ city: 'Any city' }, { city: 'Boulder' }] },
-	{ data: [{ city: 'Any city' }, { city: 'Tashkent' }] },
+	{ title: 'City', data: [{ city: 'Any city' }, { city: 'Boulder' }] },
+	{ title: 'City', data: [{ city: 'Any city' }, { city: 'Tashkent' }] },
 ];
 
 export const WrapperForInputName: React.FunctionComponent = () => (
@@ -106,7 +113,7 @@ export const WrapperForInputName: React.FunctionComponent = () => (
 		</WrapperForTowColomn>
 		<SelectCounty
 			selectCountryData={IUserselectCountry}
-			selectCityyData={IUserselectCity}
+			selectCityData={IUserselectCity}
 		/>
 	</React.Fragment>
 );

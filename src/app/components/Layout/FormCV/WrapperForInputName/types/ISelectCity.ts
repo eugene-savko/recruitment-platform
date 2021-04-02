@@ -1,4 +1,5 @@
 interface ISelectCity {
+	title?: string;
 	data: Array<{ city: string }>;
 }
 
