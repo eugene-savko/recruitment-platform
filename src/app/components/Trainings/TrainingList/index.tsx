@@ -15,16 +15,7 @@ export const TrainingList: React.FunctionComponent = () => {
 
 	return (
 		<TrainingListWrappper>
-			<InfiniteScroll
-				loadMore={() => 10}
-				pageStart={0}
-				hasMore={true || false}
-				loader={
-					<div className="loader" key={0}>
-						Loading ...
-					</div>
-				}
-			>
+			<InfiniteScroll loadMore={() => 10} pageStart={0} hasMore={true || false}>
 				{internshipList.map((internshipItem) => (
 					<TrainingItem
 						key={uid(internshipItem.id)}
