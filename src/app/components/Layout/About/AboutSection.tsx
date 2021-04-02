@@ -7,8 +7,8 @@ type AboutSectionProps = {
 	text: string,
 	background: string,
 	backgroundAside: boolean,
-	linkText: string | undefined,
-	linkUrl: string | undefined,
+	linkText?: string,
+	linkUrl?: string,
 };
 
 export const AboutSection: React.FC<AboutSectionProps> = ({
