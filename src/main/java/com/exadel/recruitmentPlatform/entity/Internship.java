@@ -12,6 +12,10 @@ import java.time.LocalDate;
 @Table(name = "internship")
 public class Internship extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
     @Column(name = "name")
     private String name;
 
