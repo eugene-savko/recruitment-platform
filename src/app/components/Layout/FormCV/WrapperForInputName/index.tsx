@@ -28,7 +28,7 @@ const IselectCourse: Array<ISelectNameData> = [
 ];
 
 const IselectLevelEnglish: Array<ISelectNameData> = [
-	{ title: 'English level', name: 'A0 Starter' },
+	{ title: 'English level *', name: 'A0 Starter' },
 	{ name: 'A1 Elementary' },
 	{ name: 'A2 Pre-intermediate' },
 	{ name: 'B1 Intermediate' },

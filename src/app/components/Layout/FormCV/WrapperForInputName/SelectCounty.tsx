@@ -19,12 +19,11 @@ interface ICityName {
 }
 
 interface ICountryName {
-	title?: string;
 	data: string;
 }
 
 interface ISelecDataCitys {
-	order: Array<{ city: string }>;
+	order?: Array<{ city: string }>;
 }
 
 export const SelectCounty: React.FunctionComponent<ISelectProps> = ({
@@ -32,20 +31,19 @@ export const SelectCounty: React.FunctionComponent<ISelectProps> = ({
 	selectCityData,
 }) => {
 	const [country, setCountry] = useState<ICountryName>({
-		title: 'Country',
-		data: '',
+		data: 'Belarus',
 	});
 	const [selecDataCitys, setSelecDataCitys] = useState<ISelecDataCitys>({
 		order: selectCityData[0].data,
 	});
 
-	const [city, setCity] = useState<ICityName>();
-
+	// eslint-disable-next-line no-console
+	console.log({ selecDataCitys });
 	const handleChange = (event: React.ChangeEvent<{ value: any }>) => {
 		// Syntax error Prettire
 		const selectTarget = event.target.value;
-		setCountry({ title: 'Country', data: selectTarget });
-
+		setCountry({ data: selectTarget });
+		// setSelecDataCitys({ title: 'City', order: selectTarget });
 		switch (selectTarget) {
 			case 'Belarus':
 				setSelecDataCitys({ order: selectCityData[0].data });
@@ -76,22 +74,15 @@ export const SelectCounty: React.FunctionComponent<ISelectProps> = ({
 		}
 	};
 
+	// eslint-disable-next-line no-console
+	console.log({ selecDataCitys });
+
 	return (
 		<React.Fragment>
 			<WrapperForTowColomn>
 				<BlockForInputs>
 					<SelectStyle variant="outlined">
-						<InputLabel id="customized select label">
-							{country.title}
-						</InputLabel>
-						<Select
-							labelId="customized select course"
-							id="customized select"
-							required
-							value={country.data}
-							onChange={handleChange}
-							label={country.title}
-						>
+						<Select required value={country.data} onChange={handleChange}>
 							{selectCountryData?.map((item) => (
 								<MenuItem value={item.data}>
 									<span>{item.data}</span>
@@ -102,16 +93,10 @@ export const SelectCounty: React.FunctionComponent<ISelectProps> = ({
 				</BlockForInputs>
 				<BlockForInputs>
 					<SelectStyle variant="outlined">
-						<InputLabel id="customized select label">
-							{/* {numCity.defaultDate} */}
-						</InputLabel>
 						<Select
-							labelId="customized select course"
-							id="customized select"
 							required
-							// value={numCity.defaultDate}
+							// value={selecDataCitys.order[0].city}
 							// onChange={handleChange}
-							// label={numCity.defaultDate}
 						>
 							{selecDataCitys.order?.map((item) => (
 								<MenuItem value={item.city}>
