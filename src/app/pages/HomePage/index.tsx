@@ -1,3 +1,8 @@
 import React from 'react';
+import FormCV from './FormCV';
 
-export const HomePage: React.FunctionComponent = () => <h1>Home page</h1>;
+export const HomePage: React.FunctionComponent = () => (
+	<React.Fragment>
+		<FormCV />
+	</React.Fragment>
+);
