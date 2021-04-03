@@ -1,45 +1,24 @@
 import React from 'react';
 
+// components
 import { InputText } from './InputText';
 import { InputSelect } from './InputSelect';
+import { SelectCounty } from './SelectCounty';
+
+// styles
 import { WrapperForTowColomn } from './component/WrapperForTowColomn';
 import { BlockForInputs } from './component/BlokForInputs';
 
 // interface
-import IInputNameData from './types/IInputNameData';
-import ISelectNameData from './types/ISelectNameData';
+import { ISelectNameData, ISelectCountry, ISelectCity } from './types/types';
 
-const InputFirstNameData: IInputNameData = {
-	name: 'First name',
-	placeholder: 'First name',
-	title: 'first name',
-	label: 'First name',
-	type: 'text',
-};
-
-const InputLastNameData: IInputNameData = {
-	name: 'Last name',
-	placeholder: 'Last name',
-	title: 'last name',
-	label: 'Last name',
-	type: 'text',
-};
-
-const InputPhoneData: IInputNameData = {
-	name: 'Phone',
-	placeholder: 'Phone',
-	title: 'enter phone',
-	label: 'Phone',
-	type: 'tel',
-};
-
-const InputEmailData: IInputNameData = {
-	name: 'Email',
-	placeholder: 'Email',
-	title: 'enter email',
-	label: 'Email',
-	type: 'email',
-};
+// data
+import {
+	InputFirstNameData,
+	InputLastNameData,
+	InputPhoneData,
+	InputEmailData,
+} from './data/dataForInput';
 
 const IselectCourse: Array<ISelectNameData> = [
 	{ title: 'Desired course', name: 'course 0' },
@@ -49,12 +28,73 @@ const IselectCourse: Array<ISelectNameData> = [
 ];
 
 const IselectLevelEnglish: Array<ISelectNameData> = [
-	{ title: 'English level', name: 'A0 Starter' },
+	{ title: 'English level *', name: 'A0 Starter' },
 	{ name: 'A1 Elementary' },
 	{ name: 'A2 Pre-intermediate' },
 	{ name: 'B1 Intermediate' },
 	{ name: 'B2 Upper-intermediate' },
 	{ name: 'C1 Advanced' },
+];
+
+const IUserselectCountry: Array<ISelectCountry> = [
+	{ data: 'Belarus', title: 'Country' },
+	{ data: 'Georgia' },
+	{ data: 'Lithuania' },
+	{ data: 'Poland' },
+	{ data: 'Russia' },
+	{ data: 'Ukraine' },
+	{ data: 'United States' },
+	{ data: 'Uzbekistan' },
+];
+
+const IUserselectCity: Array<ISelectCity> = [
+	{
+		title: 'City',
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Brest' },
+			{ city: 'Gomel' },
+			{ city: 'Grodno' },
+			{ city: 'Minsk' },
+			{ city: 'Vitebsk' },
+		],
+	},
+	{ title: 'City', data: [{ city: 'Any city' }, { city: 'Tbilisi' }] },
+	{
+		title: 'City',
+		data: [{ city: 'Any city' }, { city: 'Klaipeda' }, { city: 'Vilnius' }],
+	},
+	{
+		title: 'City',
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Bialystok' },
+			{ city: 'Poznan' },
+			{ city: 'Szczecin' },
+			{ city: 'Warsaw' },
+		],
+	},
+	{
+		title: 'City',
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Chelyabinsk' },
+			{ city: 'Yekaterinburg' },
+		],
+	},
+	{
+		title: 'City',
+		data: [
+			{ city: 'Any city' },
+			{ city: 'Kharkiv' },
+			{ city: 'Kiev' },
+			{ city: 'Lviv' },
+			{ city: 'Odessa' },
+			{ city: 'Vinnytsia' },
+		],
+	},
+	{ title: 'City', data: [{ city: 'Any city' }, { city: 'Boulder' }] },
+	{ title: 'City', data: [{ city: 'Any city' }, { city: 'Tashkent' }] },
 ];
 
 export const WrapperForInputName: React.FunctionComponent = () => (
@@ -71,5 +111,9 @@ export const WrapperForInputName: React.FunctionComponent = () => (
 				<InputSelect selectItemsData={IselectCourse} />
 			</BlockForInputs>
 		</WrapperForTowColomn>
+		<SelectCounty
+			selectCountryData={IUserselectCountry}
+			selectCityData={IUserselectCity}
+		/>
 	</React.Fragment>
 );

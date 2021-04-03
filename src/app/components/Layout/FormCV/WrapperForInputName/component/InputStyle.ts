@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { TextField as MaterialInput } from '@material-ui/core';
 
 export const InputStyle = styled(MaterialInput)`

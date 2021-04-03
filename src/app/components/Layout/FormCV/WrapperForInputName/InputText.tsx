@@ -1,9 +1,10 @@
 import React from 'react';
 
+// styles
+import { InputStyle } from './component/InputStyle';
+
 // interface
 import IInputNameData from './types/IInputNameData';
-
-import { InputStyle } from './component/InputStyle';
 
 interface INavMenuProps {
 	inputNameData: IInputNameData;
