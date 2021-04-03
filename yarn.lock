@@ -1929,6 +1929,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-infinite-scroller@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@types/react-infinite-scroller/-/react-infinite-scroller-1.2.1.tgz#1cd747ef8f50d3c883e375c0491a906e5436fcb2"
+  integrity sha512-64bpbqdSgtmy1zSZ2AQoFzguwZO7TyKjqJRTEnfNMCAQbnrX90kz+rYufZyY9CmzhwpXMwRO8xR9fMQnbYUkgQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^5.1.7":
   version "5.1.7"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.7.tgz#a126d9ea76079ffbbdb0d9225073eb5797ab7271"
@@ -9335,7 +9342,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9567,6 +9574,13 @@ react-hook-form@^6.15.5:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.5.tgz#c2578f9ce6a6df7b33015587d40cd880dc13e2db"
   integrity sha512-so2jEPYKdVk1olMo+HQ9D9n1hVzaPPFO4wsjgSeZ964R7q7CHsYRbVF0PGBi83FcycA5482WHflasdwLIUVENg==
 
+react-infinite-scroller@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroller/-/react-infinite-scroller-1.2.4.tgz#f67eaec4940a4ce6417bebdd6e3433bfc38826e9"
+  integrity sha512-/oOa0QhZjXPqaD6sictN2edFMsd3kkMiE19Vcz5JDgHpzEJVqYcmq+V3mkwO88087kvKGe1URNksHEOt839Ubw==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -9611,7 +9625,7 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-scripts@4.0.3:
+react-scripts@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-4.0.3.tgz#b1cafed7c3fa603e7628ba0f187787964cb5d345"
   integrity sha512-S5eO4vjUzUisvkIPB7jVsKtuH2HhWcASREYWHAQ1FP5HyCv3xgn+wpILAEWkmy+A+tTNbSZClhxjT3qz6g4L1A==
@@ -9686,6 +9700,13 @@ react-transition-group@^4.4.0:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-uid@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-uid/-/react-uid-2.3.1.tgz#22a75d4a948a4824b9b8078cbf864d55d91ca4be"
+  integrity sha512-6C5pwNYP1udgp5feQ9MTBZBKD4su9nhD2aYCFY1bB0Bpask8wYKYz0ZhAtAJ4lcmTDC5kY1ByGTQMFDHQW6p0w==
+  dependencies:
+    tslib "^1.10.0"
 
 react@^17.0.2:
   version "17.0.2"
@@ -11269,7 +11290,7 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
@@ -11684,11 +11705,6 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
-
-web-vitals@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-1.1.1.tgz#2df535e3355fb7fbe34787b44b736e270e539377"
-  integrity sha512-jYOaqu01Ny1NvMwJ3dBJDUOJ2PGWknZWH4AUnvFOscvbdHMERIKT2TlgiAey5rVyfOePG7so2JcXXZdSnBvioQ==
 
 webidl-conversions@^5.0.0:
   version "5.0.0"

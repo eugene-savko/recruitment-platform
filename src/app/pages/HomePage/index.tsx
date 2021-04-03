@@ -1,3 +1,5 @@
+import { Training } from 'app/components/Trainings';
+
 import React from 'react';
 import FormCV from './FormCV';
 
