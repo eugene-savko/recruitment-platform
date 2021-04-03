@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import FilterBg from 'app/assets/img/dropdown-bg.png';
+import FilterBg from '../../assets/img/dropdown-bg.png';
 
 const FilterMenuWrapper = styled.div`
 	margin: 0 auto;
