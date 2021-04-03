@@ -11,12 +11,12 @@ import IMenuItemData from './types/IMenuItemData';
 
 const MenuItemsData: Array<IMenuItemData> = [
 	{
-		label: 'Список тренингов',
+		label: 'Trainings',
 		isSelected: true,
-		path: '/trainings',
+		path: '/',
 	},
 	{
-		label: 'Про нас',
+		label: 'About trainings',
 		isSelected: false,
 		path: '/about',
 	},
