@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-import { ITrainingItem } from 'app/components/Trainings/types';
+import { ITrainingItem } from 'app/pages/HomePage/Trainings/types';
 
 const initialStateContext = [
 	{ id: '', course: '', profession: '', status: '', country: '', info: '' },
