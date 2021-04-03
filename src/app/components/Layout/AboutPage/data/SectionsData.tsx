@@ -1,11 +1,11 @@
-export const aboutData = [
+const SectionsData = [
 	{
 		title: 'Don’t see a course that fits you?',
 		text: `Send us your CV anyway! We’re always starting new projects and we’d love to work with you. We’ll keep your CV on file and get in touch as soon as we have a good match for you!`,
 		background: `https://exadel.com/wp-content/uploads/2021/02/vacancy-1.jpg`,
 		backgroundAside: false,
 		linkText: 'Send your CV right now',
-		linkUrl: '#',
+		linkUrl: '/about',
 	},
 	{
 		title: 'Equal Employment Opportunity (EEO)',
@@ -16,9 +16,7 @@ export const aboutData = [
 	{
 		title: 'Our Internship Program',
 		text: `Qualified students at the Belarusian State University in Minsk have been working with Exadel for more than half a decade to access unparalleled learning opportunities and potentially start their long-term career.\n
-    
     In our competitive internship program, about 25% of each class will win their first professional position with us upon completing student work. We welcome students in technology-related majors that excel in academics to pursue internship opportunities with Exadel.\n
-    
     Here, as part of our development team, students work closely with experienced engineers to quickly deepen their skills through real-world work in coding, development, design, and testing. Being part of a consultancy organization, a strong emphasis on teamwork is also part of every internship experience. Interested in learning more?`,
 		background: `https://exadel.com/wp-content/uploads/2020/02/careers-content-bg-2.jpg`,
 		backgroundAside: false,
@@ -29,6 +27,8 @@ export const aboutData = [
 		background: `https://exadel.com/wp-content/uploads/2020/11/faq-2.jpg`,
 		backgroundAside: true,
 		linkText: 'Read FAQ',
-		linkUrl: '#',
+		linkUrl: '/about',
 	},
 ];
+
+export default SectionsData;

@@ -1,3 +1,4 @@
+import { AboutPage } from 'app/components/Layout/AboutPage';
 import React from 'react';
 
-export const HomePage: React.FunctionComponent = () => <h1>Home page</h1>;
+export const HomePage: React.FunctionComponent = () => <AboutPage />;

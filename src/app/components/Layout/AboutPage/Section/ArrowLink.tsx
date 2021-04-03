@@ -1,14 +1,14 @@
 import React from 'react';
-import { LinkWrapper } from './LinkWrapper';
+import { LinkWrapper } from './components/LinkWrapper';
 
 type ArrowLinkProps = {
 	linkUrl: string | undefined,
-	children: string,
+	text: string,
 };
 
-export const ArrowLink: React.FC<ArrowLinkProps> = ({ linkUrl, children }) => (
+export const ArrowLink: React.FC<ArrowLinkProps> = ({ linkUrl, text }) => (
 	<LinkWrapper className="arrow" href={linkUrl}>
-		{children}
+		{text}
 		<span className="anim-arrow">
 			<span className="anim-arrow__shaft" />
 		</span>

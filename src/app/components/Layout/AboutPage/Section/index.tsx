@@ -1,8 +1,8 @@
 import React from 'react';
-import { ArrowLink } from './components/ArrowLink';
+import { ArrowLink } from './ArrowLink';
 import { SectionWrapper } from './components/SectionWrapper';
 
-type AboutSectionProps = {
+type SectionProps = {
 	title: string,
 	text: string,
 	background: string,
@@ -11,7 +11,7 @@ type AboutSectionProps = {
 	linkUrl?: string,
 };
 
-export const AboutSection: React.FC<AboutSectionProps> = ({
+export const Section: React.FunctionComponent<SectionProps> = ({
 	title,
 	text,
 	background,
@@ -26,6 +26,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 		<h2>{title}</h2>
 		<p>{text}</p>
 
-		{linkText ? <ArrowLink linkUrl={linkUrl}>{linkText}</ArrowLink> : ''}
+		{linkText && <ArrowLink linkUrl={linkUrl} text={linkText} />}
 	</SectionWrapper>
 );

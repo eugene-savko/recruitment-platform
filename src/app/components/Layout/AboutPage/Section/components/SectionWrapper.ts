@@ -4,9 +4,11 @@ type SectionWrapperProps = {
 	background: string,
 };
 
-export const SectionWrapper = styled.section`
-	background-image: url(${(props: SectionWrapperProps) =>
-		props.background || ''});
+export const SectionWrapper =
+	styled.section <
+	SectionWrapperProps >
+	`
+	background-image: url(${(props) => props.background});
 	width: 100%;
 	max-width: 1000px;
 	min-height: 300px;
