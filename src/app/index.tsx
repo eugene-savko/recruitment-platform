@@ -4,15 +4,16 @@ import React from 'react';
 import { CssBaseline } from '@material-ui/core';
 
 // React-router
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 // Pages
-import { Layout } from './components/Layout';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { Layout } from './components/Layout';
 
+// Routs
 import ROUTES from './routes';
 
-export const App: React.FunctionComponent = () => (
+export const App: React.FC = () => (
 	<>
 		<CssBaseline />
 		<BrowserRouter>
@@ -26,7 +27,8 @@ export const App: React.FunctionComponent = () => (
 							component={ROUTE.component}
 						/>
 					))}
-					<Route component={NotFoundPage} />
+					<Route path="/not-found" component={NotFoundPage} />
+					<Redirect exact from="*" to="/not-found" />
 				</Switch>
 			</Layout>
 		</BrowserRouter>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { IFormInput } from 'app/components/Auth/types';
+import { IFormInput } from 'app/pages/AuthPage/Auth/types';
 
 import { Button } from '@material-ui/core';
 

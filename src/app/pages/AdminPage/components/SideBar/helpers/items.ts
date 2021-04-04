@@ -6,17 +6,17 @@ import {
 
 export const items = [
 	{
-		href: '/app/dashboard',
+		href: '/admin/dashboard',
 		icon: BarChartIcon,
-		title: 'Dashboard',
+		title: 'DashBoard',
 	},
 	{
-		href: '/app/customers',
+		href: '/admin/candidate',
 		icon: UsersIcon,
-		title: 'Customers',
+		title: 'Candidate',
 	},
 	{
-		href: '/login',
+		href: '/admin/login',
 		icon: LockIcon,
 		title: 'Login',
 	},

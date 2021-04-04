@@ -1,4 +1,5 @@
-import { HomePage } from './pages/HomePage';
+import { AdminPage } from './pages/AdminPage';
+import { AuthPage } from './pages/AuthPage';
 
 import IRoute from './types/IRoute';
 
@@ -6,7 +7,12 @@ const ROUTES: Array<IRoute> = [
 	{
 		path: '/',
 		exact: true,
-		component: HomePage,
+		component: AuthPage,
+	},
+	{
+		path: '/admin',
+		exact: false,
+		component: AdminPage,
 	},
 ];
 

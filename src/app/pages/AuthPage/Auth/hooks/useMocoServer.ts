@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IFormInput } from 'app/components/Auth/types';
+import { IFormInput } from 'app/pages/AuthPage/Auth/types';
 
 const useMocoServer = () => {
 	// eslint-disable-next-line no-unused-vars
