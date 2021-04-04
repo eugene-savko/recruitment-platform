@@ -26,7 +26,7 @@ export const TrainingList: React.FunctionComponent = () => {
 					/>
 				))}
 			</InfiniteScroll>
-			<OtherCourses>Загрузить больше предложений</OtherCourses>
+			<OtherCourses>Load more offers</OtherCourses>
 		</TrainingListWrappper>
 	);
 };

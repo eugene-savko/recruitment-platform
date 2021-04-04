@@ -1,17 +1,15 @@
 import styled from 'styled-components';
-import FilterBg from '../../assets/img/dropdown-bg.png';
+import FilterBg from 'app/assets/img/menu-filter_bg.png';
 
 const FilterMenuWrapper = styled.div`
-	margin: 0 auto;
-	padding: 133px 75px 29px 76px;
-	min-height: 200px;
+	padding: 133px 76px 29px 75px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-end;
 	background: url(${FilterBg});
+	background-size: contain;
 	background-position: bottom center;
 	background-repeat: no-repeat;
-	margin-top: 0;
 `;
 
 export default FilterMenuWrapper;

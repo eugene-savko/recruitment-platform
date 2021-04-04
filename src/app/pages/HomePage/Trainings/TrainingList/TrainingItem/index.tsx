@@ -30,6 +30,6 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 			<StatusLabel>{status}</StatusLabel>
 		</MainInfo>
 		<DescrtiptionInternship>{info}</DescrtiptionInternship>
-		<Details>Подробнее</Details>
+		<Details>Details</Details>
 	</TrainingItemWrapper>
 );

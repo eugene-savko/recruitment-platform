@@ -2,84 +2,98 @@ import React from 'react';
 import { uid } from 'react-uid';
 import { Search as SearchIcon } from '@material-ui/icons';
 
-import { SelectItem } from './SelectItem';
-
 import {
 	FilterMenuWrapper,
-	FilterDropdown,
 	DropdownWrapper,
 	FormControled,
 	SearchButton,
-	DropdownIcon,
-	Label,
 } from './components';
 
 import { IDestinationItem, IFilterState, ISpecializationItem } from '../types';
+import { TrainingsMenuItem } from './TrainingsMenuItem';
+import { TrainingsMenu } from './TrainingsMenu';
+import { TrainingsDropdownButton } from './TrainingsDropdownButton';
+import { TrainingsDropdownLabel } from './TrainingsDropdownLabel';
 
 // TODO: Fix Function type - eslint rule: @typescript-eslint/ban-types
 interface IFilterMenuProps {
-	change: Function;
-	click: Function;
+	clickSearch: Function;
 	state: IFilterState;
+	clickMenuSpecializationItem: Function;
 	specializationItems: Array<ISpecializationItem>;
+	inputCheckboxSpecializationChange: Function;
+	toogleMenuSpecialization: Function;
+	specializationMenuState: boolean;
 	destinationItems: Array<IDestinationItem>;
+	toogleMenuDestination: Function;
+	destinationMenuState: boolean;
+	clickMenuDestinationItem: Function;
+	inputCheckboxDestinationChange: Function;
 }
 
 export const Filter: React.FunctionComponent<IFilterMenuProps> = ({
-	change,
-	click,
+	clickSearch,
 	state,
 	specializationItems,
+	clickMenuSpecializationItem,
+	toogleMenuSpecialization,
+	specializationMenuState,
+	inputCheckboxSpecializationChange,
 	destinationItems,
+	toogleMenuDestination,
+	destinationMenuState,
+	clickMenuDestinationItem,
+	inputCheckboxDestinationChange,
 }) => (
 	<FilterMenuWrapper>
 		<DropdownWrapper>
 			<FormControled>
-				<Label htmlFor="specialization-native-simple">Специальности</Label>
-				<FilterDropdown
-					native
-					value={state.specialization}
-					onChange={(event) => change(event)}
-					inputProps={{
-						name: 'specialization',
-						id: 'specialization-native-simple',
-					}}
-					IconComponent={DropdownIcon}
-					disableUnderline
-				>
-					{specializationItems.map((specializationItem) => (
-						<SelectItem
-							value={specializationItem.profession}
-							id={specializationItem.id}
-							key={uid(specializationItem.id)}
+				<TrainingsDropdownLabel stateFilter="Speciallization">
+					<TrainingsDropdownButton
+						toogleMenu={toogleMenuSpecialization}
+						menuState={specializationMenuState}
+					>
+						{state.specialization}
+					</TrainingsDropdownButton>
+				</TrainingsDropdownLabel>
+				<TrainingsMenu menuState={specializationMenuState}>
+					{specializationItems.map((item) => (
+						<TrainingsMenuItem
+							value={item.profession}
+							id={item.id}
+							key={uid(item.id)}
+							check={item.checked}
+							inputCheckboxChange={inputCheckboxSpecializationChange}
+							click={clickMenuSpecializationItem}
 						/>
 					))}
-				</FilterDropdown>
+				</TrainingsMenu>
 			</FormControled>
+
 			<FormControled>
-				<Label htmlFor="destination-native-simple">Местоположение</Label>
-				<FilterDropdown
-					native
-					value={state.destination}
-					onChange={(event) => change(event)}
-					inputProps={{
-						name: 'destination',
-						id: 'destination-native-simple',
-					}}
-					IconComponent={DropdownIcon}
-					disableUnderline
-				>
-					{destinationItems.map((destinationItem) => (
-						<SelectItem
-							value={destinationItem.country}
-							id={destinationItem.id}
-							key={uid(destinationItem.id)}
+				<TrainingsDropdownLabel stateFilter="Destination">
+					<TrainingsDropdownButton
+						toogleMenu={toogleMenuDestination}
+						menuState={destinationMenuState}
+					>
+						{state.destination}
+					</TrainingsDropdownButton>
+				</TrainingsDropdownLabel>
+				<TrainingsMenu menuState={destinationMenuState}>
+					{destinationItems.map((item) => (
+						<TrainingsMenuItem
+							value={item.country}
+							id={item.id}
+							key={uid(item.id)}
+							check={item.checked}
+							inputCheckboxChange={inputCheckboxDestinationChange}
+							click={clickMenuDestinationItem}
 						/>
 					))}
-				</FilterDropdown>
+				</TrainingsMenu>
 			</FormControled>
 		</DropdownWrapper>
-		<SearchButton aria-label="search" onClick={() => click()}>
+		<SearchButton aria-label="search" onClick={() => clickSearch()}>
 			<SearchIcon />
 		</SearchButton>
 	</FilterMenuWrapper>
