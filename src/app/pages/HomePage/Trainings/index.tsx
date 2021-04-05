@@ -34,6 +34,7 @@ export const Training: React.FunctionComponent = () => {
 	const [trainingList, setTrainingList] = useState<Array<ITrainingItem>>(
 		TrainingItemsData
 	);
+
 	// Speciallization
 	const [specializationItems, setSpecializationItems] = useState<
 		Array<ISpecializationItem>
@@ -42,6 +43,7 @@ export const Training: React.FunctionComponent = () => {
 		specializationMenuState,
 		setSpecializationMenuState,
 	] = useState<boolean>(false);
+
 	// Click Menu Specialization Item
 	const handleClickMenuSpecializationItem = (value: string) => {
 		const specializationsToUnchecked = SpecializationItemsData.map((item) => {
@@ -59,10 +61,12 @@ export const Training: React.FunctionComponent = () => {
 		});
 		setSpecializationItems(specializationToChecked);
 	};
+
 	// Toogle Menu
 	const toogleMenuSpecialization = () => {
 		setSpecializationMenuState(!specializationMenuState);
 	};
+
 	// Input Checkbox Specialization Change
 	const inputCheckboxSpecializationChange = (
 		event: React.ChangeEvent<{
@@ -73,6 +77,7 @@ export const Training: React.FunctionComponent = () => {
 			...filterState,
 			specialization: event.target.value,
 		});
+
 	// Destination
 	const [destinationItems, setDestinationItems] = useState<
 		Array<IDestinationItem>
@@ -80,10 +85,12 @@ export const Training: React.FunctionComponent = () => {
 	const [destinationMenuState, setDestinationMenuState] = useState<boolean>(
 		false
 	);
+
 	// Toogle Menu
 	const toogleMenuDestination = () => {
 		setDestinationMenuState(!destinationMenuState);
 	};
+
 	// Click Menu Destination Item
 	const handleClickMenuDestinationItem = (value: string) => {
 		const destinationsToUnchecked = DestinationItemsData.map((item) => {
@@ -101,6 +108,7 @@ export const Training: React.FunctionComponent = () => {
 		});
 		setDestinationItems(destinationToChecked);
 	};
+
 	// Input Checkbox Destination Change
 	const inputCheckboxDestinationChange = (
 		event: React.ChangeEvent<{
@@ -111,6 +119,7 @@ export const Training: React.FunctionComponent = () => {
 			...filterState,
 			destination: event.target.value,
 		});
+
 	// Click Search
 	const handleClickSearch = () => {
 		const filteredBySpecialization = TrainingItemsData.filter(

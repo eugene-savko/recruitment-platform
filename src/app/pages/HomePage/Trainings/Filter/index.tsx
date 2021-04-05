@@ -10,10 +10,10 @@ import {
 } from './components';
 
 import { IDestinationItem, IFilterState, ISpecializationItem } from '../types';
-import { TrainingsMenuItem } from './TrainingsMenuItem';
+import { DropdownMenuList } from './DropdownMenuList';
 import { TrainingsMenu } from './TrainingsMenu';
-import { TrainingsDropdownButton } from './TrainingsDropdownButton';
 import { TrainingsDropdownLabel } from './TrainingsDropdownLabel';
+import { DropdownMenu } from './DropdownMenu';
 
 // TODO: Fix Function type - eslint rule: @typescript-eslint/ban-types
 interface IFilterMenuProps {
@@ -49,16 +49,16 @@ export const Filter: React.FunctionComponent<IFilterMenuProps> = ({
 		<DropdownWrapper>
 			<FormControled>
 				<TrainingsDropdownLabel stateFilter="Speciallization">
-					<TrainingsDropdownButton
+					<DropdownMenu
 						toogleMenu={toogleMenuSpecialization}
 						menuState={specializationMenuState}
 					>
 						{state.specialization}
-					</TrainingsDropdownButton>
+					</DropdownMenu>
 				</TrainingsDropdownLabel>
 				<TrainingsMenu menuState={specializationMenuState}>
 					{specializationItems.map((item) => (
-						<TrainingsMenuItem
+						<DropdownMenuList
 							value={item.profession}
 							id={item.id}
 							key={uid(item.id)}
@@ -72,16 +72,16 @@ export const Filter: React.FunctionComponent<IFilterMenuProps> = ({
 
 			<FormControled>
 				<TrainingsDropdownLabel stateFilter="Destination">
-					<TrainingsDropdownButton
+					<DropdownMenu
 						toogleMenu={toogleMenuDestination}
 						menuState={destinationMenuState}
 					>
 						{state.destination}
-					</TrainingsDropdownButton>
+					</DropdownMenu>
 				</TrainingsDropdownLabel>
 				<TrainingsMenu menuState={destinationMenuState}>
 					{destinationItems.map((item) => (
-						<TrainingsMenuItem
+						<DropdownMenuList
 							value={item.country}
 							id={item.id}
 							key={uid(item.id)}

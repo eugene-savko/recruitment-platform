@@ -26,8 +26,4 @@ const List = styled.ul`
 export const TrainingsMenu: React.FunctionComponent<ITrainingMenu> = ({
 	children,
 	menuState,
-}) => (
-	<React.Fragment>
-		<List menuState={menuState}>{children}</List>
-	</React.Fragment>
-);
+}) => <List menuState={menuState}>{children}</List>;
