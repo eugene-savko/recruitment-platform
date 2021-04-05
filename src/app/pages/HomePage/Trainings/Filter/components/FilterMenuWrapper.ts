@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import FilterBg from 'app/assets/img/menu-filter_bg.png';
+import FilterBg from '../../assets/img/menu-filter_bg.png';
 
 const FilterMenuWrapper = styled.div`
 	padding: 133px 76px 29px 75px;
