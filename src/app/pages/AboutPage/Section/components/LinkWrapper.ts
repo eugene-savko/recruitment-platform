@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type LinkWrapperProps = {
-	linkUrl: string,
+	linkUrl: string;
 };
 
 export const LinkWrapper = styled.a`

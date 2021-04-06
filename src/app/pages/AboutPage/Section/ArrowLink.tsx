@@ -2,8 +2,8 @@ import React from 'react';
 import { LinkWrapper } from './components/LinkWrapper';
 
 type ArrowLinkProps = {
-	linkUrl: string | undefined,
-	text: string,
+	linkUrl: string | undefined;
+	text: string;
 };
 
 export const ArrowLink: React.FC<ArrowLinkProps> = ({ linkUrl, text }) => (

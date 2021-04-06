@@ -16,6 +16,7 @@ import {
 
 import { IDestinationItem, IFilterState, ISpecializationItem } from '../types';
 
+// TODO: Fix Function type - eslint rule: @typescript-eslint/ban-types
 interface IFilterMenuProps {
 	change: Function;
 	click: Function;

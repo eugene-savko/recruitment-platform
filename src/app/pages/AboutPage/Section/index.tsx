@@ -3,12 +3,12 @@ import { ArrowLink } from './ArrowLink';
 import { SectionWrapper } from './components/SectionWrapper';
 
 type SectionProps = {
-	title: string,
-	text: string,
-	background: string,
-	backgroundAside: boolean,
-	linkText?: string,
-	linkUrl?: string,
+	title: string;
+	text: string;
+	background: string;
+	backgroundAside: boolean;
+	linkText?: string;
+	linkUrl?: string;
 };
 
 export const Section: React.FunctionComponent<SectionProps> = ({

@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 type SectionWrapperProps = {
-	background: string,
+	background: string;
 };
 
-export const SectionWrapper =
-	styled.section <
-	SectionWrapperProps >
-	`
+export const SectionWrapper = styled.section<SectionWrapperProps>`
 	background-image: url(${(props) => props.background});
 	width: 100%;
 	max-width: 1000px;

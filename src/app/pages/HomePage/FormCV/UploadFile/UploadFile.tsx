@@ -34,7 +34,7 @@ export default function UploadButtons() {
 		}
 
 		const allowedExtensions = ['pdf', 'doc', 'docx'];
-		const fileRegex: RegExp = /^(?<nameFile>.+)\.(?<extension>.+)$/;
+		const fileRegex = /^(?<nameFile>.+)\.(?<extension>.+)$/;
 		const fileGroupsReg = fileRegex.exec(name);
 		const extension = fileGroupsReg?.groups?.extension || '';
 		const allowedExtension = allowedExtensions.includes(extension);

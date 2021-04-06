@@ -53,8 +53,8 @@ export const Training: React.FunctionComponent = () => {
 
 	const handleChange = (
 		event: React.ChangeEvent<{
-			value: string,
-			name: string,
+			value: string;
+			name: string;
 		}>
 	) => {
 		setFilterState({
