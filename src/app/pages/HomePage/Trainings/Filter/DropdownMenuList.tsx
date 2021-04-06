@@ -1,33 +1,29 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import { MenuListInput, MenuListLabel } from './components';
-
-interface ITrainingsMenuItem {
-	value: string;
-	id: number;
-	check: boolean;
-	click: Function;
-	inputCheckboxChange: Function;
+interface ITrainingMenu {
+	children: React.ReactNode;
+	menuState: boolean;
 }
 
-export const DropdownMenuList: React.FunctionComponent<ITrainingsMenuItem> = ({
-	value,
-	id,
-	check,
-	inputCheckboxChange,
-	click,
-}) => (
-	<React.Fragment>
-		<MenuListLabel htmlFor={`way-${value}-${id}`} check={check}>
-			<MenuListInput
-				type="checkbox"
-				value={value}
-				id={`way-${value}-${id}`}
-				onChange={(event) => inputCheckboxChange(event)}
-				onClick={() => click(value)}
-				checked={check}
-			/>
-			{value}
-		</MenuListLabel>
-	</React.Fragment>
-);
+const List = styled.ul`
+	position: absolute;
+	margin: 0;
+	display: ${(props: { menuState: boolean }) =>
+		props.menuState ? 'flex' : 'none'};
+	justify-content: space-between;
+	flex-direction: column;
+	width: 365px;
+	top: 100px;
+	left: 0;
+	z-index: 20;
+	background: #fff;
+	border: 1px solid #e1e1e1;
+	padding: 10px 20px 30px 40px;
+	border-radius: 24px;
+`;
+
+export const DropdownMenuList: React.FunctionComponent<ITrainingMenu> = ({
+	children,
+	menuState,
+}) => <List menuState={menuState}>{children}</List>;

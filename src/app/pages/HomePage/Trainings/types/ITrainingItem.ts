@@ -6,5 +6,4 @@ interface ITrainingItem {
 	info: string;
 	status: string;
 }
-
 export default ITrainingItem;
