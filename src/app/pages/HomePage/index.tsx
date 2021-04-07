@@ -1,11 +1,7 @@
-import { Training } from 'app/pages/HomePage/Trainings';
-
 import React from 'react';
-import FormCV from './FormCV';
+
+// import { Training } from 'app/pages/HomePage/Trainings';
 
 export const HomePage: React.FunctionComponent = () => (
-	<React.Fragment>
-		<Training />
-		<FormCV />
-	</React.Fragment>
+	<React.Fragment>{/* <Training /> */}</React.Fragment>
 );
