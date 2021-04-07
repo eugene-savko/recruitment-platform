@@ -24,7 +24,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: sybtype
+                  name: subtype
                   type: varchar(50)
                   constraints:
                     nullable: false
