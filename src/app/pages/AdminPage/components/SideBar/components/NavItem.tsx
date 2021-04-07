@@ -3,13 +3,15 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import { NavLink as RouterLink } from 'react-router-dom';
 
-import {
-	SideBarListItemIcon,
-	SideBarListItemText,
-} from '../Styled/SideBarStyled';
+import { SideBarListItemIcon, SideBarListItemText } from '../Styled';
+import { ISideBarItems } from '../types';
 
-const NavItem = ({ href, icon: Icon, title, ...rest }: any) => (
-	<ListItem component={RouterLink} to={href} button key={title} {...rest}>
+const NavItem: React.FC<ISideBarItems> = ({
+	href,
+	icon: Icon,
+	title,
+}: ISideBarItems) => (
+	<ListItem component={RouterLink} to={href} button key={title}>
 		<SideBarListItemIcon>
 			<Icon />
 		</SideBarListItemIcon>

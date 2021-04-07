@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
-import { Header } from './components/Header/index';
-import { Sidebar } from './components/SideBar/index';
+import { Header } from './components/Header';
+import { Sidebar } from './components/SideBar';
 import { Candidate } from './components/Candidate/Candidate';
 import { DashBoard } from './components/DashBoard/DashBoard';
 import {

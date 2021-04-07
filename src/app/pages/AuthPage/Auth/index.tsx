@@ -39,6 +39,7 @@ export const Auth: React.FunctionComponent = () => {
 	});
 
 	const onSubmit = (dataLogin: IFormInput) => {
+		console.log(dataLogin);
 		setDataFromUser(dataLogin);
 		handleLogin();
 	};

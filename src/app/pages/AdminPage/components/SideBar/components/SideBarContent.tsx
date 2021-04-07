@@ -3,23 +3,11 @@ import { Avatar, Box, Divider, List, Typography } from '@material-ui/core';
 import NavItem from './NavItem';
 import { user } from '../helpers/user';
 import { items } from '../helpers/items';
+import { SideBarAvatarWrapper, SideBarContentWrapper } from '../Styled';
 
-export const SideBarContent = () => (
-	<Box
-		style={{
-			display: 'flex',
-			flexDirection: 'column',
-			height: '100%',
-		}}
-	>
-		<Box
-			style={{
-				alignItems: 'center',
-				display: 'flex',
-				flexDirection: 'column',
-				padding: '16px',
-			}}
-		>
+export const SideBarContent: React.FC = () => (
+	<SideBarContentWrapper>
+		<SideBarAvatarWrapper>
 			<Avatar
 				src={user.avatar}
 				style={{
@@ -34,11 +22,9 @@ export const SideBarContent = () => (
 			<Typography color="textSecondary" variant="body2">
 				{user.jobTitle}
 			</Typography>
-		</Box>
-
+		</SideBarAvatarWrapper>
 		<Divider />
-
-		<Box style={{ padding: 'p' }}>
+		<Box>
 			<List>
 				{items.map((item) => (
 					<NavItem
@@ -50,13 +36,5 @@ export const SideBarContent = () => (
 				))}
 			</List>
 		</Box>
-		<Box style={{ flexGrow: 1 }} />
-		<Box
-			style={{
-				backgroundColor: 'background.default',
-				margin: '16px',
-				padding: '16px',
-			}}
-		/>
-	</Box>
+	</SideBarContentWrapper>
 );

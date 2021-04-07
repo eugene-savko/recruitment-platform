@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { Drawer, Hidden } from '@material-ui/core';
+
 import {
+	// eslint-disable-next-line camelcase
 	unstable_createMuiStrictModeTheme,
 	ThemeProvider,
 } from '@material-ui/core/styles';
-import { useLocation } from 'react-router-dom';
 
 import { SideBarContent } from './components/SideBarContent';
+
 import { IPropsSideBar } from './types';
 
 const theme = unstable_createMuiStrictModeTheme();
 
-export const Sidebar = ({ onMobileClose, openMobile }: IPropsSideBar) => {
+export const Sidebar: React.FC<IPropsSideBar> = ({
+	onMobileClose,
+	openMobile,
+}: IPropsSideBar) => {
 	const location = useLocation();
 
 	useEffect(() => {
