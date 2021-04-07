@@ -56,8 +56,8 @@
 		"import/prefer-default-export": "off",
 		"import/no-unresolved": "off",
 		"react/prop-types": "off",
-		"@typescript-eslint/no-empty-interface": "off",
-		"@typescript-eslint/ban-types": "off"
+		"@typescript-eslint/no-empty-interface": ["warn"],
+		"@typescript-eslint/ban-types": ["warn"]
   },
   "settings": {
     "import/resolver": {
