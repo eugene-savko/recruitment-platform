@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: 2021-03-25-create-table_user
       author: alex_over
       changes:
         - createTable:
@@ -49,17 +49,12 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: cv
-                  type: varchar(50)
-                  constraints:
-                    nullable: true
-              - column:
                   name: phone
                   type: varchar(50)
                   constraints:
                     nullable: false
               - column:
-                  name: status
+                  name: password
                   type: varchar(50)
                   constraints:
                     nullable: true
