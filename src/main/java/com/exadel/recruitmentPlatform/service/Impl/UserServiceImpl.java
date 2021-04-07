@@ -16,8 +16,9 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+
     @Override
-    public UserDto save(UserDto dto) {
+    public UserDto create(UserDto dto) {
         return null;
     }
 
@@ -25,11 +26,6 @@ public class UserServiceImpl implements UserService {
     public UserDto findById(Long id) {
         return userRepository.findById(id).map(userMapper::toDto)
                 .orElseThrow(() -> new NullPointerException("User with id=" + id + " doesn't exist"));
-    }
-
-    @Override
-    public void deleteById(Long id) {
-
     }
 
 }

@@ -1,23 +1,19 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
+@SuperBuilder
 public class UserDto extends BaseDto {
-
-    private Long id;
 
     @NotBlank
     @Size(min = 1, max = 50)
@@ -26,10 +22,10 @@ public class UserDto extends BaseDto {
     @Size(min = 1, max = 50)
     private String lastName;
     @Email
-    @Size(min = 5, max = 254)
+    @Size(min = 5, max = 50)
     private String email;
 
-    private String role;
+    private UserRole role;
 
     private String skype;
 

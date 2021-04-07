@@ -5,21 +5,20 @@ import com.exadel.recruitmentPlatform.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper implements BaseMapper<User, UserDto>{
+public class UserMapper implements BaseMapper<User, UserDto> {
 
     @Override
     public User toEntity(UserDto userDto) {
-        return User.builder()
-                .id(userDto.getId())
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .email(userDto.getEmail())
-                .role(userDto.getRole())
-                .skype(userDto.getSkype())
-                .country(userDto.getSkype())
-                .photo(userDto.getPhoto())
-                .phone(userDto.getPhone())
-                .build();
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setRole(userDto.getRole());
+        user.setSkype(userDto.getSkype());
+        user.setPhoto(userDto.getPhoto());
+        user.setPhone(userDto.getPhone());
+        return user;
     }
 
     @Override
@@ -35,6 +34,5 @@ public class UserMapper implements BaseMapper<User, UserDto>{
                 .photo(user.getPhoto())
                 .phone(user.getPhone())
                 .build();
-
     }
 }
