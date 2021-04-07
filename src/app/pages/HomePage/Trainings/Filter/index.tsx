@@ -3,20 +3,17 @@ import { uid } from 'react-uid';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
-import {
-	FilterMenuWrapper,
-	DropdownWrapper,
-	FormControled,
-	SearchButton,
-} from './components';
+import { DropdownWrapper, SearchButton } from './components';
 import { IFilterState, ISpecializationItem } from './types';
 
-import { DropdownMenuList } from './DropdownMenuList';
-import { TrainingsDropdownLabel } from './TrainingsDropdownLabel';
+import { DropdownList } from './DropdownList';
 import { DropdownMenu } from './DropdownMenu';
 import { SpecializationItemsData } from './data';
 import { TrainingItemsData } from '../data';
-import { DropdownMenuListItem } from './DropdownMenuListItem';
+import { DropdownListItem } from './DropdownListItem';
+import DropdownMenuLabel from './DropdownMenuLabel';
+import FilterDropdownWrapper from './components/FilterMenuWrapper';
+import ControledForm from './components/FormControled';
 
 const initialState: IFilterState = {
 	specialization: 'Any Speciallization',
@@ -24,6 +21,7 @@ const initialState: IFilterState = {
 };
 
 export const Filter: React.FunctionComponent = () => {
+	const open: boolean | null = null;
 	const { setTrainings } = useContext(FilterContext);
 
 	// FilterState
@@ -34,10 +32,9 @@ export const Filter: React.FunctionComponent = () => {
 		Array<ISpecializationItem>
 	>(SpecializationItemsData);
 
-	const [
-		specializationMenuState,
-		setSpecializationMenuState,
-	] = useState<boolean>(false);
+	const [specializationMenuState, setSpecializationMenuState] = useState<
+		boolean | null
+	>(open);
 
 	// Click Menu Specialization Item
 	const handleClickMenuSpecializationItem = (value: string) => {
@@ -59,7 +56,15 @@ export const Filter: React.FunctionComponent = () => {
 
 	// Toogle Menu
 	const toogleMenuSpecialization = () => {
-		setSpecializationMenuState(!specializationMenuState);
+		if (specializationMenuState === null) {
+			setSpecializationMenuState(true);
+		}
+		if (specializationMenuState === true) {
+			setSpecializationMenuState(false);
+		}
+		if (specializationMenuState === false) {
+			setSpecializationMenuState(true);
+		}
 	};
 
 	// Input Checkbox Specialization Change
@@ -89,20 +94,20 @@ export const Filter: React.FunctionComponent = () => {
 	};
 
 	return (
-		<FilterMenuWrapper>
+		<FilterDropdownWrapper>
 			<DropdownWrapper>
-				<FormControled>
-					<TrainingsDropdownLabel stateFilter="Speciallization">
+				<ControledForm>
+					<DropdownMenuLabel stateFilter="Speciallization">
 						<DropdownMenu
 							toogleMenu={toogleMenuSpecialization}
 							menuState={specializationMenuState}
 						>
 							{filterState.specialization}
 						</DropdownMenu>
-					</TrainingsDropdownLabel>
-					<DropdownMenuList menuState={specializationMenuState}>
+					</DropdownMenuLabel>
+					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (
-							<DropdownMenuListItem
+							<DropdownListItem
 								value={item.profession}
 								id={item.id}
 								key={uid(item.id)}
@@ -111,12 +116,12 @@ export const Filter: React.FunctionComponent = () => {
 								click={handleClickMenuSpecializationItem}
 							/>
 						))}
-					</DropdownMenuList>
-				</FormControled>
+					</DropdownList>
+				</ControledForm>
 			</DropdownWrapper>
 			<SearchButton aria-label="search" onClick={() => handleClickSearch()}>
 				<SearchIcon />
 			</SearchButton>
-		</FilterMenuWrapper>
+		</FilterDropdownWrapper>
 	);
 };

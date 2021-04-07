@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import FilterBg from '../../assets/img/menu-filter_bg.png';
 
-const FilterMenuWrapper = styled.div`
+const FilterDropdownWrapper = styled.div`
 	padding: 133px 76px 29px 75px;
 	display: flex;
 	justify-content: center;
@@ -12,4 +12,4 @@ const FilterMenuWrapper = styled.div`
 	background-repeat: no-repeat;
 `;
 
-export default FilterMenuWrapper;
+export default FilterDropdownWrapper;

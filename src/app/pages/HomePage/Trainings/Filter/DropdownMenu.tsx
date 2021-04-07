@@ -5,7 +5,7 @@ import { DropdownMenuButton } from './components';
 interface IDropdownMenu {
 	toogleMenu: Function;
 	children: React.ReactNode;
-	menuState: boolean;
+	menuState: boolean | null;
 }
 
 export const DropdownMenu: React.FunctionComponent<IDropdownMenu> = ({
