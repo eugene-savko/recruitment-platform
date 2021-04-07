@@ -16,21 +16,8 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 public class User extends BaseEntity {
-
-    public User(Long id, String firstName, String lastName, String email,
-                UserRole role, String skype, String country, String photo, String phone) {
-        super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.role = role;
-        this.skype = skype;
-        this.country = country;
-        this.photo = photo;
-        this.phone = phone;
-    }
 
     @Column(name = "first_name")
     private String firstName;

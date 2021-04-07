@@ -57,4 +57,4 @@ databaseChangeLog:
                   name: password
                   type: varchar(50)
                   constraints:
-                    nullable: false
+                    nullable: true

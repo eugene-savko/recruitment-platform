@@ -23,16 +23,26 @@ public class UserMapper implements BaseMapper<User, UserDto> {
 
     @Override
     public UserDto toDto(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .role(user.getRole())
-                .skype(user.getSkype())
-                .country(user.getSkype())
-                .photo(user.getPhoto())
-                .phone(user.getPhone())
-                .build();
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setEmail(user.getEmail());
+        userDto.setRole(user.getRole());
+        userDto.setSkype(user.getSkype());
+        userDto.setPhoto(user.getPhoto());
+        userDto.setPhone(user.getPhone());
+        return userDto;
     }
+
+    public void update(UserDto userDto, User user) {
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setRole(userDto.getRole());
+        user.setSkype(userDto.getSkype());
+        user.setPhoto(userDto.getPhoto());
+        user.setPhone(userDto.getPhone());
+    }
+
 }

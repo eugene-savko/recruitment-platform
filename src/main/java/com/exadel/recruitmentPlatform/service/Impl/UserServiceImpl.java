@@ -2,11 +2,14 @@ package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
+import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,8 +21,24 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDto create(UserDto dto) {
-        return null;
+    public UserDto save(final UserDto userDto) {
+        User user = Optional.ofNullable(userDto.getId())
+                .map(item -> update(userDto))
+                .orElseGet(() -> create(userDto));
+        return userMapper.toDto(user);
+    }
+
+    private User create(final UserDto userDto) {
+        User user = userMapper.toEntity(userDto);
+        User saved = userRepository.save(user);
+        return saved;
+    }
+
+    private User update(final UserDto userDto) {
+        User user = userRepository.findById(userDto.getId()).orElseThrow();
+        userMapper.update(userDto, user);
+        User saved = userRepository.save(user);
+        return saved;
     }
 
     @Override
