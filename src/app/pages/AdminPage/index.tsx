@@ -1,7 +1,8 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
-import { Header } from './components/Header/Header';
-import { Sidebar } from './components/SideBar/SideBar';
+import { Header } from './components/Header/index';
+import { Sidebar } from './components/SideBar/index';
 import { Candidate } from './components/Candidate/Candidate';
 import { DashBoard } from './components/DashBoard/DashBoard';
 import {
@@ -12,11 +13,15 @@ import {
 
 export const AdminPage = () => {
 	const { path } = useRouteMatch();
+	const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
 	return (
 		<AdminPageRoot>
-			<Header />
-			<Sidebar />
+			<Header onMobileNavOpen={() => setMobileNavOpen(true)} />
+			<Sidebar
+				onMobileClose={() => setMobileNavOpen(false)}
+				openMobile={isMobileNavOpen}
+			/>
 			<AdminPageContentWrapper>
 				<AdminPageContent>
 					<Switch>
