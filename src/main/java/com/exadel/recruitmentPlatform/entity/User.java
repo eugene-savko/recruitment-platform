@@ -1,30 +1,23 @@
 package com.exadel.recruitmentPlatform.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "user", schema = "public")
 public class User extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -36,7 +29,8 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @Column(name = "skype")
     private String skype;
@@ -49,5 +43,8 @@ public class User extends BaseEntity {
 
     @Column(name = "phone")
     private String phone;
+
+    @Column(name = "password")
+    private String password;
 
 }
