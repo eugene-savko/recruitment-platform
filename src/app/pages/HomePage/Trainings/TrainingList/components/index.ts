@@ -1,3 +1,4 @@
+import LoadMoreInternship from './LoadMoreInternship';
 import TrainingListWrappper from './TrainingListWrapper';
 
-export { TrainingListWrappper };
+export { TrainingListWrappper, LoadMoreInternship };

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import FilterBg from '../../assets/img/menu-filter_bg.png';
+import FilterBg from 'app/pages/HomePage/Trainings/assets/img/menu-filter_bg.png';
 
 const FilterDropdownWrapper = styled.div`
 	padding: 133px 76px 29px 75px;

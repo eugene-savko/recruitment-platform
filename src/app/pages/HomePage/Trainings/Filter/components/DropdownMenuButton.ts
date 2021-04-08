@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import arrowIcon from '../../assets/img/dropdown-arrow.png';
+import arrowIcon from 'app/pages/HomePage/Trainings/assets/img/dropdown-arrow.png';
+import { IMenuState } from '../types';
 
 const DropdownMenuButton = styled.button`
 	position: relative;
@@ -34,8 +35,7 @@ const DropdownMenuButton = styled.button`
 
 		transition: all 0.5s ease;
 		transform: rotate(
-			${(props: { menuState: boolean | null }) =>
-				props.menuState ? '180deg' : '0deg'}
+			${(props: IMenuState) => (props.menuState ? '180deg' : '0deg')}
 		);
 		transform-origin: 50% 30%;
 		background-image: url(${arrowIcon});

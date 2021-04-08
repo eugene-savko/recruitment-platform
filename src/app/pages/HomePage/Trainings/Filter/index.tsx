@@ -3,15 +3,18 @@ import { uid } from 'react-uid';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
-import { DropdownWrapper, SearchButton } from './components';
+import {
+	DropdownList,
+	DropdownMenuButton,
+	DropdownMenuLabel,
+	DropdownWrapper,
+	SearchButton,
+} from './components';
 import { IFilterState, ISpecializationItem } from './types';
-
-import { DropdownList } from './DropdownList';
-import { DropdownMenu } from './DropdownMenu';
 import { SpecializationItemsData } from './data';
 import { TrainingItemsData } from '../data';
 import { DropdownListItem } from './DropdownListItem';
-import DropdownMenuLabel from './DropdownMenuLabel';
+
 import FilterDropdownWrapper from './components/FilterMenuWrapper';
 import ControledForm from './components/FormControled';
 
@@ -98,13 +101,15 @@ export const Filter: React.FunctionComponent = () => {
 		<FilterDropdownWrapper>
 			<DropdownWrapper>
 				<ControledForm>
-					<DropdownMenuLabel stateFilter="Speciallization">
-						<DropdownMenu
-							toogleMenu={toogleMenuSpecialization}
+					<DropdownMenuLabel>
+						Specialization
+						<DropdownMenuButton
+							type="button"
 							menuState={specializationMenuState}
+							onClick={toogleMenuSpecialization}
 						>
 							{filterState.specialization}
-						</DropdownMenu>
+						</DropdownMenuButton>
 					</DropdownMenuLabel>
 					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (

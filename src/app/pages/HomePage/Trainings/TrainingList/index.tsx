@@ -3,10 +3,9 @@ import { uid } from 'react-uid';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
-import { TrainingListWrappper } from './components';
+import { LoadMoreInternship, TrainingListWrappper } from './components';
 
 import { TrainingItem } from './TrainingItem';
-import OtherCourses from './OtherCourses';
 
 export const TrainingList: React.FunctionComponent = () => {
 	const { trainings } = useContext(FilterContext);
@@ -21,7 +20,6 @@ export const TrainingList: React.FunctionComponent = () => {
 		if (trainings.length / 5 >= currentPage.current) {
 			currentPage.current += 1;
 		}
-
 		const newArr = trainings.slice(0, currentPage.current * 5);
 		setTrainingsList(newArr);
 	};
@@ -37,7 +35,9 @@ export const TrainingList: React.FunctionComponent = () => {
 					status={internshipItem.status}
 				/>
 			))}
-			<OtherCourses click={load} />
+			<LoadMoreInternship onClick={load}>
+				Load more internship
+			</LoadMoreInternship>
 		</TrainingListWrappper>
 	);
 };
