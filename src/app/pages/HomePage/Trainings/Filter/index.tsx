@@ -20,8 +20,8 @@ const initialState: IFilterState = {
 	destination: 'All Countries',
 };
 
+const open: boolean | null = null;
 export const Filter: React.FunctionComponent = () => {
-	const open: boolean | null = null;
 	const { setTrainings } = useContext(FilterContext);
 
 	// FilterState
@@ -90,7 +90,8 @@ export const Filter: React.FunctionComponent = () => {
 		);
 
 		setTrainings?.(filteredBySpecialization);
-		setSpecializationMenuState(false);
+
+		setSpecializationMenuState(null);
 	};
 
 	return (

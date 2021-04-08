@@ -3,7 +3,7 @@ import * as React from 'react';
 import { DropdownMenuButton } from './components';
 
 interface IDropdownMenu {
-	toogleMenu: Function;
+	toogleMenu(): void;
 	children: React.ReactNode;
 	menuState: boolean | null;
 }

@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import { DropdownListInput, DropdownListLabel } from './components';
 
 const ListItem = styled.li`
-	padding: 5px 0px;
+	padding: 10px 0px;
 	list-style-type: none;
 `;
 interface IDropdownListItem {
 	value: string;
 	id: number;
 	check: boolean;
-	click: Function;
-	inputCheckboxChange: Function;
+	click(arg0: string): void;
+	inputCheckboxChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export const DropdownListItem: React.FunctionComponent<IDropdownListItem> = ({
