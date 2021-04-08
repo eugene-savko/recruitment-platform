@@ -1,36 +1,10 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
+import {
+	closeMenu,
+	openMenu,
+} from 'app/pages/HomePage/Trainings/assets/animations';
 
-const openMenu = keyframes`
-  0% {
-		height: 10px;
-    opacity: 0;
-  }
-
-	50% {
-		height: 200px;
-    opacity: 50%;
-  }
-	100% {
-		height: 350px;
-    opacity: 1;
-  }
-`;
-const closeMenu = keyframes`
-	0% {
-		height: 350px;
-    opacity: 1;
-  }
-  50% {
-		height: 200px;
-    opacity: 0.5;
-  }
-
-	100% {
-		height: 10px;
-    opacity: 0;
-  }
-`;
 const List = styled.ul`
 	position: absolute;
 	top: 100px;

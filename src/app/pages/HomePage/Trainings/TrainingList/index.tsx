@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { uid } from 'react-uid';
-// import InfiniteScroll from 'react-infinite-scroller';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
@@ -30,11 +29,6 @@ export const TrainingList: React.FunctionComponent = () => {
 
 	return (
 		<TrainingListWrappper>
-			{/* <InfiniteScroll
-				loadMore={(x) => lo(x)}
-				pageStart={0}
-				hasMore={true || false}
-			> */}
 			{trainingsList.map((internshipItem) => (
 				<TrainingItem
 					key={uid(internshipItem.id)}
@@ -44,9 +38,6 @@ export const TrainingList: React.FunctionComponent = () => {
 					status={internshipItem.status}
 				/>
 			))}
-
-			{/* </InfiniteScroll> */}
-
 			<OtherCourses click={load} />
 		</TrainingListWrappper>
 	);
