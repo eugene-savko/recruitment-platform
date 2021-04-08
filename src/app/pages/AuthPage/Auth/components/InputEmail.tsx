@@ -16,7 +16,6 @@ const InputEmail = forwardRef<HTMLInputElement, IPropsInputEmail>(
 			margin="normal"
 			inputRef={ref}
 			fullWidth
-			{...props}
 		/>
 	)
 );

@@ -1,12 +1,9 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
+import { Redirect } from 'react-router-dom';
 
 import { IFormInput } from 'app/pages/AuthPage/Auth/types';
-
-import { Button } from '@material-ui/core';
-
-import { Alert } from '@material-ui/lab';
 
 import {
 	AuthButtonSubmit,
@@ -33,51 +30,47 @@ const defaultValues = {
 };
 
 export const Auth: React.FC = () => {
-	const { setDataFromUser, handleLogin, isAuth, setIsAuth } = useMocoServer();
+	const { isAuth, fetchRequestLogin } = useMocoServer();
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
 	});
 
 	const onSubmit = (dataLogin: IFormInput) => {
-		console.log(dataLogin);
-		setDataFromUser(dataLogin);
-		handleLogin();
+		fetchRequestLogin(dataLogin);
 	};
 
 	return (
-		<AuthWrapper elevation={10}>
-			<Title />
-			<AuthForm noValidate onSubmit={handleSubmit(onSubmit)}>
-				<InputEmail ref={register(validation.email)} />
+		<div>
+			<AuthWrapper elevation={10}>
+				<Title />
+				<AuthForm noValidate onSubmit={handleSubmit(onSubmit)}>
+					<InputEmail ref={register(validation.email)} />
 
-				{errors.email && (
-					<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
-				)}
+					{errors.email && (
+						<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
+					)}
 
-				<InputPassword ref={register(validation.password)} />
+					<InputPassword ref={register(validation.password)} />
 
-				{errors.password && (
-					<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
-				)}
+					{errors.password && (
+						<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
+					)}
 
-				<CheckBoxRemember control={control} />
+					<CheckBoxRemember control={control} />
 
-				<AuthButtonSubmit
-					type="submit"
-					color="primary"
-					variant="contained"
-					fullWidth
-				>
-					Войти
-				</AuthButtonSubmit>
-			</AuthForm>
-
-			{isAuth && (
-				<>
-					<Alert severity="success">Auth Successfull</Alert>
-					<Button onClick={() => setIsAuth(false)}>Logout</Button>
-				</>
-			)}
-		</AuthWrapper>
+					<AuthButtonSubmit
+						type="submit"
+						color="primary"
+						variant="contained"
+						fullWidth
+					>
+						Войти
+					</AuthButtonSubmit>
+				</AuthForm>
+				{isAuth && <Redirect exact from="/" to="/admin" />}
+			</AuthWrapper>
+			<p>eve.holt@reqres.in</p>
+			<p>cityslicka</p>
+		</div>
 	);
 };

@@ -1,47 +1,35 @@
 import { useState } from 'react';
-import { IFormInput } from 'app/pages/AuthPage/Auth/types';
+import axios, { AxiosResponse } from 'axios';
+import { IFormInput } from '../types';
 
 const useMocoServer = () => {
 	// eslint-disable-next-line no-unused-vars
 	const [dataFromServer, setDataFromServer] = useState();
-	// eslint-disable-next-line no-unused-vars
-	const [dataFromUser, setDataFromUser] = useState<IFormInput | null>(null);
+
 	const [isAuth, setIsAuth] = useState(false);
 
-	const mocaServer = () =>
-		new Promise<string>((resolved) => {
-			setTimeout(
-				() =>
-					resolved(
-						JSON.stringify({
-							status: 200,
-							data: {
-								user: {
-									name: 'test',
-									password: 'testPassword',
-									role: 'admin',
-								},
-							},
-						})
-					),
-				2500
-			);
+	const fetchRequestLogin = async ({ email, password }: IFormInput) => {
+		const postUserData = axios.post('https://reqres.in/api/login', {
+			email,
+			password,
 		});
 
-	const getServerValue = async () => {
-		const value = await mocaServer();
-		return JSON.parse(value);
+		const token = await postUserData;
+
+		if (token.data) getUserData();
 	};
 
-	const handleLogin = async () => {
-		const value = await getServerValue();
-		setDataFromServer(value);
+	const getUserData = async () => {
+		const dataFetched: Promise<AxiosResponse> = axios.get(
+			'https://reqres.in/api/users/'
+		);
+		const usersData: AxiosResponse<any> = await dataFetched;
+		setDataFromServer(usersData.data.data[0]);
 		setIsAuth(true);
-		if (value.status <= 200) console.log('FETCHING DONE');
-		console.log(isAuth);
+		console.log(usersData.data.data[0]);
 	};
 
-	return { setDataFromUser, isAuth, setIsAuth, handleLogin };
+	return { isAuth, setIsAuth, fetchRequestLogin };
 };
 
 export default useMocoServer;
