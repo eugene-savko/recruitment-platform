@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { uid } from 'react-uid';
 
 import { FilterContext } from 'app/contexts/FilterContext';
@@ -10,20 +10,19 @@ import OtherCourses from './OtherCourses';
 
 export const TrainingList: React.FunctionComponent = () => {
 	const { trainings } = useContext(FilterContext);
-	const [currentPage, setCurrentPage] = useState<number>(2);
+	const currentPage = useRef(1);
 	const [trainingsList, setTrainingsList] = useState(trainings.slice(0, 5));
 
 	useEffect(() => {
-		setCurrentPage(2);
 		setTrainingsList(trainings.slice(0, 5));
 	}, [trainings]);
 
 	const load = () => {
-		if (trainings.length / 5 >= currentPage) {
-			setCurrentPage(currentPage + 1);
+		if (trainings.length / 5 >= currentPage.current) {
+			currentPage.current += 1;
 		}
 
-		const newArr = trainings.slice(0, currentPage * 5);
+		const newArr = trainings.slice(0, currentPage.current * 5);
 		setTrainingsList(newArr);
 	};
 
