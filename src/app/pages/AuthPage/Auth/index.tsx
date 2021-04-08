@@ -32,7 +32,7 @@ const defaultValues = {
 	checkbox: false,
 };
 
-export const Auth: React.FunctionComponent = () => {
+export const Auth: React.FC = () => {
 	const { setDataFromUser, handleLogin, isAuth, setIsAuth } = useMocoServer();
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
@@ -49,10 +49,13 @@ export const Auth: React.FunctionComponent = () => {
 			<Title />
 			<AuthForm noValidate onSubmit={handleSubmit(onSubmit)}>
 				<InputEmail ref={register(validation.email)} />
+
 				{errors.email && (
 					<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
 				)}
+
 				<InputPassword ref={register(validation.password)} />
+
 				{errors.password && (
 					<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
 				)}

@@ -16,7 +16,6 @@ const InputPassword = forwardRef<HTMLInputElement, IPropsInputPassword>(
 			margin="normal"
 			inputRef={ref}
 			fullWidth
-			{...props}
 		/>
 	)
 );
