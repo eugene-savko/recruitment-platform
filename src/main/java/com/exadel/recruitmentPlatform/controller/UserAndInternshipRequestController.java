@@ -1,11 +1,9 @@
 package com.exadel.recruitmentPlatform.controller;
 
-import com.exadel.recruitmentPlatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.service.UserService;
+import com.exadel.recruitmentPlatform.dto.UserAndInternshipRequestDto;
+import com.exadel.recruitmentPlatform.service.UserAndInternshipRequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,20 +14,14 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping ("/users")
-public class UserController {
+@RequestMapping ("/users-request")
+public class UserAndInternshipRequestController {
 
-    private final UserService userService;
-
-    @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable Long id) {
-        return userService.findById(id);
-    }
+    private final UserAndInternshipRequestService userAndInternshipRequestService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDto save(@Valid @RequestBody UserDto userDto) {
-        return userService.save(userDto);
+    public UserAndInternshipRequestDto parse(@Valid @RequestBody UserAndInternshipRequestDto userAndInternshipRequestDto) {
+        return userAndInternshipRequestService.parse(userAndInternshipRequestDto);
     }
-
 }
