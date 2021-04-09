@@ -1,5 +1,8 @@
 import styled, { css, keyframes } from 'styled-components';
-import { IMenuState } from '../types';
+
+interface IDropdownList {
+	menuState: boolean | null;
+}
 
 const openMenu = keyframes`
   0% {
@@ -47,7 +50,7 @@ const DropdownList = styled.ul`
 	flex-direction: column;
 	width: 365px;
 	max-height: 350px;
-	animation: ${(props: IMenuState) => {
+	animation: ${(props: IDropdownList) => {
 		if (props.menuState) {
 			return css`
 				${openMenu} .5s ease-in

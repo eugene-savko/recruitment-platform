@@ -7,6 +7,7 @@ import DropdownListLabel from './DropdownListLabel';
 import DropdownListInput from './DropdownListInput';
 import DropdownList from './DropdownList';
 import DropdownMenu from './DropdownMenu';
+import DropdownMenuTitle from './DropdownMenuTitle';
 
 export {
 	DropdownWrapper,
@@ -18,4 +19,5 @@ export {
 	DropdownListLabel,
 	DropdownListInput,
 	DropdownList,
+	DropdownMenuTitle,
 };

@@ -8,6 +8,7 @@ import {
 	DropdownList,
 	DropdownMenu,
 	DropdownMenuButton,
+	DropdownMenuTitle,
 	DropdownWrapper,
 	SearchButton,
 } from './components';
@@ -102,7 +103,7 @@ export const Filter: React.FunctionComponent = () => {
 			<DropdownWrapper>
 				<ControledForm>
 					<DropdownMenu>
-						Specialization
+						<DropdownMenuTitle>Specialization</DropdownMenuTitle>
 						<DropdownMenuButton
 							type="button"
 							menuState={specializationMenuState}
