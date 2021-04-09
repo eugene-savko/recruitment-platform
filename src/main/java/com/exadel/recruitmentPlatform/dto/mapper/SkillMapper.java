@@ -26,9 +26,4 @@ public class SkillMapper implements BaseMapper <Skill, SkillDto>{
         return skillDto;
     }
 
-    public void update(SkillDto skillDto, Skill skill) {
-        skill.setName(skillDto.getName());
-        skill.setType(skillDto.getType());
-        skill.setSubtype(skillDto.getSubtype());
-    }
 }

@@ -1,5 +1,6 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
+import com.exadel.recruitmentPlatform.Exceptions.SkillNotFoundException;
 import com.exadel.recruitmentPlatform.dto.SkillDto;
 import com.exadel.recruitmentPlatform.dto.mapper.SkillMapper;
 import com.exadel.recruitmentPlatform.entity.Skill;
@@ -20,7 +21,7 @@ public class SkillServiceImpl implements SkillService {
     private final SkillMapper skillMapper;
 
     @Override
-    public SkillDto save( final SkillDto skillDto) {
+    public SkillDto save(SkillDto skillDto) {
         Skill skill= Optional.ofNullable(skillDto.getId())
                 .map(item->update(skillDto))
                 .orElseGet(()->create(skillDto));
@@ -30,19 +31,25 @@ public class SkillServiceImpl implements SkillService {
     @Override
     public SkillDto findById(Long id) {
         return skillRepository.findById(id).map(skillMapper::toDto)
-                .orElseThrow(() -> new NullPointerException("Skill with id " + id + " doesn't find"));
+                .orElseThrow(() -> new SkillNotFoundException(id));
     }
 
-    private Skill update (final SkillDto skillDto){
+    private Skill update (SkillDto skillDto){
         Skill skill=skillRepository.findById(skillDto.getId()).orElseThrow();
-        skillMapper.update(skillDto, skill);
-        Skill saved= skillRepository.save(skill);
-        return saved;
+        update(skillDto, skill);
+        return skillRepository.save(skill);
     }
 
-    private Skill create (final SkillDto skillDto){
+    private Skill create (SkillDto skillDto){
         Skill skill=skillMapper.toEntity(skillDto);
-        Skill saved=skillRepository.save(skill);
-        return saved;
+        return skillRepository.save(skill);
     }
+
+    @Override
+    public void update(SkillDto skillDto, Skill skill) {
+        skill.setName(skillDto.getName());
+        skill.setType(skillDto.getType());
+        skill.setSubtype(skillDto.getSubtype());
+    }
+
 }

@@ -10,9 +10,9 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/skill")
-
+@RequestMapping("/skills")
 public class SkillController {
+
     private final SkillService skillService;
 
     @GetMapping("/{id}")

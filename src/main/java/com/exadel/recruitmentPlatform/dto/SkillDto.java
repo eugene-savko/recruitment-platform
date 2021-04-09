@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
 public class SkillDto extends BaseDto {
