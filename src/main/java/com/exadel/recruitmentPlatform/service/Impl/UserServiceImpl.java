@@ -3,6 +3,7 @@ package com.exadel.recruitmentPlatform.service.Impl;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.User;
+import com.exadel.recruitmentPlatform.exception.ResourceNotFoundException;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto findById(Long id) {
         return userRepository.findById(id).map(userMapper::toDto)
-                .orElseThrow(() -> new NullPointerException("User with id=" + id + " doesn't exist"));
+                .orElseThrow(() -> new ResourceNotFoundException("User with id=" + id + " doesn't exist"));
     }
 
 }
