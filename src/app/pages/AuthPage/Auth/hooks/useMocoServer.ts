@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
+import { AuthContext } from 'app/context/AuthContext';
 import { IFormInput } from '../types';
 
 const useMocoServer = () => {
-	// eslint-disable-next-line no-unused-vars
-	const [dataFromServer, setDataFromServer] = useState();
+	const { setDataFromServer } = useContext(AuthContext);
 
 	const [isAuth, setIsAuth] = useState(false);
 
@@ -24,9 +24,8 @@ const useMocoServer = () => {
 			'https://reqres.in/api/users/'
 		);
 		const usersData: AxiosResponse<any> = await dataFetched;
-		setDataFromServer(usersData.data.data[0]);
+		setDataFromServer(usersData.data.data[1]);
 		setIsAuth(true);
-		console.log(usersData.data.data[0]);
 	};
 
 	return { isAuth, setIsAuth, fetchRequestLogin };
