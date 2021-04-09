@@ -7,13 +7,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "internship")
+@Table(name = "internship", schema = "public")
 public class Internship extends BaseEntity {
 
     @Column(name = "name")
@@ -23,7 +24,7 @@ public class Internship extends BaseEntity {
     private String description;
 
     @Column(name = "deadline")
-    private String deadline;
+    private LocalDate deadline;
 
     @Column(name = "start_date")
     private LocalDate startDate;
@@ -34,5 +35,8 @@ public class Internship extends BaseEntity {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private InternshipStatus status;
+
+    @OneToMany(mappedBy="internship")
+    private List<Speciality> specialityList;
 
 }
