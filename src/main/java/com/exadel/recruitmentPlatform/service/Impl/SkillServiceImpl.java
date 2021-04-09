@@ -1,6 +1,6 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.Exceptions.SkillNotFoundException;
+import com.exadel.recruitmentPlatform.exceptions.SkillNotFoundException;
 import com.exadel.recruitmentPlatform.dto.SkillDto;
 import com.exadel.recruitmentPlatform.dto.mapper.SkillMapper;
 import com.exadel.recruitmentPlatform.entity.Skill;

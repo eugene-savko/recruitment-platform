@@ -1,4 +1,4 @@
-package com.exadel.recruitmentPlatform.Exceptions;
+package com.exadel.recruitmentPlatform.exceptions;
 
 public class SkillNotFoundException extends RuntimeException {
     public SkillNotFoundException() {
