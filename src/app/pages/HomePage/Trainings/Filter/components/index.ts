@@ -6,7 +6,7 @@ import ControledForm from './FormControled';
 import DropdownListLabel from './DropdownListLabel';
 import DropdownListInput from './DropdownListInput';
 import DropdownList from './DropdownList';
-import DropdownMenuLabel from './DropdownMenuLabel';
+import DropdownMenu from './DropdownMenu';
 
 export {
 	DropdownWrapper,
@@ -14,7 +14,7 @@ export {
 	ControledForm,
 	SearchButton,
 	DropdownMenuButton,
-	DropdownMenuLabel,
+	DropdownMenu,
 	DropdownListLabel,
 	DropdownListInput,
 	DropdownList,

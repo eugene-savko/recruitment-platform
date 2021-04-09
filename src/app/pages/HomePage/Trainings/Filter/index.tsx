@@ -5,8 +5,8 @@ import { Search as SearchIcon } from '@material-ui/icons';
 import { FilterContext } from 'app/contexts/FilterContext';
 import {
 	DropdownList,
+	DropdownMenu,
 	DropdownMenuButton,
-	DropdownMenuLabel,
 	DropdownWrapper,
 	SearchButton,
 } from './components';
@@ -23,7 +23,6 @@ const initialState: IFilterState = {
 	destination: 'All Countries',
 };
 
-const open: boolean | null = null;
 export const Filter: React.FunctionComponent = () => {
 	const { setTrainings } = useContext(FilterContext);
 
@@ -37,7 +36,7 @@ export const Filter: React.FunctionComponent = () => {
 
 	const [specializationMenuState, setSpecializationMenuState] = useState<
 		boolean | null
-	>(open);
+	>(null);
 
 	// Click Menu Specialization Item
 	const handleClickMenuSpecializationItem = (value: string) => {
@@ -58,18 +57,10 @@ export const Filter: React.FunctionComponent = () => {
 	};
 
 	// Toogle Menu
-	const toogleMenuSpecialization = () => {
-		if (specializationMenuState === null) {
-			setSpecializationMenuState(true);
-		}
-		if (specializationMenuState === true) {
-			setSpecializationMenuState(false);
-		}
-		if (specializationMenuState === false) {
-			setSpecializationMenuState(true);
-		}
-	};
-
+	const toogleMenuSpecialization = () =>
+		!specializationMenuState
+			? setSpecializationMenuState(true)
+			: setSpecializationMenuState(false);
 	// Input Checkbox Specialization Change
 	const inputCheckboxSpecializationChange = (
 		event: React.ChangeEvent<{
@@ -101,7 +92,7 @@ export const Filter: React.FunctionComponent = () => {
 		<FilterDropdownWrapper>
 			<DropdownWrapper>
 				<ControledForm>
-					<DropdownMenuLabel>
+					<DropdownMenu>
 						Specialization
 						<DropdownMenuButton
 							type="button"
@@ -110,7 +101,7 @@ export const Filter: React.FunctionComponent = () => {
 						>
 							{filterState.specialization}
 						</DropdownMenuButton>
-					</DropdownMenuLabel>
+					</DropdownMenu>
 					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (
 							<DropdownListItem
