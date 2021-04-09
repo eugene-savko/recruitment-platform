@@ -27,10 +27,8 @@ const initialState: IFilterState = {
 export const Filter: React.FunctionComponent = () => {
 	const { setTrainings } = useContext(FilterContext);
 
-	// FilterState
 	const [filterState, setFilterState] = useState<IFilterState>(initialState);
 
-	// Speciallization
 	const [specializationItems, setSpecializationItems] = useState<
 		Array<ISpecializationItem>
 	>(SpecializationItemsData);
@@ -38,9 +36,9 @@ export const Filter: React.FunctionComponent = () => {
 	const [specializationMenuState, setSpecializationMenuState] = useState<
 		boolean | null
 	>(null);
-	// ref
+
 	const ref = useRef<HTMLUListElement | null>(null);
-	// Click Menu Specialization Item
+
 	const handleClickMenuSpecializationItem = (value: string) => {
 		const specializationsCheckToogle = SpecializationItemsData.map((item) => {
 			if (item.checked === true) {
@@ -58,12 +56,11 @@ export const Filter: React.FunctionComponent = () => {
 		setSpecializationItems(specializationsCheckToogle);
 	};
 
-	// Toogle Menu
 	const toogleMenuSpecialization = () =>
 		!specializationMenuState
 			? setSpecializationMenuState(true)
 			: setSpecializationMenuState(false);
-	// Input Checkbox Specialization Change
+
 	const inputCheckboxSpecializationChange = (
 		event: React.ChangeEvent<{
 			value: string;
