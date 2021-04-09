@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-09-1-create-table_speciality
+      author: vadim_stradze
+      changes:
+        - createTable:
+            tableName: speciality
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: internship_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_internship_speciality
+                    references: internship(id)
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
