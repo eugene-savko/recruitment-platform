@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { uid } from 'react-uid';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
+
 import {
 	DropdownList,
 	DropdownMenu,
@@ -37,7 +38,8 @@ export const Filter: React.FunctionComponent = () => {
 	const [specializationMenuState, setSpecializationMenuState] = useState<
 		boolean | null
 	>(null);
-
+	// ref
+	const ref = useRef<HTMLUListElement | null>(null);
 	// Click Menu Specialization Item
 	const handleClickMenuSpecializationItem = (value: string) => {
 		const specializationsCheckToogle = SpecializationItemsData.map((item) => {
@@ -87,7 +89,17 @@ export const Filter: React.FunctionComponent = () => {
 
 		setSpecializationMenuState(null);
 	};
-
+	const handleClickOutside = (event: MouseEvent) => {
+		if (!ref?.current?.contains(event.target as Node)) {
+			setSpecializationMenuState(null);
+		}
+	};
+	useEffect(() => {
+		document.addEventListener('click', handleClickOutside, true);
+		return () => {
+			document.removeEventListener('click', handleClickOutside, true);
+		};
+	});
 	return (
 		<FilterDropdownWrapper>
 			<DropdownWrapper>
@@ -102,7 +114,7 @@ export const Filter: React.FunctionComponent = () => {
 							{filterState.specialization}
 						</DropdownMenuButton>
 					</DropdownMenu>
-					<DropdownList menuState={specializationMenuState}>
+					<DropdownList menuState={specializationMenuState} ref={ref}>
 						{specializationItems.map((item) => (
 							<DropdownListItem
 								value={item.profession}
