@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { Label, Input } from './components/index';
+import { Label, Input, ContentAgreement } from './components/index';
 
 export const Agreements: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
-			<p>
+			<div>
 				<Label>
 					<Input type="checkbox" />
-					<span>
+					<ContentAgreement>
 						Подавая заявку на эту должность, я отправляю свои личные данные в
 						Exadel и даю согласие на обработку личных данных с целью приема на
 						работу.
-					</span>
+					</ContentAgreement>
 				</Label>
-			</p>
+			</div>
 		</React.Fragment>
 	);
 };
