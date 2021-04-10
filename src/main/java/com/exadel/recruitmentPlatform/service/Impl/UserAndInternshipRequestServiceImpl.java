@@ -6,6 +6,7 @@ import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
+import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
@@ -35,7 +36,7 @@ public class UserAndInternshipRequestServiceImpl implements UserAndInternshipReq
         User user = userMapper.toEntity(userDto);
         userRepository.save(user);
 
-        InternshipRequestDto internshipRequestDto = new InternshipRequestDto(userAndInternshipRequestDto.getStatus(),
+        InternshipRequestDto internshipRequestDto = new InternshipRequestDto(InternshipRequestStatus.UNDER_CONSIDERATION,
                 user, userAndInternshipRequestDto.getInternship(), userAndInternshipRequestDto.getPrimarySkill(),
                 userAndInternshipRequestDto.getEnglishLevel(), userAndInternshipRequestDto.getCv());
 

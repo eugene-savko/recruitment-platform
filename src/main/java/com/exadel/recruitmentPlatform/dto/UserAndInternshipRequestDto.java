@@ -2,7 +2,6 @@ package com.exadel.recruitmentPlatform.dto;
 
 import com.exadel.recruitmentPlatform.entity.Internship;
 import com.exadel.recruitmentPlatform.entity.User;
-import com.exadel.recruitmentPlatform.entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +27,6 @@ public class UserAndInternshipRequestDto  extends BaseDto {
     @Size(min = 5, max = 50)
     private String email;
 
-    private UserRole role;
-
     private String skype;
 
     private String country;
@@ -41,8 +38,6 @@ public class UserAndInternshipRequestDto  extends BaseDto {
     private String phone;
 
     private String otherInformation;
-
-    private String status;
 
     private String primarySkill;
 
