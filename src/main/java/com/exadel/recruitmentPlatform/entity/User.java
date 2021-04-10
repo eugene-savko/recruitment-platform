@@ -47,11 +47,4 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    public User(String firstName, String lastName, String email, String country, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.country = country;
-        this.phone = phone;
-    }
 }

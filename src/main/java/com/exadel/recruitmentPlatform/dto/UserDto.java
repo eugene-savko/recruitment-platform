@@ -39,11 +39,13 @@ public class UserDto extends BaseDto {
 
     public UserDto(@NotBlank @Size(min = 1, max = 50) String firstName,
                    @NotBlank @Size(min = 1, max = 50) String lastName, @Email @Size(min = 5, max = 50)
-                   String email, String country, String phone) {
+                   String email, String country, String phone, UserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.country = country;
         this.phone = phone;
+        this.role = role;
+
     }
 }
