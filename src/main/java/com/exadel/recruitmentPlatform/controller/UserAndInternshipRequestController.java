@@ -21,7 +21,7 @@ public class UserAndInternshipRequestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserAndInternshipRequestDto parse(@Valid @RequestBody UserAndInternshipRequestDto userAndInternshipRequestDto) {
-        return userAndInternshipRequestService.parse(userAndInternshipRequestDto);
+    public void parse(@Valid @RequestBody UserAndInternshipRequestDto userAndInternshipRequestDto) {
+        userAndInternshipRequestService.parse(userAndInternshipRequestDto);
     }
 }

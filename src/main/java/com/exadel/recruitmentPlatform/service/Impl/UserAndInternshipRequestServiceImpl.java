@@ -7,6 +7,7 @@ import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.User;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserAndInternshipRequestService;
@@ -25,11 +26,12 @@ public class UserAndInternshipRequestServiceImpl implements UserAndInternshipReq
     private final UserMapper userMapper;
 
     @Override
-    public UserAndInternshipRequestDto parse(UserAndInternshipRequestDto userAndInternshipRequestDto) {
+    public void parse(UserAndInternshipRequestDto userAndInternshipRequestDto) {
 
         UserDto userDto = new UserDto(userAndInternshipRequestDto.getFirstName(), userAndInternshipRequestDto.getLastName(),
                 userAndInternshipRequestDto.getEmail(), userAndInternshipRequestDto.getCountry(),
-                userAndInternshipRequestDto.getPhone(), userAndInternshipRequestDto.getRole());
+                userAndInternshipRequestDto.getCity(), userAndInternshipRequestDto.getPhone(), UserRole.INTERN,
+                userAndInternshipRequestDto.getOtherInformation());
         User user = userMapper.toEntity(userDto);
         userRepository.save(user);
 
@@ -39,7 +41,5 @@ public class UserAndInternshipRequestServiceImpl implements UserAndInternshipReq
 
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
         internshipRequestRepository.save(internshipRequest);
-
-        return null;
     }
 }

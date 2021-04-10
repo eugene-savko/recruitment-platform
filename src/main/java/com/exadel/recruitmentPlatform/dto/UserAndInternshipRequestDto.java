@@ -34,9 +34,13 @@ public class UserAndInternshipRequestDto  extends BaseDto {
 
     private String country;
 
+    private String city;
+
     private String photo;
 
     private String phone;
+
+    private String otherInformation;
 
     private String status;
 
