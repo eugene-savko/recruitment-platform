@@ -24,8 +24,9 @@ const useMocoServer = () => {
 			'https://reqres.in/api/users/'
 		);
 		const usersData: AxiosResponse<any> = await dataFetched;
-		setDataFromServer(usersData.data.data[1]);
+		setDataFromServer(usersData.data.data[0]);
 		setIsAuth(true);
+		console.log(usersData.data.data[0]);
 	};
 
 	return { isAuth, setIsAuth, fetchRequestLogin };

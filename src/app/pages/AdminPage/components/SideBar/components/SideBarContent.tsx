@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { AuthContext } from 'app/context/AuthContext';
 import { Avatar, Box, Divider, List, Typography } from '@material-ui/core';
+import { AuthContext } from 'app/context/AuthContext';
 import NavItem from './NavItem';
 // import { user } from '../helpers/user';
 import { items } from '../helpers/items';
@@ -8,7 +8,7 @@ import { SideBarAvatarWrapper, SideBarContentWrapper } from '../Styled';
 
 export const SideBarContent: React.FC = () => {
 	const { dataFromServer } = useContext(AuthContext);
-
+	console.log(dataFromServer);
 	return (
 		<SideBarContentWrapper>
 			<SideBarAvatarWrapper>

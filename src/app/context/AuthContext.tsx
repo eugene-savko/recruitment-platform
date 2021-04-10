@@ -8,15 +8,15 @@ const defauldAuthContex = {
 	last_name: '',
 };
 
-interface AppContextState {
-	avatar: string;
-	email: string;
+type AppContextState = {
+	avatar: string,
+	email: string,
 	// eslint-disable-next-line camelcase
-	first_name: string;
-	id: number;
+	first_name: string,
+	id: number,
 	// eslint-disable-next-line camelcase
-	last_name: string;
-}
+	last_name: string,
+};
 
 const appCtxDefaultValue = {
 	dataFromServer: defauldAuthContex,
@@ -30,6 +30,7 @@ const AuthContextProvider: React.FC<React.ReactNode> = ({ children }) => {
 	const [dataFromServer, setDataFromServer] = useState(
 		appCtxDefaultValue.dataFromServer
 	);
+	console.log(dataFromServer);
 
 	return (
 		<AuthContext.Provider value={{ dataFromServer, setDataFromServer }}>
