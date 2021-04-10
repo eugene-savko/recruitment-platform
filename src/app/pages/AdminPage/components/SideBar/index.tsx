@@ -16,14 +16,14 @@ import { IPropsSideBar } from './types';
 const theme = unstable_createMuiStrictModeTheme();
 
 export const Sidebar: React.FC<IPropsSideBar> = ({
-	onMobileClose,
+	openSideBar,
 	openMobile,
 }: IPropsSideBar) => {
 	const location = useLocation();
 
 	useEffect(() => {
-		if (openMobile && onMobileClose) {
-			onMobileClose();
+		if (openMobile && openSideBar) {
+			openSideBar();
 		}
 	}, [location.pathname]);
 
@@ -32,7 +32,7 @@ export const Sidebar: React.FC<IPropsSideBar> = ({
 			<ThemeProvider theme={theme}>
 				<Hidden only={['md', 'lg', 'xl']}>
 					<Drawer
-						onClose={onMobileClose}
+						onClose={openSideBar}
 						open={openMobile}
 						anchor="left"
 						variant="temporary"

@@ -10,6 +10,7 @@ export const ToolBarButtons: React.FC = () => {
 	function logOut() {
 		history.push('/');
 	}
+
 	return (
 		<Hidden only={['xs', 'sm']}>
 			<Box style={{ marginLeft: 'auto' }}>

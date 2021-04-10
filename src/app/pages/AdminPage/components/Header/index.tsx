@@ -7,12 +7,12 @@ import { Burger } from './components/Burger';
 import { ToolBarButtons } from './components/ToolBarButtons';
 import { IPropsHeader } from './Types';
 
-export const Header = ({ onMobileNavOpen }: IPropsHeader) => (
+export const Header = ({ onShowHideSidebar }: IPropsHeader) => (
 	<AppBar>
 		<Toolbar>
 			<Logo />
 			<ToolBarButtons />
-			<Burger onClickMobile={onMobileNavOpen} />
+			<Burger onClickMobile={onShowHideSidebar} />
 		</Toolbar>
 	</AppBar>
 );

@@ -17,9 +17,9 @@ export const AdminPage = () => {
 
 	return (
 		<AdminPageRoot>
-			<Header onMobileNavOpen={() => setMobileNavOpen(true)} />
+			<Header onShowHideSidebar={() => setMobileNavOpen(true)} />
 			<Sidebar
-				onMobileClose={() => setMobileNavOpen(false)}
+				openSideBar={() => setMobileNavOpen(false)}
 				openMobile={isMobileNavOpen}
 			/>
 			<AdminPageContentWrapper>

@@ -1,4 +1,4 @@
 interface IPropsHeader {
-  onMobileNavOpen: () => void;
+	onShowHideSidebar: () => void;
 }
 export default IPropsHeader;
