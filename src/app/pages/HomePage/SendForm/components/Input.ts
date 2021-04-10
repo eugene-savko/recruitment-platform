@@ -47,7 +47,7 @@ const Input = styled.input`
 		border: 1px solid #c4c4c4;
 		box-sizing: border-box;
 		border-radius: 3px;
-		cursor: pointer;
+		cursor: inherit;
 
 		&:hover {
 			box-shadow: 0 5px 10px rgb(37 37 37 / 10%);
