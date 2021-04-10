@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Form, Note, Title, Wrapper } from './components';
+import { Form, Note, Title, Wrapper, Submit } from './components';
 
 import { Body } from './Body';
 import { FileLoader } from './FileLoader';
 import { Agreements } from './Agreements';
-import { Submit } from './Submit';
 
 export const SendForm: React.FunctionComponent = () => {
 	return (
@@ -16,7 +15,7 @@ export const SendForm: React.FunctionComponent = () => {
 				<Note>Note</Note>
 				<FileLoader />
 				<Agreements />
-				<Submit />
+				<Submit>Submit</Submit>
 			</Form>
 		</Wrapper>
 	);
