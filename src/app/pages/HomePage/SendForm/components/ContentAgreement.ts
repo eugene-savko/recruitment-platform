@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 const ContentAgreement = styled.p`
+	margin: 0;
+	padding: 0;
+
 	display: inline;
 
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: normal;
+	margin-left: 10px;
+
+	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
-	line-height: 14px;
+	line-height: 12px;
 
 	color: #4e4e4e;
 `;
