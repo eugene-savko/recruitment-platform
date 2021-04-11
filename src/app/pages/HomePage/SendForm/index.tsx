@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { Form, Note, Title, Wrapper, Submit } from './components';
+import {
+	Form,
+	Note,
+	Title,
+	SendFormWrapper as Wrapper,
+	Submit,
+} from './components';
 
 import { Body } from './Body';
 import { FileLoader } from './FileLoader';

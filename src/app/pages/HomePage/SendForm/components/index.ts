@@ -1,4 +1,4 @@
-import Wrapper from './Wrapper';
+import SendFormWrapper from './SendFormWrapper';
 import Title from './Title';
 import Form from './Form';
 import Note from './Note';
@@ -9,7 +9,7 @@ import AgreementsWrapper from './AgreementsWrapper';
 import Submit from './Submit';
 
 export {
-	Wrapper,
+	SendFormWrapper,
 	Title,
 	Form,
 	Note,
