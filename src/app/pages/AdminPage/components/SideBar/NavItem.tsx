@@ -3,8 +3,8 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import { NavLink as RouterLink } from 'react-router-dom';
 
-import { SideBarListItemIcon, SideBarListItemText } from '../Styled';
-import { ISideBarItems } from '../types';
+import { SideBarListItemIcon, SideBarListItemText } from './components';
+import { ISideBarItems } from './types';
 
 const NavItem: React.FunctionComponent<ISideBarItems> = ({
 	href,

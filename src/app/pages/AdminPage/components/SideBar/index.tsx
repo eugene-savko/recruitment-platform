@@ -9,7 +9,7 @@ import {
 	ThemeProvider,
 } from '@material-ui/core/styles';
 
-import { SideBarContent } from './components/SideBarContent';
+import { SideBarContent } from './SideBarContent';
 
 import { IPropsSideBar } from './types';
 

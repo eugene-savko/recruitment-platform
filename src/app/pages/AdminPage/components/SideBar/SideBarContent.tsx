@@ -3,8 +3,8 @@ import React, { useContext } from 'react';
 import { Avatar, Divider, List, Typography } from '@material-ui/core';
 import { AuthContext } from 'app/context/AuthContext';
 import NavItem from './NavItem';
-import { items } from '../helpers/items';
-import { SideBarAvatarWrapper, SideBarContentWrapper } from '../Styled';
+import { items } from './helpers/items';
+import { SideBarAvatarWrapper, SideBarContentWrapper } from './components';
 
 export const SideBarContent: React.FunctionComponent = () => {
 	const {
