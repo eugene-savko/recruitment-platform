@@ -2,10 +2,10 @@ import React from 'react';
 
 import { AppBar, Toolbar } from '@material-ui/core';
 
-import { Logo } from './components/Logo';
-import { Burger } from './components/Burger';
-import { ToolBarButtons } from './components/ToolBarButtons';
-import { IPropsHeader } from './Types';
+import { Logo } from './Logo';
+import { Burger } from './Burger';
+import { ToolBarButtons } from './ToolBarButtons';
+import { IPropsHeader } from './types';
 
 export const Header = ({ onShowHideSidebar }: IPropsHeader) => (
 	<AppBar>
