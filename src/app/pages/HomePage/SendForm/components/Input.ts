@@ -38,23 +38,28 @@ const Input = styled.input`
 	}
 
 	&[type='checkbox'] {
+		margin: 0;
+		padding: 0;
+
 		width: 16px;
 		height: 16px;
 
 		vertical-align: top;
-		margin: 2px 10px 2px 0px;
 
-		border: 1px solid #c4c4c4;
+		border: 1px solid #e3e3e3;
 		box-sizing: border-box;
 		border-radius: 3px;
 		cursor: inherit;
 
+		transition: ease-in-out 0.2s;
+
 		&:hover {
-			box-shadow: 0 5px 10px rgb(37 37 37 / 10%);
+			border: 1px solid #4e4e4e;
+			transition: 0.2s ease-in-out;
 		}
 
 		&:focus {
-			box-shadow: 0 5px 10px rgb(37 37 37 / 10%);
+			border: 1px solid #4e4e4e;
 		}
 	}
 `;
