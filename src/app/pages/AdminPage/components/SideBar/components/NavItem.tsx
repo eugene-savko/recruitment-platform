@@ -6,7 +6,7 @@ import { NavLink as RouterLink } from 'react-router-dom';
 import { SideBarListItemIcon, SideBarListItemText } from '../Styled';
 import { ISideBarItems } from '../types';
 
-const NavItem: React.FC<ISideBarItems> = ({
+const NavItem: React.FunctionComponent<ISideBarItems> = ({
 	href,
 	icon: Icon,
 	title,

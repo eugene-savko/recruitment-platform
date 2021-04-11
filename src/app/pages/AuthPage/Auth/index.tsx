@@ -1,21 +1,17 @@
 import React from 'react';
-// Libs
+
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 
-// Types
 import {
 	IDefaultValueInputForm,
 	IFormInput,
 } from 'app/pages/AuthPage/Auth/types';
 
-// Custom hooks
 import useMocoServer from './hooks/useMocoServer';
 
-// helpers
 import { validation } from './helpers/validation';
 
-// Components
 import { AuthErrorLabel, AuthWrapper, AuthForm } from './components/styled';
 import { ButtonSubmint } from './components/ButtonSubmint';
 import {

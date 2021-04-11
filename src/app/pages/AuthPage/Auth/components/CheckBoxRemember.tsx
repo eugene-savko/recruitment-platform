@@ -9,8 +9,6 @@ import {
 
 import { ICheckProps } from '../types';
 
-// todo типизировать mouseevent
-// todo typization props
 const CheckBoxRemember: React.FunctionComponent<ICheckProps> = ({
 	control,
 }: ICheckProps) => (
@@ -21,9 +19,10 @@ const CheckBoxRemember: React.FunctionComponent<ICheckProps> = ({
 				control={control}
 				render={(props) => (
 					<MaterialCheckBox
-						defaultValue=""
 						color="primary"
-						onChange={(e) => props.onChange(e.target.checked)}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							props.onChange(e.target.checked)
+						}
 						checked={props.value}
 					/>
 				)}
