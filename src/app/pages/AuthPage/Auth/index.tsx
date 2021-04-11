@@ -55,6 +55,7 @@ export const Auth: React.FunctionComponent = () => {
 			</AuthWrapper>
 			<p>eve.holt@reqres.in</p>
 			<p>cityslicka</p>
+			<p>защита роутов</p>
 		</>
 	);
 };

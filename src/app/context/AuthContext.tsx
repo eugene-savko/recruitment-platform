@@ -1,8 +1,8 @@
-import IContextState from 'app/types/initContextState';
 import React, { useState, createContext } from 'react';
+import InitContextState from '../types/InitContextState';
 import IDefaultContextState from '../types/IDefaultContextState';
 
-const initContextState: IContextState = {
+const initContextState: InitContextState = {
 	dataFromServer: {
 		avatar: '',
 		email: '',
@@ -12,7 +12,7 @@ const initContextState: IContextState = {
 	},
 };
 
-export const AuthContext = createContext<IContextState>(initContextState);
+export const AuthContext = createContext<InitContextState>(initContextState);
 
 const AuthContextProvider: React.FC<React.ReactNode> = ({ children }) => {
 	const [dataFromServer, setDataFromServer] = useState<IDefaultContextState>(
