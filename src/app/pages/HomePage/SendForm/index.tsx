@@ -12,7 +12,7 @@ export const SendForm: React.FunctionComponent = () => {
 			<Title>Submit your application</Title>
 			<Form>
 				<Body />
-				<Note>* Поля отмеченные * обязательны.</Note>
+				<Note size={12}>* Поля отмеченные * обязательны.</Note>
 				<FileLoader />
 				<Agreements />
 				<Submit>Submit</Submit>
