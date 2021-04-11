@@ -1,6 +1,15 @@
-import CheckBoxRemember from './CheckBoxRemember';
-import InputEmail from './InputEmail';
-import InputPassword from './InputPassword';
-import Title from './Title';
+import AuthWrapper from './AuthWrapper';
+import AuthButtonSubmit from './AuthButtonSubmit';
+import AuthErrorLabel from './AuthErrorLabel';
+import AuthInput from './AuthInput';
+import AuthForm from './AuthForm';
+import AuthTitle from './AuthTitle';
 
-export { CheckBoxRemember, InputEmail, InputPassword, Title };
+export {
+	AuthTitle,
+	AuthWrapper,
+	AuthButtonSubmit,
+	AuthErrorLabel,
+	AuthInput,
+	AuthForm,
+};

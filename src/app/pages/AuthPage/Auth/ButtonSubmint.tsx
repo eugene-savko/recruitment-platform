@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthButtonSubmit } from './styled';
+import { AuthButtonSubmit } from './components';
 
 export const ButtonSubmint: React.FunctionComponent = () => (
 	<AuthButtonSubmit type="submit" color="primary" variant="contained" fullWidth>

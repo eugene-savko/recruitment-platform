@@ -7,7 +7,7 @@ import {
 	Checkbox as MaterialCheckBox,
 } from '@material-ui/core';
 
-import { ICheckProps } from '../types';
+import { ICheckProps } from './types';
 
 const CheckBoxRemember: React.FunctionComponent<ICheckProps> = ({
 	control,

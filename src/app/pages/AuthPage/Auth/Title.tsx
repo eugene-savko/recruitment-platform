@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AuthTitle } from './styled';
+import { AuthTitle } from './components';
 
 const Title: React.FunctionComponent = () => <AuthTitle>Вход</AuthTitle>;
 

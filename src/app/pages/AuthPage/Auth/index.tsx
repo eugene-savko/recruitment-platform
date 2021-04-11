@@ -12,14 +12,12 @@ import useMocoServer from './hooks/useMocoServer';
 
 import { validation } from './helpers/validation';
 
-import { AuthErrorLabel, AuthWrapper, AuthForm } from './components/styled';
-import { ButtonSubmint } from './components/ButtonSubmint';
-import {
-	Title,
-	InputPassword,
-	CheckBoxRemember,
-	InputEmail,
-} from './components';
+import { AuthErrorLabel, AuthWrapper, AuthForm } from './components';
+import { ButtonSubmint } from './ButtonSubmint';
+import Title from './Title';
+import InputPassword from './InputPassword';
+import CheckBoxRemember from './CheckBoxRemember';
+import InputEmail from './InputEmail';
 
 const defaultValues: IDefaultValueInputForm = {
 	email: '',

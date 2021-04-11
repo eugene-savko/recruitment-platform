@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import { AuthInput } from './styled';
+import { AuthInput } from './components';
 
 const InputEmail = forwardRef<HTMLInputElement>((props, ref) => (
 	<AuthInput
