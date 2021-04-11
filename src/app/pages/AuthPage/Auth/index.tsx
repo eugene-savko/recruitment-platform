@@ -1,17 +1,23 @@
 import React from 'react';
-
+// Libs
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 
-import { IFormInput } from 'app/pages/AuthPage/Auth/types';
-
+// Types
 import {
-	AuthButtonSubmit,
-	AuthErrorLabel,
-	AuthWrapper,
-	AuthForm,
-} from './components/styled';
+	IDefaultValueInputForm,
+	IFormInput,
+} from 'app/pages/AuthPage/Auth/types';
 
+// Custom hooks
+import useMocoServer from './hooks/useMocoServer';
+
+// helpers
+import { validation } from './helpers/validation';
+
+// Components
+import { AuthErrorLabel, AuthWrapper, AuthForm } from './components/styled';
+import { ButtonSubmint } from './components/ButtonSubmint';
 import {
 	Title,
 	InputPassword,
@@ -19,58 +25,42 @@ import {
 	InputEmail,
 } from './components';
 
-import useMocoServer from './hooks/useMocoServer';
-
-import { validation } from './helpers/validation';
-
-const defaultValues = {
+const defaultValues: IDefaultValueInputForm = {
 	email: '',
 	password: '',
 	checkbox: false,
 };
 
-export const Auth: React.FC = () => {
+export const Auth: React.FunctionComponent = () => {
 	const { isAuth, fetchRequestLogin } = useMocoServer();
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
 	});
 
-	const onSubmit = (dataLogin: IFormInput) => {
+	const getInputsForm = (dataLogin: IFormInput) => {
 		fetchRequestLogin(dataLogin);
 	};
 
 	return (
-		<div>
+		<>
 			<AuthWrapper elevation={10}>
 				<Title />
-				<AuthForm noValidate onSubmit={handleSubmit(onSubmit)}>
+				<AuthForm noValidate onSubmit={handleSubmit(getInputsForm)}>
 					<InputEmail ref={register(validation.email)} />
-
 					{errors.email && (
 						<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
 					)}
-
 					<InputPassword ref={register(validation.password)} />
-
 					{errors.password && (
 						<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
 					)}
-
 					<CheckBoxRemember control={control} />
-
-					<AuthButtonSubmit
-						type="submit"
-						color="primary"
-						variant="contained"
-						fullWidth
-					>
-						Войти
-					</AuthButtonSubmit>
+					<ButtonSubmint />
 				</AuthForm>
 				{isAuth && <Redirect exact from="/" to="/admin" />}
 			</AuthWrapper>
 			<p>eve.holt@reqres.in</p>
 			<p>cityslicka</p>
-		</div>
+		</>
 	);
 };

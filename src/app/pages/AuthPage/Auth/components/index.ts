@@ -1,4 +1,4 @@
-import CheckBoxRemember from './CheckBox';
+import CheckBoxRemember from './CheckBoxRemember';
 import InputEmail from './InputEmail';
 import InputPassword from './InputPassword';
 import Title from './Title';

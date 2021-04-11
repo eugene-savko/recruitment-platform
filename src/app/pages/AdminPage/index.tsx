@@ -11,16 +11,16 @@ import {
 	AdminPageRoot,
 } from './Styled';
 
-export const AdminPage = () => {
+export const AdminPage: React.FC = () => {
 	const { path } = useRouteMatch();
-	const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+	const [isSideBarOpen, setSideBarOpen] = useState(false);
 
 	return (
 		<AdminPageRoot>
-			<Header onShowHideSidebar={() => setMobileNavOpen(true)} />
+			<Header onShowHideSidebar={() => setSideBarOpen(true)} />
 			<Sidebar
-				openSideBar={() => setMobileNavOpen(false)}
-				openMobile={isMobileNavOpen}
+				closeSideBar={() => setSideBarOpen(false)}
+				openSideBar={isSideBarOpen}
 			/>
 			<AdminPageContentWrapper>
 				<AdminPageContent>

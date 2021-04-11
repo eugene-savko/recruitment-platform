@@ -1,6 +1,6 @@
 interface IPropsSideBar {
-	openMobile: boolean;
-	openSideBar: () => void;
+	openSideBar: boolean;
+	closeSideBar: () => void;
 }
 
 export default IPropsSideBar;

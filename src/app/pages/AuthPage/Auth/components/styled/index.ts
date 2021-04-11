@@ -3,5 +3,13 @@ import AuthButtonSubmit from './AuthButtonSubmit';
 import AuthErrorLabel from './AuthErrorLabel';
 import AuthInput from './AuthInput';
 import AuthForm from './AuthForm';
+import AuthTitle from './AuthTitle';
 
-export { AuthWrapper, AuthButtonSubmit, AuthErrorLabel, AuthInput, AuthForm };
+export {
+	AuthTitle,
+	AuthWrapper,
+	AuthButtonSubmit,
+	AuthErrorLabel,
+	AuthInput,
+	AuthForm,
+};

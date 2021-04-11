@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { Control, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import {
 	FormControlLabel,
 	Checkbox as MaterialCheckBox,
 } from '@material-ui/core';
 
-import { IFormInput } from '../types';
+import { ICheckProps } from '../types';
 
-export interface ICheckProps {
-	control: Control<IFormInput>;
-}
-
+// todo типизировать mouseevent
+// todo typization props
 const CheckBoxRemember: React.FunctionComponent<ICheckProps> = ({
 	control,
 }: ICheckProps) => (

@@ -1,6 +1,6 @@
 import { Control } from 'react-hook-form';
 import { IFormInput } from './index';
 
-export interface PropsCheck {
+export interface ICheckProps {
 	control: Control<IFormInput>;
 }

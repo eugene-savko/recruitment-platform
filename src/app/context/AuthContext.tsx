@@ -1,36 +1,23 @@
+import IContextState from 'app/types/initContextState';
 import React, { useState, createContext } from 'react';
+import IDefaultContextState from '../types/IDefaultContextState';
 
-const defauldAuthContex = {
-	avatar: '',
-	email: '',
-	first_name: '',
-	id: 0,
-	last_name: '',
+const initContextState: IContextState = {
+	dataFromServer: {
+		avatar: '',
+		email: '',
+		first_name: '',
+		id: 0,
+		last_name: '',
+	},
 };
 
-type AppContextState = {
-	avatar: string,
-	email: string,
-	// eslint-disable-next-line camelcase
-	first_name: string,
-	id: number,
-	// eslint-disable-next-line camelcase
-	last_name: string,
-};
-
-const appCtxDefaultValue = {
-	dataFromServer: defauldAuthContex,
-	// eslint-disable-next-line no-unused-vars
-	setDataFromServer: (state: AppContextState) => {},
-};
-
-export const AuthContext = createContext(appCtxDefaultValue);
+export const AuthContext = createContext<IContextState>(initContextState);
 
 const AuthContextProvider: React.FC<React.ReactNode> = ({ children }) => {
-	const [dataFromServer, setDataFromServer] = useState(
-		appCtxDefaultValue.dataFromServer
+	const [dataFromServer, setDataFromServer] = useState<IDefaultContextState>(
+		initContextState.dataFromServer
 	);
-	console.log(dataFromServer);
 
 	return (
 		<AuthContext.Provider value={{ dataFromServer, setDataFromServer }}>

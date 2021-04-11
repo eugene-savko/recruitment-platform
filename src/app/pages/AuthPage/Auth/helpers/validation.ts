@@ -1,4 +1,6 @@
-export const validation = {
+import IAuthValidation from '../types/IAuthValidation';
+
+export const validation: IAuthValidation = {
 	email: {
 		required: 'Заполните поле',
 		pattern: {
