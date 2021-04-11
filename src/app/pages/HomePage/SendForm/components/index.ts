@@ -5,6 +5,17 @@ import Note from './Note';
 import Input from './Input';
 import Label from './Label';
 import ContentAgreement from './ContentAgreement';
+import AgreementsWrapper from './AgreementsWrapper';
 import Submit from './Submit';
 
-export { Wrapper, Title, Form, Note, Input, Label, ContentAgreement, Submit };
+export {
+	Wrapper,
+	Title,
+	Form,
+	Note,
+	Input,
+	Label,
+	ContentAgreement,
+	AgreementsWrapper,
+	Submit,
+};
