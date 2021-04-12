@@ -6,7 +6,6 @@ import { IFormInput } from '../types';
 
 const useMocoServer = () => {
 	const { setDataFromServer } = useContext(AuthContext);
-	// const [isAuth, setIsAuth] = useState(false);
 	const { setIsLogged } = useContext(AuthLoggedContext);
 
 	const fetchRequestLogin = async ({ email, password }: IFormInput) => {
@@ -15,7 +14,9 @@ const useMocoServer = () => {
 			password,
 		});
 		const token = await postUserData;
-		if (token.data) getUserData();
+
+		if (token.status) getUserData();
+		console.log(token);
 	};
 
 	const getUserData = async () => {
@@ -25,10 +26,9 @@ const useMocoServer = () => {
 		const usersData: AxiosResponse<any> = await dataFetched;
 		setDataFromServer?.(usersData.data.data[0]);
 		setIsLogged?.(true);
-		// setIsAuth(true);
 	};
 
-	return { /* isAuth, setIsAuth, */ fetchRequestLogin };
+	return { fetchRequestLogin };
 };
 
 export default useMocoServer;

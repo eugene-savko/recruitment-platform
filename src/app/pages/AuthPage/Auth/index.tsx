@@ -9,16 +9,17 @@ import {
 } from 'app/pages/AuthPage/Auth/types';
 
 import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
+
 import useMocoServer from './hooks/useMocoServer';
 
 import { validation } from './helpers/validation';
 
 import { AuthErrorLabel, AuthWrapper, AuthForm } from './components';
-import { ButtonSubmint } from './ButtonSubmint';
-import Title from './Title';
-import InputPassword from './InputPassword';
 import CheckBoxRemember from './CheckBoxRemember';
+import ButtonSubmint from './ButtonSubmint';
+import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
+import Title from './Title';
 
 const defaultValues: IDefaultValueInputForm = {
 	email: '',
@@ -34,6 +35,7 @@ export const Auth: React.FunctionComponent = () => {
 	});
 
 	const getInputsForm = (dataLogin: IFormInput) => {
+		console.log(dataLogin);
 		fetchRequestLogin(dataLogin);
 	};
 
@@ -41,16 +43,20 @@ export const Auth: React.FunctionComponent = () => {
 		<>
 			<AuthWrapper elevation={10}>
 				<Title />
+
 				<AuthForm noValidate onSubmit={handleSubmit(getInputsForm)}>
 					<InputEmail ref={register(validation.email)} />
 					{errors.email && (
 						<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
 					)}
+
 					<InputPassword ref={register(validation.password)} />
 					{errors.password && (
 						<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
 					)}
+
 					<CheckBoxRemember control={control} />
+
 					<ButtonSubmint />
 				</AuthForm>
 

@@ -1,6 +1,3 @@
-// toto перенести файлы из styled на уровень выше
-// toto перенести файлы из components на уровень выше
-
 import React, { useContext } from 'react';
 import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
 // Material-ui
@@ -14,8 +11,8 @@ import { NotFoundPage } from './pages/NotFoundPage';
 
 // Context
 import AuthContextProvider from './context/AuthContext';
-import { AuthPage } from './pages/AuthPage/index';
-import { AdminPage } from './pages/AdminPage/index';
+import { AuthPage } from './pages/AuthPage';
+import { AdminPage } from './pages/AdminPage';
 
 export const App: React.FunctionComponent = () => {
 	const { isLogged } = useContext(AuthLoggedContext);
@@ -27,7 +24,7 @@ export const App: React.FunctionComponent = () => {
 				<AuthContextProvider>
 					<Switch>
 						<Route exact path="/" component={AuthPage} />
-						{isLogged ? <Route path="/admin" component={AdminPage} /> : null}
+						{isLogged && <Route path="/admin" component={AdminPage} />}
 						<Route path="/not-found" component={NotFoundPage} />
 						<Redirect exact from="*" to="/not-found" />
 					</Switch>
