@@ -17,25 +17,31 @@ import ROUTES from './routes';
 
 // Context
 import AuthContextProvider from './context/AuthContext';
+import AuthLoggedContext from './context/AuthLoggedContext';
 
-export const App: React.FC = () => (
-	<>
-		<CssBaseline />
-		<BrowserRouter>
-			<AuthContextProvider>
-				<Switch>
-					{ROUTES?.map((ROUTE) => (
-						<Route
-							key={ROUTE.path}
-							exact={ROUTE.exact}
-							path={ROUTE.path}
-							component={ROUTE.component}
-						/>
-					))}
-					<Route path="/not-found" component={NotFoundPage} />
-					<Redirect exact from="*" to="/not-found" />
-				</Switch>
-			</AuthContextProvider>
-		</BrowserRouter>
-	</>
-);
+export const App: React.FunctionComponent = () => {
+	console.log('app');
+	return (
+		<>
+			<CssBaseline />
+			<BrowserRouter>
+				<AuthContextProvider>
+					<AuthLoggedContext>
+						<Switch>
+							{ROUTES?.map((ROUTE) => (
+								<Route
+									key={ROUTE.path}
+									exact={ROUTE.exact}
+									path={ROUTE.path}
+									component={ROUTE.component}
+								/>
+							))}
+							<Route path="/not-found" component={NotFoundPage} />
+							<Redirect exact from="*" to="/not-found" />
+						</Switch>
+					</AuthLoggedContext>
+				</AuthContextProvider>
+			</BrowserRouter>
+		</>
+	);
+};
