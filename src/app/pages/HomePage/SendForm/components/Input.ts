@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 const Input = styled.input`
-	&[type='text'] {
+	&[type='text'],
+	&[type='email'],
+	&[type='tel'] {
 		width: 100%;
-		max-width: 470px;
+		max-width: 280px;
 
 		padding: 15px;
+		margin: 12px 23px;
 
 		outline: none;
 		box-sizing: border-box;
