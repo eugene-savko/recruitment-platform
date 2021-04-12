@@ -47,7 +47,7 @@ export const Filter: React.FunctionComponent = () => {
 				itemCopy.checked = false;
 				return itemCopy;
 			}
-			if (item.profession === value) {
+			if (item.speciality === value) {
 				const itemCopy = { ...item };
 				itemCopy.checked = true;
 				return itemCopy;
@@ -115,7 +115,7 @@ export const Filter: React.FunctionComponent = () => {
 					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (
 							<DropdownListItem
-								value={item.profession}
+								value={item.speciality}
 								id={item.id}
 								key={uid(item.id)}
 								check={item.checked}
