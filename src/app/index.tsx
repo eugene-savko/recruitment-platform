@@ -17,7 +17,7 @@ import ROUTES from './routes';
 
 // Context
 import AuthContextProvider from './context/AuthContext';
-import AuthLoggedContext from './context/AuthLoggedContext';
+import AuthLoggedContextProvider from './context/AuthLoggedContext';
 
 export const App: React.FunctionComponent = () => {
 	console.log('app');
@@ -26,7 +26,7 @@ export const App: React.FunctionComponent = () => {
 			<CssBaseline />
 			<BrowserRouter>
 				<AuthContextProvider>
-					<AuthLoggedContext>
+					<AuthLoggedContextProvider>
 						<Switch>
 							{ROUTES?.map((ROUTE) => (
 								<Route
@@ -39,7 +39,7 @@ export const App: React.FunctionComponent = () => {
 							<Route path="/not-found" component={NotFoundPage} />
 							<Redirect exact from="*" to="/not-found" />
 						</Switch>
-					</AuthLoggedContext>
+					</AuthLoggedContextProvider>
 				</AuthContextProvider>
 			</BrowserRouter>
 		</>

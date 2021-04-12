@@ -9,19 +9,21 @@ const initAuthLogged = {
 	isLogged: false,
 };
 
-export const AuthLoggedContextProvider = createContext<AuthLoggedContextState>(
+export const AuthLoggedContext = createContext<AuthLoggedContextState>(
 	initAuthLogged
 );
 
-export const AuthLoggedContext: React.FC<React.ReactNode> = ({ children }) => {
+export const AuthLoggedContextProvider: React.FC<React.ReactNode> = ({
+	children,
+}) => {
 	const [isLogged, setIsLogged] = useState(false);
 	console.log(isLogged);
 
 	return (
-		<AuthLoggedContextProvider.Provider value={{ isLogged, setIsLogged }}>
+		<AuthLoggedContext.Provider value={{ isLogged, setIsLogged }}>
 			{children}
-		</AuthLoggedContextProvider.Provider>
+		</AuthLoggedContext.Provider>
 	);
 };
 
-export default AuthLoggedContext;
+export default AuthLoggedContextProvider;

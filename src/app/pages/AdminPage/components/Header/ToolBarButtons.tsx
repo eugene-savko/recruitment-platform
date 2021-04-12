@@ -3,9 +3,11 @@ import { Box, Hidden, IconButton } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { LogOut as LogOutIcon } from 'react-feather';
+// import { setLogged } from 'app/context/AuthLoggedContext';
 
-export const ToolBarButtons: React.FC = () => {
+export const ToolBarButtons: React.FunctionComponent = () => {
 	const history = useHistory();
+	// const { setIsLogged } = useState();
 
 	function logOut() {
 		history.push('/');
