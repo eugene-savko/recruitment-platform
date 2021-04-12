@@ -1,13 +1,5 @@
-interface IFormInputs {
-	firstName: string;
-	lastName: string;
-	email: string;
-	phone: string;
-	country: string;
-	city: string;
-	englishLevel: string;
-	internship: string;
-	primarySkill: string;
-}
+import IListCourses from './IListCourses';
+import IFormInputs from './IFormInputs';
+import IListEnglishLevel from './IListEnglishLevel';
 
-export default IFormInputs;
+export type { IListCourses, IFormInputs, IListEnglishLevel };
