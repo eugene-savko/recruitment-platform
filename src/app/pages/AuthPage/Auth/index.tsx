@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
@@ -8,6 +8,7 @@ import {
 	IFormInput,
 } from 'app/pages/AuthPage/Auth/types';
 
+import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
 import useMocoServer from './hooks/useMocoServer';
 
 import { validation } from './helpers/validation';
@@ -26,7 +27,8 @@ const defaultValues: IDefaultValueInputForm = {
 };
 
 export const Auth: React.FunctionComponent = () => {
-	const { isAuth, fetchRequestLogin } = useMocoServer();
+	const { isLogged } = useContext(AuthLoggedContext);
+	const { fetchRequestLogin } = useMocoServer();
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
 	});
@@ -51,11 +53,11 @@ export const Auth: React.FunctionComponent = () => {
 					<CheckBoxRemember control={control} />
 					<ButtonSubmint />
 				</AuthForm>
-				{isAuth && <Redirect exact from="/" to="/admin" />}
+
+				{isLogged && <Redirect exact from="/" to="/admin" />}
 			</AuthWrapper>
 			<p>eve.holt@reqres.in</p>
 			<p>cityslicka</p>
-			<p>защита роутов</p>
 		</>
 	);
 };

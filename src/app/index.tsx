@@ -20,7 +20,6 @@ import { AdminPage } from './pages/AdminPage/index';
 export const App: React.FunctionComponent = () => {
 	const { isLogged } = useContext(AuthLoggedContext);
 
-	console.log('Auth check', isLogged);
 	return (
 		<>
 			<CssBaseline />
@@ -28,8 +27,7 @@ export const App: React.FunctionComponent = () => {
 				<AuthContextProvider>
 					<Switch>
 						<Route exact path="/" component={AuthPage} />
-						{isLogged && <Route path="/admin" component={AdminPage} />}
-
+						{isLogged ? <Route path="/admin" component={AdminPage} /> : null}
 						<Route path="/not-found" component={NotFoundPage} />
 						<Redirect exact from="*" to="/not-found" />
 					</Switch>
