@@ -1,15 +1,21 @@
 import React from 'react';
 
-import { Input } from '../components';
-import { WrapperInputs } from './components';
-import { SelectionBox } from './SelectionBox';
+import { WrapperInputs, Input, Select } from './components';
+
+import { IListEnglishLevel, IListCourses } from '../types';
 
 interface IProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	register: any;
+	englishLevel: Array<IListEnglishLevel>;
+	internship: Array<IListCourses>;
 }
 
-export const Body: React.FunctionComponent<IProps> = ({ register }) => {
+export const Body: React.FunctionComponent<IProps> = ({
+	register,
+	englishLevel,
+	internship,
+}) => {
 	return (
 		<WrapperInputs>
 			<Input
@@ -37,11 +43,29 @@ export const Body: React.FunctionComponent<IProps> = ({ register }) => {
 				placeholder="Phone number"
 			/>
 
-			<SelectionBox />
-			<SelectionBox />
-			<SelectionBox />
-			<SelectionBox />
-			<SelectionBox />
+			<Select
+				name="englishLevel"
+				ref={register({ required: true })}
+				placeholder="English level"
+			>
+				{englishLevel?.map((item) => (
+					<option value={item.name} key={item.id}>
+						{item.name}
+					</option>
+				))}
+			</Select>
+
+			<Select
+				name="internship"
+				ref={register({ required: true })}
+				placeholder="English level"
+			>
+				{internship?.map((item) => (
+					<option value={item.name} key={item.id}>
+						{item.name}
+					</option>
+				))}
+			</Select>
 		</WrapperInputs>
 	);
 };
