@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Hidden, IconButton } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { LogOut as LogOutIcon } from 'react-feather';
-// import { setLogged } from 'app/context/AuthLoggedContext';
+import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
 
 export const ToolBarButtons: React.FunctionComponent = () => {
 	const history = useHistory();
-	// const { setIsLogged } = useState();
-
+	const { setIsLogged } = useContext(AuthLoggedContext);
 	function logOut() {
+		setIsLogged?.(false);
 		history.push('/');
 	}
 

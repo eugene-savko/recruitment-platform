@@ -17,7 +17,6 @@ export const AuthLoggedContextProvider: React.FC<React.ReactNode> = ({
 	children,
 }) => {
 	const [isLogged, setIsLogged] = useState(false);
-	console.log(isLogged);
 
 	return (
 		<AuthLoggedContext.Provider value={{ isLogged, setIsLogged }}>
