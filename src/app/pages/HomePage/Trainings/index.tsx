@@ -18,7 +18,7 @@ export const Training: React.FunctionComponent = () => {
 	);
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await API.get(`users/1/todos`);
+			const data = await API.get(`/internships`);
 			console.log(data);
 		};
 		fetchData();

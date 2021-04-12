@@ -11,21 +11,21 @@ import {
 } from './components';
 
 interface ITrainingItemProps {
-	course: string;
+	name: string;
 	destination: string;
 	info: string;
 	status: string;
 }
 
 export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
-	course,
+	name,
 	destination,
 	info,
 	status,
 }) => (
 	<TrainingItemWrapper>
 		<MainInfo>
-			<Title>{course}</Title>
+			<Title>{name}</Title>
 			<SubTitle>{destination}</SubTitle>
 			<StatusLabel>{status}</StatusLabel>
 		</MainInfo>

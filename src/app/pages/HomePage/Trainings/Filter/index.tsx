@@ -38,7 +38,7 @@ export const Filter: React.FunctionComponent = () => {
 		boolean | null
 	>(null);
 
-	const ref = useRef<HTMLUListElement | null>(null);
+	const ref = useRef<HTMLDivElement | null>(null);
 
 	const handleClickMenuSpecializationItem = (value: string) => {
 		const specializationsCheckToogle = SpecializationItemsData.map((item) => {
@@ -79,7 +79,7 @@ export const Filter: React.FunctionComponent = () => {
 				if (filterState.specialization === 'Any Speciallization') {
 					return true;
 				}
-				return trainingItem.profession === filterState.specialization;
+				return trainingItem.specialityList.includes(filterState.specialization);
 			}
 		);
 
@@ -101,7 +101,7 @@ export const Filter: React.FunctionComponent = () => {
 	return (
 		<FilterDropdownWrapper>
 			<DropdownWrapper>
-				<ControledForm>
+				<ControledForm ref={ref}>
 					<DropdownMenu>
 						<DropdownMenuTitle>Specialization</DropdownMenuTitle>
 						<DropdownMenuButton
@@ -112,7 +112,7 @@ export const Filter: React.FunctionComponent = () => {
 							{filterState.specialization}
 						</DropdownMenuButton>
 					</DropdownMenu>
-					<DropdownList menuState={specializationMenuState} ref={ref}>
+					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (
 							<DropdownListItem
 								value={item.profession}

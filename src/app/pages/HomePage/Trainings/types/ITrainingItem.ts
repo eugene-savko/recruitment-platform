@@ -1,9 +1,12 @@
 interface ITrainingItem {
-	id: string;
-	course: string;
-	profession: string;
+	id: number;
+	name: string;
+	specialityList: Array<string>;
 	country: string;
-	info: string;
+	description: string;
 	status: string;
+	deadline?: string;
+	startDate?: string;
+	endDate?: string;
 }
 export default ITrainingItem;

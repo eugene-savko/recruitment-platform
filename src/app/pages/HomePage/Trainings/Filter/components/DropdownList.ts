@@ -39,7 +39,7 @@ const closeMenu = keyframes`
 const DropdownList = styled.ul`
 	position: absolute;
 	top: 100px;
-	left: 0;
+	left: 15px;
 	z-index: 20;
 	margin: 0;
 	border: 1px solid #e1e1e1;

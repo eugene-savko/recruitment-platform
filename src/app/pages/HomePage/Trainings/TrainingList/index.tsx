@@ -26,13 +26,13 @@ export const TrainingList: React.FunctionComponent = () => {
 
 	return (
 		<TrainingListWrappper>
-			{trainingsList.map((internshipItem) => (
+			{trainingsList.map(({ id, name, country, description, status }) => (
 				<TrainingItem
-					key={uid(internshipItem.id)}
-					course={internshipItem.course}
-					destination={internshipItem.country}
-					info={internshipItem.info}
-					status={internshipItem.status}
+					key={uid(id)}
+					name={name}
+					destination={country}
+					info={description}
+					status={status}
 				/>
 			))}
 			<LoadMoreInternship onClick={load}>
