@@ -13,10 +13,10 @@ interface ITypeData {
 	status: number;
 	data: {
 		user: {
-			name: string,
-			password: string,
-			role: string,
-		},
+			name: string;
+			password: string;
+			role: string;
+		};
 	};
 }
 
