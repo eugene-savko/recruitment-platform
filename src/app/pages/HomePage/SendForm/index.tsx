@@ -12,6 +12,7 @@ export const SendForm: React.FunctionComponent = () => {
 			<Title>Submit your application</Title>
 			<Form>
 				<Body />
+
 				<Note>* Поля отмеченные * обязательны.</Note>
 				<FileLoader />
 				<Agreements />
