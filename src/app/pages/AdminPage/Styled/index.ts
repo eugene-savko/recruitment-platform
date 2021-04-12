@@ -1,5 +1,5 @@
 import AdminPageContentWrapper from './AdminPageContentWrapper';
-import AdminPageRoot from '../Styled/AdminPageRoot';
-import AdminPageContent from '../Styled/AdminPageContent';
+import AdminPageRoot from './AdminPageRoot';
+import AdminPageContent from './AdminPageContent';
 
 export { AdminPageContentWrapper, AdminPageRoot, AdminPageContent };
