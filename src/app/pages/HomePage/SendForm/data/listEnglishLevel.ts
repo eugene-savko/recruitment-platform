@@ -1,6 +1,6 @@
-import IListEnglishLevel from '../types/IListEnglishLevel';
+import IListItemSelect from '../types/IListItemSelect';
 
-const listEnglishLevel: Array<IListEnglishLevel> = [
+const listEnglishLevel: Array<IListItemSelect> = [
 	{ name: 'A1 Elementary', id: '1' },
 	{ name: 'A2 Pre-intermediate', id: '2' },
 	{ name: 'B1 Intermediate', id: '3' },

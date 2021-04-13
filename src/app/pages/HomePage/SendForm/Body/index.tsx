@@ -2,19 +2,25 @@ import React from 'react';
 
 import { WrapperInputs, Input, Select } from './components';
 
-import { IListEnglishLevel, IListCourses } from '../types';
+import { IListItemSelect } from '../types';
 
 interface IProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	register: any;
-	englishLevel: Array<IListEnglishLevel>;
-	internship: Array<IListCourses>;
+	englishLevel: Array<IListItemSelect>;
+	internship: Array<IListItemSelect>;
+	primarySkill: Array<IListItemSelect>;
+	city: Array<IListItemSelect>;
+	country: Array<IListItemSelect>;
 }
 
 export const Body: React.FunctionComponent<IProps> = ({
 	register,
 	englishLevel,
 	internship,
+	primarySkill,
+	country,
+	city,
 }) => {
 	return (
 		<WrapperInputs>
@@ -46,7 +52,8 @@ export const Body: React.FunctionComponent<IProps> = ({
 			<Select
 				name="englishLevel"
 				ref={register({ required: true })}
-				placeholder="English level"
+				// placeholder="English level"
+				// value="English level"
 			>
 				{englishLevel?.map((item) => (
 					<option value={item.name} key={item.id}>
@@ -61,6 +68,41 @@ export const Body: React.FunctionComponent<IProps> = ({
 				placeholder="English level"
 			>
 				{internship?.map((item) => (
+					<option value={item.name} key={item.id}>
+						{item.name}
+					</option>
+				))}
+			</Select>
+
+			<Select
+				name="primarySkill"
+				ref={register({ required: true })}
+				placeholder="English level"
+			>
+				{primarySkill?.map((item) => (
+					<option value={item.name} key={item.id}>
+						{item.name}
+					</option>
+				))}
+			</Select>
+
+			<Select
+				name="country"
+				ref={register({ required: true })}
+				placeholder="English level"
+			>
+				{country?.map((item) => (
+					<option value={item.name} key={item.id}>
+						{item.name}
+					</option>
+				))}
+			</Select>
+			<Select
+				name="city"
+				ref={register({ required: true })}
+				placeholder="English level"
+			>
+				{city?.map((item) => (
 					<option value={item.name} key={item.id}>
 						{item.name}
 					</option>
