@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-// style
+// style components
 import { Form, Note, Title, Wrapper, Submit } from './components';
 
 // components
@@ -9,7 +9,7 @@ import { Body } from './Body';
 import { FileLoader } from './FileLoader';
 import { Agreements } from './Agreements';
 
-// interface
+// types
 import { IFormInputs } from './types';
 
 // data
