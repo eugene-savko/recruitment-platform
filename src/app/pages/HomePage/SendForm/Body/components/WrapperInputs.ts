@@ -5,7 +5,6 @@ const WrapperInputs = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 
-	width: 74%;
 	height: 100%;
 
 	margin: 0 auto;
