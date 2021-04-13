@@ -15,7 +15,7 @@ const Select = styled.select`
 
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
-	line-height: 16px;
+	line-height: 21px;
 	font-weight: 400;
 
 	border: 1px solid #e3e3e3;
@@ -27,8 +27,7 @@ const Select = styled.select`
 
 	appearance: none;
 	background-image: url(${ArrowDown});
-	background-position: calc(100% - 20px) calc(1em + 2px),
-		calc(100% - 15px) calc(1em + 2px), 100% 0;
+	background-position: 93%;
 	background-repeat: no-repeat;
 
 	&:hover {

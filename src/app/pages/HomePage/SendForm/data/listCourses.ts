@@ -1,6 +1,6 @@
-import IListCourses from '../types/IListCourses';
+import IListItemSelect from '../types/IListItemSelect';
 
-const listCourses: Array<IListCourses> = [
+const listCourses: Array<IListItemSelect> = [
 	{ name: 'Course 1', id: '1' },
 	{ name: 'Course 2', id: '2' },
 	{ name: 'Course 3', id: '3' },
