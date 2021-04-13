@@ -7,6 +7,7 @@ import Label from './Label';
 import ContentAgreement from './ContentAgreement';
 import AgreementsWrapper from './AgreementsWrapper';
 import Submit from './Submit';
+import Wrapper from './Wrapper';
 
 export {
 	SendFormWrapper,
@@ -18,4 +19,5 @@ export {
 	ContentAgreement,
 	AgreementsWrapper,
 	Submit,
+	Wrapper,
 };
