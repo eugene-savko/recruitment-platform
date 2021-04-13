@@ -5,10 +5,8 @@ const Input = styled.input`
 	&[type='email'],
 	&[type='tel'] {
 		width: 100%;
-		max-width: 280px;
 
 		padding: 15px;
-		margin: 12px 23px;
 
 		outline: none;
 		box-sizing: border-box;
