@@ -18,7 +18,7 @@ export const App: React.FunctionComponent = () => {
 	const { isLogged } = useContext(AuthLoggedContext);
 
 	return (
-		<>
+		<React.Fragment>
 			<CssBaseline />
 			<BrowserRouter>
 				<AuthContextProvider>
@@ -30,6 +30,6 @@ export const App: React.FunctionComponent = () => {
 					</Switch>
 				</AuthContextProvider>
 			</BrowserRouter>
-		</>
+		</React.Fragment>
 	);
 };
