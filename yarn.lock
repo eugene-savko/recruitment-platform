@@ -3440,6 +3440,7 @@ chokidar@^3.4.1:
     normalize-path "~3.0.0"
     readdirp "~3.5.0"
   optionalDependencies:
+<<<<<<< HEAD
     fsevents "~2.3.1"
 
 chownr@^1.1.1:
@@ -3546,6 +3547,118 @@ coa@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/coa/-/coa-2.0.2.tgz"
   integrity sha512-q5/jG+YQnSy4nRTV4F7lPepBJZ8qBNJJDBuJdoejDyLXgmL7IEo+Le2JDZudFTFt7mrCqIRaSjws4ygRCTCAXA==
+=======
+    "fsevents" "~2.3.1"
+
+"chownr@^1.1.1":
+  "integrity" "sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg=="
+  "resolved" "https://registry.npmjs.org/chownr/-/chownr-1.1.4.tgz"
+  "version" "1.1.4"
+
+"chownr@^2.0.0":
+  "integrity" "sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ=="
+  "resolved" "https://registry.npmjs.org/chownr/-/chownr-2.0.0.tgz"
+  "version" "2.0.0"
+
+"chrome-trace-event@^1.0.2":
+  "integrity" "sha512-9e/zx1jw7B4CO+c/RXoCsfg/x1AfUBioy4owYH0bJprEYAx5hRFLRhWBqHAG57D0ZM4H7vxbP7bPe0VwhQRYDQ=="
+  "resolved" "https://registry.npmjs.org/chrome-trace-event/-/chrome-trace-event-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "tslib" "^1.9.0"
+
+"ci-info@^2.0.0":
+  "integrity" "sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ=="
+  "resolved" "https://registry.npmjs.org/ci-info/-/ci-info-2.0.0.tgz"
+  "version" "2.0.0"
+
+"cipher-base@^1.0.0", "cipher-base@^1.0.1", "cipher-base@^1.0.3":
+  "integrity" "sha512-Kkht5ye6ZGmwv40uUDZztayT2ThLQGfnj/T71N/XzeZeo3nf8foyW7zGTsPYkEya3m5f3cAypH+qe7YOrM1U2Q=="
+  "resolved" "https://registry.npmjs.org/cipher-base/-/cipher-base-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "inherits" "^2.0.1"
+    "safe-buffer" "^5.0.1"
+
+"cjs-module-lexer@^0.6.0":
+  "integrity" "sha512-uc2Vix1frTfnuzxxu1Hp4ktSvM3QaI4oXl4ZUqL1wjTu/BGki9TrCWoqLTg/drR1KwAEarXuRFCG2Svr1GxPFw=="
+  "resolved" "https://registry.npmjs.org/cjs-module-lexer/-/cjs-module-lexer-0.6.0.tgz"
+  "version" "0.6.0"
+
+"class-utils@^0.3.5":
+  "integrity" "sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg=="
+  "resolved" "https://registry.npmjs.org/class-utils/-/class-utils-0.3.6.tgz"
+  "version" "0.3.6"
+  dependencies:
+    "arr-union" "^3.1.0"
+    "define-property" "^0.2.5"
+    "isobject" "^3.0.0"
+    "static-extend" "^0.1.1"
+
+"clean-css@^4.2.3":
+  "integrity" "sha512-VcMWDN54ZN/DS+g58HYL5/n4Zrqe8vHJpGA8KdgUXFU4fuP/aHNw8eld9SyEIyabIMJX/0RaY/fplOo5hYLSFA=="
+  "resolved" "https://registry.npmjs.org/clean-css/-/clean-css-4.2.3.tgz"
+  "version" "4.2.3"
+  dependencies:
+    "source-map" "~0.6.0"
+
+"clean-stack@^2.0.0":
+  "integrity" "sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A=="
+  "resolved" "https://registry.npmjs.org/clean-stack/-/clean-stack-2.2.0.tgz"
+  "version" "2.2.0"
+
+"cli-cursor@^3.1.0":
+  "integrity" "sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw=="
+  "resolved" "https://registry.npmjs.org/cli-cursor/-/cli-cursor-3.1.0.tgz"
+  "version" "3.1.0"
+  dependencies:
+    "restore-cursor" "^3.1.0"
+
+"cli-truncate@^2.1.0":
+  "integrity" "sha512-n8fOixwDD6b/ObinzTrp1ZKFzbgvKZvuz/TvejnLn1aQfC6r52XEx85FmuC+3HI+JM7coBRXUvNqEU2PHVrHpg=="
+  "resolved" "https://registry.npmjs.org/cli-truncate/-/cli-truncate-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "slice-ansi" "^3.0.0"
+    "string-width" "^4.2.0"
+
+"cliui@^5.0.0":
+  "integrity" "sha512-PYeGSEmmHM6zvoef2w8TPzlrnNpXIjTipYK780YswmIP9vjxmd6Y2a3CB2Ks6/AU8NHjZugXvo8w3oWM2qnwXA=="
+  "resolved" "https://registry.npmjs.org/cliui/-/cliui-5.0.0.tgz"
+  "version" "5.0.0"
+  dependencies:
+    "string-width" "^3.1.0"
+    "strip-ansi" "^5.2.0"
+    "wrap-ansi" "^5.1.0"
+
+"cliui@^6.0.0":
+  "integrity" "sha512-t6wbgtoCXvAzst7QgXxJYqPt0usEfbgQdftEPbLL/cvv6HPE5VgvqCuAIDR0NgU52ds6rFwqrgakNLrHEjCbrQ=="
+  "resolved" "https://registry.npmjs.org/cliui/-/cliui-6.0.0.tgz"
+  "version" "6.0.0"
+  dependencies:
+    "string-width" "^4.2.0"
+    "strip-ansi" "^6.0.0"
+    "wrap-ansi" "^6.2.0"
+
+<<<<<<< HEAD
+"clsx@^1.0.4":
+=======
+"clsx@^1.0.4", "clsx@^1.1.1":
+>>>>>>> test: testing Material UI table
+  "integrity" "sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA=="
+  "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.1.1.tgz"
+  "version" "1.1.1"
+
+"co@^4.6.0":
+  "integrity" "sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ="
+  "resolved" "https://registry.npmjs.org/co/-/co-4.6.0.tgz"
+  "version" "4.6.0"
+
+"coa@^2.0.2":
+  "integrity" "sha512-q5/jG+YQnSy4nRTV4F7lPepBJZ8qBNJJDBuJdoejDyLXgmL7IEo+Le2JDZudFTFt7mrCqIRaSjws4ygRCTCAXA=="
+  "resolved" "https://registry.npmjs.org/coa/-/coa-2.0.2.tgz"
+  "version" "2.0.2"
+>>>>>>> test: testing Material UI table
   dependencies:
     "@types/q" "^1.5.1"
     chalk "^2.4.1"
