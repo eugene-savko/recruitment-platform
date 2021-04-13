@@ -1,9 +1,9 @@
 import { FormControl } from '@material-ui/core';
 import styled from 'styled-components';
 
-const FormControled = styled(FormControl)`
+const ControledForm = styled(FormControl)`
+	position: relative;
 	width: 356px;
-	height: 60px;
 `;
 
-export default FormControled;
+export default ControledForm;

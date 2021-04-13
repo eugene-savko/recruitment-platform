@@ -1,86 +1,134 @@
-import React from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { uid } from 'react-uid';
 import { Search as SearchIcon } from '@material-ui/icons';
 
-import { SelectItem } from './SelectItem';
+import { FilterContext } from 'app/contexts/FilterContext';
 
 import {
-	FilterMenuWrapper,
-	FilterDropdown,
+	DropdownList,
+	DropdownMenu,
+	DropdownMenuButton,
+	DropdownMenuTitle,
 	DropdownWrapper,
-	FormControled,
 	SearchButton,
-	DropdownIcon,
-	Label,
 } from './components';
+import { IFilterState, ISpecializationItem } from './types';
+import { SpecializationItemsData } from './data';
+import { TrainingItemsData } from '../data';
+import { DropdownListItem } from './DropdownListItem';
 
-import { IDestinationItem, IFilterState, ISpecializationItem } from '../types';
+import FilterDropdownWrapper from './components/FilterMenuWrapper';
+import ControledForm from './components/FormControled';
 
-// TODO: Fix Function type - eslint rule: @typescript-eslint/ban-types
-interface IFilterMenuProps {
-	change: Function;
-	click: Function;
-	state: IFilterState;
-	specializationItems: Array<ISpecializationItem>;
-	destinationItems: Array<IDestinationItem>;
-}
+const initialState: IFilterState = {
+	specialization: 'Any Speciallization',
+	destination: 'All Countries',
+};
 
-export const Filter: React.FunctionComponent<IFilterMenuProps> = ({
-	change,
-	click,
-	state,
-	specializationItems,
-	destinationItems,
-}) => (
-	<FilterMenuWrapper>
-		<DropdownWrapper>
-			<FormControled>
-				<Label htmlFor="specialization-native-simple">Специальности</Label>
-				<FilterDropdown
-					native
-					value={state.specialization}
-					onChange={(event) => change(event)}
-					inputProps={{
-						name: 'specialization',
-						id: 'specialization-native-simple',
-					}}
-					IconComponent={DropdownIcon}
-					disableUnderline
-				>
-					{specializationItems.map((specializationItem) => (
-						<SelectItem
-							value={specializationItem.profession}
-							id={specializationItem.id}
-							key={uid(specializationItem.id)}
-						/>
-					))}
-				</FilterDropdown>
-			</FormControled>
-			<FormControled>
-				<Label htmlFor="destination-native-simple">Местоположение</Label>
-				<FilterDropdown
-					native
-					value={state.destination}
-					onChange={(event) => change(event)}
-					inputProps={{
-						name: 'destination',
-						id: 'destination-native-simple',
-					}}
-					IconComponent={DropdownIcon}
-					disableUnderline
-				>
-					{destinationItems.map((destinationItem) => (
-						<SelectItem
-							value={destinationItem.country}
-							id={destinationItem.id}
-							key={uid(destinationItem.id)}
-						/>
-					))}
-				</FilterDropdown>
-			</FormControled>
-		</DropdownWrapper>
-		<SearchButton aria-label="search" onClick={() => click()}>
-			<SearchIcon />
-		</SearchButton>
-	</FilterMenuWrapper>
-);
+export const Filter: React.FunctionComponent = () => {
+	const { setTrainings } = useContext(FilterContext);
+
+	const [filterState, setFilterState] = useState<IFilterState>(initialState);
+
+	const [specializationItems, setSpecializationItems] = useState<
+		Array<ISpecializationItem>
+	>(SpecializationItemsData);
+
+	const [specializationMenuState, setSpecializationMenuState] = useState<
+		boolean | null
+	>(null);
+
+	const ref = useRef<HTMLDivElement | null>(null);
+
+	const handleClickMenuSpecializationItem = (value: string) => {
+		const specializationsCheckToogle = SpecializationItemsData.map((item) => {
+			if (item.checked === true) {
+				const itemCopy = { ...item };
+				itemCopy.checked = false;
+				return itemCopy;
+			}
+			if (item.speciality === value) {
+				const itemCopy = { ...item };
+				itemCopy.checked = true;
+				return itemCopy;
+			}
+			return item;
+		});
+		setSpecializationItems(specializationsCheckToogle);
+	};
+
+	const toogleMenuSpecialization = () =>
+		!specializationMenuState
+			? setSpecializationMenuState(true)
+			: setSpecializationMenuState(false);
+
+	const inputCheckboxSpecializationChange = (
+		event: React.ChangeEvent<{
+			value: string;
+		}>
+	) =>
+		setFilterState({
+			...filterState,
+			specialization: event.target.value,
+		});
+
+	// Click Search
+	const handleClickSearch = () => {
+		const filteredBySpecialization = TrainingItemsData.filter(
+			(trainingItem) => {
+				if (filterState.specialization === 'Any Speciallization') {
+					return true;
+				}
+				return trainingItem.specialityList.includes(filterState.specialization);
+			}
+		);
+
+		setTrainings?.(filteredBySpecialization);
+
+		setSpecializationMenuState(null);
+	};
+	const handleClickOutside = (event: MouseEvent) => {
+		if (!ref?.current?.contains(event.target as Node)) {
+			setSpecializationMenuState(null);
+		}
+	};
+	useEffect(() => {
+		document.addEventListener('click', handleClickOutside, true);
+		return () => {
+			document.removeEventListener('click', handleClickOutside, true);
+		};
+	});
+	return (
+		<FilterDropdownWrapper>
+			<DropdownWrapper>
+				<ControledForm ref={ref}>
+					<DropdownMenu>
+						<DropdownMenuTitle>Specialization</DropdownMenuTitle>
+						<DropdownMenuButton
+							type="button"
+							menuState={specializationMenuState}
+							onClick={toogleMenuSpecialization}
+						>
+							{filterState.specialization}
+						</DropdownMenuButton>
+					</DropdownMenu>
+					<DropdownList menuState={specializationMenuState}>
+						{specializationItems.map((item) => (
+							<DropdownListItem
+								value={item.speciality}
+								id={item.id}
+								key={uid(item.id)}
+								check={item.checked}
+								inputCheckboxChange={inputCheckboxSpecializationChange}
+								click={handleClickMenuSpecializationItem}
+							/>
+						))}
+					</DropdownList>
+				</ControledForm>
+			</DropdownWrapper>
+			<SearchButton aria-label="search" onClick={() => handleClickSearch()}>
+				<SearchIcon />
+			</SearchButton>
+		</FilterDropdownWrapper>
+	);
+};

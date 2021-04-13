@@ -1,11 +1,4 @@
-import ISpecializationItem from './ISpecializationItem';
-import IDestinationItem from './IDestinationItem';
+import { IFilterContext } from './IFilterContext';
 import ITrainingItem from './ITrainingItem';
-import IFilterState from './IFilterState';
 
-export type {
-	ISpecializationItem,
-	IDestinationItem,
-	ITrainingItem,
-	IFilterState,
-};
+export type { IFilterContext, ITrainingItem };

@@ -2,17 +2,19 @@ import { IconButton } from '@material-ui/core';
 import styled from 'styled-components';
 
 const SearchButton = styled(IconButton)`
-	margin-top: 16px;
 	margin-left: 34px;
+	border: none;
 	padding: 0;
-	width: 48px;
 	height: 48px;
+	width: 48px;
+	border-radius: 50%;
 	background-color: #0082ca;
-	border-radius: 50px;
 	color: #fff;
+	cursor: pointer;
+	outline: 0;
 	svg {
-		width: 24px;
-		height: 24px;
+		width: 32px;
+		height: 32px;
 	}
 `;
 

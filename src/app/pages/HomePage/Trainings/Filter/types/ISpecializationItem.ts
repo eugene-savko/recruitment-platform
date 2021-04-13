@@ -1,6 +1,7 @@
 interface ISpecializationItem {
 	id: number;
-	profession: string;
+	speciality: string;
+	checked: boolean;
 }
 
 export default ISpecializationItem;
