@@ -1,34 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+// style components
 import {
 	WrapperInputs,
 	Input,
 	Select,
 	InputItem,
 	TextError,
+	HidenInput,
+	SelectCountry,
+	SelectCity,
 } from './components';
 
-import { IListItemSelect } from '../types';
+// type
+import { IBodyProps } from '../types';
 
-interface IProps {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	register: any;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	errorMessage: any;
-	englishLevel: Array<IListItemSelect>;
-	primarySkill: Array<IListItemSelect>;
-	city: Array<IListItemSelect>;
-	country: Array<IListItemSelect>;
-}
-
-export const Body: React.FunctionComponent<IProps> = ({
+export const Body: React.FunctionComponent<IBodyProps> = ({
 	register,
 	englishLevel,
 	primarySkill,
-	country,
-	city,
 	errorMessage,
 }) => {
+	const [country, setCountry] = useState('');
+	const [city, setCity] = useState('');
+
 	return (
 		<WrapperInputs>
 			<InputItem>
@@ -103,16 +98,6 @@ export const Body: React.FunctionComponent<IProps> = ({
 			</InputItem>
 
 			<InputItem>
-				<Select name="englishLevel" ref={register({ required: true })}>
-					{englishLevel?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
-						</option>
-					))}
-				</Select>
-			</InputItem>
-
-			<InputItem>
 				<Select
 					name="primarySkill"
 					ref={register({ required: true })}
@@ -127,12 +112,8 @@ export const Body: React.FunctionComponent<IProps> = ({
 			</InputItem>
 
 			<InputItem>
-				<Select
-					name="country"
-					ref={register({ required: true })}
-					placeholder="English level"
-				>
-					{country?.map((item) => (
+				<Select name="englishLevel" ref={register}>
+					{englishLevel?.map((item) => (
 						<option value={item.name} key={item.id}>
 							{item.name}
 						</option>
@@ -141,17 +122,35 @@ export const Body: React.FunctionComponent<IProps> = ({
 			</InputItem>
 
 			<InputItem>
-				<Select
+				<SelectCountry
+					value={country}
+					defaultOptionLabel="Select a country, man."
+					onChange={(val) => {
+						setCountry(val);
+					}}
+				/>
+				<HidenInput
+					name="country"
+					value={country}
+					ref={register()}
+					onChange={(val) => val}
+				/>
+			</InputItem>
+
+			<InputItem>
+				<SelectCity
+					country={country}
+					blankOptionLabel="No country selected, man."
+					defaultOptionLabel="Now select a region, pal."
+					value={city}
+					onChange={(val) => setCity(val)}
+				/>
+				<HidenInput
 					name="city"
-					ref={register({ required: true })}
-					placeholder="English level"
-				>
-					{city?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
-						</option>
-					))}
-				</Select>
+					value={city}
+					ref={register()}
+					onChange={(val) => val}
+				/>
 			</InputItem>
 		</WrapperInputs>
 	);
