@@ -52,7 +52,11 @@ export const SectionsData = [
 	{
 		title: `Does Exadel have a bench policy? What is the bench period, 
       and what is salary for employees on the bench?`,
-		text: `dfgsdfggh`,
+		text: `Our company has a bench, and the regular bench duration is three months. 
+      The bench duration may change, depending on the position and level of the employee. 
+      Employees on the bench are typically assigned to internal projects, Center of 
+      Excellence activities, and other opportunities where they can improve their skills 
+      and knowledge base. Employees do not have a reduction in salary while on the bench.`,
 	},
 	{
 		title: 'How can I progress in my career at Exadel?',

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Section } from './Section';
+import { FAQsWrapper } from './Section/components/FAQsWrapper';
 import SectionsData from './data/SectionsData';
 
 type activeIdType = null | number;
@@ -13,20 +14,26 @@ export const FAQsPage: React.FunctionComponent = () => {
 			setActiveId(null);
 		}
 	};
+
 	return (
 		<React.Fragment>
-			<div className="faqs-title">
-				<h1>Frequently asked questions</h1>
-			</div>
-			{SectionsData.map((sectionData, i) => (
-				<Section
-					key={sectionData.title}
-					isOpened={activeId === i}
-					onClick={() => handleActiveIdSet(i)}
-					title={sectionData.title}
-					text={sectionData.text}
-				/>
-			))}
+			<FAQsWrapper>
+				<div className="faqs-title">
+					<div className="faqs-title_left">
+						<h1>Frequently&nbsp;asked questions</h1>
+					</div>
+					<div className="faqs-title_right" />
+				</div>
+				{SectionsData.map((sectionData, i) => (
+					<Section
+						key={sectionData.title}
+						isOpened={activeId === i}
+						onClick={() => handleActiveIdSet(i)}
+						title={sectionData.title}
+						text={sectionData.text}
+					/>
+				))}
+			</FAQsWrapper>
 		</React.Fragment>
 	);
 };

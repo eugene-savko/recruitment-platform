@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const SectionWrapper = styled.section`
-	width: 100%;
-	max-width: 1000px;
-	margin: 0 auto;
 	padding: 15px 0;
+	border-top: 3px solid #e1e1e1;
+	padding: 20px 0 0;
 
 	.faq__question {
 		font-weight: 700;
@@ -16,16 +15,13 @@ export const SectionWrapper = styled.section`
 		&_opened + .faq__answer {
 			max-height: 300px;
 		}
-		&:hover {
-			color: #40bfef;
-			transition: 0.7s ease;
-		}
 		&::after {
 			content: '';
 			display: block;
+			color: #0082ca;
 			width: 20px;
 			height: 20px;
-			background: url('https://exadel.com/wp-content/themes/exadel-redesign/images/arrow-blue-down-light.svg')
+			background: url('https://exadel.com/wp-content/themes/exadel-redesign/images/arrow-blue-down.svg')
 				no-repeat center;
 			background-size: contain;
 			top: 0;
@@ -34,7 +30,17 @@ export const SectionWrapper = styled.section`
 			right: 20px;
 			position: absolute;
 		}
+		&:hover {
+			color: #40bfef;
+			transition: 0.5s ease;
+		}
 	}
+
+	.faq__question_opened::after {
+		transform: rotate(-180deg);
+		transition: all 0.7s ease-in-out;
+	}
+
 	.faq__answer {
 		color: #222;
 		line-height: 180%;
@@ -42,8 +48,5 @@ export const SectionWrapper = styled.section`
 		margin: 0;
 		overflow: hidden;
 		transition: max-height 0.7s ease-in-out;
-	}
-	.faqs-title {
-		background-image: url('https://exadel.com/wp-content/uploads/2020/11/faq.jpg');
 	}
 `;
