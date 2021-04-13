@@ -4,8 +4,13 @@ const TextError = styled.p`
 	position: absolute;
 	color: #ff0000;
 
-	top: 70px;
-	left: 55px;
+	top: 45px;
+	left: 15px;
+
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	line-height: 21px;
+	font-weight: 300;
 `;
 
 export default TextError;
