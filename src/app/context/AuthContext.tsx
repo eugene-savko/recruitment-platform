@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react';
-import InitContextState from '../types/InitContextState';
+import InitContextState from '../types/initContextState';
 import IDefaultContextState from '../types/IDefaultContextState';
 
 const initContextState: InitContextState = {

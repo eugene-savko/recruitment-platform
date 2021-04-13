@@ -28,7 +28,7 @@ export const Sidebar: React.FC<IPropsSideBar> = ({
 	}, [location.pathname]);
 
 	return (
-		<>
+		<React.Fragment>
 			<ThemeProvider theme={theme}>
 				<Hidden only={['md', 'lg', 'xl']}>
 					<Drawer
@@ -62,6 +62,6 @@ export const Sidebar: React.FC<IPropsSideBar> = ({
 					</Drawer>
 				</Hidden>
 			</ThemeProvider>
-		</>
+		</React.Fragment>
 	);
 };

@@ -7,7 +7,9 @@ import { Burger } from './Burger';
 import { ToolBarButtons } from './ToolBarButtons';
 import { IPropsHeader } from './types';
 
-export const Header = ({ onShowHideSidebar }: IPropsHeader) => (
+export const Header: React.FC<IPropsHeader> = ({
+	onShowHideSidebar,
+}: IPropsHeader) => (
 	<AppBar>
 		<Toolbar>
 			<Logo />

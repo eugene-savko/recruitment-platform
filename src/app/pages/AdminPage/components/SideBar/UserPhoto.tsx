@@ -4,7 +4,7 @@ import { Avatar, Typography } from '@material-ui/core';
 import { AuthContext } from 'app/context/AuthContext';
 import { SideBarAvatarWrapper } from './components';
 
-export const UserPhoto = () => {
+export const UserPhoto: React.FunctionComponent = () => {
 	const {
 		dataFromServer: { avatar, first_name, last_name, email },
 	} = useContext(AuthContext);

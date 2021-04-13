@@ -35,12 +35,11 @@ export const Auth: React.FunctionComponent = () => {
 	});
 
 	const getInputsForm = (dataLogin: IFormInput) => {
-		console.log(dataLogin);
 		fetchRequestLogin(dataLogin);
 	};
 
 	return (
-		<>
+		<React.Fragment>
 			<AuthWrapper elevation={10}>
 				<Title />
 
@@ -64,6 +63,6 @@ export const Auth: React.FunctionComponent = () => {
 			</AuthWrapper>
 			<p>eve.holt@reqres.in</p>
 			<p>cityslicka</p>
-		</>
+		</React.Fragment>
 	);
 };
