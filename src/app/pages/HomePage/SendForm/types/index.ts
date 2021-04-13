@@ -1,5 +1,4 @@
-import IListCourses from './IListCourses';
 import IFormInputs from './IFormInputs';
-import IListEnglishLevel from './IListEnglishLevel';
+import IListItemSelect from './IListItemSelect';
 
-export type { IListCourses, IFormInputs, IListEnglishLevel };
+export type { IFormInputs, IListItemSelect };
