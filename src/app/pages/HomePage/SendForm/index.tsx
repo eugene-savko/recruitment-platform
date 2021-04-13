@@ -20,7 +20,11 @@ import { listCity } from './data/listCity';
 import { listCountry } from './data/listCountry';
 
 export const SendForm: React.FunctionComponent = () => {
-	const { handleSubmit, register } = useForm<IFormInputs>();
+	const {
+		handleSubmit,
+		register,
+		formState: { errors },
+	} = useForm<IFormInputs>();
 
 	// eslint-disable-next-line no-alert
 	const onSubmit = (data: IFormInputs) => alert(JSON.stringify(data));
@@ -28,7 +32,7 @@ export const SendForm: React.FunctionComponent = () => {
 	return (
 		<Wrapper>
 			<Title>Submit your application</Title>
-			<Form onSubmit={handleSubmit(onSubmit)}>
+			<Form onSubmit={handleSubmit(onSubmit)} noValidate>
 				<Body
 					register={register}
 					englishLevel={listEnglishLevel}
@@ -36,6 +40,7 @@ export const SendForm: React.FunctionComponent = () => {
 					primarySkill={listPrimarySkill}
 					city={listCity}
 					country={listCountry}
+					errorMessage={errors}
 				/>
 				<Note>* Поля отмеченные * обязательны.</Note>
 				<FileLoader />
