@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const InputItem = styled.div`
 	position: relative;
 	width: 100%;
-	max-width: 280px;
+	max-width: 470px;
 
-	padding: 15px;
+	margin: 12px 23px;
 `;
 export default InputItem;

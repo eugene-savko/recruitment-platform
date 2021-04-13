@@ -13,19 +13,17 @@ import { IListItemSelect } from '../types';
 interface IProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	register: any;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	errorMessage: any;
 	englishLevel: Array<IListItemSelect>;
-	internship: Array<IListItemSelect>;
 	primarySkill: Array<IListItemSelect>;
 	city: Array<IListItemSelect>;
 	country: Array<IListItemSelect>;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	errorMessage: any;
 }
 
 export const Body: React.FunctionComponent<IProps> = ({
 	register,
 	englishLevel,
-	internship,
 	primarySkill,
 	country,
 	city,
@@ -107,20 +105,6 @@ export const Body: React.FunctionComponent<IProps> = ({
 			<InputItem>
 				<Select name="englishLevel" ref={register({ required: true })}>
 					{englishLevel?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
-						</option>
-					))}
-				</Select>
-			</InputItem>
-
-			<InputItem>
-				<Select
-					name="internship"
-					ref={register({ required: true })}
-					placeholder="English level"
-				>
-					{internship?.map((item) => (
 						<option value={item.name} key={item.id}>
 							{item.name}
 						</option>

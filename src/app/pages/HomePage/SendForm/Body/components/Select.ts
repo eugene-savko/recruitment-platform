@@ -4,10 +4,8 @@ import ArrowDown from 'app/pages/HomePage/SendForm/Body/assets/select-arrow-down
 
 const Select = styled.select`
 	width: 100%;
-	max-width: 280px;
 
 	padding: 15px;
-	margin: 12px 23px;
 
 	outline: none;
 	box-sizing: border-box;

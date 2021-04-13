@@ -6,8 +6,8 @@ interface IFormInputs {
 	country: string;
 	city: string;
 	englishLevel: string;
-	internship: string;
 	primarySkill: string;
+	internship?: number;
 }
 
 export default IFormInputs;
