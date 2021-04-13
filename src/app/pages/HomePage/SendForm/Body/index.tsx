@@ -34,7 +34,7 @@ export const Body: React.FunctionComponent<IProps> = ({
 			<InputItem>
 				<Input
 					ref={register({
-						required: 'The field is required.',
+						required: 'Field is required',
 						minLength: {
 							value: 3,
 							message: 'No valide first name.',
