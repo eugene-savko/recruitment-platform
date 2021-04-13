@@ -8,7 +8,7 @@ export const AttachButton: React.FunctionComponent = () => {
 	return (
 		<AttachButtonWrapper>
 			<Button>Upload file *</Button>
-			<Note size={14}>(Maximum file size 5MB; pdf, doc, docx)</Note>
+			<Note>(Maximum file size 5MB; pdf, doc, docx)</Note>
 		</AttachButtonWrapper>
 	);
 };
