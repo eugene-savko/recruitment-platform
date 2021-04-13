@@ -1,8 +1,6 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import com.exadel.recruitmentPlatform.entity.Internship;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
-import com.exadel.recruitmentPlatform.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,18 +11,18 @@ import lombok.Setter;
 public class InternshipRequestDto extends BaseDto {
 
     private InternshipRequestStatus status;
-    private User user;
-    private Internship internship;
-    private String primary_skill;
+    private Long userId;
+    private Long primarySkillId;
     private String english_level;
     private String cv;
+    private Long internshipId;
 
-    public InternshipRequestDto(InternshipRequestStatus status, User user, Internship internship,
-                                String primary_skill, String english_level, String cv) {
+    public InternshipRequestDto(InternshipRequestStatus status, Long userId, Long internshipId,
+                                Long primarySkillId, String english_level, String cv) {
         this.status = status;
-        this.user = user;
-        this.internship = internship;
-        this.primary_skill = primary_skill;
+        this.userId = userId;
+        this.internshipId = internshipId;
+        this.primarySkillId = primarySkillId;
         this.english_level = english_level;
         this.cv = cv;
     }

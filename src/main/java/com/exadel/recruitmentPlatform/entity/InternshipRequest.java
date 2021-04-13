@@ -20,7 +20,7 @@ public class InternshipRequest extends BaseEntity{
     private InternshipRequestStatus status;
 
     @Column(name = "primary_skill")
-    private String primarySkill;
+    private Long primarySkill;
 
     @Column(name = "english_level")
     private String englishLevel;
@@ -30,10 +30,10 @@ public class InternshipRequest extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "internship_id")
-    private Internship internship;
+    private Long internshipId;
 
 }

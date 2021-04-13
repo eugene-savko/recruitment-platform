@@ -35,9 +35,10 @@ public class UserAndInternshipRequestServiceImpl implements UserAndInternshipReq
                 userAndInternshipRequestDto.getOtherInformation());
         User user = userMapper.toEntity(userDto);
         userRepository.save(user);
+        Long userId = userRepository.findIdByEmail(userAndInternshipRequestDto.getEmail());
 
         InternshipRequestDto internshipRequestDto = new InternshipRequestDto(InternshipRequestStatus.UNDER_CONSIDERATION,
-                user, userAndInternshipRequestDto.getInternship(), userAndInternshipRequestDto.getPrimarySkill(),
+                userId, userAndInternshipRequestDto.getInternshipId(), userAndInternshipRequestDto.getPrimarySkillId(),
                 userAndInternshipRequestDto.getEnglishLevel(), userAndInternshipRequestDto.getCv());
 
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);

@@ -1,7 +1,6 @@
 package com.exadel.recruitmentPlatform.dto;
 
 import com.exadel.recruitmentPlatform.entity.Internship;
-import com.exadel.recruitmentPlatform.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,26 +26,20 @@ public class UserAndInternshipRequestDto  extends BaseDto {
     @Size(min = 5, max = 50)
     private String email;
 
-    private String skype;
-
     private String country;
 
     private String city;
-
-    private String photo;
 
     private String phone;
 
     private String otherInformation;
 
-    private String primarySkill;
+    private Long primarySkillId;
 
     private String englishLevel;
 
     private String cv;
 
-    private User user;
-
-    private Internship internship;
+    private Long internshipId;
 
 }

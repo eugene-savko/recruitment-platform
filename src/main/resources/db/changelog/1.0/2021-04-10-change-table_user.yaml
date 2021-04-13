@@ -19,7 +19,7 @@ databaseChangeLog:
             tableName: user
             columns:
               - column:
-                  name: other-information
+                  name: other_information
                   type: varchar(250)
                   constraints:
                     nullable: true

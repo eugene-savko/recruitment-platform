@@ -11,11 +11,11 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest,Int
         InternshipRequest request = new InternshipRequest();
         request.setId(dto.getId());
         request.setStatus(dto.getStatus());
-        request.setUser(dto.getUser());
-        request.setInternship(dto.getInternship());
+        request.setUserId(dto.getUserId());
+        request.setInternshipId(dto.getInternshipId());
         request.setCv(dto.getCv());
         request.setEnglishLevel(dto.getEnglish_level());
-        request.setPrimarySkill(dto.getPrimary_skill());
+        request.setPrimarySkill(dto.getPrimarySkillId());
         return request;
     }
 
@@ -24,10 +24,10 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest,Int
         InternshipRequestDto internshipRequestDto = new InternshipRequestDto();
         internshipRequestDto.setId(entity.getId());
         internshipRequestDto.setStatus(entity.getStatus());
-        internshipRequestDto.setInternship(entity.getInternship());
+        internshipRequestDto.setInternshipId(entity.getInternshipId());
         internshipRequestDto.setEnglish_level(entity.getEnglishLevel());
-        internshipRequestDto.setPrimary_skill(entity.getPrimarySkill());
-        internshipRequestDto.setUser(entity.getUser());
+        internshipRequestDto.setPrimarySkillId(entity.getPrimarySkill());
+        internshipRequestDto.setUserId(entity.getUserId());
         internshipRequestDto.setCv(entity.getCv());
         return internshipRequestDto;
     }
