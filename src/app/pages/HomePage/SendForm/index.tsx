@@ -1,27 +1,51 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
-import {
-	Form,
-	Note,
-	Title,
-	SendFormWrapper as Wrapper,
-	Submit,
-} from './components';
+// style
+import { Form, Note, Title, Wrapper, Submit } from './components';
 
+// components
 import { Body } from './Body';
 import { FileLoader } from './FileLoader';
 import { Agreements } from './Agreements';
 
+// interface
+import { IFormInputs } from './types';
+
+// data
+import { listEnglishLevel } from './data/listEnglishLevel';
+import { listCourses } from './data/listCourses';
+import { listPrimarySkill } from './data/listPrimarySkill';
+import { listCity } from './data/listCity';
+import { listCountry } from './data/listCountry';
+
 export const SendForm: React.FunctionComponent = () => {
+	const {
+		handleSubmit,
+		register,
+		formState: { errors },
+	} = useForm<IFormInputs>();
+
+	// eslint-disable-next-line no-alert
+	const onSubmit = (data: IFormInputs) => alert(JSON.stringify(data));
+
 	return (
 		<Wrapper>
 			<Title>Submit your application</Title>
-			<Form>
-				<Body />
-				<Note size={12}>* Поля отмеченные * обязательны.</Note>
+			<Form onSubmit={handleSubmit(onSubmit)} noValidate>
+				<Body
+					register={register}
+					englishLevel={listEnglishLevel}
+					internship={listCourses}
+					primarySkill={listPrimarySkill}
+					city={listCity}
+					country={listCountry}
+					errorMessage={errors}
+				/>
+				<Note>* Поля отмеченные * обязательны.</Note>
 				<FileLoader />
 				<Agreements />
-				<Submit>Submit</Submit>
+				<Submit type="submit">Submit</Submit>
 			</Form>
 		</Wrapper>
 	);

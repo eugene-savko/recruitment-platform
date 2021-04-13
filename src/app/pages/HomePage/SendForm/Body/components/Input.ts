@@ -65,10 +65,6 @@ const Input = styled.input`
 			border: 1px solid #4e4e4e;
 		}
 	}
-
-	&[type='file'] {
-		display: none;
-	}
 `;
 
 export default Input;
