@@ -1,21 +1,11 @@
 import styled from 'styled-components';
 
-interface NoteProps {
-	size: number;
-}
-
-const Note = styled.p<NoteProps>`
-	display: inline;
-
-	padding: 0;
-	margin: 0;
-
-	user-select: none;
-
+const Note = styled.p`
 	font-family: 'Open Sans', sans-serif;
-	font-size: ${(props) => props.size}px;
+	font-size: 12px;
+	font-style: normal;
 	font-weight: 300;
-	line-height: ${(props) => props.size}px;
+	line-height: 12px;
 
 	color: #4e4e4e;
 `;
