@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
 	WrapperInputs,
@@ -6,6 +6,9 @@ import {
 	Select,
 	InputItem,
 	TextError,
+	HidenInput,
+	SelectCountry,
+	SelectCity,
 } from './components';
 
 import { IListItemSelect } from '../types';
@@ -17,18 +20,17 @@ interface IProps {
 	errorMessage: any;
 	englishLevel: Array<IListItemSelect>;
 	primarySkill: Array<IListItemSelect>;
-	city: Array<IListItemSelect>;
-	country: Array<IListItemSelect>;
 }
 
 export const Body: React.FunctionComponent<IProps> = ({
 	register,
 	englishLevel,
-	primarySkill,
-	country,
-	city,
+
 	errorMessage,
 }) => {
+	const [country, setCountry] = useState('');
+	const [region, setRegion] = useState('');
+
 	return (
 		<WrapperInputs>
 			<InputItem>
@@ -50,60 +52,7 @@ export const Body: React.FunctionComponent<IProps> = ({
 			</InputItem>
 
 			<InputItem>
-				<Input
-					ref={register({
-						required: 'Field is required',
-						minLength: {
-							value: 3,
-							message: 'No valide second name.',
-						},
-					})}
-					type="text"
-					name="lastName"
-					placeholder="Last name *"
-				/>
-				{errorMessage.lastName && (
-					<TextError>{errorMessage.lastName.message}</TextError>
-				)}
-			</InputItem>
-
-			<InputItem>
-				<Input
-					ref={register({
-						required: 'Field is required',
-						minLength: {
-							value: 3,
-							message: 'No valide email adress.',
-						},
-					})}
-					type="email"
-					name="email"
-					placeholder="Email adress *"
-				/>
-				{errorMessage.email && (
-					<TextError>{errorMessage.email.message}</TextError>
-				)}
-			</InputItem>
-
-			<InputItem>
-				<Input
-					ref={register({
-						minLength: {
-							value: 5,
-							message: 'No valide phone number.',
-						},
-					})}
-					type="tel"
-					name="phone"
-					placeholder="Phone number"
-				/>
-				{errorMessage.phone && (
-					<TextError>{errorMessage.phone.message}</TextError>
-				)}
-			</InputItem>
-
-			<InputItem>
-				<Select name="englishLevel" ref={register({ required: true })}>
+				<Select name="englishLevel" ref={register}>
 					{englishLevel?.map((item) => (
 						<option value={item.name} key={item.id}>
 							{item.name}
@@ -113,45 +62,35 @@ export const Body: React.FunctionComponent<IProps> = ({
 			</InputItem>
 
 			<InputItem>
-				<Select
-					name="primarySkill"
-					ref={register({ required: true })}
-					placeholder="English level"
-				>
-					{primarySkill?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
-						</option>
-					))}
-				</Select>
-			</InputItem>
-
-			<InputItem>
-				<Select
+				<SelectCountry
+					value={country}
+					defaultOptionLabel="Select a country, man."
+					onChange={(val) => {
+						setCountry(val);
+					}}
+				/>
+				<HidenInput
 					name="country"
-					ref={register({ required: true })}
-					placeholder="English level"
-				>
-					{country?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
-						</option>
-					))}
-				</Select>
+					value={country}
+					ref={register()}
+					onChange={(val) => val}
+				/>
 			</InputItem>
 
 			<InputItem>
-				<Select
-					name="city"
-					ref={register({ required: true })}
-					placeholder="English level"
-				>
-					{city?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
-						</option>
-					))}
-				</Select>
+				<SelectCity
+					country={country}
+					blankOptionLabel="No country selected, man."
+					defaultOptionLabel="Now select a region, pal."
+					value={region}
+					onChange={(val) => setRegion(val)}
+				/>
+				<HidenInput
+					name="region"
+					value={region}
+					ref={register()}
+					onChange={(val) => val}
+				/>
 			</InputItem>
 		</WrapperInputs>
 	);

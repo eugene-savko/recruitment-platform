@@ -15,8 +15,6 @@ import { IFormInputs } from './types';
 // data
 import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
-import { listCity } from './data/listCity';
-import { listCountry } from './data/listCountry';
 
 export const SendForm: React.FunctionComponent = () => {
 	const {
@@ -36,8 +34,6 @@ export const SendForm: React.FunctionComponent = () => {
 					register={register}
 					englishLevel={listEnglishLevel}
 					primarySkill={listPrimarySkill}
-					city={listCity}
-					country={listCountry}
 					errorMessage={errors}
 				/>
 				<Note>* Поля отмеченные * обязательны.</Note>

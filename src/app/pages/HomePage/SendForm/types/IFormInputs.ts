@@ -3,8 +3,8 @@ interface IFormInputs {
 	lastName: string;
 	email: string;
 	phone: string;
-	country: string;
-	city: string;
+	countryOf: string;
+	region: string;
 	englishLevel: string;
 	primarySkill: string;
 	internship?: number;
