@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 21
+      id: 2021-03-28-create-table_internship
       author: valery_z
       changes:
         - createTable:
@@ -15,12 +15,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: name
-                  type: varchar(50)
+                  type: varchar(80)
                   constraints:
                     nullable: false
               - column:
                   name: description
-                  type: varchar(200)
+                  type: varchar(1500)
                   constraints:
                     nullable: false
               - column:
@@ -40,7 +40,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: status
-                  type: varchar(20)
+                  type: varchar(50)
                   constraints:
                     nullable: false
               - column:
