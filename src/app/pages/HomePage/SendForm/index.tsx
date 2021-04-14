@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { IFormFields } from './types';
 
 // style components
 import { Form, Note, Title, Wrapper, Submit } from './components';
@@ -9,22 +10,33 @@ import { Body } from './Body';
 import { FileLoader } from './FileLoader';
 import { Agreements } from './Agreements';
 
-// types
-import { IFormInputs } from './types';
-
 // data
 import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
 
 export const SendForm: React.FunctionComponent = () => {
 	const {
-		handleSubmit,
 		register,
+		handleSubmit,
+		reset,
 		formState: { errors },
-	} = useForm<IFormInputs>();
+	} = useForm<IFormFields>();
 
-	// eslint-disable-next-line no-alert
-	const onSubmit = (data: IFormInputs) => alert(JSON.stringify(data));
+	const onSubmit = (data: IFormFields) => {
+		console.log(
+			JSON.stringify(
+				data,
+				(key, value) => {
+					if (key === '0') {
+						return value.name;
+					}
+					return value;
+				},
+				'\t'
+			)
+		);
+		reset();
+	};
 
 	return (
 		<Wrapper>
@@ -36,9 +48,9 @@ export const SendForm: React.FunctionComponent = () => {
 					primarySkill={listPrimarySkill}
 					errorMessage={errors}
 				/>
-				<Note>* Поля отмеченные * обязательны.</Note>
-				<FileLoader />
-				<Agreements />
+				<Note size={12}>* Fields marked with * are required.</Note>
+				<FileLoader register={register} errors={errors} />
+				<Agreements register={register} errors={errors} />
 				<Submit type="submit">Submit</Submit>
 			</Form>
 		</Wrapper>

@@ -11,6 +11,7 @@ const ContentAgreement = styled.p`
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
 	line-height: 12px;
+	text-align: justify;
 
 	color: #4e4e4e;
 `;

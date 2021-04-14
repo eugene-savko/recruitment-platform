@@ -1,4 +1,6 @@
 import React from 'react';
+import { Error } from './Body/components';
+import { IAgreements } from './types';
 
 import {
 	Label,
@@ -7,25 +9,43 @@ import {
 	AgreementsWrapper,
 } from './components';
 
-export const Agreements: React.FunctionComponent = () => {
+export const Agreements: React.FunctionComponent<IAgreements> = ({
+	register,
+	errors,
+}) => {
 	return (
 		<AgreementsWrapper>
 			<Label>
-				<Input type="checkbox" />
+				<Input
+					type="checkbox"
+					name="checkboxDataProcessing"
+					ref={register({ required: 'Field is required' })}
+				/>
 				<ContentAgreement>
-					Подавая заявку на эту должность, я отправляю свои личные данные в
-					Exadel и даю согласие на обработку личных данных с целью приема на
-					работу.
+					By applying for this position, I submit my personal data to the Exadel
+					and give my consent for the processing of personal data for job
+					recruitment purpose.
 				</ContentAgreement>
 			</Label>
+			{errors.checkboxDataProcessing && (
+				<Error>{errors.checkboxDataProcessing.message}</Error>
+			)}
+
 			<Label>
-				<Input type="checkbox" />
+				<Input
+					type="checkbox"
+					name="checkboxDataTransfer"
+					ref={register({ required: 'Field is required' })}
+				/>
 				<ContentAgreement>
-					Я понимаю и принимаю, что для оценки моей заявки, профессиональных
-					навыков и опыта мои личные данные могут быть доступны внутригрупповым
-					компаниям Exadel.
+					I understand and accept that for purpose of evaluation of my
+					application, professional skills and experience my personal data may
+					be accessible to the intra-group companies of Exadel.
 				</ContentAgreement>
 			</Label>
+			{errors.checkboxDataTransfer && (
+				<Error>{errors.checkboxDataTransfer.message}</Error>
+			)}
 		</AgreementsWrapper>
 	);
 };

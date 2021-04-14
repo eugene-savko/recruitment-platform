@@ -13,7 +13,8 @@ import {
 } from './components';
 
 // type
-import { IBodyProps } from '../types';
+import { IBodyProps, ITextArea } from '../types';
+import { TextArea } from './TextArea';
 
 export const Body: React.FunctionComponent<IBodyProps> = ({
 	register,
@@ -125,7 +126,7 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 				<SelectCountry
 					value={country}
 					defaultOptionLabel="Select a country, man."
-					onChange={(val) => {
+					onChange={(val: React.SetStateAction<string>) => {
 						setCountry(val);
 					}}
 				/>
@@ -143,7 +144,7 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 					blankOptionLabel="No country selected, man."
 					defaultOptionLabel="Now select a region, pal."
 					value={city}
-					onChange={(val) => setCity(val)}
+					onChange={(val: React.SetStateAction<string>) => setCity(val)}
 				/>
 				<HidenInput
 					name="city"
@@ -152,6 +153,7 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 					onChange={(val) => val}
 				/>
 			</InputItem>
+			<TextArea register={register} />
 		</WrapperInputs>
 	);
 };

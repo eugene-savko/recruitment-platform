@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
-const TextError = styled.p`
-	position: absolute;
+const Error = styled.p`
+	margin: 5px 0 0 0;
 	color: #ee001e;
-
-	top: 45px;
-	left: 15px;
 
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
@@ -13,4 +10,4 @@ const TextError = styled.p`
 	font-weight: 400;
 `;
 
-export default TextError;
+export default Error;

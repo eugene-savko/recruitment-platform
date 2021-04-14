@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const Submit = styled.button`
 	padding: 10px 20px;
+	margin: 35px 0 35px 98%;
+	transform: translate(-100%, 0);
 
 	text-align: center;
 
