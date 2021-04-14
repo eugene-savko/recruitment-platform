@@ -42,9 +42,12 @@ export const AdminPage: React.FunctionComponent = () => {
 	);
 =======
 import React from 'react';
-import { EnhancedTable } from './EnchancedTable';
 
+<<<<<<< HEAD
 export const AdminPage: React.FunctionComponent = () => {
 	return <EnhancedTable />;
 >>>>>>> test: testing Material UI table
 };
+=======
+export const AdminPage: React.FunctionComponent = () => <div>Hello</div>;
+>>>>>>> feat: Install React Table
