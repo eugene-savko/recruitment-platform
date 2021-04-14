@@ -1,4 +1,5 @@
 import React from 'react';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { SectionWrapper } from './components/SectionWrapper';
 
 type SectionProps = {
@@ -17,6 +18,7 @@ export const Section: React.FunctionComponent<SectionProps> = ({
 	<SectionWrapper onClick={onClick}>
 		<div className={`faq__question ${isOpened ? 'faq__question_opened' : ''}`}>
 			{title}
+			<ExpandMoreIcon className="arrow" />
 		</div>
 		<p className="faq__answer">{text}</p>
 	</SectionWrapper>

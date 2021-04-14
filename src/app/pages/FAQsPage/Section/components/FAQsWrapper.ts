@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const FAQsWrapper = styled.main`
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-
+  padding-bottom: 100px;
 
 	.faqs-title {
     display: flex;
@@ -12,23 +12,22 @@ export const FAQsWrapper = styled.main`
     position: relative;
 	}
   
-  h1 {
+  .faqs-title__text {
     z-index: 1;
     width: 40%;
-    line-height: 130%;
+    line-height: 180%;
     font-size: 2rem;
     font-weight: 800;
     text-transform: capitalize;
   }
   
-  .faqs-title_right {
+  .faqs-title__background {
     width: 100%;
 		min-height: 400px;
     margin-bottom: 50px;
     background-image: url('https://exadel.com/wp-content/uploads/2020/11/faq.jpg');
     background-size: cover;
     background-position: center;
-
   }
 	}
 `;
