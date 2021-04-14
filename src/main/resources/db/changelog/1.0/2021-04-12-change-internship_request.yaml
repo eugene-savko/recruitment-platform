@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-14-change-internship_request
+      author: alex_over
+      changes:
+        - renameColumn:
+            newColumnName: speciality_id
+            oldColumnName: primary_skill
+            tableName: internship_request

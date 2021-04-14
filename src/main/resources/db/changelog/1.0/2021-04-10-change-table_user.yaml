@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 2021-04-10-change-table_user-1
-      author: lex_over
+      author: alex_over
       changes:
         - addColumn:
             tableName: user
@@ -13,7 +13,7 @@ databaseChangeLog:
                     nullable: true
   - changeSet:
       id: 2021-04-10-change-table_user-2
-      author: lex_over
+      author: alex_over
       changes:
         - addColumn:
             tableName: user

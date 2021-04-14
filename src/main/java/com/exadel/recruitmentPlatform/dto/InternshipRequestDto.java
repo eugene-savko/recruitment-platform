@@ -11,19 +11,10 @@ import lombok.Setter;
 public class InternshipRequestDto extends BaseDto {
 
     private InternshipRequestStatus status;
-    private Long userId;
-    private Long primarySkillId;
-    private String english_level;
+    private UserDto userDto;
+    private Long specialityId;
+    private String englishLevel;
     private String cv;
     private Long internshipId;
 
-    public InternshipRequestDto(InternshipRequestStatus status, Long userId, Long internshipId,
-                                Long primarySkillId, String english_level, String cv) {
-        this.status = status;
-        this.userId = userId;
-        this.internshipId = internshipId;
-        this.primarySkillId = primarySkillId;
-        this.english_level = english_level;
-        this.cv = cv;
-    }
 }

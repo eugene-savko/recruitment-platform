@@ -19,8 +19,8 @@ public class InternshipRequest extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private InternshipRequestStatus status;
 
-    @Column(name = "primary_skill")
-    private Long primarySkill;
+    @Column(name = "speciality_id")
+    private Long specialityId;
 
     @Column(name = "english_level")
     private String englishLevel;
@@ -28,11 +28,10 @@ public class InternshipRequest extends BaseEntity{
     @Column(name = "cv")
     private String cv;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private Long userId;
+    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "internship_id")
     private Long internshipId;
 
