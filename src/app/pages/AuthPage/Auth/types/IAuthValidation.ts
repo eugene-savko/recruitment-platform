@@ -1,17 +1,17 @@
 interface IAuthValidation {
 	email: {
-		required: string,
+		required: string;
 		pattern: {
-			value: RegExp,
-			message: string,
-		},
+			value: RegExp;
+			message: string;
+		};
 	};
 	password: {
-		required: string,
+		required: string;
 		minLength: {
-			value: number,
-			message: string,
-		},
+			value: number;
+			message: string;
+		};
 	};
 }
 
