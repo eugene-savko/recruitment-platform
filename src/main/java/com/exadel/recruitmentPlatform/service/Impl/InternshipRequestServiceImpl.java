@@ -26,7 +26,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     }
 
     @Override
-    public InternshipRequestDto findById(Long id) {
+    public InternshipRequestDto get(Long id) {
         return internshipRequestRepository.findById(id).map(internshipRequestMapper::toDto).orElseThrow(()-> new IllegalArgumentException("Request not found!"));
     }
 }

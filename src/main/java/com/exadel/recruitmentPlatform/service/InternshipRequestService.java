@@ -5,6 +5,6 @@ import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 public interface InternshipRequestService {
 
     InternshipRequestDto save(InternshipRequestDto InternshipRequestDto);
-    InternshipRequestDto findById(Long id);
+    InternshipRequestDto get(Long id);
 
 }

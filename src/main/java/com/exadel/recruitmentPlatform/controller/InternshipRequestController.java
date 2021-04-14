@@ -2,9 +2,11 @@ package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +24,10 @@ public class InternshipRequestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@Valid @RequestBody InternshipRequestDto internshipRequestDto) {
+    public ResponseEntity<InternshipRequestDto> save(@Valid @RequestBody InternshipRequestDto internshipRequestDto) {
         internshipRequestDto.setStatus(InternshipRequestStatus.UNDER_CONSIDERATION);
-        internshipRequestService.save(internshipRequestDto);
+        internshipRequestDto.getUserDto().setRole(UserRole.INTERN);
+        return ResponseEntity.ok(internshipRequestService.save(internshipRequestDto));
     }
 
 }

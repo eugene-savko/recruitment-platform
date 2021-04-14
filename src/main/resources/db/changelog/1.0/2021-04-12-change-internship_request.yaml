@@ -1,9 +1,30 @@
 databaseChangeLog:
   - changeSet:
-      id: 2021-04-14-change-internship_request
+      id: 2021-04-14-change-internship_request-1
       author: alex_over
       changes:
         - renameColumn:
             newColumnName: speciality_id
             oldColumnName: primary_skill
             tableName: internship_request
+  - changeSet:
+      id: 2021-04-14-change-internship_request-2
+      author: alex_over
+      changes:
+        - dropColumn:
+            tableName: internship_request
+            columns:
+              - column:
+                  name: internship_id
+  - changeSet:
+      id: 2021-04-14-change-internship_request-3
+      author: alex_over
+      changes:
+        - addColumn:
+            tableName: internship_request
+            columns:
+              - column:
+                  name: internship_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
