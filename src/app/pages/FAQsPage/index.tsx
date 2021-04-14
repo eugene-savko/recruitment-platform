@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Section } from './Section';
-import { FAQsWrapper } from './Section/components/FAQsWrapper';
+import { FAQsWrapper } from './components/FAQsWrapper';
 import SectionsData from './data/SectionsData';
 import FAQsTitle from './FAQsTitle';
 
@@ -19,9 +19,7 @@ export const FAQsPage: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<FAQsWrapper>
-				<div>
-					<FAQsTitle />
-				</div>
+				<FAQsTitle />
 				<div>
 					{SectionsData.map((sectionData, i) => (
 						<Section

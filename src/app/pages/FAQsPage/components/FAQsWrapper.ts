@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FAQsWrapper = styled.main`
+export const FAQsWrapper = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;

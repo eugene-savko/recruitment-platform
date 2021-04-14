@@ -19,19 +19,16 @@ export const SectionWrapper = styled.section`
 			color: #40bfef;
 			transition: 0.5s ease;
 		}
-		&:last-child {
-			margin-bottom: 50px;
-		}
-	}
-
-	.faq__question_opened::after {
-		transform: rotate(-180deg);
-		transition: all 0.7s ease-in-out;
 	}
 
 	.arrow {
 		margin-left: auto;
 		font-size: 30px;
+	}
+
+	.arrow_opened {
+		transform: rotate(-180deg);
+		transition: all 0.7s ease-in-out;
 	}
 
 	.faq__answer {
