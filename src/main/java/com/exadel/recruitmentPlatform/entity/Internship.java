@@ -36,14 +36,14 @@ public class Internship extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private InternshipStatus status;
 
-    @OneToMany(mappedBy="internship")
+    @OneToMany(mappedBy = "internship")
     private List<Speciality> specialityList;
 
     @ManyToMany
     @JoinTable(
             name = "internship_skills",
-            joinColumns = @JoinColumn(name ="internship_id" ),
+            joinColumns = @JoinColumn(name = "internship_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
-    List <Skill> skillList;
+    List<Skill> skillList;
 
 }

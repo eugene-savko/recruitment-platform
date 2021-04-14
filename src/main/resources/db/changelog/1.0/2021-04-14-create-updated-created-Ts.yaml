@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2021-04-14-create-column-updated.yaml
+      id: 2021-04-14-create-updated-created-Ts.yaml
       author: aliaksandrKryvulko
       changes:
        - sqlFile:
