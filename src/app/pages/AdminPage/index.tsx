@@ -9,7 +9,7 @@ import {
 	AdminPageContent,
 	AdminPageContentWrapper,
 	AdminPageRoot,
-} from './styled111';
+} from './styled';
 
 export const AdminPage: React.FC = () => {
 	const { path } = useRouteMatch();
