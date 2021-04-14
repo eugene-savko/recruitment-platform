@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-14-create-column-updated.yaml
+      author: aliaksandrKryvulko
+      changes:
+       - sqlFile:
+           splitStatements: true
+           relativeToChangelogFile: true
+           path: ../add-timeStamp-created-and-updated.sql
+           stripComments: true

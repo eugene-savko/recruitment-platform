@@ -29,13 +29,14 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
-    public SkillDto findById(Long id) {
+    public SkillDto get(Long id) {
         return skillRepository.findById(id).map(skillMapper::toDto)
                 .orElseThrow(() -> new SkillNotFoundException(id));
     }
 
     private Skill update (SkillDto skillDto){
-        Skill skill=skillRepository.findById(skillDto.getId()).orElseThrow();
+        Skill skill=skillRepository.findById(skillDto.getId())
+                .orElseThrow(() -> new SkillNotFoundException(skillDto.getId()));
         update(skillDto, skill);
         return skillRepository.save(skill);
     }
@@ -45,8 +46,7 @@ public class SkillServiceImpl implements SkillService {
         return skillRepository.save(skill);
     }
 
-    @Override
-    public void update(SkillDto skillDto, Skill skill) {
+    private void update(SkillDto skillDto, Skill skill) {
         skill.setName(skillDto.getName());
         skill.setType(skillDto.getType());
         skill.setSubtype(skillDto.getSubtype());

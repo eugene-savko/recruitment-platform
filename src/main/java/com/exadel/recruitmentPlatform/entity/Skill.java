@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +21,7 @@ public class Skill extends BaseEntity {
 
     @Column(name = "subtype")
     private String subtype;
+
+    @ManyToMany (mappedBy = "skillList")
+    private List <Internship> internshipList;
 }
