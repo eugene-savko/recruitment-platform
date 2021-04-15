@@ -19,7 +19,7 @@ import CheckBoxRemember from './CheckBoxRemember';
 import ButtonSubmint from './ButtonSubmint';
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
-import Title from './Title';
+import AuthTitle from './components/AuthTitle';
 
 const defaultValues: IDefaultValueInputForm = {
 	email: '',
@@ -41,7 +41,7 @@ export const Auth: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<AuthWrapper elevation={10}>
-				<Title />
+				<AuthTitle>Sign In</AuthTitle>
 
 				<AuthForm noValidate onSubmit={handleSubmit(getInputsForm)}>
 					<InputEmail ref={register(validation.email)} />

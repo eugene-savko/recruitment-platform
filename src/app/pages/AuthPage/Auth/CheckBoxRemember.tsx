@@ -28,7 +28,7 @@ const CheckBoxRemember: React.FunctionComponent<ICheckProps> = ({
 				)}
 			/>
 		}
-		label="Запомнить"
+		label="Remember me"
 	/>
 );
 
