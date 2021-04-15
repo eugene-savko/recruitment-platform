@@ -5,6 +5,8 @@ const WrapperInfo = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+
+	margin-top: 150px;
 `;
 
 export default WrapperInfo;

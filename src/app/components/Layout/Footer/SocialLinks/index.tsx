@@ -1,7 +1,7 @@
 import React from 'react';
 
 // styles
-import { ListItem, AnchorItem } from './components';
+import { ListItem, AnchorItem, UnorderedList } from './components';
 
 // types
 import { ISocialLinksProps } from '../types';
@@ -10,7 +10,7 @@ const SocialLinks: React.FunctionComponent<ISocialLinksProps> = ({
 	socialLinksItem,
 }) => (
 	<React.Fragment>
-		<ul>
+		<UnorderedList>
 			{socialLinksItem?.map((item) => (
 				<ListItem key={item.name}>
 					<AnchorItem
@@ -25,7 +25,7 @@ const SocialLinks: React.FunctionComponent<ISocialLinksProps> = ({
 					</AnchorItem>
 				</ListItem>
 			))}
-		</ul>
+		</UnorderedList>
 	</React.Fragment>
 );
 

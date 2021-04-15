@@ -29,7 +29,7 @@ const MenuItemsData: Array<IMenuItemData> = [
 ];
 
 const Header: React.FunctionComponent = () => {
-	const [colorBackground, setColorBackground] = useState<string>('');
+	const [colorBackground, setColorBackground] = useState('');
 
 	const listenScrollEvent = () => {
 		if (window.scrollY < 73) {
