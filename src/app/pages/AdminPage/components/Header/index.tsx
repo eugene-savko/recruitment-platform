@@ -5,11 +5,11 @@ import { AppBar, Toolbar } from '@material-ui/core';
 import { Logo } from './Logo';
 import { Burger } from './Burger';
 import { ToolBarButtons } from './ToolBarButtons';
-import { IPropsHeader } from './types';
+import { IHeaderProps } from './types';
 
-export const Header: React.FC<IPropsHeader> = ({
+export const Header: React.FC<IHeaderProps> = ({
 	onShowHideSidebar,
-}: IPropsHeader) => (
+}: IHeaderProps) => (
 	<AppBar>
 		<Toolbar>
 			<Logo />

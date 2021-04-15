@@ -1,15 +1,11 @@
 import React, { useState, createContext } from 'react';
-
-interface AuthLoggedContextState {
-	isLogged: boolean;
-	setIsLogged?: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import IAuthLoggedContextState from '../types/IAuthLoggedContextState';
 
 const initAuthLogged = {
 	isLogged: false,
 };
 
-export const AuthLoggedContext = createContext<AuthLoggedContextState>(
+export const AuthLoggedContext = createContext<IAuthLoggedContextState>(
 	initAuthLogged
 );
 

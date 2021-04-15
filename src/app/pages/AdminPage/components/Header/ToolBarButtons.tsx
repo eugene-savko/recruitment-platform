@@ -8,10 +8,11 @@ import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
 export const ToolBarButtons: React.FunctionComponent = () => {
 	const history = useHistory();
 	const { setIsLogged } = useContext(AuthLoggedContext);
-	function logOut() {
+
+	const logOut = () => {
 		setIsLogged?.(false);
 		history.push('/');
-	}
+	};
 
 	return (
 		<Hidden only={['xs', 'sm']}>

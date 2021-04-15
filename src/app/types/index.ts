@@ -1,5 +1,11 @@
 import IDefaultContextState from './IDefaultContextState';
 import IRoute from './IRoute';
-import InitContextState from './initContextState';
+import InitContextState from './IInitContextState';
+import IAuthLoggedContextState from './IAuthLoggedContextState';
 
-export type { InitContextState, IRoute, IDefaultContextState };
+export type {
+	IAuthLoggedContextState,
+	InitContextState,
+	IRoute,
+	IDefaultContextState,
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Candidate: React.FC = () => (
+export const Candidate: React.FunctionComponent = () => (
 	<div>
 		Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, vero
 		consequuntur asperiores totam maxime veritatis officia dicta beatae
