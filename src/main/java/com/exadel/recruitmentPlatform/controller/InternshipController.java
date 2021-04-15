@@ -1,9 +1,10 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
-import com.exadel.recruitmentPlatform.service.Impl.InternshipServiceImpl;
+import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
+import com.exadel.recruitmentPlatform.service.InternshipService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,22 +15,24 @@ import java.util.List;
 @RequestMapping("/internships")
 public class InternshipController {
 
-    private final InternshipServiceImpl internshipService;
+    private final InternshipService internshipService;
 
-    @GetMapping(value = "/{id}")
-    public InternshipDto getInternshipById(@PathVariable Long id){
-        return internshipService.findById(id);
+    @GetMapping(value = "internship/{id}")
+    public ResponseEntity<InternshipResponseDto> getInternshipById(@PathVariable Long id){
+        return ResponseEntity.ok(internshipService.get(id));
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public InternshipDto save(@Valid @RequestBody InternshipDto internshipDto){
-        return internshipService.save(internshipDto);
+    public ResponseEntity<InternshipResponseDto> save(@Valid @RequestBody InternshipDto internshipDto){
+        return ResponseEntity.ok(internshipService.create(internshipDto));
     }
 
-    @GetMapping
-    public List<InternshipDto> getAllInternships(){
-        return internshipService.getAllInternships();
+    @GetMapping(value = "/speciality/{specialityId}")
+    public List<InternshipResponseDto> getInternshipsBySpeciality(@PathVariable Long specialityId){
+        if(specialityId-1 == 0){ // speciality=1 is for any speciality
+            return internshipService.getInternships();
+        }
+        return internshipService.getInternshipsBySpeciality(specialityId-1);
     }
 
 }

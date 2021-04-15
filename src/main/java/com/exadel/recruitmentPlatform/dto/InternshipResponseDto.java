@@ -1,18 +1,20 @@
 package com.exadel.recruitmentPlatform.dto;
 
 import com.exadel.recruitmentPlatform.entity.InternshipStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class InternshipDto extends BaseDto {
-
+public class InternshipResponseDto extends BaseDto {
     @NotBlank
     @Size(min = 1, max = 50)
     private String name;
@@ -38,5 +40,5 @@ public class InternshipDto extends BaseDto {
     private InternshipStatus status;
 
     @NotBlank
-    private Set<Long> specialities;
+    private List<SpecialityDto> specialities;
 }

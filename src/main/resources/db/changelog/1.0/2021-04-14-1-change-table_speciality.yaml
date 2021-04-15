@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-14-change-table_speciality
+      author: vados
+      changes:
+        - dropColumn:
+            tableName: speciality
+            columns:
+              - column:
+                  name: internship_id
