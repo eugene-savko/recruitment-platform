@@ -1,4 +1,4 @@
-import IPropsHeader from './IPropsHeader';
-import IPropsBurger from './IPropsBurger';
+import IHeaderProps from './IHeaderProps';
+import IBurgerProps from './IBurgerProps';
 
-export type { IPropsHeader, IPropsBurger };
+export type { IHeaderProps, IBurgerProps };

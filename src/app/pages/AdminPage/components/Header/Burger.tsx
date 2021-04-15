@@ -1,9 +1,9 @@
 import React from 'react';
 import { Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import IPropsBurger from './types/IPropsBurger';
+import IBurgerProps from './types/IBurgerProps';
 
-export const Burger: React.FC<IPropsBurger> = ({ onClickMobile }) => (
+export const Burger: React.FC<IBurgerProps> = ({ onClickMobile }) => (
 	<Hidden only={['md', 'lg', 'xl']}>
 		<IconButton
 			onClick={onClickMobile}

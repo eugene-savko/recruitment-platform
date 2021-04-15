@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
 import { Header } from './components/Header';
