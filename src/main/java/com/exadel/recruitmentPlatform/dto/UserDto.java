@@ -10,7 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,8 +32,12 @@ public class UserDto extends BaseDto {
 
     private String country;
 
+    private String city;
+
     private String photo;
 
     private String phone;
+
+    private String otherInformation;
 
 }

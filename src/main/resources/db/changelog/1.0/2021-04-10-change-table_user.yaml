@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-10-change-table_user-1
+      author: alex_over
+      changes:
+        - addColumn:
+            tableName: user
+            columns:
+              - column:
+                  name: city
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 2021-04-10-change-table_user-2
+      author: alex_over
+      changes:
+        - addColumn:
+            tableName: user
+            columns:
+              - column:
+                  name: other_information
+                  type: varchar(250)
+                  constraints:
+                    nullable: true
