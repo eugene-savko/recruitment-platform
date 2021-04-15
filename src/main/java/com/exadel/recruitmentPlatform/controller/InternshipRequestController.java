@@ -25,8 +25,6 @@ public class InternshipRequestController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<InternshipRequestDto> save(@Valid @RequestBody InternshipRequestDto internshipRequestDto) {
-        internshipRequestDto.setStatus(InternshipRequestStatus.UNDER_CONSIDERATION);
-        internshipRequestDto.getUserDto().setRole(UserRole.INTERN);
         return ResponseEntity.ok(internshipRequestService.save(internshipRequestDto));
     }
 
