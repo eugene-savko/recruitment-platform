@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import ListItem from '@material-ui/core/ListItem';
+import { ListItem } from '@material-ui/core';
 import { NavLink as RouterLink } from 'react-router-dom';
 
 import { SideBarListItemIcon, SideBarListItemText } from './components';

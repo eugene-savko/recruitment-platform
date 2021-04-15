@@ -17,6 +17,7 @@ const useMocoServer = () => {
 		const usersData: AxiosResponse<any> = await dataFetched;
 		setDataFromServer?.(usersData.data.data[0]);
 		setIsLogged?.(true);
+		localStorage.setItem('IsLoaded', 'true');
 	};
 
 	const fetchRequestLogin = async ({ email, password }: IFormInput) => {

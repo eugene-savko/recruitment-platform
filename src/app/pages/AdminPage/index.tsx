@@ -10,10 +10,9 @@ import {
 	AdminPageRoot,
 } from './styled';
 
-export const AdminPage: React.FC = () => {
+export const AdminPage: React.FunctionComponent = () => {
 	const { path } = useRouteMatch();
 	const [isSideBarOpen, setSideBarOpen] = useState(false);
-
 	return (
 		<AdminPageRoot>
 			<Header onShowHideSidebar={() => setSideBarOpen(true)} />

@@ -16,7 +16,8 @@ import { AdminPage } from './pages/AdminPage';
 
 export const App: React.FunctionComponent = () => {
 	const { isLogged } = useContext(AuthLoggedContext);
-
+	const isLogeedLocalStorage = localStorage.getItem('IsLoaded');
+	console.log(localStorage.getItem('IsLoaded'));
 	return (
 		<React.Fragment>
 			<CssBaseline />
@@ -24,7 +25,9 @@ export const App: React.FunctionComponent = () => {
 				<AuthContextProvider>
 					<Switch>
 						<Route exact path="/" component={AuthPage} />
-						{isLogged && <Route path="/admin" component={AdminPage} />}
+						{isLogeedLocalStorage && (
+							<Route path="/admin" component={AdminPage} />
+						)}
 						<Route path="/not-found" component={NotFoundPage} />
 						<Redirect exact from="*" to="/not-found" />
 					</Switch>
