@@ -1,12 +1,14 @@
 import React from 'react';
 
-import WrapperInfo from './components/WrapperInfo';
+import { WrapperInfo, LinkOfFooter, CopyrightText } from './components';
 
 const FooterInfo: React.FunctionComponent = () => (
 	<React.Fragment>
 		<WrapperInfo>
-			<p>© 2021</p>
-			<a href="https://exadel.com/"> Exadel, Inc.</a>
+			<CopyrightText>© 2021</CopyrightText>
+			<LinkOfFooter href="https://exadel.com/" target="_blank">
+				Exadel, Inc.
+			</LinkOfFooter>
 		</WrapperInfo>
 	</React.Fragment>
 );

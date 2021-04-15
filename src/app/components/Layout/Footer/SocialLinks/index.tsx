@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ISocialLinksItem from '../types/ISocialLinksItem';
+// styles
+import { ListItem, AnchorItem } from './components';
 
-interface ISocialLinksProps {
-	socialLinksItem: Array<ISocialLinksItem>;
-}
+// types
+import { ISocialLinksProps } from '../types';
 
 const SocialLinks: React.FunctionComponent<ISocialLinksProps> = ({
 	socialLinksItem,
@@ -12,9 +12,18 @@ const SocialLinks: React.FunctionComponent<ISocialLinksProps> = ({
 	<React.Fragment>
 		<ul>
 			{socialLinksItem?.map((item) => (
-				<li key={item.name}>
-					<a href={item.href}>{item.name}</a>
-				</li>
+				<ListItem key={item.name}>
+					<AnchorItem
+						href={item.href}
+						title={item.name}
+						target="_blank"
+						rel="noreferrer"
+					>
+						<svg viewBox={item.viewBox}>
+							<path d={item.path} />
+						</svg>
+					</AnchorItem>
+				</ListItem>
 			))}
 		</ul>
 	</React.Fragment>
