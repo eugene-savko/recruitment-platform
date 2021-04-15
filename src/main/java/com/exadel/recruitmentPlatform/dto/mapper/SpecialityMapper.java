@@ -18,7 +18,7 @@ public class SpecialityMapper implements BaseMapper<Speciality, SpecialityDto> {
     @Override
     public Speciality toEntity(SpecialityDto dto) {
         Speciality speciality = new Speciality();
-        speciality.setId(dto.getId()); // != null ? specialityRepository.findByName(dto.getName()).getId() : null
+        speciality.setId(dto.getId());
         speciality.setName(dto.getName());
         return speciality;
     }

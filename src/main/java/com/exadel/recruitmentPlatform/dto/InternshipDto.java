@@ -4,6 +4,7 @@ import com.exadel.recruitmentPlatform.entity.InternshipStatus;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class InternshipDto extends BaseDto {
 
     @NotBlank
     @Size(min = 10, max = 10) //format "2021-12-30"
-    private String startDate;
+    private String startDate;   //todo localDate
 
     @NotBlank
     @Size(min = 10, max = 10) //format "2021-12-30"
@@ -37,6 +38,6 @@ public class InternshipDto extends BaseDto {
     @Size(min = 1, max = 50) //format "Java, JavaScript"
     private InternshipStatus status;
 
-    @NotBlank
+    @NotEmpty
     private Set<Long> specialities;
 }

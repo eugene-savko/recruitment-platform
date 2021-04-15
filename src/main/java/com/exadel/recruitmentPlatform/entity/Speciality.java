@@ -1,10 +1,15 @@
 package com.exadel.recruitmentPlatform.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Entity
@@ -20,20 +25,4 @@ public class Speciality extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Speciality speciality = (Speciality) o;
-        return Objects.equals(name, speciality.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }

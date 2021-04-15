@@ -17,7 +17,7 @@ public class InternshipController {
 
     private final InternshipService internshipService;
 
-    @GetMapping(value = "internship/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<InternshipResponseDto> getInternshipById(@PathVariable Long id){
         return ResponseEntity.ok(internshipService.get(id));
     }
@@ -27,12 +27,14 @@ public class InternshipController {
         return ResponseEntity.ok(internshipService.create(internshipDto));
     }
 
-    @GetMapping(value = "/speciality/{specialityId}")
+    @GetMapping()
+    public List<InternshipResponseDto> getInternships(){
+        return internshipService.getInternships();
+    }
+
+    @GetMapping(value = "/specialities/{specialityId}")
     public List<InternshipResponseDto> getInternshipsBySpeciality(@PathVariable Long specialityId){
-        if(specialityId-1 == 0){ // speciality=1 is for any speciality
-            return internshipService.getInternships();
-        }
-        return internshipService.getInternshipsBySpeciality(specialityId-1);
+        return internshipService.getInternshipsBySpeciality(specialityId);
     }
 
 }

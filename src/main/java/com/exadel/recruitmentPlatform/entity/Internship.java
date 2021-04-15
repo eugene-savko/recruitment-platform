@@ -55,19 +55,4 @@ public class Internship extends BaseEntity {
         });
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Internship)) {
-            return false;
-        }
-        return id != null && id.equals(((Internship) o).getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }
