@@ -1,0 +1,4 @@
+import COLUMNS_TABLE from './COLUMNS_TABLE';
+import DATA_TABLE from './DATA_TABLE';
+
+export { COLUMNS_TABLE, DATA_TABLE };
