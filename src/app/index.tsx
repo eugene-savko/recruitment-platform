@@ -7,7 +7,6 @@ import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 // Pages
-import { NotFoundPage } from './pages/NotFoundPage';
 
 // Context
 import AuthContextProvider from './context/AuthContext';
@@ -15,9 +14,11 @@ import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 
 export const App: React.FunctionComponent = () => {
+	// will be remove after getting API
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { isLogged } = useContext(AuthLoggedContext);
 	const isLogeedLocalStorage = localStorage.getItem('IsLoaded');
-	console.log(localStorage.getItem('IsLoaded'));
+
 	return (
 		<React.Fragment>
 			<CssBaseline />
@@ -25,11 +26,21 @@ export const App: React.FunctionComponent = () => {
 				<AuthContextProvider>
 					<Switch>
 						<Route exact path="/" component={AuthPage} />
-						{isLogeedLocalStorage && (
+						{/* {isLogeedLocalStorage && (
 							<Route path="/admin" component={AdminPage} />
-						)}
-						<Route path="/not-found" component={NotFoundPage} />
-						<Redirect exact from="*" to="/not-found" />
+						)} */}
+						<Route
+							path="/admin"
+							render={() => {
+								return isLogeedLocalStorage ? (
+									<AdminPage />
+								) : (
+									<Redirect to="/" />
+								);
+							}}
+						/>
+
+						<Redirect exact from="*" to="/" />
 					</Switch>
 				</AuthContextProvider>
 			</BrowserRouter>
