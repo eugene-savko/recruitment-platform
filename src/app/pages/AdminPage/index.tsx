@@ -17,7 +17,6 @@ export const AdminPage: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<Route
-				exact
 				path={path}
 				render={() => {
 					return (
@@ -30,13 +29,9 @@ export const AdminPage: React.FunctionComponent = () => {
 							<AdminPageContentWrapper>
 								<AdminPageContent>
 									<Switch>
-										<Route
-											exact
-											path={`${path}/candidate`}
-											component={Candidate}
-										/>
+										<Route path={`${path}/candidate`} component={Candidate} />
 										<Route path={`${path}/dashboard`} component={DashBoard} />
-										<Route path={`${path}/*`} component={NotFoundPage} />
+										<Route exact path={`${path}/*`} component={NotFoundPage} />
 									</Switch>
 								</AdminPageContent>
 							</AdminPageContentWrapper>
