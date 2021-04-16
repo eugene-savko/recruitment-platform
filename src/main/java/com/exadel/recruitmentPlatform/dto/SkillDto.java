@@ -19,7 +19,6 @@ public class SkillDto extends BaseDto {
     @Size(min = 1, max = 50)
     private String name;
 
-    @NotBlank
     @Size(min = 1, max = 50)
     private SkillType type;
 

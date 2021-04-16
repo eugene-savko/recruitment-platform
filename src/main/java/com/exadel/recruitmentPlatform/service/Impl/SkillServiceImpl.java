@@ -1,6 +1,6 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.exceptions.SkillNotFoundException;
+import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.dto.SkillDto;
 import com.exadel.recruitmentPlatform.dto.mapper.SkillMapper;
 import com.exadel.recruitmentPlatform.entity.Skill;
@@ -31,12 +31,13 @@ public class SkillServiceImpl implements SkillService {
     @Override
     public SkillDto get(Long id) {
         return skillRepository.findById(id).map(skillMapper::toDto)
-                .orElseThrow(() -> new SkillNotFoundException(id));
+                .orElseThrow(() -> new EntityNotFoundException("Skill with id " + id + " doesn't find"));
     }
 
     private Skill update (SkillDto skillDto){
         Skill skill=skillRepository.findById(skillDto.getId())
-                .orElseThrow(() -> new SkillNotFoundException(skillDto.getId()));
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Skill with id " + skillDto.getId() + " doesn't find"));
         update(skillDto, skill);
         return skillRepository.save(skill);
     }

@@ -22,6 +22,6 @@ public class Skill extends BaseEntity {
     @Column(name = "subtype")
     private String subtype;
 
-    @ManyToMany (mappedBy = "skillList")
-    private List <Internship> internshipList;
+    @ManyToMany (mappedBy = "skills")
+    private List <Internship> internships;
 }

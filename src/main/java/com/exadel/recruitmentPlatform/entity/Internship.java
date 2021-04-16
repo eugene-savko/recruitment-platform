@@ -44,6 +44,6 @@ public class Internship extends BaseEntity {
             name = "internship_skills",
             joinColumns = @JoinColumn(name = "internship_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
-    List<Skill> skillList;
+    List<Skill> skills;
 
 }
