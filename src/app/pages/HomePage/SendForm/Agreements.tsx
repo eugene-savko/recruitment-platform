@@ -1,5 +1,5 @@
 import React from 'react';
-import { Error } from './Body/components';
+import { Error } from './TraineeForm/components';
 import { IAgreements } from './types';
 
 import {

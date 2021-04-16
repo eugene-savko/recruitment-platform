@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Close as CloseIcon } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 
-const Close = styled(CloseIcon)`
+const CloseSelectedFile = styled(Close)`
 	width: 30px;
 	height: 30px;
 	color: #666;
@@ -11,4 +11,4 @@ const Close = styled(CloseIcon)`
 	}
 `;
 
-export default Close;
+export default CloseSelectedFile;

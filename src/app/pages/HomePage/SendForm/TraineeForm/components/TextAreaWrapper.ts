@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const WrapperTextArea = styled.div`
+const TextAreaWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	width: 100%;
 `;
 
-export default WrapperTextArea;
+export default TextAreaWrapper;

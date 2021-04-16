@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 
 // style components
 import {
-	WrapperInputs,
+	FieldsWrapper,
 	Input,
 	Select,
 	InputItem,
 	TextError,
-	HidenInput,
+	HiddenInput,
 	SelectCountry,
 	SelectCity,
 } from './components';
 
 // type
-import { IBodyProps, ITextArea } from '../types';
+import { ITraineeForm } from '../types';
 import { TextArea } from './TextArea';
 
-export const Body: React.FunctionComponent<IBodyProps> = ({
+export const TraineeForm: React.FunctionComponent<ITraineeForm> = ({
 	register,
 	englishLevel,
 	primarySkill,
@@ -26,14 +26,14 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 	const [city, setCity] = useState('');
 
 	return (
-		<WrapperInputs>
+		<FieldsWrapper>
 			<InputItem>
 				<Input
 					ref={register({
 						required: 'Field is required',
 						minLength: {
 							value: 3,
-							message: 'No valide first name.',
+							message: 'Invalid first name.',
 						},
 					})}
 					type="text"
@@ -51,7 +51,7 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 						required: 'Field is required',
 						minLength: {
 							value: 3,
-							message: 'No valide second name.',
+							message: 'Invalid second name.',
 						},
 					})}
 					type="text"
@@ -69,12 +69,12 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 						required: 'Field is required',
 						minLength: {
 							value: 3,
-							message: 'No valide email adress.',
+							message: 'Invalid email.',
 						},
 					})}
 					type="email"
 					name="email"
-					placeholder="Email adress *"
+					placeholder="Email address *"
 				/>
 				{errorMessage.email && (
 					<TextError>{errorMessage.email.message}</TextError>
@@ -86,7 +86,11 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 					ref={register({
 						minLength: {
 							value: 5,
-							message: 'No valide phone number.',
+							message: 'invalid phone number.',
+						},
+						pattern: {
+							value: /[ +][0-9]{5}[ -][0-9]{3}[ -][0-9]{2}[ -][0-9]{2}/,
+							message: 'Invalid phone number: +00000-000-00-00',
 						},
 					})}
 					type="tel"
@@ -125,12 +129,12 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 			<InputItem>
 				<SelectCountry
 					value={country}
-					defaultOptionLabel="Select a country, man."
+					defaultOptionLabel="Select a country"
 					onChange={(val: React.SetStateAction<string>) => {
 						setCountry(val);
 					}}
 				/>
-				<HidenInput
+				<HiddenInput
 					name="country"
 					value={country}
 					ref={register()}
@@ -141,12 +145,12 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 			<InputItem>
 				<SelectCity
 					country={country}
-					blankOptionLabel="No country selected, man."
-					defaultOptionLabel="Now select a region, pal."
+					blankOptionLabel="Any city "
+					defaultOptionLabel="Now select a region"
 					value={city}
 					onChange={(val: React.SetStateAction<string>) => setCity(val)}
 				/>
-				<HidenInput
+				<HiddenInput
 					name="city"
 					value={city}
 					ref={register()}
@@ -154,6 +158,6 @@ export const Body: React.FunctionComponent<IBodyProps> = ({
 				/>
 			</InputItem>
 			<TextArea register={register} />
-		</WrapperInputs>
+		</FieldsWrapper>
 	);
 };

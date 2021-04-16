@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ArrowDown from 'app/pages/HomePage/SendForm/Body/assets/select-arrow-down 4.png';
+import ArrowDown from 'app/pages/HomePage/SendForm/TraineeForm/assets/select-arrow-down 4.png';
 
 const Select = styled.select`
 	width: 100%;

@@ -1,25 +1,25 @@
 import TextArea from './TextArea';
-import WrapperInputs from './WrapperInputs';
+import FieldsWrapper from './FieldsWrapper';
 import Input from './Input';
 import Select from './Select';
 import InputItem from './InputItem';
 import Error from './Error';
 import TextError from './TextError';
-import HidenInput from './HidenInput';
+import HiddenInput from './HiddenInput';
 import SelectCountry from './SelectCountry';
 import SelectCity from './SelectCity';
-import WrapperTextArea from './WrapperTextArea';
+import TextAreaWrapper from './TextAreaWrapper';
 
 export {
 	TextArea,
-	WrapperInputs,
+	FieldsWrapper,
 	Input,
 	Select,
 	InputItem,
 	Error,
 	TextError,
-	HidenInput,
+	HiddenInput,
 	SelectCountry,
 	SelectCity,
-	WrapperTextArea,
+	TextAreaWrapper,
 };
