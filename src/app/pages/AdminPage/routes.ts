@@ -1,6 +1,6 @@
 import IRoute from 'app/types/IRoute';
-import { Candidate } from './components/LayautAdmin/Candidate/Candidate';
-import { DashBoard } from './components/LayautAdmin/DashBoard/DashBoard';
+import { Candidate } from './components/LayoutAdmin/Candidate/Candidate';
+import { DashBoard } from './components/LayoutAdmin/DashBoard/DashBoard';
 
 const routesAdmin: Array<IRoute> = [
 	{

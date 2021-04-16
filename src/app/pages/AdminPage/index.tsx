@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Switch, useRouteMatch, Route } from 'react-router-dom';
-import { Header } from './components/LayautAdmin/Header';
-import { Sidebar } from './components/LayautAdmin/SideBar';
-import { Candidate } from './components/LayautAdmin/Candidate/Candidate';
-import { DashBoard } from './components/LayautAdmin/DashBoard/DashBoard';
-import { NotFoundPage } from './components/LayautNotFound/index';
+import { Header } from './components/LayoutAdmin/Header';
+import { Sidebar } from './components/LayoutAdmin/SideBar';
+import { Candidate } from './components/LayoutAdmin/Candidate/Candidate';
+import { DashBoard } from './components/LayoutAdmin/DashBoard/DashBoard';
+import { NotFoundPage } from './components/LayoutNotFound/index';
 import {
 	AdminPageContent,
 	AdminPageContentWrapper,
