@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const WrapperInputs = styled.div`
+const FieldsWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -10,4 +10,4 @@ const WrapperInputs = styled.div`
 	margin: 0 auto;
 `;
 
-export default WrapperInputs;
+export default FieldsWrapper;

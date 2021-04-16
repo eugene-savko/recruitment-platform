@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import { AttachButton } from './AttachButton';
 import { Input, Note } from '../components';
-import { Error } from '../Body/components';
+import { Error } from '../TraineeForm/components';
 import {
 	SelectedFile,
 	Wrapper,
 	Label,
 	FileSizeInfoWrapper,
-	Close,
+	CloseSelectedFile,
 } from './components';
 
 import { IFileLoader } from '../types';
@@ -22,13 +22,17 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 }) => {
 	const [fileName, setFileName] = useState('');
 
+	function closeHandleClick() {
+		const input = document.getElementById('attach-file') as HTMLInputElement;
+		input.value = '';
+		setFileName('');
+	}
 	function handleInputClick(e: React.MouseEvent<HTMLInputElement>) {
 		e.currentTarget.value = '';
 	}
 
 	function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
 		const file = e.target.files?.[0];
-
 		if (file) {
 			setFileName(file.name);
 		} else {
@@ -92,8 +96,8 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 			</FileSizeInfoWrapper>
 
 			<SelectedFile>
-				{fileName !== '' ? fileName : ''}
-				{fileName !== '' ? <Close onClick={() => setFileName('')} /> : ''}
+				{fileName}
+				{fileName ? <CloseSelectedFile onClick={closeHandleClick} /> : ''}
 			</SelectedFile>
 			{errors.fileLoader && <Error>{errors.fileLoader.message}</Error>}
 		</Wrapper>

@@ -4,7 +4,7 @@ import SelectedFile from './SelectedFile';
 import AttachButtonWrapper from './AttachButtonWrapper';
 import Label from './Label';
 import FileSizeInfoWrapper from './FileSizeInfoWrapper';
-import Close from './Close';
+import CloseSelectedFile from './CloseSelectedFile';
 
 export {
 	Wrapper,
@@ -13,5 +13,5 @@ export {
 	AttachButtonWrapper,
 	Label,
 	FileSizeInfoWrapper,
-	Close,
+	CloseSelectedFile,
 };
