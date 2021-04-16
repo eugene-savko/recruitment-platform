@@ -3,10 +3,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { SectionWrapper } from '../components/SectionWrapper';
 
 type SectionProps = {
-	title: string,
-	text: string,
-	isOpened: boolean,
-	onClick: () => void,
+	title: string;
+	text: string;
+	isOpened: boolean;
+	onClick: () => void;
 };
 
 export const Section: React.FunctionComponent<SectionProps> = ({
