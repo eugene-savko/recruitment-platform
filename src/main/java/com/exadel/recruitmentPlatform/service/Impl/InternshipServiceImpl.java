@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,15 +56,7 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Override
     public List<InternshipResponseDto> getInternshipsBySpeciality(Long specialityId) {
-        Speciality speciality = specialityService.getSpecialityById(specialityId);
-        List<Internship> internshipsFiltered = new ArrayList<>();
-        internshipRepository.findAll().forEach(internship -> {
-            if (internship.getSpecialities().contains(speciality)) {
-                internshipsFiltered.add(internship);
-            }
-            ;
-        });
-        return listToDto(internshipsFiltered);
+        return listToDto(internshipRepository.findInternshipsBySpecialityId(specialityId));
     }
 
     private Internship update(InternshipDto dto) {
