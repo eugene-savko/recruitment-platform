@@ -33,4 +33,5 @@ public class InternshipController {
     public List<InternshipDto> getAllInternships(){
         return internshipService.getAllInternships();
     }
+
 }
