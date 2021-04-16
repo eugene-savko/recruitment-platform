@@ -4,6 +4,7 @@ import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.service.Impl.InternshipServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ public class InternshipController {
         return internshipService.findById(id);
     }
 
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public InternshipDto save(@Valid @RequestBody InternshipDto internshipDto){
