@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Header } from './Header';
@@ -40,23 +39,4 @@ export const AdminPage: React.FunctionComponent = () => {
 			</AdminPageRoot>
 		</React.Fragment>
 	);
-=======
-import React from 'react';
-import { AdminTable } from './AdminTable';
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-export const AdminPage: React.FunctionComponent = () => {
-	return <EnhancedTable />;
->>>>>>> test: testing Material UI table
 };
-=======
-export const AdminPage: React.FunctionComponent = () => <div>Hello</div>;
->>>>>>> feat: Install React Table
-=======
-export const AdminPage: React.FunctionComponent = () => (
-	<React.Fragment>
-		<AdminTable />
-	</React.Fragment>
-);
->>>>>>> feat: add simple table
