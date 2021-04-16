@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Switch, useRouteMatch, Route } from 'react-router-dom';
-import { Header } from './components/LayoutAdmin/Header';
-import { Sidebar } from './components/LayoutAdmin/SideBar';
-import { Candidate } from './components/LayoutAdmin/Candidate/Candidate';
-import { DashBoard } from './components/LayoutAdmin/DashBoard/DashBoard';
-import { NotFoundPage } from './components/LayoutNotFound/index';
+import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
+import { Header } from './components/Header';
+import { Sidebar } from './components/SideBar';
+import { Candidate } from './components/Candidate/Candidate';
+import { DashBoard } from './components/DashBoard/DashBoard';
+import { NotFoundPage } from './components/NotFound/index';
 import {
 	AdminPageContent,
 	AdminPageContentWrapper,
@@ -31,7 +31,7 @@ export const AdminPage: React.FunctionComponent = () => {
 									<Switch>
 										<Route path={`${path}/candidate`} component={Candidate} />
 										<Route path={`${path}/dashboard`} component={DashBoard} />
-										<Route exact path={`${path}/*`} component={NotFoundPage} />
+										<Route path={`${path}/*`} component={NotFoundPage} />
 									</Switch>
 								</AdminPageContent>
 							</AdminPageContentWrapper>
@@ -39,7 +39,6 @@ export const AdminPage: React.FunctionComponent = () => {
 					);
 				}}
 			/>
-			<Route path={`${path}/*`} component={NotFoundPage} />
 		</React.Fragment>
 	);
 };

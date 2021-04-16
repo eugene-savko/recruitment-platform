@@ -16,7 +16,7 @@ import { AdminPage } from './pages/AdminPage';
 export const App: React.FunctionComponent = () => {
 	// will be remove after getting API
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { isLogged } = useContext(AuthLoggedContext);
+	// const { isLogged } = useContext(AuthLoggedContext);
 	const isLogeedLocalStorage = localStorage.getItem('IsLoaded');
 
 	return (
@@ -26,9 +26,7 @@ export const App: React.FunctionComponent = () => {
 				<AuthContextProvider>
 					<Switch>
 						<Route exact path="/" component={AuthPage} />
-						{/* {isLogeedLocalStorage && (
-							<Route path="/admin" component={AdminPage} />
-						)} */}
+
 						<Route
 							path="/admin"
 							render={() => {
