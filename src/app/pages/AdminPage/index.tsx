@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
+import { Switch, useRouteMatch, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Sidebar } from './components/SideBar';
 import { Candidate } from './components/Candidate/Candidate';
