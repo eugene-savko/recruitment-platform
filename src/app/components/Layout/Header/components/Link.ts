@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link as MaterialLink } from '@material-ui/core';
 
-const Link = styled(MaterialLink)`
+export const Link = styled(MaterialLink)`
 	padding: 10px;
 	font-size: 16px;
 	line-height: 16px;
@@ -12,5 +12,3 @@ const Link = styled(MaterialLink)`
 		text-decoration: none;
 	}
 `;
-
-export default Link;

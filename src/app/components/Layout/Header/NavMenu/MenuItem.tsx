@@ -2,16 +2,18 @@ import React from 'react';
 
 import IMenuItemData from '../types/IMenuItemData';
 
-// styles
-import { Link } from '../components';
-import { MenuItemWrapper } from './components/MenuItemWrapper';
+import { Link } from '../components/Link';
 
-type IMenuItemProps = IMenuItemData;
+import { MenuItemWrapper as Wrapper } from './components/MenuItemWrapper';
 
-const MenuItem: React.FunctionComponent<IMenuItemProps> = ({ label, path }) => (
-	<MenuItemWrapper>
+interface IMenuItemProps extends IMenuItemData {}
+
+export const MenuItem: React.FunctionComponent<IMenuItemProps> = ({
+	label,
+	isSelected,
+	path,
+}) => (
+	<Wrapper>
 		<Link href={path}>{label}</Link>
-	</MenuItemWrapper>
+	</Wrapper>
 );
-
-export default MenuItem;

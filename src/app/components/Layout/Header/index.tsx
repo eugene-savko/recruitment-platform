@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-// components
-import Logo from './Logo';
-import NavMenu from './NavMenu';
+import { Logo } from './Logo';
+import { NavMenu } from './NavMenu';
 
-// styles
-import { Wrapper, Container } from './components';
+import { Wrapper } from './components/Wrapper';
+import { Container } from './components/Container';
 
-// interfaces
+// Interfaces
 import IMenuItemData from './types/IMenuItemData';
 
 const MenuItemsData: Array<IMenuItemData> = [
@@ -28,29 +27,15 @@ const MenuItemsData: Array<IMenuItemData> = [
 	},
 ];
 
-const Header: React.FunctionComponent = () => {
-	const [colorBackground, setColorBackground] = useState('');
-
-	const listenScrollEvent = () => {
-		if (window.scrollY < 73) {
-			setColorBackground('');
-		} else if (window.scrollY > 70) {
-			setColorBackground('#fff');
-		}
-	};
-	useEffect(() => {
-		window.addEventListener('scroll', listenScrollEvent);
-	});
-	return (
-		<React.Fragment>
-			<Wrapper style={{ background: colorBackground }}>
-				<Container>
-					<Logo />
-					<NavMenu menuItemsData={MenuItemsData} />
-				</Container>
-			</Wrapper>
-		</React.Fragment>
-	);
-};
+const Header: React.FunctionComponent = () => (
+	<React.Fragment>
+		<Wrapper>
+			<Container>
+				<Logo />
+				<NavMenu menuItemsData={MenuItemsData} />
+			</Container>
+		</Wrapper>
+	</React.Fragment>
+);
 
 export default Header;
