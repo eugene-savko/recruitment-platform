@@ -1,0 +1,14 @@
+package com.exadel.recruitmentPlatform.entity;
+
+public enum InternshipRequestStatus {
+
+    UNDER_CONSIDERATION,
+    RECRUITER_INTERVIEW,
+    TECHNICAL_SPECIALIST_INTERVIEW,
+    RECRUITER_INTERVIEW_PASSED,
+    TECHNICAL_SPECIALIST_INTERVIEW_PASSED,
+    REFUSED,
+    ACCEPTED,
+    REJECTED,
+    AWAITING
+}

@@ -38,6 +38,9 @@ public class User extends BaseEntity {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "city")
+    private String city;
+
     @Column(name = "photo")
     private String photo;
 
@@ -46,5 +49,8 @@ public class User extends BaseEntity {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "other_information")
+    private String otherInformation;
 
 }
