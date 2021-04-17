@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -22,20 +24,17 @@ public class InternshipDto extends BaseDto {
     @Size(min = 1, max = 1500)
     private String description;
 
-    @NotBlank
-    @Size(min = 10, max = 10) //format "2021-12-30"
-    private String deadline;
+    @NotNull    //format "2021-12-30"
+    private LocalDate deadline;
+
+    @NotNull    //format "2021-12-30"
+    private LocalDate startDate;
+
+    @NotNull    //format "2021-12-30"
+    private LocalDate endDate;
 
     @NotBlank
-    @Size(min = 10, max = 10) //format "2021-12-30"
-    private String startDate;   //todo localDate
-
-    @NotBlank
-    @Size(min = 10, max = 10) //format "2021-12-30"
-    private String endDate;
-
-    @NotBlank
-    @Size(min = 1, max = 50) //format "Java, JavaScript"
+    @Size(min = 1, max = 50)
     private InternshipStatus status;
 
     @NotEmpty

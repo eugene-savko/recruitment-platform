@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,9 +68,9 @@ public class InternshipServiceImpl implements InternshipService {
     public void update(InternshipDto dto, Internship internship) {
         internship.setName(dto.getName());
         internship.setDescription(dto.getDescription());
-        internship.setDeadline(LocalDate.parse(dto.getDeadline()));
-        internship.setStartDate(LocalDate.parse(dto.getStartDate()));
-        internship.setEndDate(LocalDate.parse(dto.getEndDate()));
+        internship.setDeadline(dto.getDeadline());
+        internship.setStartDate(dto.getStartDate());
+        internship.setEndDate(dto.getEndDate());
         internship.setStatus(dto.getStatus());
     }
 }
