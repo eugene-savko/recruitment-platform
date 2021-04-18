@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-16-create-table_internship_speciality
+      author: aliaksandrKryvulko
+      changes:
+        - createTable:
+            tableName: internship_country
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: internship_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_internship_internship_speciality
+                    references: internship(id)
+                    nullable: false
+              - column:
+                  name: country_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_country_internship_country
+                    references: country(id)

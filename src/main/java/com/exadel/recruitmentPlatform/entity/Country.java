@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -16,10 +13,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "speciality",schema = "public")
-public class Speciality extends BaseEntity{
+@Table(name = "country",schema = "public")
+public class Country extends BaseEntity{
 
-    @ManyToMany(mappedBy = "specialities")
+    @ManyToMany(mappedBy = "countries")
     private List<Internship> internships;
 
     @Column(name = "name")

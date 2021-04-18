@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-16-create-table_country
+      author: aliaksandrKryvulko
+      changes:
+        - createTable:
+            tableName: country
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: BIGINT
+                  constraints:
+                    nullable: false

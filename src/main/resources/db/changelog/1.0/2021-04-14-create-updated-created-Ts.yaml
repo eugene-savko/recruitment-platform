@@ -6,5 +6,5 @@ databaseChangeLog:
        - sqlFile:
            splitStatements: true
            relativeToChangelogFile: true
-           path: ../add-timeStamp-created-and-updated.sql
+           path: ../2021-04-18-adding-create-update-fields-to-all-tables.sql
            stripComments: true

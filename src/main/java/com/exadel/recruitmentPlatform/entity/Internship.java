@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -59,6 +60,38 @@ public class Internship extends BaseEntity {
             name = "internship_skills",
             joinColumns = @JoinColumn(name = "internship_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
-    List<Skill> skills;
+    List<Skill> skills=new LinkedList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "internship_country",
+            joinColumns = @JoinColumn(name = "internship_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id"))
+    List<Country> countries=new LinkedList<>();
+
+    public void addCountries (List <Country> countries){
+        this.countries.addAll(countries);
+        countries.stream()
+                .forEach(country -> { country.getInternships()
+                        .add(this);
+        });
+    }
+
+    public void addCountry (Country country){
+        this.countries.add(country);
+        country.getInternships().add(this);
+    }
+
+    public void addSkills (List<Skill> skills){
+        this.skills.addAll(skills);
+        skills.stream()
+                .forEach(skill -> skill.getInternships()
+                        .add(this));
+    }
+
+    public void addSkill (Skill skill){
+        this.skills.add(skill);
+        skill.getInternships().add(this);
+    }
 
 }
