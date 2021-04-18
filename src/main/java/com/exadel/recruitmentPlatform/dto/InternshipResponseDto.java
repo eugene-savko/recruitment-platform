@@ -1,19 +1,20 @@
 package com.exadel.recruitmentPlatform.dto;
 
 import com.exadel.recruitmentPlatform.entity.InternshipStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class InternshipDto extends BaseDto {
-
+public class InternshipResponseDto extends BaseDto {
     @NotBlank
     @Size(min = 1, max = 50)
     private String name;
@@ -28,7 +29,7 @@ public class InternshipDto extends BaseDto {
 
     @NotBlank
     @Size(min = 10, max = 10) //format "2021-12-30"
-    private String startDate;   //todo localDate
+    private String startDate;
 
     @NotBlank
     @Size(min = 10, max = 10) //format "2021-12-30"
@@ -38,6 +39,6 @@ public class InternshipDto extends BaseDto {
     @Size(min = 1, max = 50) //format "Java, JavaScript"
     private InternshipStatus status;
 
-    @NotEmpty
-    private Set<Long> specialities;
+    @NotBlank
+    private List<SpecialityDto> specialities;
 }
