@@ -6,6 +6,8 @@ import com.exadel.recruitmentPlatform.entity.Internship;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,7 @@ public class InternshipController {
         return ResponseEntity.ok(internshipService.get(id));
     }
 
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<InternshipResponseDto> save(@Valid @RequestBody InternshipDto internshipDto){
         return ResponseEntity.ok(internshipService.create(internshipDto));
