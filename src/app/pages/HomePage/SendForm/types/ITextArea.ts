@@ -1,5 +1,7 @@
+import { useForm } from 'react-hook-form';
+
 interface ITextArea {
-	register: any;
+	register: ReturnType<typeof useForm>['register'];
 }
 
 export default ITextArea;

@@ -1,6 +1,10 @@
+import { useForm } from 'react-hook-form';
+import IListItemSelect from './IListItemSelect';
+
 interface IFileLoader {
-	register: any;
-	errors: any;
+	register: ReturnType<typeof useForm>['register'];
+	errors: string;
+	timeForCall: Array<IListItemSelect>;
 }
 
 export default IFileLoader;

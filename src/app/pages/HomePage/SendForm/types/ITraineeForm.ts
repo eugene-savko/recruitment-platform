@@ -1,8 +1,9 @@
+import { useForm } from 'react-hook-form';
 import IListItemSelect from './IListItemSelect';
 
 interface ITraineeForm {
-	register: any;
-	errorMessage: any;
+	register: ReturnType<typeof useForm>['register'];
+	errorMessage: string;
 	englishLevel: Array<IListItemSelect>;
 	primarySkill: Array<IListItemSelect>;
 }

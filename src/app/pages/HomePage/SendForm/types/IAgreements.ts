@@ -1,6 +1,8 @@
+import { useForm } from 'react-hook-form';
+
 interface IAgreements {
-	register: any;
-	errors: any;
+	register: ReturnType<typeof useForm>['register'];
+	errors: string;
 }
 
 export default IAgreements;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { AttachButton } from './AttachButton';
 import { Input, Note } from '../components';
-import { Error } from '../TraineeForm/components';
+import { Error, InputItem, Select } from '../TraineeForm/components';
 import {
 	SelectedFile,
 	Wrapper,
@@ -19,6 +19,7 @@ const sizeFile = 5242880;
 export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 	register,
 	errors,
+	timeForCall,
 }) => {
 	const [fileName, setFileName] = useState('');
 
@@ -71,6 +72,21 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 
 	return (
 		<Wrapper>
+			<InputItem>
+				<label htmlFor="timeForCall">Please choose time to call</label>
+				<Select
+					id="timeForCall"
+					name="timeForCall"
+					ref={register({ required: true })}
+				>
+					{timeForCall?.map((item) => (
+						<option value={item.name} key={item.id}>
+							{item.name}
+						</option>
+					))}
+				</Select>
+			</InputItem>
+
 			<FileSizeInfoWrapper>
 				<Label htmlFor="attach-file">
 					<AttachButton />

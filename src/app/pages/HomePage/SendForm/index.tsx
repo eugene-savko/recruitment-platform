@@ -13,6 +13,7 @@ import { Agreements } from './Agreements';
 // data
 import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
+import { listTimeForCall } from './data/listTimeForCall';
 
 export const SendForm: React.FunctionComponent = () => {
 	const {
@@ -31,6 +32,7 @@ export const SendForm: React.FunctionComponent = () => {
 		city,
 		phone,
 		textArea,
+		timeForCall,
 	}: {
 		englishLevel: string;
 		firstName: string;
@@ -40,6 +42,7 @@ export const SendForm: React.FunctionComponent = () => {
 		city: string;
 		phone: string;
 		textArea: string;
+		timeForCall: string;
 	}) => {
 		const objectDto = {
 			specialityId: '1',
@@ -55,6 +58,7 @@ export const SendForm: React.FunctionComponent = () => {
 				city,
 				phone,
 				otherInformation: textArea,
+				timeForCall,
 			},
 		};
 		console.log(JSON.stringify(objectDto, null, '\t'));
@@ -89,7 +93,11 @@ export const SendForm: React.FunctionComponent = () => {
 					errorMessage={errors}
 				/>
 				<Note size={12}>* Fields marked with * are required.</Note>
-				<FileLoader register={register} errors={errors} />
+				<FileLoader
+					register={register}
+					errors={errors}
+					timeForCall={listTimeForCall}
+				/>
 				<Agreements register={register} errors={errors} />
 				<Submit>Submit</Submit>
 			</Form>

@@ -11,6 +11,7 @@ interface IFormFields {
 	fileLoader: FileList;
 	agreements: boolean;
 	textArea: string;
+	timeForCall: string;
 }
 
 export default IFormFields;
