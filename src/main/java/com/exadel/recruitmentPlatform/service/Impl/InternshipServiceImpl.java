@@ -91,16 +91,6 @@ public class InternshipServiceImpl implements InternshipService {
         return listToDto(internshipsFiltered);
     }
 
-    @Override
-    public List<InternshipResponseDto> getInternshipsBySkill(Long skillId) {
-        Skill skill=skillService.getSkillById (skillId);
-        List <Internship> internshipsFiltered= new ArrayList<>();
-        internshipRepository.findAll().forEach(internship -> {
-            if (internship.getSkills ().contains(skill))
-                internshipsFiltered.add(internship);});
-        return listToDto(internshipsFiltered);
-    }
-
     public InternshipResponseDto update(InternshipDto dto) {
         Internship internship = internshipRepository.findById(dto.getId())
                 .orElseThrow(() ->

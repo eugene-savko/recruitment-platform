@@ -12,5 +12,4 @@ public interface InternshipService {
     List<InternshipResponseDto> getInternships();
     List<InternshipResponseDto> getInternshipsBySpeciality(Long specialityId);
     List<InternshipResponseDto> getInternshipsByCountry(Long contryId);
-    List<InternshipResponseDto> getInternshipsBySkill(Long skilId);
 }

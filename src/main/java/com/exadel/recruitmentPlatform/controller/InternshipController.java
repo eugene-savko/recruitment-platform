@@ -46,11 +46,6 @@ public class InternshipController {
         return internshipService.getInternshipsByCountry(countryId);
     }
 
-    @GetMapping(value = "/skill/{skillId}")
-    public List<InternshipResponseDto> getInternshipsBySkill(@PathVariable Long skillId){
-        return internshipService.getInternshipsBySkill(skillId);
-    }
-
     @PutMapping(path = "/{internshipId}",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
