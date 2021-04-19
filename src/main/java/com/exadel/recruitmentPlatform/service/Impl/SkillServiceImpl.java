@@ -1,25 +1,34 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
-import com.exadel.recruitmentPlatform.dto.SkillDto;
-import com.exadel.recruitmentPlatform.dto.mapper.SkillMapper;
 import com.exadel.recruitmentPlatform.entity.Skill;
 import com.exadel.recruitmentPlatform.repository.SkillRepository;
 import com.exadel.recruitmentPlatform.service.SkillService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
-@AllArgsConstructor
 public class SkillServiceImpl implements SkillService {
 
-    private final SkillRepository skillRepository;
-    private final SkillMapper skillMapper;
+    @Autowired
+    SkillRepository skillRepository;
 
+    @Override
+    public List<Skill> getSkills(Set<Long> ids) {
+        return skillRepository.findByIdIn(ids);
+    }
+
+    @Override
+    public Skill getSkillById(Long id) {
+        return skillRepository.findById(id).get();
+    }
+}
+
+/*
     @Override
     public SkillDto save(SkillDto skillDto) {
         Skill skill= Optional.ofNullable(skillDto.getId())
@@ -52,5 +61,4 @@ public class SkillServiceImpl implements SkillService {
         skill.setType(skillDto.getType());
         skill.setSubtype(skillDto.getSubtype());
     }
-
-}
+*/

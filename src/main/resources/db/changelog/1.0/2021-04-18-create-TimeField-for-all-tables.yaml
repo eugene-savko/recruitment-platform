@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2021-04-14-create-updated-created-Ts.yaml
+      id: 2021-04-18-create-TimeField-for-all-tables.yaml
       author: aliaksandrKryvulko
       changes:
        - sqlFile:

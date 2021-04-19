@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.dto;
 
 import com.exadel.recruitmentPlatform.entity.InternshipStatus;
+import com.exadel.recruitmentPlatform.entity.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,4 +42,11 @@ public class InternshipResponseDto extends BaseDto {
 
     @NotBlank
     private List<SpecialityDto> specialities;
+
+    @NotBlank
+    private  List<CountryDto> countries;
+
+    @NotBlank
+    private  List<SkillDto> skills;
+
 }

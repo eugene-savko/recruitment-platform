@@ -4,6 +4,9 @@ import com.exadel.recruitmentPlatform.dto.SkillDto;
 import com.exadel.recruitmentPlatform.entity.Skill;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class SkillMapper implements BaseMapper<Skill, SkillDto> {
 
@@ -26,4 +29,8 @@ public class SkillMapper implements BaseMapper<Skill, SkillDto> {
         return skillDto;
     }
 
+    List<SkillDto> toDtos (List <Skill> skills){
+        SkillDto skillDto=new SkillDto();
+        return skills.stream().map(this::toDto).collect(Collectors.toList());
+    }
 }
