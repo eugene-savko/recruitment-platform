@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.header`
-	position: fixed;
-	width: 100%;
+export const Wrapper = styled.header`
+	margin: 0 auto;
 	padding: 30px 0;
-	top: 0;
-	left: 0;
-
-	z-index: 1000;
 `;
-
-export default Wrapper;
