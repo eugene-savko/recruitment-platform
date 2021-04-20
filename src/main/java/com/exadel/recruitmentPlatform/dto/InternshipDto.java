@@ -33,8 +33,7 @@ public class InternshipDto extends BaseDto {
     @NotNull    //format "2021-12-30"
     private LocalDate endDate;
 
-    @NotBlank
-    @Size(min = 1, max = 50)
+    @NotNull
     private InternshipStatus status;
 
     @NotEmpty
