@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -36,7 +37,22 @@ public class Internship extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private InternshipStatus status;
 
-    @OneToMany(mappedBy="internship")
-    private List<Speciality> specialityList;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "internship_speciality",
+            joinColumns = @JoinColumn(name = "internship_id"),
+            inverseJoinColumns = @JoinColumn(name = "speciality_id"))
+    private List<Speciality> specialities = new LinkedList<>();
+
+    public void addSpeciality(Speciality speciality) {
+        specialities.add(speciality);
+        speciality.getInternships().add(this);
+    }
+
+    public void addSpecialities(List<Speciality> specialities) {
+        this.specialities.addAll(specialities);
+        specialities.forEach(speciality -> {
+            speciality.getInternships().add(this);
+        });
+    }
 
 }

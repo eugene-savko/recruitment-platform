@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-16-1-modify-column-type-table_internships
+      author: valery_z
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-04-16-modify-column-type-table_internships.sql
+            stripComments: true
