@@ -10,6 +10,7 @@ import {
 	AdminPageContentWrapper,
 	AdminPageRoot,
 } from './styled';
+import { Profile } from './components/Profile/Profile';
 
 export const AdminPage: React.FunctionComponent = () => {
 	const { path } = useRouteMatch();
@@ -31,6 +32,7 @@ export const AdminPage: React.FunctionComponent = () => {
 									<Switch>
 										<Route path={`${path}/candidate`} component={Candidate} />
 										<Route path={`${path}/dashboard`} component={DashBoard} />
+										<Route path={`${path}/profile`} component={Profile} />
 										<Route path={`${path}/*`} component={NotFoundPage} />
 									</Switch>
 								</AdminPageContent>
