@@ -7,7 +7,7 @@ import { Burger } from './Burger';
 import { ToolBarButtons } from './ToolBarButtons';
 import { IHeaderProps } from './types';
 
-export const Header: React.FC<IHeaderProps> = ({
+export const Header: React.FunctionComponent<IHeaderProps> = ({
 	onShowHideSidebar,
 }: IHeaderProps) => (
 	<AppBar>

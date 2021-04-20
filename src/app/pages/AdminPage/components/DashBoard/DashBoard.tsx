@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const DashBoard: React.FC = () => (
+export const DashBoard: React.FunctionComponent = () => (
 	<div>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
 		necessitatibus, quae totam ipsa dolores culpa in. Assumenda ex nobis odit

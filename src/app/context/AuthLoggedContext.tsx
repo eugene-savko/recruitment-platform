@@ -9,7 +9,7 @@ export const AuthLoggedContext = createContext<IAuthLoggedContextState>(
 	initAuthLogged
 );
 
-export const AuthLoggedContextProvider: React.FC<React.ReactNode> = ({
+export const AuthLoggedContextProvider: React.FunctionComponent<React.ReactNode> = ({
 	children,
 }) => {
 	const [isLogged, setIsLogged] = useState(false);

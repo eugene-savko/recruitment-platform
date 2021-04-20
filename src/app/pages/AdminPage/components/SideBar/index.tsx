@@ -15,7 +15,7 @@ import { IPropsSideBar } from './types';
 
 const theme = unstable_createMuiStrictModeTheme();
 
-export const Sidebar: React.FC<IPropsSideBar> = ({
+export const Sidebar: React.FunctionComponent<IPropsSideBar> = ({
 	closeSideBar,
 	openSideBar,
 }: IPropsSideBar) => {

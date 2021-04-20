@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { LogOut as LogOutIcon } from 'react-feather';
 
-export const ToolBarButtons: React.FC = () => {
+export const ToolBarButtons: React.FunctionComponent = () => {
 	const history = useHistory();
 
 	function logOut() {

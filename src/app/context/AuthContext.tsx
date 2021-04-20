@@ -14,7 +14,9 @@ const initContextState: InitContextState = {
 
 export const AuthContext = createContext<InitContextState>(initContextState);
 
-const AuthContextProvider: React.FC<React.ReactNode> = ({ children }) => {
+const AuthContextProvider: React.FunctionComponent<React.ReactNode> = ({
+	children,
+}) => {
 	const [dataFromServer, setDataFromServer] = useState<IDefaultContextState>(
 		initContextState.dataFromServer
 	);
