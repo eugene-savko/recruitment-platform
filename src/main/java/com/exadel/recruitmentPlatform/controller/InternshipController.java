@@ -5,6 +5,8 @@ import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +24,7 @@ public class InternshipController {
         return ResponseEntity.ok(internshipService.get(id));
     }
 
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<InternshipResponseDto> save(@Valid @RequestBody InternshipDto internshipDto){
         return ResponseEntity.ok(internshipService.create(internshipDto));

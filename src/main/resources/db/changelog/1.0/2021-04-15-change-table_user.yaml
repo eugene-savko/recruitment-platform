@@ -1,0 +1,11 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 2021-04-15-change-table_user-modify-data-type_password
+      author: ZheltokMariya
+      changes:
+        - modifyDataType:
+            columnName: password
+            newDataType: varchar(70)
+            schemaName: public
+            tableName: user
