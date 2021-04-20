@@ -1,31 +1,26 @@
 import React from 'react';
-
-// Material-ui
 import { CssBaseline } from '@material-ui/core';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import AuthContextProvider from './context/AuthContext';
+import { AuthPage } from './pages/AuthPage';
+import { AdminPage } from './pages/AdminPage';
+import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
 
-// React-router
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-// Pages
-import { NotFoundPage } from './pages/NotFoundPage';
-
-import ROUTES from './routes';
-
-export const App: React.FunctionComponent = () => (
-	<React.Fragment>
-		<CssBaseline />
-		<BrowserRouter>
-			<Switch>
-				{ROUTES?.map((ROUTE) => (
-					<Route
-						key={ROUTE.path}
-						exact={ROUTE.exact}
-						path={ROUTE.path}
-						component={ROUTE.component}
-					/>
-				))}
-				<Route component={NotFoundPage} />
-			</Switch>
-		</BrowserRouter>
-	</React.Fragment>
-);
+export const App: React.FunctionComponent = () => {
+	return (
+		<React.Fragment>
+			<CssBaseline />
+			<BrowserRouter>
+				<AuthContextProvider>
+					<Switch>
+						<Route exact path="/" component={AuthPage} />
+						<PrivateRouteAuthAdminPage path="/admin">
+							<AdminPage />
+						</PrivateRouteAuthAdminPage>
+						<Redirect exact from="*" to="/" />
+					</Switch>
+				</AuthContextProvider>
+			</BrowserRouter>
+		</React.Fragment>
+	);
+};
