@@ -68,20 +68,12 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public List<InternshipResponseDto> listToDto(List<Internship> internshipList) {
-            System.err.println(internshipList);
         return internshipList.stream().map(internshipMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
     public List<InternshipResponseDto> getInternshipsBySpeciality(Long specialityId) {
-        Speciality speciality = specialityService.getSpecialityById(specialityId);
-        List<Internship> internshipsFiltered = new ArrayList<>();
-        internshipRepository.findAll().forEach(internship -> {
-            if (internship.getSpecialities().contains(speciality)) {
-                internshipsFiltered.add(internship);
-            };
-        });
-        return listToDto(internshipsFiltered);
+        return listToDto(internshipRepository.findInternshipsBySpecialityId(specialityId));
     }
 
     @Override
@@ -105,10 +97,9 @@ public class InternshipServiceImpl implements InternshipService {
     public void update(InternshipDto dto, Internship internship) {
         internship.setName(dto.getName());
         internship.setDescription(dto.getDescription());
-        internship.setDeadline(LocalDate.parse(dto.getDeadline()));
-        internship.setStartDate(LocalDate.parse(dto.getStartDate()));
-        internship.setEndDate(LocalDate.parse(dto.getEndDate()));
+        internship.setDeadline(dto.getDeadline());
+        internship.setStartDate(dto.getStartDate());
+        internship.setEndDate(dto.getEndDate());
         internship.setStatus(dto.getStatus());
     }
-
 }
