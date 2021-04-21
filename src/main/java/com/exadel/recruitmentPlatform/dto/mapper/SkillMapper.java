@@ -29,8 +29,8 @@ public class SkillMapper implements BaseMapper<Skill, SkillDto> {
         return skillDto;
     }
 
-    List<SkillDto> toDtos (List <Skill> skills){
-        SkillDto skillDto=new SkillDto();
+    List<SkillDto> toDtos(List<Skill> skills) {
+        SkillDto skillDto = new SkillDto();
         return skills.stream().map(this::toDto).collect(Collectors.toList());
     }
 

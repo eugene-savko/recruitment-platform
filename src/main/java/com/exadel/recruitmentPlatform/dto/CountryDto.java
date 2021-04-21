@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class CountryDto extends BaseDto {
 
-    @Size (min = 1, max = 50)
+    @Size(min = 1, max = 50)
     @NotBlank
     private String name;
 

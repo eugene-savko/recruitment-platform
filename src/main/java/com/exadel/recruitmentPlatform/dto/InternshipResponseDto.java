@@ -43,9 +43,9 @@ public class InternshipResponseDto extends BaseDto {
     private List<SpecialityDto> specialities;
 
     @NotBlank
-    private  List<CountryDto> countries;
+    private List<CountryDto> countries;
 
     @NotBlank
-    private  List<SkillDto> skills;
+    private List<SkillDto> skills;
 
 }

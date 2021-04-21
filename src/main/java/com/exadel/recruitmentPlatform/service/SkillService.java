@@ -10,6 +10,7 @@ import java.util.Set;
 public interface SkillService {
 
     List<Skill> getSkills(Set<Long> ids);
+
     Skill getSkillById(Long id);
 
 }

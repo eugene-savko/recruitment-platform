@@ -1,11 +1,15 @@
 package com.exadel.recruitmentPlatform.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -46,9 +50,7 @@ public class Internship extends BaseEntity {
 
     public void addSpecialities(List<Speciality> specialities) {
         this.specialities.addAll(specialities);
-        specialities.forEach(speciality -> {
-            speciality.getInternships().add(this);
-        });
+        specialities.forEach(speciality -> speciality.getInternships().add(this));
     }
 
     @ManyToMany()
@@ -65,9 +67,7 @@ public class Internship extends BaseEntity {
 
     public void addCountries (List <Country> countries){
         this.countries.addAll(countries);
-        countries.forEach(country -> { country.getInternships()
-                        .add(this);
-        });
+        countries.forEach(country -> country.getInternships().add(this));
     }
 
     public void addCountry (Country country){

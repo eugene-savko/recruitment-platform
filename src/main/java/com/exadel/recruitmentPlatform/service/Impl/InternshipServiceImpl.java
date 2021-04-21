@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,11 +42,9 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Override
     public InternshipResponseDto create(InternshipDto dto) {
-        System.err.println("Set specialities "+dto.getSpecialities());
         List<Speciality> specialities = specialityService.getSpecialties(dto.getSpecialities());
-        System.err.println("list specialities "+specialities);
-        List <Country> countries=countryService.getCountries(dto.getCountries());
-        List <Skill> skills=skillService.getSkills(dto.getSkills());
+        List<Country> countries = countryService.getCountries(dto.getCountries());
+        List<Skill> skills = skillService.getSkills(dto.getSkills());
         Internship internship = internshipMapper.toEntity(dto);
         internship.addSpecialities(specialities);
         internship.addSkills(skills);
@@ -77,13 +74,8 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     @Override
-    public List<InternshipResponseDto> getInternshipsByCountry(Long contryId) {
-        Country country=countryService.getCountryById(contryId);
-        List <Internship> internshipsFiltered= new ArrayList<>();
-        internshipRepository.findAll().forEach(internship -> {
-            if (internship.getCountries().contains(country))
-                internshipsFiltered.add(internship);});
-        return listToDto(internshipsFiltered);
+    public List<InternshipResponseDto> getInternshipsByCountry(Long countryId) {
+        return listToDto(internshipRepository.findInternshipsByCountryId(countryId));
     }
 
     public InternshipResponseDto update(InternshipDto dto) {
@@ -91,7 +83,8 @@ public class InternshipServiceImpl implements InternshipService {
                 .orElseThrow(() ->
                         new EntityNotFoundException("Internship with id=" + dto.getId() + " doesn't exist"));
         update(dto, internship);
-        return internshipMapper.toDto(internshipRepository.save(internship));
+        Internship savedInternship = internshipRepository.save(internship);
+        return internshipMapper.toDto(savedInternship);
     }
 
     public void update(InternshipDto dto, Internship internship) {
