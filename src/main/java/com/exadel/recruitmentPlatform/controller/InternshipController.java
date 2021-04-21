@@ -2,6 +2,8 @@ package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
+import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
+import com.exadel.recruitmentPlatform.exception.ResourceNotFoundException;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +22,17 @@ public class InternshipController {
     private final InternshipService internshipService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<InternshipResponseDto> getInternshipById(@PathVariable Long id){
-        return ResponseEntity.ok(internshipService.get(id));
+    public ResponseEntity<InternshipResponseDto> getInternshipById(@PathVariable Long id) throws EntityNotFoundException, ResourceNotFoundException {
+        try {
+            ResponseEntity<InternshipResponseDto> dto = ResponseEntity.ok(internshipService.get(id));
+            if (dto == null) {
+                throw new ResourceNotFoundException("Internship under id "+id+" not found!");
+            }
+            return dto;
+        }catch(EntityNotFoundException e) {
+            throw new EntityNotFoundException("Entity under id "+id+" not found");
+        }
+        /* return ResponseEntity.ok(internshipService.get(id));*/
     }
 
     @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})

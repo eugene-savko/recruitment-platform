@@ -1,0 +1,22 @@
+databaseChangeLog:
+- changeSet:
+    id: 2021-04-20-1-change-table_internship_request
+    author: vados.stradze
+    changes:
+      - modifyDataType:
+          columnName: speciality_id
+          newDataType: BIGINT
+          schemaName: public
+          tableName: internship_request
+- changeSet:
+      id: addForeignKeyConstraint-internship_request
+      author: vados.stradze
+      changes:
+          - addForeignKeyConstraint:
+                baseColumnNames: speciality_id
+                baseTableName: internship_request
+                baseTableSchemaName: public
+                constraintName: fk_internship_request_speciality
+                referencedColumnNames: id
+                referencedTableName: speciality
+                referencedTableSchemaName: public
