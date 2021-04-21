@@ -11,8 +11,8 @@ export const validation: IAuthValidation = {
 	password: {
 		required: 'Fill in the field',
 		minLength: {
-			value: 6,
-			message: 'Minimum length 6 characters',
+			value: 4,
+			message: 'Minimum length 4 characters',
 		},
 	},
 };

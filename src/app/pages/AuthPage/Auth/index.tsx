@@ -34,7 +34,7 @@ export const Auth: React.FunctionComponent = () => {
 		defaultValues,
 	});
 
-	const getInputsForm = (dataLogin: IFormInput) => {
+	const getInputsForm = async (dataLogin: IFormInput) => {
 		fetchRequestLogin(dataLogin);
 	};
 
@@ -63,6 +63,8 @@ export const Auth: React.FunctionComponent = () => {
 			</AuthWrapper>
 			<p>eve.holt@reqres.in</p>
 			<p>cityslicka</p>
+			<p>alice.blue@gmail.com</p>
+			<p>12345</p>
 		</React.Fragment>
 	);
 };
