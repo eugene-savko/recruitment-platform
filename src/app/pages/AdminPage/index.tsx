@@ -10,7 +10,7 @@ import {
 	AdminPageContentWrapper,
 	AdminPageRoot,
 } from './styled';
-import { Profile } from './components/Profile/Profile';
+import { Profile } from './components/Profile';
 
 export const AdminPage: React.FunctionComponent = () => {
 	const { path } = useRouteMatch();
