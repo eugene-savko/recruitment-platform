@@ -43,12 +43,7 @@ export const Auth: React.FunctionComponent = () => {
 			<AuthWrapper elevation={10}>
 				<AuthTitle>Sign In</AuthTitle>
 
-				<AuthForm
-					noValidate
-					onSubmit={() => {
-						handleSubmit(getInputsForm);
-					}}
-				>
+				<AuthForm noValidate onSubmit={handleSubmit(getInputsForm)}>
 					<InputEmail ref={register(validation.email)} />
 					{errors.email && (
 						<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
