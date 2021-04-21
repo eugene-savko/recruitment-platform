@@ -1,15 +1,11 @@
 package com.exadel.recruitmentPlatform.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -55,24 +51,21 @@ public class Internship extends BaseEntity {
         });
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "internship_skills",
+    @ManyToMany()
+    @JoinTable(name = "internship_skills",
             joinColumns = @JoinColumn(name = "internship_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     List<Skill> skills=new LinkedList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "internship_country",
+    @ManyToMany()
+    @JoinTable(name = "internship_country",
             joinColumns = @JoinColumn(name = "internship_id"),
             inverseJoinColumns = @JoinColumn(name = "country_id"))
     List<Country> countries=new LinkedList<>();
 
     public void addCountries (List <Country> countries){
         this.countries.addAll(countries);
-        countries.stream()
-                .forEach(country -> { country.getInternships()
+        countries.forEach(country -> { country.getInternships()
                         .add(this);
         });
     }
@@ -84,8 +77,7 @@ public class Internship extends BaseEntity {
 
     public void addSkills (List<Skill> skills){
         this.skills.addAll(skills);
-        skills.stream()
-                .forEach(skill -> skill.getInternships()
+        skills.forEach(skill -> skill.getInternships()
                         .add(this));
     }
 
@@ -93,5 +85,4 @@ public class Internship extends BaseEntity {
         this.skills.add(skill);
         skill.getInternships().add(this);
     }
-
 }

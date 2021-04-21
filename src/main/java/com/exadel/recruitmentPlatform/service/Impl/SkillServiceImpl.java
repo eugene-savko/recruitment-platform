@@ -27,38 +27,3 @@ public class SkillServiceImpl implements SkillService {
         return skillRepository.findById(id).get();
     }
 }
-
-/*
-    @Override
-    public SkillDto save(SkillDto skillDto) {
-        Skill skill= Optional.ofNullable(skillDto.getId())
-                .map(item->update(skillDto))
-                .orElseGet(()->create(skillDto));
-        return skillMapper.toDto(skill);
-    }
-
-    @Override
-    public SkillDto get(Long id) {
-        return skillRepository.findById(id).map(skillMapper::toDto)
-                .orElseThrow(() -> new EntityNotFoundException("Skill with id " + id + " doesn't find"));
-    }
-
-    private Skill update (SkillDto skillDto){
-        Skill skill=skillRepository.findById(skillDto.getId())
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Skill with id " + skillDto.getId() + " doesn't find"));
-        update(skillDto, skill);
-        return skillRepository.save(skill);
-    }
-
-    private Skill create (SkillDto skillDto){
-        Skill skill=skillMapper.toEntity(skillDto);
-        return skillRepository.save(skill);
-    }
-
-    private void update(SkillDto skillDto, Skill skill) {
-        skill.setName(skillDto.getName());
-        skill.setType(skillDto.getType());
-        skill.setSubtype(skillDto.getSubtype());
-    }
-*/

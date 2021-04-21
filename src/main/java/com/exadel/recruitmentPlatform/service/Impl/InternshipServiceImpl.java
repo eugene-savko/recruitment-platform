@@ -43,7 +43,9 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Override
     public InternshipResponseDto create(InternshipDto dto) {
+        System.err.println("Set specialities "+dto.getSpecialities());
         List<Speciality> specialities = specialityService.getSpecialties(dto.getSpecialities());
+        System.err.println("list specialities "+specialities);
         List <Country> countries=countryService.getCountries(dto.getCountries());
         List <Skill> skills=skillService.getSkills(dto.getSkills());
         Internship internship = internshipMapper.toEntity(dto);
@@ -66,6 +68,7 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public List<InternshipResponseDto> listToDto(List<Internship> internshipList) {
+            System.err.println(internshipList);
         return internshipList.stream().map(internshipMapper::toDto).collect(Collectors.toList());
     }
 

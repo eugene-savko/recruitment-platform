@@ -28,7 +28,7 @@ public class InternshipController {
         return ResponseEntity.ok(internshipService.get(id));
     }
 
-    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
+   // @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<InternshipResponseDto> save(@Valid @RequestBody InternshipDto internshipDto){
         return ResponseEntity.ok(internshipService.create(internshipDto));
@@ -49,7 +49,7 @@ public class InternshipController {
         return internshipService.getInternshipsByCountry(countryId);
     }
 
-    @PutMapping(path = "/{internshipId}",
+    @PutMapping(path = "/",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InternshipResponseDto> updateInternship(

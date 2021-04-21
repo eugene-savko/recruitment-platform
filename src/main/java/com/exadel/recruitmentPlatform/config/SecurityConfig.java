@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
@@ -28,6 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+/*
+    public static void main(String[] args) {
+        System.out.println(    new BCryptPasswordEncoder().encode("553612"));
+    }
+*/
+
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -39,11 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/internships").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().permitAll()
-                .and().logout().permitAll();
+                .csrf().disable();
+                //.authorizeRequests()
+                //.antMatchers(HttpMethod.GET, "/internships").permitAll()
+                //.anyRequest().permitAll()
+                //.and().formLogin().permitAll()
+                //.and().logout().permitAll();
     }
 }
