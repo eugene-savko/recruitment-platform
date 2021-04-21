@@ -11,6 +11,7 @@ export const ToolBarButtons: React.FunctionComponent = () => {
 
 	const logOut = () => {
 		setIsLogged?.(false);
+		localStorage.setItem('IsLoaded', 'false');
 		history.push('/');
 	};
 

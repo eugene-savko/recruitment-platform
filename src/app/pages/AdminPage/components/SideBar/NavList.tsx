@@ -14,6 +14,7 @@ export const NavList: React.FunctionComponent = () => {
 	const logOut = () => {
 		setIsLogged?.(false);
 		history.push('/');
+		localStorage.setItem('IsLoaded', 'false');
 	};
 	return (
 		<List>
