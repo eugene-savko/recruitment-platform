@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/internships")
+@RequestMapping("/api/internships")
 public class InternshipController {
 
     private final InternshipService internshipService;
@@ -30,7 +30,7 @@ public class InternshipController {
         return ResponseEntity.ok(internshipService.create(internshipDto));
     }
 
-    @GetMapping()
+    @GetMapping
     public List<InternshipResponseDto> getInternships(){
         return internshipService.getInternships();
     }
