@@ -22,7 +22,7 @@ import InputEmail from './InputEmail';
 import AuthTitle from './components/AuthTitle';
 
 const defaultValues: IDefaultValueInputForm = {
-	email: '',
+	username: '',
 	password: '',
 	checkbox: false,
 };
@@ -44,9 +44,9 @@ export const Auth: React.FunctionComponent = () => {
 				<AuthTitle>Sign In</AuthTitle>
 
 				<AuthForm noValidate onSubmit={handleSubmit(getInputsForm)}>
-					<InputEmail ref={register(validation.email)} />
-					{errors.email && (
-						<AuthErrorLabel>{errors.email.message}</AuthErrorLabel>
+					<InputEmail ref={register(validation.username)} />
+					{errors.username && (
+						<AuthErrorLabel>{errors.username.message}</AuthErrorLabel>
 					)}
 
 					<InputPassword ref={register(validation.password)} />

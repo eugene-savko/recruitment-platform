@@ -1,5 +1,5 @@
 interface IAuthValidation {
-	email: {
+	username: {
 		required: string;
 		pattern: {
 			value: RegExp;

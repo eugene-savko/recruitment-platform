@@ -1,5 +1,5 @@
 interface IFormInput {
-	email: string;
+	username: string;
 	password: string;
 	checkbox: boolean;
 }

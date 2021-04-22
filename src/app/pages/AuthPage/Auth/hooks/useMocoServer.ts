@@ -10,12 +10,20 @@ const useMocoServer = (): IUseMocoServer => {
 	const urlAPI = 'https://reqres.in/api/login';
 	const url = 'https://recruitment-platform.herokuapp.com/login';
 
-	const fetchRequestLogin = async ({ email, password }: IFormInput) => {
-		const postUserData = axios.post(urlAPI, {
-			email,
+	const fetchRequestLogin = async ({ username, password }: IFormInput) => {
+		const postUserData = axios.post(url, {
+			username,
 			password,
 		});
+		// const postUserData = axios.post(url, {
+		// 	email,
+		// 	password,
+		// });
+		console.log(postUserData);
+
 		const token = await postUserData;
+
+		console.log(token);
 
 		if (token.status) {
 			setIsLogged?.(true);

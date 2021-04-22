@@ -5,7 +5,7 @@ import { AuthInput } from './components';
 const InputEmail = forwardRef<HTMLInputElement>((props, ref) => (
 	<AuthInput
 		type="email"
-		name="email"
+		name="username"
 		label="Email"
 		placeholder="Enter email"
 		defaultValue=""

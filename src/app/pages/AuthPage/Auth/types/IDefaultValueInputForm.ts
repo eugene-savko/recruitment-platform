@@ -1,5 +1,5 @@
 interface IDefaultValueInputForm {
-	email: string;
+	username: string;
 	password: string;
 	checkbox: boolean;
 }
