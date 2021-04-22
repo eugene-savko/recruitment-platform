@@ -4,8 +4,8 @@ import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +38,19 @@ public class InternshipController {
     @GetMapping(value = "/specialities/{specialityId}")
     public List<InternshipResponseDto> getInternshipsBySpeciality(@PathVariable Long specialityId){
         return internshipService.getInternshipsBySpeciality(specialityId);
+    }
+
+    @GetMapping(value = "/countries/{countryId}")
+    public List<InternshipResponseDto> getInternshipsByCountry(@PathVariable Long countryId) {
+        return internshipService.getInternshipsByCountry(countryId);
+    }
+
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<InternshipResponseDto> updateInternship(
+            @Valid @RequestBody InternshipDto dto) {
+        return ResponseEntity.ok(internshipService.update(dto));
     }
 
 }

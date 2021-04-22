@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 public class InternshipMapper implements Mapper<Internship, InternshipDto, InternshipResponseDto> {
 
     private final SpecialityMapper specialityMapper;
+    private final SkillMapper skillMapper;
+    private final CountryMapper countryMapper;
 
     @Override
     public Internship toEntity(InternshipDto dto) {
@@ -36,6 +38,8 @@ public class InternshipMapper implements Mapper<Internship, InternshipDto, Inter
         internshipDto.setEndDate(internship.getEndDate());
         internshipDto.setStatus(internship.getStatus());
         internshipDto.setSpecialities(specialityMapper.toDtos(internship.getSpecialities()));
+        internshipDto.setCountries(countryMapper.toDtos(internship.getCountries()));
+        internshipDto.setSkills(skillMapper.toDtos(internship.getSkills()));
         return internshipDto;
     }
 }

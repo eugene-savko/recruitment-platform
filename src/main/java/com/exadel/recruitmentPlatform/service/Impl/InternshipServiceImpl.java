@@ -3,16 +3,21 @@ package com.exadel.recruitmentPlatform.service.Impl;
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipMapper;
+import com.exadel.recruitmentPlatform.entity.Country;
 import com.exadel.recruitmentPlatform.entity.Internship;
+import com.exadel.recruitmentPlatform.entity.Skill;
 import com.exadel.recruitmentPlatform.entity.Speciality;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRepository;
+import com.exadel.recruitmentPlatform.service.CountryService;
 import com.exadel.recruitmentPlatform.service.InternshipService;
+import com.exadel.recruitmentPlatform.service.SkillService;
 import com.exadel.recruitmentPlatform.service.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,11 +34,21 @@ public class InternshipServiceImpl implements InternshipService {
     @Autowired
     private SpecialityService specialityService;
 
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private SkillService skillService;
+
     @Override
     public InternshipResponseDto create(InternshipDto dto) {
         List<Speciality> specialities = specialityService.getSpecialties(dto.getSpecialities());
+        List<Country> countries = countryService.getCountries(dto.getCountries());
+        List<Skill> skills = skillService.getSkills(dto.getSkills());
         Internship internship = internshipMapper.toEntity(dto);
         internship.addSpecialities(specialities);
+        internship.addSkills(skills);
+        internship.addCountries(countries);
         Internship saved = internshipRepository.save(internship);
         return internshipMapper.toDto(saved);
     }
@@ -58,11 +73,18 @@ public class InternshipServiceImpl implements InternshipService {
         return listToDto(internshipRepository.findInternshipsBySpecialityId(specialityId));
     }
 
-    private Internship update(InternshipDto dto) {
-        Internship internship = internshipRepository.findById(dto.getId()).orElseThrow(() -> new EntityNotFoundException("Internship with id=" + dto.getId() + " doesn't exist"));
+    @Override
+    public List<InternshipResponseDto> getInternshipsByCountry(Long countryId) {
+        return listToDto(internshipRepository.findInternshipsByCountryId(countryId));
+    }
+
+    public InternshipResponseDto update(InternshipDto dto) {
+        Internship internship = internshipRepository.findById(dto.getId())
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Internship with id=" + dto.getId() + " doesn't exist"));
         update(dto, internship);
-        Internship saved = internshipRepository.save(internship);
-        return saved;
+        Internship savedInternship = internshipRepository.save(internship);
+        return internshipMapper.toDto(savedInternship);
     }
 
     public void update(InternshipDto dto, Internship internship) {

@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: 2021-03-29-create-table_skills.yaml
+      id: 2021-04-16-create-table_country
       author: aliaksandrKryvulko
       changes:
         - createTable:
-            tableName: skills
+            tableName: country
             columns:
               - column:
                   name: id
@@ -15,16 +15,6 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: name
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: type
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: subtype
                   type: varchar(50)
                   constraints:
                     nullable: false

@@ -50,9 +50,39 @@ public class Internship extends BaseEntity {
 
     public void addSpecialities(List<Speciality> specialities) {
         this.specialities.addAll(specialities);
-        specialities.forEach(speciality -> {
-            speciality.getInternships().add(this);
-        });
+        specialities.forEach(speciality -> speciality.getInternships().add(this));
     }
 
+    @ManyToMany()
+    @JoinTable(name = "internship_skills",
+            joinColumns = @JoinColumn(name = "internship_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    List<Skill> skills=new LinkedList<>();
+
+    @ManyToMany()
+    @JoinTable(name = "internship_country",
+            joinColumns = @JoinColumn(name = "internship_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id"))
+    List<Country> countries=new LinkedList<>();
+
+    public void addCountries (List <Country> countries){
+        this.countries.addAll(countries);
+        countries.forEach(country -> country.getInternships().add(this));
+    }
+
+    public void addCountry (Country country){
+        this.countries.add(country);
+        country.getInternships().add(this);
+    }
+
+    public void addSkills (List<Skill> skills){
+        this.skills.addAll(skills);
+        skills.forEach(skill -> skill.getInternships()
+                        .add(this));
+    }
+
+    public void addSkill (Skill skill){
+        this.skills.add(skill);
+        skill.getInternships().add(this);
+    }
 }
