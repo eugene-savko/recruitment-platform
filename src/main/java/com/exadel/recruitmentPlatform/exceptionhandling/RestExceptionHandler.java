@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class RestExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
-    public
-    ResponseEntity<ExceptionResponse> handleResourceNotFound(final EntityNotFoundException exception,
-                                             final HttpServletRequest request) {
+    public ResponseEntity<ExceptionResponse> handleResourceNotFound(EntityNotFoundException exception, HttpServletRequest request) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse();
         exceptionResponse.setErrorMessage(exception.getMessage());
@@ -23,8 +21,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionResponse> handleException(final Exception exception,
-                                                            final HttpServletRequest request) {
+    public ResponseEntity<ExceptionResponse> handleException(Exception exception, HttpServletRequest request) {
         ExceptionResponse error = new ExceptionResponse();
         error.setErrorMessage(exception.getMessage());
         error.callerURL(request.getRequestURI());

@@ -10,7 +10,7 @@ public class ExceptionResponse {
         return errorMessage;
     }
 
-    public void setErrorMessage(final String errorMessage) {
+    public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
@@ -18,7 +18,7 @@ public class ExceptionResponse {
         return requestedURI;
     }
 
-    public void callerURL(final String requestedURI) {
+    public void callerURL(String requestedURI) {
         this.requestedURI = requestedURI;
     }
 }
