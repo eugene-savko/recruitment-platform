@@ -61,8 +61,6 @@ export const Auth: React.FunctionComponent = () => {
 
 				{isLogged && <Redirect exact from="/" to="/admin" />}
 			</AuthWrapper>
-			<p>eve.holt@reqres.in</p>
-			<p>cityslicka</p>
 			<p>alice.blue@gmail.com</p>
 			<p>12345</p>
 		</React.Fragment>
