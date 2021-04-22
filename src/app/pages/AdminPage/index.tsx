@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, useRouteMatch, Route } from 'react-router-dom';
+import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Sidebar } from './components/SideBar';
 import { Candidate } from './components/Candidate/Candidate';
@@ -30,10 +30,12 @@ export const AdminPage: React.FunctionComponent = () => {
 							<AdminPageContentWrapper>
 								<AdminPageContent>
 									<Switch>
-										<Route path={`${path}/candidate`} component={Candidate} />
+										<Redirect exact from={`${path}`} to={`${path}/dashboard`} />
 										<Route path={`${path}/dashboard`} component={DashBoard} />
+										<Route path={`${path}/candidate`} component={Candidate} />
 										<Route path={`${path}/profile`} component={Profile} />
-										<Route path={`${path}/*`} component={NotFoundPage} />
+										<Redirect exact from={`${path}/*`} to="not-found" />
+										<Route path="not-found" component={NotFoundPage} />
 									</Switch>
 								</AdminPageContent>
 							</AdminPageContentWrapper>
@@ -41,6 +43,7 @@ export const AdminPage: React.FunctionComponent = () => {
 					);
 				}}
 			/>
+			<Route path="not-found" component={NotFoundPage} />
 		</React.Fragment>
 	);
 };
