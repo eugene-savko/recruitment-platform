@@ -1,11 +1,8 @@
-import { Training } from 'app/pages/HomePage/Trainings';
-
 import React from 'react';
-import FormCV from './FormCV';
+import { SendForm } from './SendForm';
 
 export const HomePage: React.FunctionComponent = () => (
 	<React.Fragment>
-		<Training />
-		<FormCV />
+		<SendForm />
 	</React.Fragment>
 );
