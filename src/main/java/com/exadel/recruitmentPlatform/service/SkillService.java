@@ -11,6 +11,6 @@ public interface SkillService {
 
     List<Skill> getSkills(Set<Long> ids);
 
-    Skill getSkillById(Long id);
+    SkillDto getSkillById(Long id);
 
 }
