@@ -8,13 +8,8 @@ type activeIdType = null | number;
 
 export const FAQsPage: React.FunctionComponent = () => {
 	const [activeId, setActiveId] = useState<activeIdType>(null);
-	const handleActiveIdSet = (id: number) => {
-		if (id !== activeId) {
-			setActiveId(id);
-		} else {
-			setActiveId(null);
-		}
-	};
+	const handleActiveIdSet = (id: number) =>
+		id !== activeId ? setActiveId(id) : setActiveId(null);
 
 	return (
 		<React.Fragment>
