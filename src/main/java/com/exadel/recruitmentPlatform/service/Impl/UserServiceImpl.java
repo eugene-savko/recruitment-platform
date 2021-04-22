@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private User update(final UserDto userDto) {
-        User user = userRepository.findById(userDto.getId()).orElseThrow();
+        User user = userRepository.findById(userDto.getId())
+                .orElseThrow(() -> new EntityNotFoundException("User with id=" + userDto.getId() + " doesn't exist"));
         userMapper.update(userDto, user);
         User saved = userRepository.save(user);
         return saved;
