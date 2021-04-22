@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { AttachButton } from './AttachButton';
 import { Input, Note } from '../components';
 import { Error } from '../TraineeForm/components';
 import {
 	SelectedFile,
-	Wrapper,
+	ButtonFileLoaderWrapper,
 	Label,
 	FileSizeInfoWrapper,
 	CloseSelectedFile,
@@ -13,38 +13,46 @@ import {
 
 import { IFileLoader } from '../types';
 
-// 5MB = 5242880Bytes
-const sizeFile = 5242880;
+// 5MB = 5242880Bytes (binary)
+const maxSizeFile = 5242880;
 
 export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 	register,
 	errors,
+	setFileName,
+	fileName,
 }) => {
-	const [fileName, setFileName] = useState('');
-
+	// to force the value of the selected file
 	function closeHandleClick() {
 		const input = document.getElementById('attach-file') as HTMLInputElement;
 		input.value = '';
 		setFileName('');
 	}
+
+	// force the value of the selected file, if you close the selected file and add the same file again
 	function handleInputClick(e: React.MouseEvent<HTMLInputElement>) {
 		e.currentTarget.value = '';
+		setFileName('');
 	}
 
 	function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-		const file = e.target.files?.[0];
-		if (file) {
-			setFileName(file.name);
-		} else {
-			setFileName('');
+		if (e.target.files) {
+			const { name }: { name: string } = e.target.files?.[0];
+			if (name) {
+				setFileName(name);
+			} else {
+				setFileName('');
+			}
 		}
 	}
 
+	// File size validation
 	function checkSize(fileList: FileList): boolean {
-		const allowedSize = fileList[0].size < sizeFile;
+		const { name, size } = fileList[0];
+		const allowedSize = size < maxSizeFile;
 
 		if (allowedSize) {
-			setFileName(fileList[0].name);
+			setFileName(name);
 			return true;
 		}
 
@@ -52,8 +60,10 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 		return false;
 	}
 
+	// File extension validation
 	function checkExtension(fileList: FileList): boolean {
-		const nameOfTheFile = fileList?.[0]?.name;
+		const { name } = fileList[0];
+		const nameOfTheFile = name;
 		const allowedExtensions = ['pdf', 'doc', 'docx'];
 		const fileRegex = /^(?<nameFile>.+)\.(?<extension>.+)$/;
 		const fileGroupsReg = fileRegex.exec(nameOfTheFile);
@@ -61,7 +71,7 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 		const allowedExtension = allowedExtensions.includes(extension);
 
 		if (allowedExtension) {
-			setFileName(fileList[0].name);
+			setFileName(name);
 			return true;
 		}
 
@@ -70,7 +80,7 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 	}
 
 	return (
-		<Wrapper>
+		<ButtonFileLoaderWrapper>
 			<FileSizeInfoWrapper>
 				<Label htmlFor="attach-file">
 					<AttachButton />
@@ -78,6 +88,7 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 						type="file"
 						id="attach-file"
 						name="fileLoader"
+						accept=".pdf,.doc,.docx"
 						ref={register({
 							required: 'Field is required',
 							validate: {
@@ -100,6 +111,6 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 				{fileName ? <CloseSelectedFile onClick={closeHandleClick} /> : ''}
 			</SelectedFile>
 			{errors.fileLoader && <Error>{errors.fileLoader.message}</Error>}
-		</Wrapper>
+		</ButtonFileLoaderWrapper>
 	);
 };

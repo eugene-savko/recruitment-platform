@@ -1,4 +1,4 @@
-import Wrapper from './Wrapper';
+import ButtonFileLoaderWrapper from './ButtonFileLoaderWrapper';
 import Button from './Button';
 import SelectedFile from './SelectedFile';
 import AttachButtonWrapper from './AttachButtonWrapper';
@@ -7,7 +7,7 @@ import FileSizeInfoWrapper from './FileSizeInfoWrapper';
 import CloseSelectedFile from './CloseSelectedFile';
 
 export {
-	Wrapper,
+	ButtonFileLoaderWrapper,
 	Button,
 	SelectedFile,
 	AttachButtonWrapper,

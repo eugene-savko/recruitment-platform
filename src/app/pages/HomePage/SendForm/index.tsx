@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IFormFields } from './types';
 
@@ -15,6 +15,8 @@ import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
 
 export const SendForm: React.FunctionComponent = () => {
+	const [fileName, setFileName] = useState('');
+
 	const {
 		register,
 		handleSubmit,
@@ -44,8 +46,7 @@ export const SendForm: React.FunctionComponent = () => {
 		const objectDto = {
 			specialityId: '1',
 			englishLevel,
-			cv:
-				'https://drive.google.com/file/d/1nUKSLwq5zh_GhVKQg6o1FalLrG2Bwuvc/view?usp=sharing',
+			cv: 'this is a link to CV',
 			internshipId: '1',
 			userDto: {
 				firstName,
@@ -57,7 +58,7 @@ export const SendForm: React.FunctionComponent = () => {
 				otherInformation: textArea,
 			},
 		};
-		console.log(JSON.stringify(objectDto, null, '\t'));
+
 		const url = 'https://recruitment-platform.herokuapp.com/internship-request';
 
 		try {
@@ -67,14 +68,14 @@ export const SendForm: React.FunctionComponent = () => {
 				mode: 'cors',
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8',
-					Accept: 'application/json',
 				},
 			});
-			const json = await response;
-			console.log('ответ:', json);
+			const json = await response.json();
+			console.log('Response:', json);
 			reset();
-		} catch (error) {
-			console.error('Ошибка:', error);
+			setFileName('');
+		} catch (exception) {
+			console.error('Exception:', exception);
 		}
 	};
 
@@ -89,7 +90,12 @@ export const SendForm: React.FunctionComponent = () => {
 					errorMessage={errors}
 				/>
 				<Note size={12}>* Fields marked with * are required.</Note>
-				<FileLoader register={register} errors={errors} />
+				<FileLoader
+					register={register}
+					errors={errors}
+					setFileName={setFileName}
+					fileName={fileName}
+				/>
 				<Agreements register={register} errors={errors} />
 				<Submit>Submit</Submit>
 			</Form>
