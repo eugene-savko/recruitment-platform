@@ -11,6 +11,8 @@ import {
 	AdminPageRoot,
 } from './styled';
 import { Profile } from './components/Profile/Profile';
+import { ScheduleTechSpecialist } from './components/ScheduleTechSpecialist';
+import { ScheduleRecruiter } from './components/ScheduleRecruiter';
 
 export const AdminPage: React.FunctionComponent = () => {
 	const { path } = useRouteMatch();
@@ -34,6 +36,14 @@ export const AdminPage: React.FunctionComponent = () => {
 										<Route path={`${path}/dashboard`} component={DashBoard} />
 										<Route path={`${path}/candidate`} component={Candidate} />
 										<Route path={`${path}/profile`} component={Profile} />
+										<Route
+											path={`${path}/schedule-recruiter`}
+											component={ScheduleRecruiter}
+										/>
+										<Route
+											path={`${path}/schedule-techspecialist`}
+											component={ScheduleTechSpecialist}
+										/>
 										<Redirect exact from={`${path}/*`} to="not-found" />
 										<Route path="not-found" component={NotFoundPage} />
 									</Switch>

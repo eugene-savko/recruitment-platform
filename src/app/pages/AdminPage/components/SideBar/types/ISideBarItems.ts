@@ -1,8 +1,9 @@
-import { Icon } from 'react-feather';
+import { SvgIconTypeMap } from '@material-ui/core';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 
 interface ISideBarItems {
 	href: string;
-	icon: Icon;
+	icon: OverridableComponent<SvgIconTypeMap>;
 	title: string;
 }
 

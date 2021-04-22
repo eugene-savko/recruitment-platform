@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Box, Hidden, IconButton } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import { LogOut as LogOutIcon } from 'react-feather';
 import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
 
 export const ToolBarButtons: React.FunctionComponent = () => {
@@ -18,7 +18,7 @@ export const ToolBarButtons: React.FunctionComponent = () => {
 		<Hidden only={['xs', 'sm']}>
 			<Box style={{ marginLeft: 'auto' }}>
 				<IconButton color="inherit" onClick={logOut}>
-					<LogOutIcon />
+					<ExitToAppIcon />
 				</IconButton>
 			</Box>
 		</Hidden>

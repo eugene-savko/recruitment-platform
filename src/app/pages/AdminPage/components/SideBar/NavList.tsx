@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { List, ListItem } from '@material-ui/core';
-import { LogOut as LogOutIcon } from 'react-feather';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
 import { items } from './helpers/items';
@@ -27,7 +27,7 @@ export const NavList: React.FunctionComponent = () => {
 			))}
 			<ListItem button onClick={logOut}>
 				<SideBarListItemIcon>
-					<LogOutIcon />
+					<ExitToAppIcon />
 				</SideBarListItemIcon>
 				<SideBarListItemText primary="Logout" />
 			</ListItem>
