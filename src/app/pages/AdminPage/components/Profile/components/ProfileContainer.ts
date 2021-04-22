@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
 
 const ProfileContainer = styled(Paper)`
+	position: relative;
+
 	display: flex;
 	flex-direction: row;
 

@@ -4,6 +4,7 @@ import React from 'react';
 import {
 	AdminsFields,
 	CandidateInfo,
+	CloseCross,
 	InterviewInfo,
 	ProfileContainer,
 	SidebarInfo,
@@ -13,10 +14,13 @@ import {
 import { RecruiterField } from './RecruiterField';
 import { TechField } from './TechField';
 
+import Cross from './assets/cross.png';
+
 export const Profile: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<ProfileContainer>
+				<CloseCross src={Cross} />
 				<SidebarInfo>
 					<CandidateInfo />
 					<InterviewInfo />

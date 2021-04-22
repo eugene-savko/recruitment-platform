@@ -3,6 +3,7 @@ import SidebarInfo from './SidebarInfo';
 import AdminsFields from './AdminsFields';
 import CandidateInfo from './CandidateInfo';
 import InterviewInfo from './InterviewInfo';
+import CloseCross from './CloseCross';
 
 export {
 	ProfileContainer,
@@ -10,4 +11,5 @@ export {
 	AdminsFields,
 	CandidateInfo,
 	InterviewInfo,
+	CloseCross,
 };

@@ -1,5 +1,5 @@
-import React, { ReactFragment } from 'react';
+import React from 'react';
 
 export const CandidateInfo: React.FunctionComponent = () => {
-	return <ReactFragment />;
+	return <React.Fragment />;
 };
