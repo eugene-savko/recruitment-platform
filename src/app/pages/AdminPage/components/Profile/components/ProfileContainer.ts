@@ -1,11 +1,16 @@
 import styled from 'styled-components';
+import Paper from '@material-ui/core/Paper';
 
-const ProfileContainer = styled.div`
+const ProfileContainer = styled(Paper)`
+	display: flex;
+	flex-direction: row;
+
 	width: 100%;
 	height: calc(100vh - 11vh);
+
+	padding: 10px;
+
 	background: #fffafa;
-	box-shadow: 4px 4px 15px rgb(0 0 0 / 25%);
-	border-radius: 5px;
 `;
 
 export default ProfileContainer;
