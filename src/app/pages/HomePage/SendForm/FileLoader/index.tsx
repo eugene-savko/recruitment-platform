@@ -32,7 +32,6 @@ export const FileLoader: React.FunctionComponent<IFileLoader> = ({
 	// force the value of the selected file, if you close the selected file and add the same file again
 	function handleInputClick(e: React.MouseEvent<HTMLInputElement>) {
 		e.currentTarget.value = '';
-		setFileName('');
 	}
 
 	function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {

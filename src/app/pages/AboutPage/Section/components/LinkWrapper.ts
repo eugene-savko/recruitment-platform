@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-type LinkWrapperProps = {
-	linkUrl: string;
-};
-
 export const LinkWrapper = styled.a`
 	display: inline-block;
 	padding-top: 5px;
