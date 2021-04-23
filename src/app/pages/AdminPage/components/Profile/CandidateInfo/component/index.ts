@@ -1,3 +1,5 @@
 import ContainerInfo from './ContainerInfo';
+import ListItemTextCustom from './ListItemTextCustom';
+import ListItemIconCustom from './ListItemIconCustom';
 
-export { ContainerInfo };
+export { ContainerInfo, ListItemTextCustom, ListItemIconCustom };

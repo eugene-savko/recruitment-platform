@@ -7,6 +7,8 @@ const CandidateInfo = styled.div`
 	background: #ebe5e5;
 
 	border-radius: 5px;
+
+	overflow: auto;
 `;
 
 export default CandidateInfo;
