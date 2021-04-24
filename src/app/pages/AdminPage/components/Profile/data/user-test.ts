@@ -11,6 +11,7 @@ const user: IUserInfo = {
 	country: 'USA',
 	city: 'LA',
 	phone: '+92321-12-121-33',
+	otherInformation: 'bla-bla-bla))))',
 };
 
 export { user };

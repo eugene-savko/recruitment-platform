@@ -9,6 +9,7 @@ interface IUserInfo {
 	country: string;
 	city: string;
 	phone: string;
+	otherInformation: string;
 }
 
 export default IUserInfo;

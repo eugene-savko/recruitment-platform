@@ -1,8 +1,8 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useState } from 'react';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import PhoneAndroidSharpIcon from '@material-ui/icons/PhoneAndroidSharp';
 import LocationCitySharpIcon from '@material-ui/icons/LocationCitySharp';
 import RoomSharpIcon from '@material-ui/icons/RoomSharp';
@@ -21,12 +21,16 @@ import {
 
 // types
 import IUserInfo from '../types/IUserInfo';
+import { MoreInfoModal } from './MoreInfoModal';
 
 interface IInfo {
 	info: IUserInfo;
 }
 
 export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
+	const [isShown, setIsShown] = useState<boolean>(false);
+	const toggle = () => setIsShown(!isShown);
+
 	return (
 		<React.Fragment>
 			<ContainerInfo>
@@ -96,10 +100,16 @@ export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 						<ListItemTextCustom>{info.cvLink}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
-						<ListItemTextCustom>about</ListItemTextCustom>
+						<button onClick={toggle}>OtherInformation</button>
 					</ListItem>
 				</List>
 			</ContainerInfo>
+			<MoreInfoModal
+				isShow={isShown}
+				hide={toggle}
+				headerText="OtherInformation:"
+				modalContent={info.otherInformation}
+			/>
 		</React.Fragment>
 	);
 };
