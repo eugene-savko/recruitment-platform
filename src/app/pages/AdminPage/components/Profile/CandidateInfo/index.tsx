@@ -3,6 +3,16 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import PhoneAndroidSharpIcon from '@material-ui/icons/PhoneAndroidSharp';
+import LocationCitySharpIcon from '@material-ui/icons/LocationCitySharp';
+import RoomSharpIcon from '@material-ui/icons/RoomSharp';
+import AccountBoxSharpIcon from '@material-ui/icons/AccountBoxSharp';
+import ComputerSharpIcon from '@material-ui/icons/ComputerSharp';
+import EmailSharpIcon from '@material-ui/icons/EmailSharp';
+import DescriptionSharpIcon from '@material-ui/icons/DescriptionSharp';
+import BusinessCenterSharpIcon from '@material-ui/icons/BusinessCenterSharp';
+import TranslateSharpIcon from '@material-ui/icons/TranslateSharp';
+
 import {
 	ContainerInfo,
 	ListItemTextCustom,
@@ -23,7 +33,7 @@ export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 				<List>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
 						<ListItemTextCustom>
 							{info.firstName} {info.lastName}
@@ -31,65 +41,61 @@ export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<EmailSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.email}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<ComputerSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.primarySkill}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<BusinessCenterSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.internship}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<TranslateSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.englishLevel}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<RoomSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.country}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<LocationCitySharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.city}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<PhoneAndroidSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.phone}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
 						<ListItemIconCustom>
-							<FiberManualRecordIcon />
+							<DescriptionSharpIcon />
 						</ListItemIconCustom>
 
 						<ListItemTextCustom>{info.cvLink}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
-						<ListItemIconCustom>
-							<FiberManualRecordIcon />
-						</ListItemIconCustom>
-
 						<ListItemTextCustom>about</ListItemTextCustom>
 					</ListItem>
 				</List>

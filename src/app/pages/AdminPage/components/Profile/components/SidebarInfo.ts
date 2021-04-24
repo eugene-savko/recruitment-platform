@@ -4,7 +4,7 @@ const SidebarInfo = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	flex-basis: 20%;
+	flex-basis: 25%;
 
 	width: 100%;
 
