@@ -67,20 +67,7 @@
 			"required": {
 				"some": [ "nesting", "id"  ]
 			}
-		}],
-		"camelcase": "off",
-		"@typescript-eslint/naming-convention": [
-			"error",
-			{
-				"selector": "default",
-				"format": ["camelCase", "snake_case", "UPPER_CASE","PascalCase"]
-			}
-		],
-		"react/jsx-props-no-spreading": ["error", {
-      "html": "ignore",
-      "custom": "ignore",
-      "exceptions": [""]
-    }]
+		}]
   },
   "settings": {
     "import/resolver": {
