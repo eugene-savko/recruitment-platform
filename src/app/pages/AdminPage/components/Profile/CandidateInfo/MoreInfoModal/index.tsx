@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { CloseCross } from '../../components';
+
+// components
+import CloseCross from '../../CloseCross';
 
 import {
 	Wrapper,
@@ -11,9 +13,6 @@ import {
 	Backdrop,
 } from './components';
 
-// image
-import Cross from '../../assets/cross.png';
-
 interface IModalProps {
 	isShow: boolean;
 	hide: () => void;
@@ -21,7 +20,7 @@ interface IModalProps {
 	headerText?: string;
 }
 
-export const MoreInfoModal: React.FunctionComponent<IModalProps> = ({
+const MoreInfoModal: React.FunctionComponent<IModalProps> = ({
 	isShow,
 	hide,
 	modalContent,
@@ -58,7 +57,7 @@ export const MoreInfoModal: React.FunctionComponent<IModalProps> = ({
 				<StyledModal>
 					<Header>
 						<HeaderText>{headerText}</HeaderText>
-						<CloseCross src={Cross} onClick={hide} />
+						<CloseCross close={hide} />
 					</Header>
 					<Content>{modalContent}</Content>
 				</StyledModal>
@@ -68,3 +67,5 @@ export const MoreInfoModal: React.FunctionComponent<IModalProps> = ({
 
 	return isShow ? ReactDOM.createPortal(modal, document.body) : null;
 };
+
+export default MoreInfoModal;

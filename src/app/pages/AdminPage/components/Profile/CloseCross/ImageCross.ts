@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CloseCross = styled.img`
+const ImageCross = styled.img`
 	position: absolute;
 	top: 2px;
 	right: 2px;
@@ -20,4 +20,4 @@ const CloseCross = styled.img`
 	}
 `;
 
-export default CloseCross;
+export default ImageCross;

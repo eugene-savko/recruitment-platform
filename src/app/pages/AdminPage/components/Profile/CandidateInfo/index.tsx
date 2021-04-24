@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 
+// material-ui
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import PhoneAndroidSharpIcon from '@material-ui/icons/PhoneAndroidSharp';
@@ -13,21 +14,25 @@ import DescriptionSharpIcon from '@material-ui/icons/DescriptionSharp';
 import BusinessCenterSharpIcon from '@material-ui/icons/BusinessCenterSharp';
 import TranslateSharpIcon from '@material-ui/icons/TranslateSharp';
 
+// components
+import MoreInfoModal from './MoreInfoModal';
+
+// style
 import {
 	ContainerInfo,
 	ListItemTextCustom,
 	ListItemIconCustom,
+	ButtonClose,
 } from './component';
 
 // types
 import IUserInfo from '../types/IUserInfo';
-import { MoreInfoModal } from './MoreInfoModal';
 
 interface IInfo {
 	info: IUserInfo;
 }
 
-export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
+const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 	const [isShown, setIsShown] = useState<boolean>(false);
 	const toggle = () => setIsShown(!isShown);
 
@@ -100,7 +105,9 @@ export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 						<ListItemTextCustom>{info.cvLink}</ListItemTextCustom>
 					</ListItem>
 					<ListItem>
-						<button onClick={toggle}>OtherInformation</button>
+						<ButtonClose variant="contained" onClick={toggle}>
+							OtherInformation
+						</ButtonClose>
 					</ListItem>
 				</List>
 			</ContainerInfo>
@@ -113,3 +120,5 @@ export const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 		</React.Fragment>
 	);
 };
+
+export default CandidateInfo;

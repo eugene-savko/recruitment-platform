@@ -6,7 +6,7 @@ import {
 	Header,
 } from '../RecruiterField/components';
 
-export const TechField: React.FunctionComponent = () => {
+const TechField: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<Container>
@@ -17,3 +17,5 @@ export const TechField: React.FunctionComponent = () => {
 		</React.Fragment>
 	);
 };
+
+export default TechField;
