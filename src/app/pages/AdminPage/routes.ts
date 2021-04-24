@@ -5,6 +5,7 @@ import { DashBoard } from './components/DashBoard/DashBoard';
 import { Profile } from './components/Profile/Profile';
 import { ScheduleRecruiter } from './components/ScheduleRecruiter/index';
 import { NotFoundPage } from './components/NotFound/index';
+import { CourseEditor } from './components/CourseЕditor';
 
 export const routesAdmin: Array<IRoute> = [
 	{
@@ -31,6 +32,11 @@ export const routesAdmin: Array<IRoute> = [
 		path: '/schedule-techspecialist',
 		exact: false,
 		component: ScheduleTechSpecialist,
+	},
+	{
+		path: '/course-editor',
+		exact: false,
+		component: CourseEditor,
 	},
 	{
 		path: '/*',

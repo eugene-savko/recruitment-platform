@@ -1,8 +1,4 @@
-// import {
-// 	BarChart as BarChartIcon,
-// 	Users as UsersIcon,
-// 	User as UserIcon,
-// } from 'react-feather';
+import EditIcon from '@material-ui/icons/Edit';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import TodayIcon from '@material-ui/icons/Today';
 import PeopleIcon from '@material-ui/icons/People';
@@ -34,5 +30,10 @@ export const items = [
 		href: '/schedule-techspecialist',
 		icon: DateRangeIcon,
 		title: 'Schedule techspecialist',
+	},
+	{
+		href: '/course-editor',
+		icon: EditIcon,
+		title: 'Course Editor',
 	},
 ];
