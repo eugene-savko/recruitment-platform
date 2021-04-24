@@ -1,11 +1,11 @@
 import IRoute from 'app/types/IRoute';
-import { ScheduleTechSpecialist } from './components/ScheduleTechSpecialist/index';
-import { Candidate } from './components/Candidate/Candidate';
-import { DashBoard } from './components/DashBoard/DashBoard';
-import { Profile } from './components/Profile/Profile';
-import { ScheduleRecruiter } from './components/ScheduleRecruiter/index';
-import { NotFoundPage } from './components/NotFound/index';
-import { CourseEditor } from './components/CourseЕditor';
+import { ScheduleTechSpecialist } from './ScheduleTechSpecialist/index';
+import { Candidate } from './Candidate/Candidate';
+import { DashBoard } from './DashBoard/DashBoard';
+import { Profile } from './Profile/Profile';
+import { ScheduleRecruiter } from './ScheduleRecruiter/index';
+import { NotFoundPage } from './NotFound/index';
+import { CourseEditor } from './CourseЕditor';
 
 export const routesAdmin: Array<IRoute> = [
 	{

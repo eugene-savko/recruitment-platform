@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Header } from './components/Header';
-import { Sidebar } from './components/SideBar';
+import { Header } from './Header';
+import { Sidebar } from './SideBar';
 import {
 	AdminPageContent,
 	AdminPageContentWrapper,
 	AdminPageRoot,
-} from './styled';
+} from './components';
 
 import routesAdmin from './routes';
 
