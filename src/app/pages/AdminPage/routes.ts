@@ -2,7 +2,7 @@ import IRoute from 'app/types/IRoute';
 import { ScheduleTechSpecialist } from './ScheduleTechSpecialist/index';
 import { Candidate } from './Candidate/Candidate';
 import { DashBoard } from './DashBoard/DashBoard';
-import { Profile } from './Profile/Profile';
+import { Profile } from './Profile';
 import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseЕditor';
