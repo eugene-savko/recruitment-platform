@@ -1,16 +1,11 @@
 import React, { useContext } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import {
-	IDefaultValueInputForm,
-	IFormInput,
-} from 'app/pages/AuthPage/Auth/types';
+import { IFormInput } from 'app/pages/AuthPage/Auth/types';
 
-import { AuthLoggedContext } from 'app/context/AuthLoggedContext';
-
-import useMocoServer from './hooks/useMocoServer';
+import { authContext } from 'app/context/AuthLoggedContext';
 
 import { validation } from './helpers/validation';
 
@@ -21,21 +16,22 @@ import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import AuthTitle from './components/AuthTitle';
 
-const defaultValues: IDefaultValueInputForm = {
+const defaultValues: IFormInput = {
 	username: '',
 	password: '',
 	checkbox: false,
 };
 
 export const Auth: React.FunctionComponent = () => {
-	const { isLogged } = useContext(AuthLoggedContext);
-	const { fetchRequestLogin } = useMocoServer();
+	const history = useHistory();
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
 	});
+	const { setAuthData } = useContext(authContext);
 
 	const getInputsForm = async (dataLogin: IFormInput) => {
-		fetchRequestLogin(dataLogin);
+		setAuthData?.(dataLogin);
+		history.replace('/');
 	};
 
 	return (
@@ -58,8 +54,6 @@ export const Auth: React.FunctionComponent = () => {
 
 					<ButtonSubmint />
 				</AuthForm>
-
-				{isLogged && <Redirect exact from="/" to="/admin" />}
 			</AuthWrapper>
 			<p>alice.blue@gmail.com</p>
 			<p>12345</p>

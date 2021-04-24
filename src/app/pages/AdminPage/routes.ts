@@ -1,17 +1,41 @@
 import IRoute from 'app/types/IRoute';
+import { ScheduleTechSpecialist } from './components/ScheduleTechSpecialist/index';
 import { Candidate } from './components/Candidate/Candidate';
 import { DashBoard } from './components/DashBoard/DashBoard';
+import { Profile } from './components/Profile/Profile';
+import { ScheduleRecruiter } from './components/ScheduleRecruiter/index';
+import { NotFoundPage } from './components/NotFound/index';
 
-const routesAdmin: Array<IRoute> = [
+export const routesAdmin: Array<IRoute> = [
 	{
-		path: '/admin/candidate',
+		path: '/dashboard',
+		exact: false,
+		component: DashBoard,
+	},
+	{
+		path: '/candidate',
 		exact: false,
 		component: Candidate,
 	},
 	{
-		path: '/admin/dashboard',
+		path: '/profile',
 		exact: false,
-		component: DashBoard,
+		component: Profile,
+	},
+	{
+		path: '/schedule-recruiter',
+		exact: false,
+		component: ScheduleRecruiter,
+	},
+	{
+		path: '/schedule-techspecialist',
+		exact: false,
+		component: ScheduleTechSpecialist,
+	},
+	{
+		path: '/*',
+		exact: false,
+		component: NotFoundPage,
 	},
 ];
 

@@ -11,27 +11,27 @@ import PersonIcon from '@material-ui/icons/Person';
 
 export const items = [
 	{
-		href: '/admin/dashboard',
+		href: '/dashboard',
 		icon: DashboardIcon,
 		title: 'DashBoard',
 	},
 	{
-		href: '/admin/candidate',
+		href: '/candidate',
 		icon: PersonIcon,
 		title: 'Candidate',
 	},
 	{
-		href: '/admin/profile',
+		href: '/profile',
 		icon: PeopleIcon,
 		title: 'Profile',
 	},
 	{
-		href: '/admin/schedule-recruiter',
+		href: '/schedule-recruiter',
 		icon: TodayIcon,
 		title: 'Schedule recruiter',
 	},
 	{
-		href: '/admin/schedule-techspecialist',
+		href: '/schedule-techspecialist',
 		icon: DateRangeIcon,
 		title: 'Schedule techspecialist',
 	},

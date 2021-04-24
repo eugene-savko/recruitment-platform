@@ -1,17 +1,14 @@
 /* eslint-disable camelcase */
-import React, { useContext } from 'react';
+import React from 'react';
 import { Avatar, Typography } from '@material-ui/core';
-import { AuthContext } from 'app/context/AuthContext';
 import { SideBarAvatarWrapper } from './components';
+import { user } from './helpers/user';
 
 export const UserPhoto: React.FunctionComponent = () => {
-	const {
-		dataFromServer: { avatar, first_name, last_name, email },
-	} = useContext(AuthContext);
 	return (
 		<SideBarAvatarWrapper>
 			<Avatar
-				src={avatar}
+				src={user.avatar}
 				style={{
 					cursor: 'pointer',
 					width: 64,
@@ -19,10 +16,10 @@ export const UserPhoto: React.FunctionComponent = () => {
 				}}
 			/>
 			<Typography color="textPrimary" variant="h5">
-				{`${first_name} ${last_name}`}
+				Jon Doe
 			</Typography>
 			<Typography color="textSecondary" variant="body2">
-				{email}
+				JonDoe@gmail.com
 			</Typography>
 		</SideBarAvatarWrapper>
 	);

@@ -8,7 +8,7 @@ export const ToolBarButtons: React.FunctionComponent = () => {
 	const history = useHistory();
 
 	function logOut() {
-		history.push('/');
+		history.push('/login');
 	}
 
 	return (

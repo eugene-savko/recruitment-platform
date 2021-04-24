@@ -1,7 +1,6 @@
 import React from 'react';
 import { CssBaseline } from '@material-ui/core';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import AuthContextProvider from './context/AuthContext';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
@@ -11,15 +10,12 @@ export const App: React.FunctionComponent = () => {
 		<React.Fragment>
 			<CssBaseline />
 			<BrowserRouter>
-				<AuthContextProvider>
-					<Switch>
-						<Route exact path="/" component={AuthPage} />
-						<PrivateRouteAuthAdminPage path="/admin">
-							<AdminPage />
-						</PrivateRouteAuthAdminPage>
-						<Redirect exact from="*" to="/" />
-					</Switch>
-				</AuthContextProvider>
+				<Switch>
+					<Route path="/login" component={AuthPage} />
+					<PrivateRouteAuthAdminPage path="/">
+						<AdminPage />
+					</PrivateRouteAuthAdminPage>
+				</Switch>
 			</BrowserRouter>
 		</React.Fragment>
 	);

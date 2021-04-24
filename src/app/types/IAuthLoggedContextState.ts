@@ -1,5 +1,5 @@
 interface IAuthLoggedContextState {
-	isLogged: boolean;
-	setIsLogged?: React.Dispatch<React.SetStateAction<boolean>>;
+	auth: { loading: boolean; data: any };
+	setAuthData?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default IAuthLoggedContextState;
