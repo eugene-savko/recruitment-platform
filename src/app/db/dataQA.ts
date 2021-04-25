@@ -1,17 +1,23 @@
 import { IInitStateMain } from 'app/types';
 
 export const dataQA: IInitStateMain = {
-	specialityId: '2',
-	englishLevel: 'B2',
+	firstName: 'Ann',
+	lastName: 'Green',
 	cv: 'www.somesite.com',
-	internshipId: '1',
-	userDto: {
-		firstName: 'Joe',
-		lastName: 'Pink',
-		email: 'joepink@gmail.com',
-		country: 'Belarus',
-		city: 'Minsk',
-		phone: '6',
-		otherInformation: 'some information',
+	englishLevel: 'B1',
+	email: 'ann@gmail.com',
+	internship: 'JavaScriptAndJava',
+	primarySkill: 'JavaScript',
+	country: 'Spain',
+	city: 'Minsk',
+	phone: '',
+	otherInformation: 'Other info',
+	statusCandidate: {
+		noInterview: true,
+		interviewRecruiter: false,
+		finishedRecruiter: false,
+		interviewTechSpecialist: false,
+		finishedInterviewTechSpecialist: false,
+		approwedAdmin: false,
 	},
 };

@@ -11,7 +11,7 @@ export const dataJavaScripAndJava: IInitStateMain = {
 		email: 'joepink@gmail.com',
 		country: 'Belarus',
 		city: 'Minsk',
-		phone: '6',
+		phone: '333333333333333',
 		otherInformation: 'some information',
 	},
 };

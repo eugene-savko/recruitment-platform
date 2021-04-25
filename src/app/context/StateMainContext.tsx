@@ -28,7 +28,6 @@ const StateMainContextProvider: React.FC<React.ReactNode> = ({ children }) => {
 	const [dataFromServer, setDataFromServer] = useState<IInitStateMain>(
 		initStateMainContext.dataFromServer
 	);
-
 	return (
 		<StateMainContext.Provider value={{ dataFromServer, setDataFromServer }}>
 			{children}

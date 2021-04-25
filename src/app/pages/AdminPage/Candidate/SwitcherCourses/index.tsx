@@ -5,13 +5,17 @@ import { dataQA } from 'app/db/dataQA';
 import { dataJavaScripAndJava } from 'app/db/dataJavaScripAndJava';
 import { StateMainContext } from 'app/context/StateMainContext';
 import { IDataCommonCourses } from 'app/types';
+import {
+	unstable_createMuiStrictModeTheme,
+	ThemeProvider,
+} from '@material-ui/core/styles';
 import SwitcherFormControl from './components/SwitcherFormControl';
 import SwitcherFormControlWrapper from './components/SwitcherFormControlWrapper';
 import SwitcherSelect from './components/SwitcherSelect';
 
 export const SwitcherCourses: React.FunctionComponent = () => {
+	const theme = unstable_createMuiStrictModeTheme();
 	const [course, setCourse] = useState('');
-
 	const { setDataFromServer } = useContext(StateMainContext);
 
 	const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
@@ -24,18 +28,20 @@ export const SwitcherCourses: React.FunctionComponent = () => {
 
 	return (
 		<React.Fragment>
-			<SwitcherFormControlWrapper>
-				<SwitcherFormControl variant="outlined">
-					<SwitcherSelect value={course} onChange={handleChange} displayEmpty>
-						<MenuItem value="">Chose course</MenuItem>
-						{dataCommonCourses.map((a: IDataCommonCourses) => (
-							<MenuItem key={a.nameCourses} value={a.idCourse}>
-								{a.nameCourses}
-							</MenuItem>
-						))}
-					</SwitcherSelect>
-				</SwitcherFormControl>
-			</SwitcherFormControlWrapper>
+			<ThemeProvider theme={theme}>
+				<SwitcherFormControlWrapper>
+					<SwitcherFormControl variant="outlined">
+						<SwitcherSelect value={course} onChange={handleChange} displayEmpty>
+							<MenuItem value="">Chose course</MenuItem>
+							{dataCommonCourses.map((a: IDataCommonCourses) => (
+								<MenuItem key={a.nameCourses} value={a.idCourse}>
+									{a.nameCourses}
+								</MenuItem>
+							))}
+						</SwitcherSelect>
+					</SwitcherFormControl>
+				</SwitcherFormControlWrapper>
+			</ThemeProvider>
 		</React.Fragment>
 	);
 };
