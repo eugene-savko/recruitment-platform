@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @AllArgsConstructor
@@ -33,4 +34,8 @@ public class UserController {
         return ResponseEntity.ok(userService.save(userDto));
     }
 
+    @GetMapping("/current")
+    public UserDto getAuthenticatedUser(Principal principal) {
+        return userService.getAuthenticatedUser(principal);
+    }
 }

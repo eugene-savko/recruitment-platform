@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -50,4 +51,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User with id=" + id + " doesn't exist"));
     }
 
+    public UserDto getAuthenticatedUser(Principal principal){
+        return userMapper.toDto(userRepository.findByEmail(principal.getName()));
+    }
 }
