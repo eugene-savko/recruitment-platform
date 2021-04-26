@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HeaderText = styled.div`
-	align-self: center;
+	margin: 0 auto;
 	color: #6b77a8;
 `;
 

@@ -10,7 +10,7 @@ const ProfileContainer = styled(Paper)`
 	width: 100%;
 	height: calc(100vh - 12vh);
 
-	padding: 10px;
+	padding: 15px;
 
 	background: #fffafa;
 `;

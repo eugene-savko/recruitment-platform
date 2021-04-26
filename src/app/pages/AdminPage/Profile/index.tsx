@@ -15,7 +15,8 @@ import TechField from './TechField';
 import CandidateInfo from './CandidateInfo';
 
 // data
-import { user } from './data/user-test';
+import user from './data/user-test';
+// import interviewInfo from './data/interviewInfo-test';
 
 export const Profile: React.FunctionComponent = () => {
 	const handlerClose = () => {
