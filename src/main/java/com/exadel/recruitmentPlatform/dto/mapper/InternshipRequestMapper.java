@@ -21,6 +21,7 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest,Int
         request.setCv(dto.getCv());
         request.setEnglishLevel(dto.getEnglishLevel());
         request.setSpecialityId(dto.getSpecialityId());
+        request.setCountryId(dto.getCountryId());
         return request;
     }
 
@@ -34,6 +35,7 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest,Int
         internshipRequestDto.setSpecialityId(entity.getSpecialityId());
         internshipRequestDto.setUserDto(entity.getUser() != null ? userMapper.toDto(entity.getUser()) : null);
         internshipRequestDto.setCv(entity.getCv());
+        internshipRequestDto.setCountryId(entity.getCountryId());
         return internshipRequestDto;
     }
 }

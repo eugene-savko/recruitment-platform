@@ -30,8 +30,6 @@ public class UserDto extends BaseDto {
 
     private String skype;
 
-    private String country;
-
     private String city;
 
     private String photo;
