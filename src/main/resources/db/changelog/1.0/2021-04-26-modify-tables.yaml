@@ -1,0 +1,54 @@
+databaseChangeLog:
+    - changeSet:
+          id: 2021-04-26-modify-tables-1
+          author: alex_over
+          changes:
+                - dropColumn:
+                    tableName: user
+                    columns:
+                      - column:
+                          name: country
+    - changeSet:
+        id: 2021-04-26-modify-tables-2
+        author: alex_over
+        changes:
+          - addColumn:
+              tableName: internship_request
+              columns:
+                - column:
+                    name: country_id
+                    type: BIGINT
+                    constraints:
+                      nullable: true
+    - changeSet:
+        id: 2021-04-26-modify-tables-3
+        author: alex_over
+        changes:
+          - addForeignKeyConstraint:
+              baseColumnNames: country_id
+              baseTableName: internship_request
+              baseTableSchemaName: public
+              constraintName: fk_internship_request_country
+              referencedColumnNames: id
+              referencedTableName: internship_request
+              referencedTableSchemaName: public
+    - changeSet:
+        id: 2021-04-26-modify-tables-4
+        author: alex_over
+        changes:
+          - dropColumn:
+              tableName: user
+              columns:
+                - column:
+                    name: city
+    - changeSet:
+        id: 2021-04-26-modify-tables-5
+        author: alex_over
+        changes:
+          - modifyDataType:
+              columnName: cv
+              newDataType: varchar(250)
+              schemaName: public
+              tableName: internship_request
+
+

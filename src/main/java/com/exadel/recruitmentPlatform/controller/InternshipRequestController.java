@@ -1,8 +1,6 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
-import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
-import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

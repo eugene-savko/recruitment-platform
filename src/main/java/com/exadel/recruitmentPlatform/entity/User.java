@@ -35,9 +35,6 @@ public class User extends BaseEntity {
     @Column(name = "skype")
     private String skype;
 
-    @Column(name = "country")
-    private String country;
-
     @Column(name = "city")
     private String city;
 

@@ -16,5 +16,6 @@ public class InternshipRequestDto extends BaseDto {
     private String englishLevel;
     private String cv;
     private Long internshipId;
+    private Long countryId;
 
 }
