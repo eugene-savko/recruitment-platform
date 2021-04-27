@@ -27,6 +27,11 @@ const Submit = styled.button`
 		background-color: #40bfef;
 		transition: 0.2s ease-in-out;
 	}
+
+	@media (max-width: 1047px) {
+		margin: 35px 0 35px 50%;
+		transform: translate(-50%, 0);
+	}
 `;
 
 export default Submit;

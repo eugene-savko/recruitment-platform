@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Error = styled.p`
 	margin: 5px 0 0 0;
-	color: #ee001e;
+	color: red;
 
 	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;

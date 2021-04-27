@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const TextArea = styled.textarea`
 	padding: 15px;
 	margin: 12px 23px;
-
-	width: 986px;
+	width: 100%;
+	max-width: 986px;
 	height: 120px;
 
 	font-family: Open Sans, sans-serif;
@@ -20,8 +20,13 @@ const TextArea = styled.textarea`
 
 	resize: none;
 	outline: none;
+
 	&:focus {
 		border: 1px solid #4e4e4e;
+	}
+
+	@media (max-width: 1047px) {
+		max-width: 470px;
 	}
 `;
 

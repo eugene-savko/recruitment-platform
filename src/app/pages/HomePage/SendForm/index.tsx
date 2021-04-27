@@ -9,12 +9,16 @@ import { Form, Note, Title, FormWrapper, Submit } from './components';
 import { TraineeForm } from './TraineeForm';
 import { FileLoader } from './FileLoader';
 import { Agreements } from './Agreements';
+import { FieldTimeCall } from './TraineeForm/FieldTimeCall';
 
 // data
 import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
+import { listTimeForCall } from './data/listTimeForCall';
 
 export const SendForm: React.FunctionComponent = () => {
+	const [stateCountry, setCountry] = useState('');
+	const [stateCity, setCity] = useState('');
 	const [fileName, setFileName] = useState('');
 
 	const {
@@ -33,6 +37,7 @@ export const SendForm: React.FunctionComponent = () => {
 		city,
 		phone,
 		textArea,
+		timeForCall,
 	}: {
 		englishLevel: string;
 		firstName: string;
@@ -42,12 +47,14 @@ export const SendForm: React.FunctionComponent = () => {
 		city: string;
 		phone: string;
 		textArea: string;
+		timeForCall: string;
 	}) => {
 		const objectDto = {
 			specialityId: '1',
 			englishLevel,
 			cv: 'this is a link to CV',
 			internshipId: '1',
+			timeForCall,
 			userDto: {
 				firstName,
 				lastName,
@@ -72,8 +79,14 @@ export const SendForm: React.FunctionComponent = () => {
 			});
 			const json = await response.json();
 			console.log('Response:', json);
+
+			// reset form
 			reset();
+
+			// reset fields fileLoader, select country and city
 			setFileName('');
+			setCountry('');
+			setCity('');
 		} catch (exception) {
 			console.error('Exception:', exception);
 		}
@@ -88,8 +101,13 @@ export const SendForm: React.FunctionComponent = () => {
 					englishLevel={listEnglishLevel}
 					primarySkill={listPrimarySkill}
 					errorMessage={errors}
+					setCountry={setCountry}
+					setCity={setCity}
+					country={stateCountry}
+					city={stateCity}
 				/>
 				<Note size={12}>* Fields marked with * are required.</Note>
+				<FieldTimeCall register={register} timeForCall={listTimeForCall} />
 				<FileLoader
 					register={register}
 					errors={errors}
