@@ -27,6 +27,41 @@ import {
 import { schedulerData } from './helpers/schedulerData';
 import { owners } from './helpers/owners';
 
+const messages = {
+	moreInformationLabel: '',
+};
+
+const TextEditor = (props: any) => {
+	// eslint-disable-next-line react/destructuring-assignment
+	if (props.type === 'multilineTextEditor') {
+		return null;
+	}
+	return <AppointmentForm.TextEditor {...props} />;
+};
+
+const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
+	const onCustomFieldChange = (nextValue: any) => {
+		onFieldChange({ customField: nextValue });
+	};
+
+	return (
+		<AppointmentForm.BasicLayout
+			appointmentData={appointmentData}
+			onFieldChange={onFieldChange}
+			{...restProps}
+		>
+			<AppointmentForm.Label text="Custom Field" type="titleLabel" />
+			<AppointmentForm.TextEditor
+				value={appointmentData.customField}
+				onValueChange={onCustomFieldChange}
+				placeholder="Custom field"
+				readOnly={false}
+				type="titleTextEditor"
+			/>
+		</AppointmentForm.BasicLayout>
+	);
+};
+
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	// eslint-disable-next-line prefer-const
 	let [data, setData] = useState(schedulerData);
@@ -89,7 +124,11 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<DateNavigator />
 				<TodayButton />
 				<AppointmentTooltip showCloseButton showOpenButton />
-				<AppointmentForm />
+				<AppointmentForm
+					basicLayoutComponent={BasicLayout}
+					textEditorComponent={TextEditor}
+					messages={messages}
+				/>
 
 				<GroupingPanel />
 				<DragDropProvider />
