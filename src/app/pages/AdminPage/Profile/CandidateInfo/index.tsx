@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 
-// material-ui
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-
 // components
 import MoreInfoModal from './MoreInfoModal';
 
 // style
 import {
-	ContainerInfo,
-	ListItemTextCustom,
+	List,
+	ListItem,
 	ListItemIconCustom,
-	ButtonClose,
-} from './component/index';
+	ListItemTextCustom,
+} from '../components';
+
+import { ContainerInfo, ButtonClose } from './components';
+
 import {
 	PhoneAndroidSharpIcon,
 	LocationCitySharpIcon,
@@ -24,16 +23,16 @@ import {
 	DescriptionSharpIcon,
 	BusinessCenterSharpIcon,
 	TranslateSharpIcon,
-} from './component/IconsMaterial';
+} from '../components/IconsMaterial';
 
 // types
 import IUserInfo from '../types/IUserInfo';
 
-interface IInfo {
+interface IInfoProps {
 	info: IUserInfo;
 }
 
-const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
+const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 	const [isShown, setIsShown] = useState<boolean>(false);
 	const toggle = () => setIsShown(!isShown);
 
@@ -45,65 +44,63 @@ const CandidateInfo: React.FunctionComponent<IInfo> = ({ info }) => {
 						<ListItemIconCustom>
 							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>
-							{info.firstName} {info.lastName}
-						</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.firstName} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<ComputerSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.specialityId}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.specialityId} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<BusinessCenterSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.internshipId}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.internshipId} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<PhoneAndroidSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.phone}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.phone} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<RoomSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.country}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.country} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<LocationCitySharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.city}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.city} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<EmailSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.email}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.email} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<TranslateSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.englishLevel}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.englishLevel} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<DescriptionSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom>{info.cv}</ListItemTextCustom>
+						<ListItemTextCustom secondary={info.cv} />
 					</ListItem>
 				</List>
 

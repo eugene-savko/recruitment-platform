@@ -6,9 +6,7 @@ const AdminsFields = styled.div`
 	flex-basis: 80%;
 	flex-direction: column;
 	justify-content: space-between;
-
 	width: 100%;
-
 	margin: 10px;
 `;
 

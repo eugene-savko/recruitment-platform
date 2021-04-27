@@ -7,6 +7,7 @@ import EmailSharpIcon from '@material-ui/icons/EmailSharp';
 import DescriptionSharpIcon from '@material-ui/icons/DescriptionSharp';
 import BusinessCenterSharpIcon from '@material-ui/icons/BusinessCenterSharp';
 import TranslateSharpIcon from '@material-ui/icons/TranslateSharp';
+import EventIcon from '@material-ui/icons/Event';
 
 export {
 	PhoneAndroidSharpIcon,
@@ -18,4 +19,5 @@ export {
 	DescriptionSharpIcon,
 	BusinessCenterSharpIcon,
 	TranslateSharpIcon,
+	EventIcon,
 };

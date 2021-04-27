@@ -1,22 +1,18 @@
 import React from 'react';
 
 // style
-import {
-	AdminsFields,
-	InterviewInfo,
-	ProfileContainer,
-	SidebarInfo,
-} from './components';
+import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
 
 // components
 import CloseCross from './CloseCross';
 import RecruiterField from './RecruiterField';
 import TechField from './TechField';
 import CandidateInfo from './CandidateInfo';
+import InterviewInfo from './InterviewInfo';
 
 // data
 import user from './data/user-test';
-// import interviewInfo from './data/interviewInfo-test';
+import interviewInfo from './data/interviewInfo-test';
 
 export const Profile: React.FunctionComponent = () => {
 	const handlerClose = () => {
@@ -30,7 +26,7 @@ export const Profile: React.FunctionComponent = () => {
 				<CloseCross close={handlerClose} />
 				<SidebarInfo>
 					<CandidateInfo info={user} />
-					<InterviewInfo />
+					<InterviewInfo info={interviewInfo} />
 				</SidebarInfo>
 				<AdminsFields>
 					<RecruiterField />
