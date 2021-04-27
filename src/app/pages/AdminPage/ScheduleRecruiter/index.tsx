@@ -6,6 +6,8 @@ import {
 	GroupingState,
 	IntegratedGrouping,
 	IntegratedEditing,
+	AppointmentModel,
+	ChangeSet,
 } from '@devexpress/dx-react-scheduler';
 import {
 	Scheduler,
@@ -26,12 +28,15 @@ import {
 
 import { schedulerData } from './helpers/schedulerData';
 import { owners } from './helpers/owners';
+import { databaseCandidates } from './helpers/databaseCandidates';
 
 const messages = {
 	moreInformationLabel: '',
 };
 
-const TextEditor = (props: any) => {
+const TextEditor:
+	| React.ComponentType<AppointmentForm.TextEditorProps>
+	| undefined = (props) => {
 	// eslint-disable-next-line react/destructuring-assignment
 	if (props.type === 'multilineTextEditor') {
 		return null;
@@ -39,10 +44,13 @@ const TextEditor = (props: any) => {
 	return <AppointmentForm.TextEditor {...props} />;
 };
 
-const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
+const BasicLayout:
+	| React.ComponentType<AppointmentForm.BasicLayoutProps>
+	| undefined = ({ onFieldChange, appointmentData, ...restProps }) => {
 	const onCustomFieldChange = (nextValue: string | number): void => {
 		onFieldChange({ customField: nextValue });
 	};
+
 	const onCustomValueChange = (nextValue: string | number): void => {
 		onFieldChange({ title: nextValue });
 	};
@@ -53,6 +61,13 @@ const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
 			onFieldChange={onFieldChange}
 			{...restProps}
 		>
+			<AppointmentForm.Select
+				value="non text"
+				onValueChange={onCustomValueChange}
+				type="outlinedSelect"
+				availableOptions={databaseCandidates}
+			/>
+
 			<AppointmentForm.Label text="Custom Field" type="titleLabel" />
 			<AppointmentForm.TextEditor
 				value={appointmentData.customField}
@@ -61,34 +76,27 @@ const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
 				readOnly={false}
 				type="titleTextEditor"
 			/>
-			<AppointmentForm.Select
-				value="non text"
-				onValueChange={onCustomValueChange}
-				type="outlinedSelect"
-				availableOptions={[
-					{ text: 'select 1', id: 'Petia' },
-					{ text: 'select 2', id: 'Fedia' },
-				]}
-			/>
 		</AppointmentForm.BasicLayout>
 	);
 };
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	// eslint-disable-next-line prefer-const
-	let [data, setData] = useState(schedulerData);
-	console.log(data);
+	let [data, setData] = useState<Array<AppointmentModel>>(schedulerData);
+
 	const currentDate = new Date(2021, 5, 25, 9, 35);
 
-	const commitChanges = ({ added, changed, deleted }: any) => {
+	const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
 		if (added) {
-			const startingAddedId =
-				data.length > 0 ? data[data.length - 1].id + 1 : 0;
+			const idNum: number = data[data.length - 1].id as number;
+			const one = 1;
+			const startingAddedId = data.length > 0 ? idNum + one : 0;
+
 			data = [...data, { id: startingAddedId, ...added }];
 			setData(data);
 		}
 		if (changed) {
-			data = data.map((appointment) =>
+			data = data.map((appointment: AppointmentModel) =>
 				changed[appointment.id]
 					? { ...appointment, ...changed[appointment.id] }
 					: appointment
@@ -110,7 +118,6 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 		},
 	];
 	const grouping = [{ resourceName: 'members' }];
-	console.log();
 
 	return (
 		<Paper>
