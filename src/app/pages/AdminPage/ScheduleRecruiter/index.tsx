@@ -40,8 +40,11 @@ const TextEditor = (props: any) => {
 };
 
 const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
-	const onCustomFieldChange = (nextValue: any) => {
+	const onCustomFieldChange = (nextValue: string | number): void => {
 		onFieldChange({ customField: nextValue });
+	};
+	const onCustomValueChange = (nextValue: string | number): void => {
+		onFieldChange({ title: nextValue });
 	};
 
 	return (
@@ -58,6 +61,15 @@ const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
 				readOnly={false}
 				type="titleTextEditor"
 			/>
+			<AppointmentForm.Select
+				value="non text"
+				onValueChange={onCustomValueChange}
+				type="outlinedSelect"
+				availableOptions={[
+					{ text: 'select 1', id: 'Petia' },
+					{ text: 'select 2', id: 'Fedia' },
+				]}
+			/>
 		</AppointmentForm.BasicLayout>
 	);
 };
@@ -65,7 +77,7 @@ const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	// eslint-disable-next-line prefer-const
 	let [data, setData] = useState(schedulerData);
-
+	console.log(data);
 	const currentDate = new Date(2021, 5, 25, 9, 35);
 
 	const commitChanges = ({ added, changed, deleted }: any) => {
@@ -98,6 +110,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 		},
 	];
 	const grouping = [{ resourceName: 'members' }];
+	console.log();
 
 	return (
 		<Paper>
