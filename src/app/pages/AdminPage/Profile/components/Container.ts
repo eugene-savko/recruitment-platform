@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	height: 49%;
-	background: #ebe5e5;
+	background: #fff;
+	border: 1px solid #6b77a8;
 	border-radius: 5px;
+	overflow: auto;
 `;
 
 export default Container;

@@ -13,6 +13,7 @@ import InterviewInfo from './InterviewInfo';
 // data
 import user from './data/user-test';
 import interviewInfo from './data/interviewInfo-test';
+import listEnglishLevel from './data/listEnglishLevel';
 
 export const Profile: React.FunctionComponent = () => {
 	const handlerClose = () => {
@@ -27,7 +28,7 @@ export const Profile: React.FunctionComponent = () => {
 					<InterviewInfo info={interviewInfo} />
 				</SidebarInfo>
 				<AdminsFields>
-					<RecruiterField />
+					<RecruiterField englishLevel={listEnglishLevel} />
 					<TechField />
 				</AdminsFields>
 			</ProfileContainer>

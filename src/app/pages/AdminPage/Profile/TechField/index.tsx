@@ -1,18 +1,33 @@
 import React from 'react';
+
+// style
 import {
 	Container,
 	ContainerBth,
+	FeedbackForm,
+	Title,
+	ButtonMaterial,
 	FeedbackField,
-	Header,
-} from '../RecruiterField/components';
+} from '../components';
 
 const TechField: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<Container>
-				<Header>Tech field</Header>
-				<FeedbackField />
-				<ContainerBth />
+				<Title>Tech field</Title>
+				<FeedbackForm>
+					<FeedbackField
+						id="feedback-tech"
+						label="Feedback"
+						multiline
+						placeholder="Leave you feedback..."
+						variant="outlined"
+					/>
+					<ContainerBth>
+						<ButtonMaterial variant="contained">Schedule Tech</ButtonMaterial>
+						<ButtonMaterial variant="contained">Send feedback</ButtonMaterial>
+					</ContainerBth>
+				</FeedbackForm>
 			</Container>
 		</React.Fragment>
 	);

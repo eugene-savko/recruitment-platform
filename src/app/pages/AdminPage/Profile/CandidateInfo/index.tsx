@@ -9,9 +9,10 @@ import {
 	ListItem,
 	ListItemIconCustom,
 	ListItemTextCustom,
+	ButtonMaterial,
 } from '../components';
 
-import { ContainerInfo, ButtonClose } from './components';
+import { ContainerInfo } from './components';
 
 import {
 	PhoneAndroidSharpIcon,
@@ -104,9 +105,9 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 					</ListItem>
 				</List>
 
-				<ButtonClose variant="contained" onClick={toggle}>
+				<ButtonMaterial variant="contained" onClick={toggle}>
 					OtherInformation
-				</ButtonClose>
+				</ButtonMaterial>
 			</ContainerInfo>
 			<MoreInfoModal
 				isShow={isShown}
