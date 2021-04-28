@@ -16,8 +16,6 @@ import interviewInfo from './data/interviewInfo-test';
 
 export const Profile: React.FunctionComponent = () => {
 	const handlerClose = () => {
-		// eslint-disable-next-line no-console
-		console.log('close');
 	};
 
 	return (
