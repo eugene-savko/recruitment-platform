@@ -3,15 +3,16 @@ package com.exadel.recruitmentPlatform.service.Impl;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 
+import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -51,7 +52,8 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User with id=" + id + " doesn't exist"));
     }
 
-    public UserDto getAuthenticatedUser(Principal principal){
-        return userMapper.toDto(userRepository.findByEmail(principal.getName()));
+    public UserDto getAuthenticatedUser(Authentication authentication){
+        AuthenticatedUser user = (AuthenticatedUser)authentication.getPrincipal();
+        return findById(user.getId());
     }
 }
