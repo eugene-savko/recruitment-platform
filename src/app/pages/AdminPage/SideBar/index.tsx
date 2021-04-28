@@ -39,6 +39,7 @@ export const Sidebar: React.FunctionComponent<IPropsSideBar> = ({
 						PaperProps={{
 							style: {
 								width: 256,
+								zIndex: 2,
 							},
 						}}
 					>
@@ -55,6 +56,7 @@ export const Sidebar: React.FunctionComponent<IPropsSideBar> = ({
 								width: 256,
 								top: 64,
 								height: 'calc(100% - 64px)',
+								zIndex: 2,
 							},
 						}}
 					>
