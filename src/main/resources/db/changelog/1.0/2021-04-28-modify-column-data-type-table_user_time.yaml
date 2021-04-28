@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-28-modify-column-data-type-table_user_time
+      author: ZheltokMariya
+      changes:
+        - modifyDataType:
+            columnName: start_date_time
+            newDataType: timestamp(1)
+            schemaName: public
+            tableName: user_time

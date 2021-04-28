@@ -18,8 +18,6 @@ public class UserMapper implements BaseMapper<User, UserDto> {
         user.setSkype(userDto.getSkype());
         user.setPhoto(userDto.getPhoto());
         user.setPhone(userDto.getPhone());
-        user.setCountry(userDto.getCountry());
-        user.setCity(userDto.getCity());
         user.setOtherInformation(userDto.getOtherInformation());
         return user;
     }
@@ -35,8 +33,6 @@ public class UserMapper implements BaseMapper<User, UserDto> {
         userDto.setSkype(user.getSkype());
         userDto.setPhoto(user.getPhoto());
         userDto.setPhone(user.getPhone());
-        userDto.setCountry(user.getCountry());
-        userDto.setCity(user.getCity());
         userDto.setOtherInformation(user.getOtherInformation());
         return userDto;
     }
@@ -49,8 +45,6 @@ public class UserMapper implements BaseMapper<User, UserDto> {
         user.setSkype(userDto.getSkype());
         user.setPhoto(userDto.getPhoto());
         user.setPhone(userDto.getPhone());
-        user.setCountry(userDto.getCountry());
-        user.setCity(userDto.getCity());
         user.setOtherInformation(userDto.getOtherInformation());
 
     }

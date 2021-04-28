@@ -35,4 +35,7 @@ public class InternshipRequest extends BaseEntity{
     @JoinColumn(name = "internship_id")
     private Long internshipId;
 
+    @Column(name = "country_id")
+    private Long countryId;
+
 }
