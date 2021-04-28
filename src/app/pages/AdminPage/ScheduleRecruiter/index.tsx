@@ -28,56 +28,11 @@ import {
 
 import { schedulerData } from './helpers/schedulerData';
 import { owners } from './helpers/owners';
-import { databaseCandidates } from './helpers/databaseCandidates';
+import { TextEditor } from './hoc/TextEditor';
+import { BasicLayout } from './hoc/BasicLayout';
 
 const messages = {
 	moreInformationLabel: '',
-};
-
-const TextEditor:
-	| React.ComponentType<AppointmentForm.TextEditorProps>
-	| undefined = (props) => {
-	// eslint-disable-next-line react/destructuring-assignment
-	if (props.type === 'multilineTextEditor') {
-		return null;
-	}
-	return <AppointmentForm.TextEditor {...props} />;
-};
-
-const BasicLayout:
-	| React.ComponentType<AppointmentForm.BasicLayoutProps>
-	| undefined = ({ onFieldChange, appointmentData, ...restProps }) => {
-	const onCustomFieldChange = (nextValue: string | number): void => {
-		onFieldChange({ customField: nextValue });
-	};
-
-	const onCustomValueChange = (nextValue: string | number): void => {
-		onFieldChange({ title: nextValue });
-	};
-
-	return (
-		<AppointmentForm.BasicLayout
-			appointmentData={appointmentData}
-			onFieldChange={onFieldChange}
-			{...restProps}
-		>
-			<AppointmentForm.Select
-				value="non text"
-				onValueChange={onCustomValueChange}
-				type="outlinedSelect"
-				availableOptions={databaseCandidates}
-			/>
-
-			<AppointmentForm.Label text="Custom Field" type="titleLabel" />
-			<AppointmentForm.TextEditor
-				value={appointmentData.customField}
-				onValueChange={onCustomFieldChange}
-				placeholder="Custom field"
-				readOnly={false}
-				type="titleTextEditor"
-			/>
-		</AppointmentForm.BasicLayout>
-	);
 };
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
@@ -89,18 +44,27 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
 		if (added) {
 			const idNum: number = data[data.length - 1].id as number;
-			const one = 1;
-			const startingAddedId = data.length > 0 ? idNum + one : 0;
-
-			data = [...data, { id: startingAddedId, ...added }];
+			const startingAddedId = data.length > 0 ? idNum + 1 : 0;
+			data = [
+				...data,
+				{
+					id: startingAddedId,
+					endDate: added.endDate,
+					startDate: added.startDate,
+					...added,
+				},
+			];
 			setData(data);
 		}
 		if (changed) {
-			data = data.map((appointment: AppointmentModel) =>
-				changed[appointment.id]
-					? { ...appointment, ...changed[appointment.id] }
-					: appointment
-			);
+			data = data.map((appointment: AppointmentModel) => {
+				if (appointment.id !== undefined) {
+					return changed[appointment.id]
+						? { ...appointment, ...changed[appointment.id] }
+						: appointment;
+				}
+				return null;
+			});
 			setData(data);
 		}
 		if (deleted !== undefined) {
