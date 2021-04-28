@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { Drawer, Hidden } from '@material-ui/core';
 
 import {
-	// eslint-disable-next-line camelcase
 	unstable_createMuiStrictModeTheme,
 	ThemeProvider,
 } from '@material-ui/core/styles';
@@ -39,6 +38,7 @@ export const Sidebar: React.FunctionComponent<IPropsSideBar> = ({
 						PaperProps={{
 							style: {
 								width: 256,
+								zIndex: 2,
 							},
 						}}
 					>
@@ -55,6 +55,7 @@ export const Sidebar: React.FunctionComponent<IPropsSideBar> = ({
 								width: 256,
 								top: 64,
 								height: 'calc(100% - 64px)',
+								zIndex: 2,
 							},
 						}}
 					>

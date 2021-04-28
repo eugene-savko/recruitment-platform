@@ -1,4 +1,6 @@
-export const schedulerData = [
+import { AppointmentModel } from '@devexpress/dx-react-scheduler';
+
+export const schedulerData: Array<AppointmentModel> = [
 	{
 		title: 'Website Re-Design Plan',
 		startDate: new Date(2021, 5, 25, 9, 35),

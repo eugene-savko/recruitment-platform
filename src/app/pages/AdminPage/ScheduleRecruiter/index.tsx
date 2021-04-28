@@ -6,6 +6,8 @@ import {
 	GroupingState,
 	IntegratedGrouping,
 	IntegratedEditing,
+	AppointmentModel,
+	ChangeSet,
 } from '@devexpress/dx-react-scheduler';
 import {
 	Scheduler,
@@ -24,63 +26,49 @@ import {
 	DragDropProvider,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
+import {
+	unstable_createMuiStrictModeTheme,
+	ThemeProvider,
+} from '@material-ui/core/styles';
 import { schedulerData } from './helpers/schedulerData';
 import { owners } from './helpers/owners';
+import { TextEditor } from './hoc/TextEditor';
+import { BasicLayout } from './hoc/BasicLayout';
 
 const messages = {
 	moreInformationLabel: '',
 };
-
-const TextEditor = (props: any) => {
-	// eslint-disable-next-line react/destructuring-assignment
-	if (props.type === 'multilineTextEditor') {
-		return null;
-	}
-	return <AppointmentForm.TextEditor {...props} />;
-};
-
-const BasicLayout = ({ onFieldChange, appointmentData, ...restProps }: any) => {
-	const onCustomFieldChange = (nextValue: any) => {
-		onFieldChange({ customField: nextValue });
-	};
-
-	return (
-		<AppointmentForm.BasicLayout
-			appointmentData={appointmentData}
-			onFieldChange={onFieldChange}
-			{...restProps}
-		>
-			<AppointmentForm.Label text="Custom Field" type="titleLabel" />
-			<AppointmentForm.TextEditor
-				value={appointmentData.customField}
-				onValueChange={onCustomFieldChange}
-				placeholder="Custom field"
-				readOnly={false}
-				type="titleTextEditor"
-			/>
-		</AppointmentForm.BasicLayout>
-	);
-};
-
+const theme = unstable_createMuiStrictModeTheme();
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	// eslint-disable-next-line prefer-const
-	let [data, setData] = useState(schedulerData);
+	let [data, setData] = useState<Array<AppointmentModel>>(schedulerData);
 
 	const currentDate = new Date(2021, 5, 25, 9, 35);
 
-	const commitChanges = ({ added, changed, deleted }: any) => {
+	const commitChanges = ({ added, changed, deleted }: ChangeSet) => {
 		if (added) {
-			const startingAddedId =
-				data.length > 0 ? data[data.length - 1].id + 1 : 0;
-			data = [...data, { id: startingAddedId, ...added }];
+			const idNum: number = data[data.length - 1].id as number;
+			const startingAddedId = data.length > 0 ? idNum + 1 : 0;
+			data = [
+				...data,
+				{
+					id: startingAddedId,
+					endDate: added.endDate,
+					startDate: added.startDate,
+					...added,
+				},
+			];
 			setData(data);
 		}
 		if (changed) {
-			data = data.map((appointment) =>
-				changed[appointment.id]
-					? { ...appointment, ...changed[appointment.id] }
-					: appointment
-			);
+			data = data.map((appointment: AppointmentModel) => {
+				if (appointment.id !== undefined) {
+					return changed[appointment.id]
+						? { ...appointment, ...changed[appointment.id] }
+						: appointment;
+				}
+				return null;
+			});
 			setData(data);
 		}
 		if (deleted !== undefined) {
@@ -97,42 +85,45 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 			allowMultiple: true,
 		},
 	];
+
 	const grouping = [{ resourceName: 'members' }];
 
 	return (
 		<Paper>
-			<Scheduler data={data} height={850}>
-				<ViewState
-					defaultCurrentDate={currentDate}
-					defaultCurrentViewName="Week"
-				/>
-				<EditingState onCommitChanges={commitChanges} />
-				<GroupingState grouping={grouping} />
+			<ThemeProvider theme={theme}>
+				<Scheduler data={data} height={850}>
+					<ViewState
+						defaultCurrentDate={currentDate}
+						defaultCurrentViewName="Week"
+					/>
+					<EditingState onCommitChanges={commitChanges} />
+					<GroupingState grouping={grouping} />
 
-				<DayView startDayHour={10} endDayHour={18} />
-				<WeekView startDayHour={10} endDayHour={18} />
-				<MonthView />
+					<DayView startDayHour={10} endDayHour={18} />
+					<WeekView startDayHour={10} endDayHour={18} />
+					<MonthView />
 
-				<Appointments />
-				<Resources data={resources} mainResourceName="members" />
-				<Toolbar />
-				<ViewSwitcher />
+					<Appointments />
+					<Resources data={resources} mainResourceName="members" />
+					<Toolbar />
+					<ViewSwitcher />
 
-				<IntegratedGrouping />
-				<IntegratedEditing />
+					<IntegratedGrouping />
+					<IntegratedEditing />
 
-				<DateNavigator />
-				<TodayButton />
-				<AppointmentTooltip showCloseButton showOpenButton />
-				<AppointmentForm
-					basicLayoutComponent={BasicLayout}
-					textEditorComponent={TextEditor}
-					messages={messages}
-				/>
+					<DateNavigator />
+					<TodayButton />
+					<AppointmentTooltip showCloseButton showOpenButton />
+					<AppointmentForm
+						basicLayoutComponent={BasicLayout}
+						textEditorComponent={TextEditor}
+						messages={messages}
+					/>
 
-				<GroupingPanel />
-				<DragDropProvider />
-			</Scheduler>
+					<GroupingPanel />
+					<DragDropProvider />
+				</Scheduler>
+			</ThemeProvider>
 		</Paper>
 	);
 };
