@@ -7,7 +7,7 @@ const Backdrop = styled.div`
 	top: 0;
 	left: 0;
 	background: rgba(0, 0, 0, 0.3);
-	z-index: 1210;
+	z-index: 3;
 `;
 
 export default Backdrop;
