@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-27-create-time-field-for-user-time-table
+      author: ZheltokMariya
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-04-27-adding-create-update-fields-to-user-time-table.sql
+            stripComments: true
