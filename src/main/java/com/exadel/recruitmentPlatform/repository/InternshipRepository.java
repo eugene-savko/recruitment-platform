@@ -9,12 +9,10 @@ import java.util.List;
 
 public interface InternshipRepository extends JpaRepository<Internship, Long> {
 
-    @Query(nativeQuery = true,
-            value = "SELECT * FROM internship i JOIN internship_speciality ints ON i.id = ints.internship_id WHERE ints.speciality_id = :specialityId")
+    @Query(value = "select i from Internship i join i.specialities s where  s.id = :specialityId")
     List<Internship> findInternshipsBySpecialityId(@Param("specialityId") Long specialityId);
 
-    @Query(nativeQuery = true,
-            value = "SELECT * FROM internship i JOIN internship_country intc ON i.id = intc.internship_id WHERE intc.country_id = :countryId")
+    @Query(value = "select i from Internship i join i.countries c where c.id = :countryId")
     List<Internship> findInternshipsByCountryId(@Param("countryId") Long countryId);
 
 }
