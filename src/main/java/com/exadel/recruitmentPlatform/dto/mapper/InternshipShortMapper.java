@@ -10,11 +10,6 @@ import org.springframework.stereotype.Component;
 public class InternshipShortMapper implements BaseMapper<Internship, InternshipShortDto> {
 
     @Override
-    public Internship toEntity(InternshipShortDto dto) {
-        return null;
-    }
-
-    @Override
     public InternshipShortDto toDto(Internship entity) {
         InternshipShortDto internshipShortDto = new InternshipShortDto();
         internshipShortDto.setId(entity.getId());
