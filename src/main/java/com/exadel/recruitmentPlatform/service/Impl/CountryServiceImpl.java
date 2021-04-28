@@ -15,7 +15,7 @@ import java.util.Set;
 public class CountryServiceImpl implements CountryService {
 
     @Autowired
-    CountryRepository countryRepository;
+    private CountryRepository countryRepository;
 
     @Override
     public List<Country> getCountries(Set<Long> ids) {
