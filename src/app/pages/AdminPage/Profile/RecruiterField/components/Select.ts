@@ -4,22 +4,24 @@ import ArrowDown from '../../assets/select-arrow-down 4.png';
 
 const Select = styled.select`
 	display: block;
-	max-width: 80%;
-	min-width: 175px;
 	height: 42px;
+	max-width: 80%;
+	min-width: 160px;
 	padding-left: 14px;
 	margin: 16px auto;
-	color: #6b77a8;
-	outline: none;
-	box-sizing: border-box;
-	background-color: #ffffff;
-	font-weight: bold;
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 	font-size: 14px;
-	font-family: 'Open Sans', 'Arial', sans-serif;
-	border: 1px solid #e3e3e3;
+	font-weight: 500;
+	line-height: 1.75;
+	color: #6b778c;
+	background-color: #ffffff;
+	border: 1px solid #3f51b5;
 	border-radius: 5px;
-	transition: ease-in-out 0.2s;
+	outline: none;
 	appearance: none;
+	cursor: pointer;
+	/* box-sizing: border-box; */
+	transition: ease-in-out 0.2s;
 	background: url(${ArrowDown}) 95% no-repeat;
 	&:hover {
 		border: 1px solid #4e4e4e;

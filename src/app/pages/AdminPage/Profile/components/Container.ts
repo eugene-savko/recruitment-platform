@@ -7,7 +7,7 @@ const Container = styled.div`
 	width: 100%;
 	height: 49%;
 	background: #fff;
-	border: 1px solid #6b77a8;
+	border: 1px solid #3f51b5;
 	border-radius: 5px;
 	overflow: auto;
 `;

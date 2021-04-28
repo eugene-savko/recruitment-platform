@@ -31,13 +31,14 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					<FeedbackField
 						id="feedback-recruiter"
 						label="Feedback"
+						rows={12}
 						multiline
 						placeholder="Leave you feedback..."
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="contained">
-							Schedule Recruiter
+						<ButtonMaterial variant="outlined" color="primary">
+							Schedule
 						</ButtonMaterial>
 						<Select
 							id="english-after-interview"
@@ -50,7 +51,9 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 								</option>
 							))}
 						</Select>
-						<ButtonMaterial variant="contained">Send feedback</ButtonMaterial>
+						<ButtonMaterial variant="outlined" color="primary">
+							Send feedback
+						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
 			</Container>

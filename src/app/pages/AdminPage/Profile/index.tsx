@@ -17,6 +17,7 @@ import listEnglishLevel from './data/listEnglishLevel';
 
 export const Profile: React.FunctionComponent = () => {
 	const handlerClose = () => {
+		// exit from Profile
 	};
 
 	return (

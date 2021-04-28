@@ -19,13 +19,18 @@ const TechField: React.FunctionComponent = () => {
 					<FeedbackField
 						id="feedback-tech"
 						label="Feedback"
+						rows={12}
 						multiline
 						placeholder="Leave you feedback..."
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="contained">Schedule Tech</ButtonMaterial>
-						<ButtonMaterial variant="contained">Send feedback</ButtonMaterial>
+						<ButtonMaterial variant="outlined" color="primary">
+							Schedule
+						</ButtonMaterial>
+						<ButtonMaterial variant="outlined" color="primary">
+							Send feedback
+						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
 			</Container>

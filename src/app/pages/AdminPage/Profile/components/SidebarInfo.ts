@@ -7,6 +7,7 @@ const SidebarInfo = styled.div`
 	flex-basis: 20%;
 	width: 100%;
 	margin: 10px;
+	border-color: #3f51b5;
 `;
 
 export default SidebarInfo;

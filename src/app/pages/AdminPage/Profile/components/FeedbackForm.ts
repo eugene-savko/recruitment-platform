@@ -5,6 +5,7 @@ const FeedbackForm = styled.form`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+	border-color: #3f51b5;
 `;
 
 export default FeedbackForm;

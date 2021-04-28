@@ -105,7 +105,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 					</ListItem>
 				</List>
 
-				<ButtonMaterial variant="contained" onClick={toggle}>
+				<ButtonMaterial variant="outlined" color="primary" onClick={toggle}>
 					OtherInformation
 				</ButtonMaterial>
 			</ContainerInfo>
