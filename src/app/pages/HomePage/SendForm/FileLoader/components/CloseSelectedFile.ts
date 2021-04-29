@@ -6,8 +6,9 @@ const CloseSelectedFile = styled(Close)`
 	height: 30px;
 	color: #666;
 	cursor: pointer;
+
 	&:hover {
-		color: #ee001e;
+		color: #ff0000;
 	}
 `;
 

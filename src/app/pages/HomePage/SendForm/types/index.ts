@@ -4,6 +4,7 @@ import IFormFields from './IFormFields';
 import ITextArea from './ITextArea';
 import IFileLoader from './IFileLoader';
 import IAgreements from './IAgreements';
+import IFieldTimeCall from './IFieldTimeCall';
 
 export type {
 	IListItemSelect,
@@ -12,4 +13,5 @@ export type {
 	IFileLoader,
 	ITextArea,
 	IAgreements,
+	IFieldTimeCall,
 };

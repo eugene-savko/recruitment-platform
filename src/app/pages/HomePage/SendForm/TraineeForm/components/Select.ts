@@ -4,8 +4,10 @@ import ArrowDown from 'app/pages/HomePage/SendForm/TraineeForm/assets/select-arr
 
 const Select = styled.select`
 	width: 100%;
+	max-width: 470px;
 
 	padding: 15px;
+	margin: 0 auto;
 
 	outline: none;
 	box-sizing: border-box;
