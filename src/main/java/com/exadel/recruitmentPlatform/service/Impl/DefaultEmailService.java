@@ -7,7 +7,9 @@ import com.exadel.recruitmentPlatform.service.SpecialityService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -20,9 +22,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@Slf4j
 @Service
-public class EmailServiceImpl implements EmailService {
+public class DefaultEmailService implements EmailService {
 
     @Autowired
     private JavaMailSender emailSender;
@@ -33,11 +35,18 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private SpecialityService specialityService;
 
-    final String exadelEmailAddress = "Exadel.Internship@gmail.com";
-    final String subject = "Internship in Exadel";
+    @Value("${spring.mail.enabled}")
+    private boolean emailEnabled;
+
+    private final String exadelEmailAddress = "Exadel.Internship@gmail.com";
+    private final String subject = "Internship in Exadel";
 
     @Override
     public void sendMessage(String to, InternshipRequestDto dto) {
+        if (!emailEnabled) {
+            log.warn("Email sending feature disabled.");
+            return;
+        }
         SimpleMailMessage message = new SimpleMailMessage();
         String subject = "Internship in Exadel";
         String text = "Hello, " + dto.getUserDto().getFirstName() + " " + dto.getUserDto().getLastName() + "!" + '\n' +
@@ -53,6 +62,10 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmail(String emailTo, Map<String, Object> model) {
+        if (!emailEnabled) {
+            log.warn("Email sending feature disabled.");
+            return;
+        }
         MimeMessage message = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -62,12 +75,8 @@ public class EmailServiceImpl implements EmailService {
             helper.setTo(emailTo);
             helper.setSubject(subject);
             helper.setText(htmlBody, true);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TemplateException e) {
-            e.printStackTrace();
+        } catch (MessagingException | IOException | TemplateException e) {
+            throw new RuntimeException("Failed to send email message!");
         }
         emailSender.send(message);
     }
