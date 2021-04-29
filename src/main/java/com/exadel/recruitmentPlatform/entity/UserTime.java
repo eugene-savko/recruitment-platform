@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @Table(name = "user_time", schema = "public")
 public class UserTime extends BaseEntity {
 
+    public static final Long DURATION = 30L;
+
     @Column(name = "start_date_time")
     private LocalDateTime startDateTime;
 
