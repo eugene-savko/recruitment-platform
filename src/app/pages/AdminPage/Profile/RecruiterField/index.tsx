@@ -1,5 +1,5 @@
-import React from 'react';
-// import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 // style
 import {
@@ -14,25 +14,45 @@ import { Select } from './components';
 
 import IListItemSelect from '../types/IListItemSelect';
 
+// type
+import IFormFields from '../types/IFormFields';
+
 interface IRecruiterFieldProps {
-	// register: ReturnType<typeof useForm>['register'];
-	// errorMessage: ReturnType<typeof useForm>['errors'];
 	englishLevel: Array<IListItemSelect>;
 }
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 }) => {
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
+	const { register, handleSubmit } = useForm<IFormFields>();
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+		setFeedbackRecruiter(event.target.value);
+
+	const onSubmit = (data: IFormFields) => {
+		const { levelEnglishRecruiter } = data;
+		const sendDataRecruiter = {
+			feedbackRecruiter,
+			levelEnglishRecruiter,
+		};
+		// eslint-disable-next-line no-console
+		console.log(sendDataRecruiter);
+	};
+
 	return (
 		<React.Fragment>
 			<Container>
 				<Title>Recruiter field</Title>
-				<FeedbackForm>
+				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
 					<FeedbackField
-						id="feedback-recruiter"
 						label="Feedback"
+						id="feedback-recruiter"
+						name="feedbackRecruiter"
 						rows={12}
 						multiline
+						value={feedbackRecruiter}
+						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"
 					/>
@@ -42,8 +62,8 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						</ButtonMaterial>
 						<Select
 							id="english-after-interview"
-							name="English level"
-							// ref={register({ required: true })}
+							name="levelEnglishRecruiter"
+							ref={register}
 						>
 							{englishLevel?.map((item) => (
 								<option value={item.name} key={item.id}>
@@ -51,7 +71,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 								</option>
 							))}
 						</Select>
-						<ButtonMaterial variant="outlined" color="primary">
+						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Send feedback
 						</ButtonMaterial>
 					</ContainerBth>
