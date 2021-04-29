@@ -2,6 +2,7 @@ package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
+import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
@@ -51,6 +52,11 @@ public class InternshipController {
     public ResponseEntity<InternshipResponseDto> updateInternship(
             @Valid @RequestBody InternshipDto dto) {
         return ResponseEntity.ok(internshipService.update(dto));
+    }
+
+    @GetMapping(value = "/ids-names")
+    public List<InternshipShortDto> getIdsAndNamesOfInternships(){
+        return internshipService.getIdsAndNamesOfInternships();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
+import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -21,10 +22,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(email);
         }
 
-        return User.builder()
-                .username(user.getEmail())
-                .password(user.getPassword())
-                .roles(user.getRole().name())
-                .build();
+        return new AuthenticatedUser(
+                (User)User.builder()
+                    .username(user.getEmail())
+                    .password(user.getPassword())
+                    .roles(user.getRole().name())
+                    .build(),
+                user.getId());
     }
 }
