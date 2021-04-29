@@ -10,7 +10,7 @@ import { IHeaderProps } from './types';
 export const Header: React.FunctionComponent<IHeaderProps> = ({
 	onShowHideSidebar,
 }: IHeaderProps) => (
-	<AppBar style={{ zIndex: 1 }}>
+	<AppBar>
 		<Toolbar>
 			<Logo />
 			<ToolBarButtons />

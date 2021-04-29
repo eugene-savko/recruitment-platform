@@ -2,15 +2,13 @@ import React from 'react';
 
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
+import { TextField } from '@material-ui/core';
 import { databaseCandidates } from '../helpers/databaseCandidates';
+import { PrefInterviewTime } from '../components/PrefInterviewTime';
 
 export const BasicLayout:
 	| React.ComponentType<AppointmentForm.BasicLayoutProps>
 	| undefined = ({ onFieldChange, appointmentData, ...restProps }) => {
-	const onCustomFieldChange = (nextValue: string | number): void => {
-		onFieldChange({ customField: nextValue });
-	};
-
 	const onCustomValueChange = (nextValue: string | number): void => {
 		onFieldChange({ title: nextValue });
 	};
@@ -21,20 +19,20 @@ export const BasicLayout:
 			onFieldChange={onFieldChange}
 			{...restProps}
 		>
+			<PrefInterviewTime>Choose a candidate</PrefInterviewTime>
 			<AppointmentForm.Select
-				value="non text"
+				value=""
 				onValueChange={onCustomValueChange}
 				type="outlinedSelect"
 				availableOptions={databaseCandidates}
 			/>
 
-			<AppointmentForm.Label text="Custom Field" type="titleLabel" />
-			<AppointmentForm.TextEditor
-				value={appointmentData.customField}
-				onValueChange={onCustomFieldChange}
-				placeholder="Custom field"
-				readOnly={false}
-				type="titleTextEditor"
+			<PrefInterviewTime>Preferred interview time</PrefInterviewTime>
+			<TextField
+				disabled
+				fullWidth
+				defaultValue="from 9:30 to 12:30"
+				variant="outlined"
 			/>
 		</AppointmentForm.BasicLayout>
 	);

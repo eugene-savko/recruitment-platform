@@ -24,6 +24,7 @@ import {
 	Resources,
 	GroupingPanel,
 	DragDropProvider,
+	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import {
@@ -37,6 +38,8 @@ import { BasicLayout } from './hoc/BasicLayout';
 
 const messages = {
 	moreInformationLabel: '',
+	titleLabel: 'Name of candidate',
+	detailsLabel: 'Name of candidate',
 };
 const theme = unstable_createMuiStrictModeTheme();
 export const ScheduleRecruiter: React.FunctionComponent = () => {
@@ -80,7 +83,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const resources = [
 		{
 			fieldName: 'members',
-			title: 'Members',
+			title: 'Name of recruiter',
 			instances: owners,
 			allowMultiple: true,
 		},
@@ -113,7 +116,8 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 
 					<DateNavigator />
 					<TodayButton />
-					<AppointmentTooltip showCloseButton showOpenButton />
+					<AppointmentTooltip showCloseButton showOpenButton showDeleteButton />
+					<ConfirmationDialog />
 					<AppointmentForm
 						basicLayoutComponent={BasicLayout}
 						textEditorComponent={TextEditor}

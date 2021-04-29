@@ -8,5 +8,12 @@ export const TextEditor:
 	if (props.type === 'multilineTextEditor') {
 		return null;
 	}
-	return <AppointmentForm.TextEditor {...props} />;
+
+	return (
+		<AppointmentForm.TextEditor
+			{...props}
+			// eslint-disable-next-line react/destructuring-assignment
+			readOnly={props.type === 'titleTextEditor'}
+		/>
+	);
 };

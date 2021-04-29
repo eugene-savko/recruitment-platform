@@ -1,7 +1,10 @@
 import IDatabaseCandidates from '../types/IDatabaseCandidates';
 
 export const databaseCandidates: Array<IDatabaseCandidates> = [
-	{ text: 'select 1', id: 'Feador Red' },
-	{ text: 'select 2', id: 'Ann Blue' },
-	{ text: 'select 3', id: 'Kate Dark' },
+	{ text: 'Feador Red', id: 'Feador Red' },
+	{ text: 'Ann Blue', id: 'Ann Blue' },
+	{ text: 'Kate Dark', id: 'Kate Dark' },
+	{ text: 'Karl Green', id: 'Karl Green' },
+	{ text: 'Joni Dark', id: 'Joni Dark' },
+	{ text: 'Fira Blue', id: 'Fira Blue' },
 ];
