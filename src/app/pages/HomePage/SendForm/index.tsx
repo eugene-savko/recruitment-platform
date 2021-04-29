@@ -39,15 +39,7 @@ export const SendForm: React.FunctionComponent = () => {
 		textArea,
 		timeForCall,
 	}: {
-		englishLevel: string;
-		firstName: string;
-		lastName: string;
-		email: string;
-		country: string;
-		city: string;
-		phone: string;
-		textArea: string;
-		timeForCall: string;
+		[name: string]: string;
 	}) => {
 		const objectDto = {
 			specialityId: '1',

@@ -19,9 +19,9 @@ export const FieldTimeCall: React.FunctionComponent<IFieldTimeCall> = ({
 					name="timeForCall"
 					ref={register({ required: true })}
 				>
-					{timeForCall?.map((item) => (
-						<option value={item.name} key={item.id}>
-							{item.name}
+					{timeForCall?.map(({ name, id }) => (
+						<option value={name} key={id}>
+							{name}
 						</option>
 					))}
 				</Select>
