@@ -15,6 +15,7 @@ import { FieldTimeCall } from './TraineeForm/FieldTimeCall';
 import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
 import { listTimeForCall } from './data/listTimeForCall';
+import { Modal } from './Modal';
 
 export const SendForm: React.FunctionComponent = () => {
 	const [stateCountry, setCountry] = useState('');
@@ -27,6 +28,13 @@ export const SendForm: React.FunctionComponent = () => {
 		reset,
 		formState: { errors },
 	} = useForm<IFormFields>();
+
+	const [showModal, setShowModal] = useState(false);
+	const [emailTrainee, setEmailTrainee] = useState('');
+
+	const handleModal = (status: boolean) => {
+		setShowModal(status);
+	};
 
 	const onSubmit = async ({
 		englishLevel,
@@ -47,6 +55,7 @@ export const SendForm: React.FunctionComponent = () => {
 			cv: 'this is a link to CV',
 			internshipId: '1',
 			timeForCall,
+			// countryId: '1',
 			userDto: {
 				firstName,
 				lastName,
@@ -70,15 +79,20 @@ export const SendForm: React.FunctionComponent = () => {
 				},
 			});
 			const json = await response.json();
-			console.log('Response:', json);
 
-			// reset form
-			reset();
+			console.log('Response:', json);
 
 			// reset fields fileLoader, select country and city
 			setFileName('');
 			setCountry('');
 			setCity('');
+			setFileName('');
+			setShowModal(true);
+			setEmailTrainee(email);
+			setTimeout(() => setShowModal(false), 5000);
+
+			// reset form
+			reset();
 		} catch (exception) {
 			console.error('Exception:', exception);
 		}
@@ -108,6 +122,11 @@ export const SendForm: React.FunctionComponent = () => {
 				/>
 				<Agreements register={register} errors={errors} />
 				<Submit>Submit</Submit>
+				<Modal
+					showModal={showModal}
+					handleModal={handleModal}
+					emailTrainee={emailTrainee}
+				/>
 			</Form>
 		</FormWrapper>
 	);
