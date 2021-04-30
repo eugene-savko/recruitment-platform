@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // pop-up
-import PopUp from './PopUp';
+import PopUp from '../PopUp';
 
 // style
 import {

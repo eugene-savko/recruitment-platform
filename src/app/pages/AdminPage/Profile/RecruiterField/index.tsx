@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+// pop-up
+import PopUp from '../PopUp';
+
 // style
 import {
 	Container,
@@ -24,6 +27,7 @@ interface IRecruiterFieldProps {
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 }) => {
+	const [isShown, setIsShown] = useState<boolean>(false);
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
 	const { register, handleSubmit } = useForm<IFormFields>();
 
@@ -31,6 +35,8 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 		setFeedbackRecruiter(event.target.value);
 
 	const onSubmit = (data: IFormFields) => {
+		setIsShown(true);
+		setTimeout(() => setIsShown(false), 3000);
 		const { levelEnglishRecruiter } = data;
 		const sendDataRecruiter = {
 			feedbackRecruiter,
@@ -76,6 +82,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
+				<PopUp isShow={isShown} />
 			</Container>
 		</React.Fragment>
 	);
