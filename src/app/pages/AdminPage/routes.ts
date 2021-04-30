@@ -1,11 +1,11 @@
 import IRoute from 'app/types/IRoute';
 import { ScheduleTechSpecialist } from './ScheduleTechSpecialist/index';
-import { Candidate } from './Candidate/Candidate';
 import { DashBoard } from './DashBoard/DashBoard';
 import { Profile } from './Profile';
 import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseЕditor';
+import { CandidateTable } from './CandidateTable';
 
 export const routesAdmin: Array<IRoute> = [
 	{
@@ -16,7 +16,7 @@ export const routesAdmin: Array<IRoute> = [
 	{
 		path: '/candidate',
 		exact: false,
-		component: Candidate,
+		component: CandidateTable,
 	},
 	{
 		path: '/profile',
