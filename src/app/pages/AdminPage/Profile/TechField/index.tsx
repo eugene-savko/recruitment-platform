@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+// pop-up
+import PopUp from './PopUp';
+
 // style
 import {
 	Container,
@@ -15,12 +18,15 @@ import {
 import IFormFields from '../types/IFormFields';
 
 const TechField: React.FunctionComponent = () => {
+	const [isShown, setIsShown] = useState<boolean>(false);
 	const [feedbackTech, setFeedbackTech] = useState<string>();
 	const { handleSubmit } = useForm<IFormFields>();
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
 		setFeedbackTech(event.target.value);
 
 	const onSubmit = () => {
+		setIsShown(true);
+		setTimeout(() => setIsShown(false), 3000);
 		const sendDataTech = {
 			feedbackTech,
 		};
@@ -53,6 +59,7 @@ const TechField: React.FunctionComponent = () => {
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
+				<PopUp isShow={isShown} />
 			</Container>
 		</React.Fragment>
 	);
