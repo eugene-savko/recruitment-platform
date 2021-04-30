@@ -68,28 +68,20 @@
 				"some": [ "nesting", "id"  ]
 			}
 		}],
-<<<<<<< HEAD
     "camelcase": "off",
     "@typescript-eslint/naming-convention": [
-=======
-		"camelcase": "off",
-		"@typescript-eslint/naming-convention": [
->>>>>>> feat: add first sort method for table
 			"error",
 			{
 				"selector": "default",
 				"format": ["camelCase", "snake_case", "UPPER_CASE","PascalCase"]
 			}
 		],
-<<<<<<< HEAD
     "react/jsx-props-no-spreading": ["error", {
-=======
-		"react/jsx-props-no-spreading": ["error", {
->>>>>>> feat: add first sort method for table
       "html": "ignore",
       "custom": "ignore",
       "exceptions": [""]
-    }]
+    }],
+		"no-nested-ternary": "off"
   },
   "settings": {
     "import/resolver": {

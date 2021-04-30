@@ -5,7 +5,7 @@ import { Profile } from './Profile';
 import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseЕditor';
-import { AdminTable } from './AdminTable';
+import { CandidateTable } from './CandidateTable';
 
 export const routesAdmin: Array<IRoute> = [
 	{
@@ -16,7 +16,7 @@ export const routesAdmin: Array<IRoute> = [
 	{
 		path: '/table',
 		exact: false,
-		component: AdminTable,
+		component: CandidateTable,
 	},
 	{
 		path: '/profile',
