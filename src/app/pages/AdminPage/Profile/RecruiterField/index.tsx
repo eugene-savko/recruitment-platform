@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -24,11 +25,16 @@ interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
 }
 
+// data from server
+const feedbackFromServer = 'Knows something... ';
+
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 }) => {
 	const [isShown, setIsShown] = useState<boolean>(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>(
+		feedbackFromServer
+	);
 	const { register, handleSubmit } = useForm<IFormFields>();
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -63,9 +69,11 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="outlined" color="primary">
-							Schedule
-						</ButtonMaterial>
+						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+							<ButtonMaterial variant="outlined" color="primary">
+								Schedule
+							</ButtonMaterial>
+						</Link>
 						<Select
 							id="english-after-interview"
 							name="levelEnglishRecruiter"

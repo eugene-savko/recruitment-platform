@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 // style
 import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
@@ -16,8 +17,9 @@ import interviewInfo from './data/interviewInfo-test';
 import listEnglishLevel from './data/listEnglishLevel';
 
 export const Profile: React.FunctionComponent = () => {
+	const history = useHistory();
 	const handlerClose = () => {
-		// exit from Profile
+		history.push('/dashboard');
 	};
 
 	return (
