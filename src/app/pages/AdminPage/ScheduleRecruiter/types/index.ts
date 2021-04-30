@@ -1,3 +1,4 @@
 import IDatabaseCandidates from './IDatabaseCandidates';
+import IUseChangeEditingState from './IUseChangeEditingState';
 
-export type { IDatabaseCandidates };
+export type { IDatabaseCandidates, IUseChangeEditingState };

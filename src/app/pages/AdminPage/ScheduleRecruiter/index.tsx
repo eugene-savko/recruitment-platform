@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
 	EditingState,
@@ -6,8 +6,6 @@ import {
 	GroupingState,
 	IntegratedGrouping,
 	IntegratedEditing,
-	AppointmentModel,
-	ChangeSet,
 } from '@devexpress/dx-react-scheduler';
 import {
 	Scheduler,
@@ -28,50 +26,14 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { indigo, teal, purple } from '@material-ui/core/colors';
-import { schedulerData } from './helpers/schedulerData';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
+import { useChangeEditingState } from './hooks/useChangeEditingState';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
-	// eslint-disable-next-line prefer-const
-	let [data, setData] = useState<Array<AppointmentModel>>(schedulerData);
+	const { commitChanges, data } = useChangeEditingState();
 
 	const currentDate = new Date(2021, 5, 25, 9, 35);
-
-	const commitChanges = useCallback(
-		({ added, changed, deleted }: ChangeSet) => {
-			if (added) {
-				const idNum: number = data[data.length - 1].id as number;
-				const startingAddedId = data.length > 0 ? idNum + 1 : 0;
-				data = [
-					...data,
-					{
-						id: startingAddedId,
-						endDate: added.endDate,
-						startDate: added.startDate,
-						...added,
-					},
-				];
-				setData(data);
-			}
-			if (changed) {
-				data = data.map((appointment: AppointmentModel) => {
-					if (appointment.id !== undefined) {
-						return changed[appointment.id]
-							? { ...appointment, ...changed[appointment.id] }
-							: appointment;
-					}
-					return null;
-				});
-				setData(data);
-			}
-			if (deleted !== undefined) {
-				data = data.filter((appointment) => appointment.id !== deleted);
-				setData(data);
-			}
-		},
-		[data, setData]
-	);
 
 	const messages = {
 		moreInformationLabel: '',
