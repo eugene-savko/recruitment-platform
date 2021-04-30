@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -57,13 +58,18 @@ const TechField: React.FunctionComponent = () => {
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial
-							variant="outlined"
-							color="primary"
-							onClick={handlerClick}
+						<Link
+							to="/schedule-techspecialist"
+							style={{ textDecoration: 'none' }}
 						>
-							Schedule
-						</ButtonMaterial>
+							<ButtonMaterial
+								variant="outlined"
+								color="primary"
+								onClick={handlerClick}
+							>
+								Schedule
+							</ButtonMaterial>
+						</Link>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Send feedback
 						</ButtonMaterial>
