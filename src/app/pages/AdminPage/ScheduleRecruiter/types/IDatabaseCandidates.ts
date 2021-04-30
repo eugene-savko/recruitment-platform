@@ -1,5 +1,6 @@
 interface IDatabaseCandidates {
-	text: string;
-	id: string;
+	nameUser: string;
+	id: string | number;
+	periodTime: string;
 }
 export default IDatabaseCandidates;
