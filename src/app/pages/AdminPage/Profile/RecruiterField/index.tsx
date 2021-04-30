@@ -24,11 +24,16 @@ interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
 }
 
+// data from server
+const feedbackFromServer = 'Knows something... ';
+
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 }) => {
 	const [isShown, setIsShown] = useState<boolean>(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>(
+		feedbackFromServer
+	);
 	const { register, handleSubmit } = useForm<IFormFields>();
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>

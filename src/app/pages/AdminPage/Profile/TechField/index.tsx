@@ -17,12 +17,18 @@ import {
 // type
 import IFormFields from '../types/IFormFields';
 
+// data from server
+const feedbackFromServer = 'Good specialist ';
+
 const TechField: React.FunctionComponent = () => {
 	const [isShown, setIsShown] = useState<boolean>(false);
-	const [feedbackTech, setFeedbackTech] = useState<string>();
+	const [feedbackTech, setFeedbackTech] = useState<string>(feedbackFromServer);
 	const { handleSubmit } = useForm<IFormFields>();
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
 		setFeedbackTech(event.target.value);
+	const handlerClick = () => {
+		// go to schedule tech
+	};
 
 	const onSubmit = () => {
 		setIsShown(true);
@@ -51,7 +57,11 @@ const TechField: React.FunctionComponent = () => {
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="outlined" color="primary">
+						<ButtonMaterial
+							variant="outlined"
+							color="primary"
+							onClick={handlerClick}
+						>
 							Schedule
 						</ButtonMaterial>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
