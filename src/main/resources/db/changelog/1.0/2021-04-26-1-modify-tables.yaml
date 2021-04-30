@@ -50,5 +50,24 @@ databaseChangeLog:
               newDataType: varchar(250)
               schemaName: public
               tableName: internship_request
-
+    - changeSet:
+        id: 2021-04-27-modify-tables-6
+        author: vados.stradze
+        changes:
+          - dropForeignKeyConstraint:
+              baseTableName: internship_request
+              baseTableSchemaName: public
+              constraintName: fk_internship_request_country
+    - changeSet:
+        id: 2021-04-27-modify-tables-7
+        author: vados.stradze
+        changes:
+          - addForeignKeyConstraint:
+              baseColumnNames: country_id
+              baseTableName: internship_request
+              baseTableSchemaName: public
+              constraintName: fk_internship_request_country
+              referencedColumnNames: id
+              referencedTableName: country
+              referencedTableSchemaName: public
 

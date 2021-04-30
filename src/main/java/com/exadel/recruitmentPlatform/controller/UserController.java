@@ -5,7 +5,6 @@ import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @RestController
 @AllArgsConstructor
@@ -35,8 +33,4 @@ public class UserController {
         return ResponseEntity.ok(userService.save(userDto));
     }
 
-    @GetMapping("/current")
-    public UserDto getAuthenticatedUser(Authentication authentication) {
-        return userService.getAuthenticatedUser(authentication);
-    }
 }
