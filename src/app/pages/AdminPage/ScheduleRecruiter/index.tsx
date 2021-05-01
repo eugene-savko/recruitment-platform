@@ -6,6 +6,9 @@ import {
 	GroupingState,
 	IntegratedGrouping,
 	IntegratedEditing,
+	Resource,
+	AppointmentForm as AppointmentFormBase,
+	Grouping,
 } from '@devexpress/dx-react-scheduler';
 import {
 	Scheduler,
@@ -33,18 +36,17 @@ import { useChangeEditingState } from './hooks/useChangeEditingState';
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const { commitChanges, data } = useChangeEditingState();
 
-	const currentDate = new Date(2021, 5, 25, 9, 35);
-
-	const messages = {
+	const messages: AppointmentFormBase.LocalizationMessages = {
 		moreInformationLabel: '',
 		titleLabel: 'Name of candidate',
 		detailsLabel: 'Name of candidate',
 	};
 
-	const resources = [
+	const resources: Array<Resource> = [
 		{
 			fieldName: 'members',
 			title: 'Name of recruiter',
+			allowMultiple: false,
 			instances: [
 				{
 					text: 'Ivan Graying',
@@ -62,19 +64,15 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 					color: purple,
 				},
 			],
-			allowMultiple: true,
 		},
 	];
 
-	const grouping = [{ resourceName: 'members' }];
+	const grouping: Array<Grouping> = [{ resourceName: 'members' }];
 
 	return (
 		<Paper>
 			<Scheduler data={data} height={850}>
-				<ViewState
-					defaultCurrentDate={currentDate}
-					defaultCurrentViewName="Week"
-				/>
+				<ViewState defaultCurrentViewName="Week" />
 				<EditingState onCommitChanges={commitChanges} />
 				<GroupingState grouping={grouping} />
 

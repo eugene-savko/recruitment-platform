@@ -16,7 +16,7 @@ export const BasicLayout:
 		periodTime: 'from 10:00 to 12:00',
 	});
 
-	const [userName, setUserName] = React.useState('');
+	const [userName, setUserName] = useState('');
 	const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
 		onFieldChange({ title: e.target.value });
 		setUserName(e.target.value as string);
