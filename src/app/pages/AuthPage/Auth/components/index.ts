@@ -4,6 +4,7 @@ import AuthErrorLabel from './AuthErrorLabel';
 import AuthInput from './AuthInput';
 import AuthForm from './AuthForm';
 import AuthTitle from './AuthTitle';
+import AuthCircularProgress from './AuthCircularProgress';
 
 export {
 	AuthTitle,
@@ -12,4 +13,5 @@ export {
 	AuthErrorLabel,
 	AuthInput,
 	AuthForm,
+	AuthCircularProgress,
 };

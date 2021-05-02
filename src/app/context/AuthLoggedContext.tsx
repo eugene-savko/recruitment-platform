@@ -15,7 +15,6 @@ const AuthProvider: React.FunctionComponent<React.ReactNode> = ({
 	children,
 }) => {
 	const [auth, setAuth] = useState<IAuthState>({ loading: true, data: null });
-
 	const setAuthData = (data: IFormInput) => {
 		setAuth({ loading: false, data });
 	};
