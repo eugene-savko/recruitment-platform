@@ -1,7 +1,20 @@
 import IFormInput from './IFormInput';
 
+interface IDataRole {
+	id: number;
+	firstName: string;
+	lastName: string;
+	email: string;
+	role: string;
+	skype: string;
+	photo: string;
+	phone: string;
+	otherInformation: string;
+}
+
 interface IAuthState {
 	loading: boolean;
-	data: IFormInput | null;
+	dataRole: IDataRole | null;
+	dataLoginForm: IFormInput | null;
 }
 export default IAuthState;

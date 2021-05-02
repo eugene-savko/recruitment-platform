@@ -8,15 +8,14 @@ import { AuthCircularProgress } from '../components';
 
 export const PrivateRouteAuthAdminPage: React.FunctionComponent<IPrivateRouteAuthAdminPage> = ({
 	children,
-	...rest
+	...restProps
 }) => {
 	const { auth } = useContext(authContext);
-	const { loading } = auth;
 
-	if (loading) {
+	if (auth.loading) {
 		return (
 			<Route
-				{...rest}
+				{...restProps}
 				render={() => {
 					return (
 						<AuthCircularProgress>
@@ -27,12 +26,12 @@ export const PrivateRouteAuthAdminPage: React.FunctionComponent<IPrivateRouteAut
 			/>
 		);
 	}
-
+	console.log(auth.dataRole);
 	return (
 		<Route
-			{...rest}
+			{...restProps}
 			render={() => {
-				return auth.data ? children : <Redirect to="/sign-in" />;
+				return auth.dataRole ? children : <Redirect to="/login" />;
 			}}
 		/>
 	);

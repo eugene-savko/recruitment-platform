@@ -55,8 +55,8 @@ export const Auth: React.FunctionComponent = () => {
 					<ButtonSubmint />
 				</AuthForm>
 			</AuthWrapper>
-			<p>alice.blue@gmail.com</p>
-			<p>12345</p>
+			<p>kate.yellow@gmail.com</p>
+			<p>67890</p>
 		</React.Fragment>
 	);
 };
