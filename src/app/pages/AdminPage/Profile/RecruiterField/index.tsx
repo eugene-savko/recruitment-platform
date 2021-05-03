@@ -27,7 +27,7 @@ interface IRecruiterFieldProps {
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 }) => {
-	const [isShown, setIsShown] = useState<boolean>(false);
+	const [isShown, setIsShown] = useState(false);
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
 	const { register, handleSubmit } = useForm<IFormFields>();
 
