@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { TableRow as MaterialTableRow } from '@material-ui/core';
 
 const TableRow = styled(MaterialTableRow)`
-	border-bottom: 0.2px solid #7986cb;
-	background-color: #fff;
-	&:hover {
-		background-color: #7986cb;
+	//background-color: #fff;
+	border-bottom: 1px solid lightgray;
+	&:last-child {
+		border-bottom: none;
 	}
-	border-radius: 8px;
+	&:hover {
+		background-color: #9fa8da;
+	}
 `;
 export default TableRow;

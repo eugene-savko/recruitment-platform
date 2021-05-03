@@ -3,26 +3,27 @@ import React, { useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
-	FilterButton,
-	TitleFormTable,
-	WrapperTable,
-	GlobalFilterSelect,
+	ModalFilterButton,
+	TableFormTitle,
+	InternshipFilterSelect,
+	WrapperCandidateTable,
+	PaperTable,
 } from './components';
 import { InputField } from './InputField';
 import { ModalFilter } from './ModalFilter';
 
 import { FILTER_SELECTS, GLOBAL_FILTER_SELECT } from './data';
 import { SelectField } from './SelectField';
-import { FormTable } from './FormTable';
+import { TableForm } from './TableForm';
 import { IFilterOption } from './types';
 
-interface IGlobalFilter {
+interface ITraineeFilter {
 	setFilter: (filter?: IFilterOption | Array<string | IFilterOption>) => void;
 
 	children?: React.ReactNode;
 }
 
-const GlobalFilter: React.FunctionComponent<IGlobalFilter> = ({
+const TraineeFilter: React.FunctionComponent<ITraineeFilter> = ({
 	setFilter,
 	children,
 }) => {
@@ -30,7 +31,7 @@ const GlobalFilter: React.FunctionComponent<IGlobalFilter> = ({
 
 	// data
 	const globalFilterSelectData = useMemo(() => GLOBAL_FILTER_SELECT, []);
-	const { primary_skills, tranee_statuses } = useMemo(() => FILTER_SELECTS, []);
+	const { primary_skills, trainee_status } = useMemo(() => FILTER_SELECTS, []);
 
 	const onSubmit = (data: IFilterOption) => {
 		setFilter(data);
@@ -49,9 +50,9 @@ const GlobalFilter: React.FunctionComponent<IGlobalFilter> = ({
 		setFilter(data);
 	};
 	return (
-		<React.Fragment>
-			<WrapperTable container justify="flex-end">
-				<GlobalFilterSelect
+		<WrapperCandidateTable container>
+			<PaperTable>
+				<InternshipFilterSelect
 					classNamePrefix="Select"
 					options={globalFilterSelectData}
 					getOptionLabel={(option: IFilterOption) => option.value}
@@ -60,14 +61,14 @@ const GlobalFilter: React.FunctionComponent<IGlobalFilter> = ({
 						handleGlobalFilterSelectChange(data)
 					}
 					isFocused={false}
-					placeholder="Global Filter"
+					placeholder="Internship Filter"
 				/>
-				<FilterButton color="primary" onClick={handleClickOpen}>
+				<ModalFilterButton color="primary" onClick={handleClickOpen}>
 					<FilterListIcon />
-				</FilterButton>
+				</ModalFilterButton>
 				<ModalFilter isShown={open}>
-					<FormTable onSubmit={handleSubmit(onSubmit)} close={handleClose}>
-						<TitleFormTable>Filter</TitleFormTable>
+					<TableForm onSubmit={handleSubmit(onSubmit)} close={handleClose}>
+						<TableFormTitle>Filter</TableFormTitle>
 						<InputField
 							ref={register}
 							id="full-name"
@@ -82,14 +83,14 @@ const GlobalFilter: React.FunctionComponent<IGlobalFilter> = ({
 						/>
 						<SelectField
 							control={control}
-							name="Tranee Status"
-							data={tranee_statuses}
+							name="Trainee Status"
+							data={trainee_status}
 						/>
-					</FormTable>
+					</TableForm>
 				</ModalFilter>
 				{children}
-			</WrapperTable>
-		</React.Fragment>
+			</PaperTable>
+		</WrapperCandidateTable>
 	);
 };
-export default GlobalFilter;
+export default TraineeFilter;

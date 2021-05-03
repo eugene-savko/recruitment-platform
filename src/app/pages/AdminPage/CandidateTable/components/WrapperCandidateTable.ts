@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Grid } from '@material-ui/core';
 
-const WrapperTable = styled.div`
+const WrapperCandidateTable = styled(Grid)`
 	width: 100%;
 `;
-export default WrapperTable;
+export default WrapperCandidateTable;

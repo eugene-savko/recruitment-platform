@@ -1,11 +1,16 @@
 import React from 'react';
 
-import { ProfileLink, TablePaginationButton } from './components';
+import { ColumnProfileButton, ProfileLink } from './components';
 
-export const TableCellButton: React.FunctionComponent = ({ children }) => {
+interface ITableCellButtonProps {
+	text: string;
+}
+export const TableCellButton: React.FunctionComponent<ITableCellButtonProps> = ({
+	text,
+}) => {
 	return (
 		<ProfileLink to="/profile">
-			<TablePaginationButton>{children}</TablePaginationButton>
+			<ColumnProfileButton type="button">{text}</ColumnProfileButton>
 		</ProfileLink>
 	);
 };

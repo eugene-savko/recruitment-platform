@@ -1,7 +1,15 @@
-import { Typography } from '@material-ui/core';
+import {
+	LastPage as LastPageIcon,
+	FirstPage as FirstPageIcon,
+	ArrowBackIos as ArrowBackIosIcon,
+	ArrowForwardIos as ArrowForwardIosIcon,
+} from '@material-ui/icons';
+
 import React, { useMemo } from 'react';
 import {
 	Label,
+	NumberPageInput,
+	NumberTablePage,
 	TablePaginationButton,
 	TablePaginationItem,
 	TablePaginationList,
@@ -43,8 +51,6 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 		<TablePaginationList>
 			<TablePaginationItem>
 				<Label htmlFor="table-pagination__select">Row per page</Label>
-			</TablePaginationItem>
-			<TablePaginationItem>
 				<TablePaginationSelect
 					name="table-select"
 					classNamePrefix="Select"
@@ -58,27 +64,21 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 				/>
 			</TablePaginationItem>
 			<TablePaginationItem>
-				<Typography>
-					Page:{' '}
-					<strong>
-						{pageIndex + 1} of {pageOptions.length}
-					</strong>
-				</Typography>
+				<NumberTablePage>
+					<strong>Page:</strong> {pageIndex + 1} of {pageOptions.length}
+				</NumberTablePage>
 			</TablePaginationItem>
 			<TablePaginationItem>
-				<Typography>
-					<input
-						type="number"
-						defaultValue={pageIndex + 1}
-						onChange={(e) => {
-							const pageNumber = e.target.value
-								? Number(e.target.value) - 1
-								: 0;
-							gotoPage(pageNumber);
-						}}
-						style={{ width: '50px' }}
-					/>
-				</Typography>
+				<NumberPageInput
+					type="number"
+					defaultValue={pageIndex + 1}
+					onChange={(e) => {
+						const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
+						gotoPage(pageNumber);
+					}}
+					inputProps={{ max: pageOptions.length, min: 0 }}
+					disableUnderline
+				/>
 			</TablePaginationItem>
 			<TablePaginationItem>
 				<TablePaginationButton
@@ -86,7 +86,7 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 					onClick={() => gotoPage(0)}
 					disabled={!canPreviousPage}
 				>
-					{'<<'}
+					<FirstPageIcon />
 				</TablePaginationButton>
 			</TablePaginationItem>
 			<TablePaginationItem>
@@ -95,7 +95,7 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 					onClick={previousPage}
 					disabled={!canPreviousPage}
 				>
-					Previous
+					<ArrowBackIosIcon />
 				</TablePaginationButton>
 			</TablePaginationItem>
 			<TablePaginationItem>
@@ -104,7 +104,7 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 					onClick={nextPage}
 					disabled={!canNextPage}
 				>
-					Next
+					<ArrowForwardIosIcon />
 				</TablePaginationButton>
 			</TablePaginationItem>
 			<TablePaginationItem>
@@ -113,7 +113,7 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 					onClick={() => gotoPage(pageCount - 1)}
 					disabled={!canNextPage}
 				>
-					{'>>'}
+					<LastPageIcon />
 				</TablePaginationButton>
 			</TablePaginationItem>
 		</TablePaginationList>

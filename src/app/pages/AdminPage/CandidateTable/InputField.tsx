@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Input, LabelFormFilter } from './components';
+import { FormInput, FormLabel } from './components';
 
 interface IInputField {
 	name: string;
@@ -11,10 +11,13 @@ interface IInputField {
 export const InputField = forwardRef((props: IInputField, ref) => {
 	return (
 		<div>
-			<LabelFormFilter>
-				Full Name
-				<Input inputRef={ref} {...props} placeholder="Full Name" />
-			</LabelFormFilter>
+			<FormLabel>Full Name</FormLabel>
+			<FormInput
+				inputRef={ref}
+				{...props}
+				placeholder="Full Name"
+				disableUnderline
+			/>
 		</div>
 	);
 });

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { Button as MaterialButton } from '@material-ui/core';
 
-const TablePaginationButton = styled(MaterialButton)`
-	padding: 0;
-	color: #3f51b5;
+const ModalFilterButton = styled(MaterialButton)`
 	min-width: 30px;
+	margin: 8px 0;
 `;
-export default TablePaginationButton;
+export default ModalFilterButton;

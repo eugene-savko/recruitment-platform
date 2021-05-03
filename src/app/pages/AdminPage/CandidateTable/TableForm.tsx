@@ -6,7 +6,7 @@ export interface ITableForm {
 	onSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
 	close: () => void;
 }
-export const FormTable: React.FunctionComponent<ITableForm> = ({
+export const TableForm: React.FunctionComponent<ITableForm> = ({
 	children,
 	onSubmit,
 	close,

@@ -5,7 +5,7 @@ const DATA_TABLE = [
 		primary_skill: 'Go',
 		country: 'Belarus',
 		status: 'Recruiter Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 2,
@@ -13,7 +13,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Belarus',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 3,
@@ -21,7 +21,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Kazaxstan',
 		status: 'Accepted',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 4,
@@ -29,7 +29,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 5,
@@ -37,7 +37,7 @@ const DATA_TABLE = [
 		primary_skill: 'Ruby',
 		country: 'Kazaxstan',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 6,
@@ -45,7 +45,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Kazaxstan',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 7,
@@ -53,7 +53,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 8,
@@ -61,7 +61,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Belarus',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 9,
@@ -69,7 +69,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Ukraine',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 10,
@@ -77,7 +77,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Kazaxstan',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 11,
@@ -85,7 +85,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Kazaxstan',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 12,
@@ -93,7 +93,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Kazaxstan',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 13,
@@ -101,7 +101,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Kazaxstan',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 14,
@@ -109,7 +109,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 15,
@@ -117,7 +117,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Russia',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 16,
@@ -125,7 +125,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Russia',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 17,
@@ -133,7 +133,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Belarus',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 18,
@@ -141,7 +141,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Ukraine',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 19,
@@ -149,7 +149,7 @@ const DATA_TABLE = [
 		primary_skill: 'Go',
 		country: 'Belarus',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 20,
@@ -157,7 +157,7 @@ const DATA_TABLE = [
 		primary_skill: 'Go',
 		country: 'Belarus',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 21,
@@ -165,7 +165,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Russia',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 22,
@@ -173,7 +173,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 23,
@@ -181,7 +181,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Kazaxstan',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 24,
@@ -189,7 +189,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Belarus',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 25,
@@ -197,7 +197,7 @@ const DATA_TABLE = [
 		primary_skill: 'Go',
 		country: 'Belarus',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 26,
@@ -205,7 +205,7 @@ const DATA_TABLE = [
 		primary_skill: 'Go',
 		country: 'Ukraine',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 27,
@@ -213,7 +213,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Russia',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 28,
@@ -221,7 +221,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 29,
@@ -229,7 +229,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Russia',
 		status: 'Accepted',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 30,
@@ -237,7 +237,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Ukraine',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 31,
@@ -245,7 +245,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Belarus',
 		status: 'Accepted',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 32,
@@ -253,7 +253,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Kazaxstan',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 33,
@@ -261,7 +261,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Belarus',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 34,
@@ -269,7 +269,7 @@ const DATA_TABLE = [
 		primary_skill: 'Ruby',
 		country: 'Kazaxstan',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 35,
@@ -277,7 +277,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Russia',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 36,
@@ -285,7 +285,7 @@ const DATA_TABLE = [
 		primary_skill: 'Go',
 		country: 'Belarus',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 37,
@@ -293,7 +293,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Ukraine',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 38,
@@ -301,7 +301,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Accepted',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 39,
@@ -309,7 +309,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Ukraine',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 40,
@@ -317,7 +317,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Belarus',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 41,
@@ -325,7 +325,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Kazaxstan',
 		status: 'Technical Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 42,
@@ -333,7 +333,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Kazaxstan',
 		status: 'Accepted',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 43,
@@ -341,7 +341,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Kazaxstan',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 44,
@@ -349,7 +349,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Kazaxstan',
 		status: 'Pending',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 45,
@@ -357,7 +357,7 @@ const DATA_TABLE = [
 		primary_skill: 'Python',
 		country: 'Belarus',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 46,
@@ -365,7 +365,7 @@ const DATA_TABLE = [
 		primary_skill: 'Java',
 		country: 'Russia',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 47,
@@ -373,7 +373,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Russia',
 		status: 'Denied',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 48,
@@ -381,7 +381,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Ukraine',
 		status: 'Recruiter Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 49,
@@ -389,7 +389,7 @@ const DATA_TABLE = [
 		primary_skill: 'C++',
 		country: 'Belarus',
 		status: 'Recruiter Feedback',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 	{
 		id: 50,
@@ -397,7 +397,7 @@ const DATA_TABLE = [
 		primary_skill: 'Javascript',
 		country: 'Kazaxstan',
 		status: 'Technical Interview',
-		go_to_button: 'Profile',
+		go_to_button: 'Forward',
 	},
 ];
 export default DATA_TABLE;

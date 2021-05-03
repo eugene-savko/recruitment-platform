@@ -1,6 +1,6 @@
 import React from 'react';
 import { Control, FieldValues, Controller } from 'react-hook-form';
-import { FilterFormSelect, LabelFormFilter } from './components';
+import { FormSelect, FormLabel, SelectFieldWrapper } from './components';
 import { IFilterOption } from './types';
 
 interface ISelectField {
@@ -20,9 +20,9 @@ export const SelectField: React.FunctionComponent<ISelectField> = ({
 			defaultValue={name}
 			name={name}
 			render={({ onChange, value, ref }) => (
-				<LabelFormFilter>
-					{name}
-					<FilterFormSelect
+				<SelectFieldWrapper>
+					<FormLabel>{name}</FormLabel>
+					<FormSelect
 						variant="outlined"
 						inputRef={ref}
 						value={value}
@@ -34,7 +34,7 @@ export const SelectField: React.FunctionComponent<ISelectField> = ({
 							onChange(val);
 						}}
 					/>
-				</LabelFormFilter>
+				</SelectFieldWrapper>
 			)}
 		/>
 	);

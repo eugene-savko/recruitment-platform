@@ -1,28 +1,33 @@
 import Select from 'react-select';
 import styled from 'styled-components';
 
-const TablePaginationSelect = styled(Select)`
-	font-family: Inter, sans-serif;
+const InternshipFilterSelect = styled(Select)`
+	margin: 8px 0;
+	font-family: Inter, serif;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 12px;
 	line-height: 15px;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
-	width: 100px;
+	width: 500px;
 	color: #6e6893;
 	& .Select__control {
 		border-color: #7986cb;
 	}
 	& .Select__menu {
-		top: 0;
-		left: 20px;
+		top: -10px;
+		left: 0;
 	}
-	& .Select__indicator {
+	& .Select__control {
 		border-color: #7986cb;
+		box-shadow: none;
+		&:hover {
+			border-color: #7986cb;
+		}
 	}
-	& .Select__option {
-		padding: 2px 2px;
+	& .Select__indicator-separator {
+		display: none;
 	}
 `;
-export default TablePaginationSelect;
+export default InternshipFilterSelect;

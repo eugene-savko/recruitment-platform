@@ -7,7 +7,7 @@ const FILTER_SELECTS = {
 		{ value: 'C++', id: 5 },
 		{ value: 'Go', id: 6 },
 	],
-	tranee_statuses: [
+	trainee_status: [
 		{ value: 'All', id: 1 },
 		{ value: 'Pending', id: 2 },
 		{ value: 'Recruiter Feedback', id: 3 },

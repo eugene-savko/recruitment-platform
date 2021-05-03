@@ -1,5 +1,5 @@
 import { TableBody, TableHead } from '@material-ui/core';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
 	useTable,
 	useFilters,
@@ -12,41 +12,36 @@ import {
 
 import { DATA_TABLE } from './data';
 
-import {
-	Table,
-	TableCell,
-	TableHeaderRow,
-	TableRow,
-	WrapperCandidateTable,
-} from './components';
+import { Table, TableCell, TableHeaderRow, TableRow } from './components';
 
-import COLUMNS_TABLE, { IBodyRow } from './data/COLUMNS_TABLE';
+import TableColumns, { IBodyRow } from './TableColumns';
 import ColumnFilter from './Filters/ColumnFilter';
-import GlobalFilter from './GlobalFilter';
+import TraineeFilter from './TraineeFilter';
 import { TablePagination } from './TablePagination';
 import { IFilterOption } from './types';
 
 export const CandidateTable: React.FunctionComponent = () => {
-	// data
-	const columns = useMemo(() => COLUMNS_TABLE, []);
+	// Data From Server
+	const columns = useMemo(() => TableColumns, []);
 	const data = useMemo(() => DATA_TABLE, []);
 
-	// defaultcolumn
+	// State Data Table
+	const [tableData] = useState(data);
+	// Default Column
 	const defaultColumn = useMemo(() => {
 		return {
 			Filter: ColumnFilter,
 		};
 	}, []);
-	// Global Filter Function
+	// Global Filter Function(experimental)
 	const ourGlobalFilterFunction = useCallback(
 		(
 			rows: Row<IBodyRow>[],
 			ids: IdType<string | Extract<keyof IBodyRow, string>>[],
 			query: IFilterOption
 		) => {
-			console.log(query);
 			const { value, id } = query;
-			console.log(rows);
+
 			if (id) {
 				const arrValues = value.split(' ');
 				switch (value) {
@@ -83,7 +78,12 @@ export const CandidateTable: React.FunctionComponent = () => {
 		setGlobalFilter,
 		state,
 	} = useTable(
-		{ columns, data, defaultColumn, globalFilter: ourGlobalFilterFunction },
+		{
+			columns,
+			data: tableData,
+			defaultColumn,
+			globalFilter: ourGlobalFilterFunction,
+		},
 		useFilters,
 		useGlobalFilter,
 		useSortBy,
@@ -92,85 +92,49 @@ export const CandidateTable: React.FunctionComponent = () => {
 	const { pageIndex, pageSize } = state;
 
 	return (
-		<WrapperCandidateTable>
-			<GlobalFilter setFilter={setGlobalFilter}>
-				<Table {...getTableProps()}>
-					<TableHead>
-						{
-							// Loop over the header rows
-							headerGroups.map((headerGroup) => (
-								// Apply the header row props
-								<TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
-									{
-										// Loop over the headers in each row
-										headerGroup.headers.map((column) => (
-											// Apply the header cell props
-											<th
-												{...column.getHeaderProps(
-													column.getSortByToggleProps()
-												)}
-											>
-												{
-													// Render the header
-													column.render('Header')
-												}
-												<span>
-													{column.isSorted
-														? column.isSortedDesc
-															? ' 🔽'
-															: ' 🔼'
-														: ''}
-												</span>
-											</th>
-										))
-									}
-								</TableHeaderRow>
-							))
-						}
-					</TableHead>
-					{/* Apply the table body props */}
-					<TableBody {...getTableBodyProps()}>
-						{
-							// Loop over the table rows
-							page.map((row) => {
-								// Prepare the row for display
-								prepareRow(row);
-								return (
-									// Apply the row props
-									<TableRow {...row.getRowProps()}>
-										{
-											// Loop over the rows cells
-											row.cells.map((cell) => {
-												// Apply the cell props
-												return (
-													<TableCell {...cell.getCellProps()}>
-														{
-															// Render the cell contents
-															cell.render('Cell')
-														}
-													</TableCell>
-												);
-											})
-										}
-									</TableRow>
-								);
-							})
-						}
-					</TableBody>
-				</Table>
-				<TablePagination
-					nextPage={nextPage}
-					previousPage={previousPage}
-					canNextPage={canNextPage}
-					canPreviousPage={canPreviousPage}
-					pageCount={pageCount}
-					gotoPage={gotoPage}
-					pageOptions={pageOptions}
-					pageIndex={pageIndex}
-					pageSize={pageSize}
-					setPageSize={setPageSize}
-				/>
-			</GlobalFilter>
-		</WrapperCandidateTable>
+		<TraineeFilter setFilter={setGlobalFilter}>
+			<Table {...getTableProps()}>
+				<TableHead>
+					{headerGroups.map((headerGroup) => (
+						<TableHeaderRow {...headerGroup.getHeaderGroupProps()}>
+							{headerGroup.headers.map((column) => (
+								<th {...column.getHeaderProps(column.getSortByToggleProps())}>
+									{column.render('Header')}
+								</th>
+							))}
+						</TableHeaderRow>
+					))}
+				</TableHead>
+
+				<TableBody {...getTableBodyProps()}>
+					{page.map((row) => {
+						prepareRow(row);
+						return (
+							<TableRow {...row.getRowProps()}>
+								{row.cells.map((cell) => {
+									return (
+										<TableCell {...cell.getCellProps()}>
+											{cell.render('Cell')}
+										</TableCell>
+									);
+								})}
+							</TableRow>
+						);
+					})}
+				</TableBody>
+			</Table>
+			<TablePagination
+				nextPage={nextPage}
+				previousPage={previousPage}
+				canNextPage={canNextPage}
+				canPreviousPage={canPreviousPage}
+				pageCount={pageCount}
+				gotoPage={gotoPage}
+				pageOptions={pageOptions}
+				pageIndex={pageIndex}
+				pageSize={pageSize}
+				setPageSize={setPageSize}
+			/>
+		</TraineeFilter>
 	);
 };

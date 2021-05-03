@@ -4,8 +4,8 @@ import { TableRow as MaterialTableRow } from '@material-ui/core';
 const TableHeaderRow = styled(MaterialTableRow)`
 	border: 1px solid #9fa8da;
 	height: 50px;
-	background-color: #9fa8da;
-	font-family: Inter;
+	background-color: #7986cb;
+	font-family: Inter, sans-serif;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 12px;
