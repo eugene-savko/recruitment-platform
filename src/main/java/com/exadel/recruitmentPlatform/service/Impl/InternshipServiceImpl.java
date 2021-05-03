@@ -2,7 +2,9 @@ package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
+import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.InternshipShortMapper;
 import com.exadel.recruitmentPlatform.entity.Country;
 import com.exadel.recruitmentPlatform.entity.Internship;
 import com.exadel.recruitmentPlatform.entity.Skill;
@@ -17,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,9 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Autowired
     private InternshipMapper internshipMapper;
+
+    @Autowired
+    private InternshipShortMapper internshipShortMapper;
 
     @Autowired
     private SpecialityService specialityService;
@@ -78,16 +82,26 @@ public class InternshipServiceImpl implements InternshipService {
         return listToDto(internshipRepository.findInternshipsByCountryId(countryId));
     }
 
+    @Override
     public InternshipResponseDto update(InternshipDto dto) {
         Internship internship = internshipRepository.findById(dto.getId())
                 .orElseThrow(() ->
                         new EntityNotFoundException("Internship with id=" + dto.getId() + " doesn't exist"));
-        update(dto, internship);
+        updateInternship(dto, internship);
         Internship savedInternship = internshipRepository.save(internship);
         return internshipMapper.toDto(savedInternship);
     }
 
-    public void update(InternshipDto dto, Internship internship) {
+    @Override
+    public List<InternshipShortDto> getIdsAndNamesOfInternships(){
+        return listToShortDto(internshipRepository.findAll());
+    }
+
+    public List<InternshipShortDto> listToShortDto(List<Internship> internships) {
+        return internships.stream().map(internshipShortMapper::toDto).collect(Collectors.toList());
+    }
+
+    private void updateInternship(InternshipDto dto, Internship internship) {
         internship.setName(dto.getName());
         internship.setDescription(dto.getDescription());
         internship.setDeadline(dto.getDeadline());
