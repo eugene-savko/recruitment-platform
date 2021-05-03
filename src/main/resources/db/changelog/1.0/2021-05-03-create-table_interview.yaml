@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-05-03-create-table_interview
+      author: ZheltokMariya
+      changes:
+        - createTable:
+            tableName: interview
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: feedback
+                  type: varchar(1500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: to_user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_to_user_interview
+                    references: user(id)
+                    onDelete: RESTRICT
+                    onUpdate: CASCADE
+              - column:
+                  name: from_user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_from_user_interview
+                    references: user(id)
+                    onDelete: RESTRICT
+                    onUpdate: CASCADE
+              - column:
+                  name: internship_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_internship_interview
+                    references: internship(id)
+                    onDelete: RESTRICT
+                    onUpdate: CASCADE
+              - column:
+                  name: user_time_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_time_interview
+                    references: user_time(id)
+                    onDelete: RESTRICT
+                    onUpdate: CASCADE
+
+  - changeSet:
+      id: 2021-05-03-create-time-field-for-interview-table
+      author: ZheltokMariya
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-05-03-adding-create-update-fields-to-interview-table.sql
+            stripComments: true
