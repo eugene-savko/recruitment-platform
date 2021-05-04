@@ -5,10 +5,13 @@ import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,5 +58,10 @@ public class UserServiceImpl implements UserService {
     public UserDto getAuthenticatedUser(Authentication authentication){
         AuthenticatedUser user = (AuthenticatedUser)authentication.getPrincipal();
         return findById(user.getId());
+    }
+
+    @Override
+    public Page<UserDto> getUsersWithInternshipRole(Pageable pageable) {
+        return userRepository.findUsersByRoleInternship(pageable, UserRole.INTERN).map(userMapper::toDto);
     }
 }
