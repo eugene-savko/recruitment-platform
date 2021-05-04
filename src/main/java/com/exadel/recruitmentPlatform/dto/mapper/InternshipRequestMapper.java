@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class InternshipRequestMapper implements BaseMapper<InternshipRequest,InternshipRequestDto>{
+public class InternshipRequestMapper implements BaseMapper<InternshipRequest, InternshipRequestDto>{
 
     private final UserMapper userMapper;
 
