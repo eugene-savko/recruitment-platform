@@ -3,7 +3,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 const ListItemIconCustom = styled(ListItemIcon)`
 	min-width: 35px;
-	color: ##6b778c;
+	color: #6b778c;
 `;
 
 export default ListItemIconCustom;
