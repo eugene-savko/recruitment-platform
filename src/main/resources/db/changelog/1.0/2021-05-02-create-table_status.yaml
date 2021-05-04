@@ -1,0 +1,29 @@
+databaseChangeLog:
+    - changeSet:
+          id: 2021-05-02-create-table_status-1
+          author: alex_over
+          changes:
+              - createTable:
+                    tableName: status
+                    columns:
+                        - column:
+                              name: id
+                              type: BIGINT
+                              autoIncrement: true
+                              constraints:
+                                  primaryKey: true
+                                  nullable: false
+                        - column:
+                              name: name
+                              type: varchar(50)
+                              constraints:
+                                  nullable: false
+    - changeSet:
+          id: 2021-05-02-create-table_status-2
+          author: alex_over
+          changes:
+              - sqlFile:
+                    splitStatements: true
+                    relativeToChangelogFile: true
+                    path: ../2021-05-02-fill-data-status.sql
+                    stripComments: true
