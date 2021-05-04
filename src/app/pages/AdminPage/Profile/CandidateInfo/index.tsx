@@ -47,6 +47,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
 						<ListItemTextCustom
+							title="Full name candidate"
 							secondary={fullName(info.firstName, info.lastName)}
 						/>
 					</ListItem>
@@ -55,60 +56,77 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						<ListItemIconCustom>
 							<ComputerSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.specialityId} />
+						<ListItemTextCustom
+							title="Primary skill"
+							secondary={info.specialityId}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<BusinessCenterSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.internshipId} />
+						<ListItemTextCustom
+							title="Internship"
+							secondary={info.internshipId}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<PhoneAndroidSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.phone} />
+						<ListItemTextCustom title="Phone number" secondary={info.phone} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<RoomSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.country} />
+						<ListItemTextCustom
+							title="Location country"
+							secondary={info.country}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<LocationCitySharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.city} />
+						<ListItemTextCustom title="Location.city" secondary={info.city} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<EmailSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.email} />
+						<ListItemTextCustom title="Email" secondary={info.email} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<TranslateSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.englishLevel} />
+						<ListItemTextCustom
+							title="English level"
+							secondary={info.englishLevel}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<DescriptionSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.cv} />
+						<ListItemTextCustom title="Link CV" secondary={info.cv} />
 					</ListItem>
 				</List>
 
-				<ButtonMaterial variant="outlined" color="primary" onClick={toggle}>
+				<ButtonMaterial
+					variant="outlined"
+					color="primary"
+					onClick={toggle}
+					title="More info about candidate"
+				>
 					More info
 				</ButtonMaterial>
 			</ContainerInfo>
