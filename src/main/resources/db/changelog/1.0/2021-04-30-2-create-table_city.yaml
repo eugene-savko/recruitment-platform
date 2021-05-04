@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-30-2-create-table_city.yaml
+      author: vados.stradze
+      changes:
+        - createTable:
+            tableName: city
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2021-04-30-create-time-field-for-city-table
+      author: vados.stradze
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-04-30-adding-create-update-fields-to-city-table.sql
+            stripComments: true

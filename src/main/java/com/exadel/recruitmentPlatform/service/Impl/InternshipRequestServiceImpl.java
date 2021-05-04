@@ -19,19 +19,24 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
 
     private final InternshipRequestRepository internshipRequestRepository;
     private final InternshipRequestMapper internshipRequestMapper;
+    private CountryServiceImpl countryService;
+    private CityServiceImpl cityService;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
         internshipRequestDto.setStatus(InternshipRequestStatus.UNDER_CONSIDERATION);
         internshipRequestDto.getUserDto().setRole(UserRole.INTERN);
+        internshipRequestDto.setCountryId(countryService.save(internshipRequestDto.getCountry()));
+        internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()));
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
+
         InternshipRequest newRequest = internshipRequestRepository.save(internshipRequest);
         return internshipRequestMapper.toDto(newRequest);
     }
 
     @Override
     public InternshipRequestDto get(Long id) {
-        return internshipRequestRepository.findById(id).map(internshipRequestMapper::toDto).orElseThrow(()->
+        return internshipRequestRepository.findById(id).map(internshipRequestMapper::toDto).orElseThrow(() ->
                 new NullPointerException("Internship request with id=" + id + " doesn't exist"));
     }
 }

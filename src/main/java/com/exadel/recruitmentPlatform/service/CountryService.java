@@ -8,4 +8,7 @@ import java.util.Set;
 public interface CountryService {
     List <Country> getCountries(Set <Long> ids);
     Country getCountryById (Long id);
+    Long getCountryByName(String name);
+
+    Long save(String countryName);
 }

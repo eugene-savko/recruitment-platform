@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-30-modify-table_internship_request
+      author: vados.stradze
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: internship_id
+            baseTableName: internship_request
+            baseTableSchemaName: public
+            constraintName: fk_internship_request_internship
+            referencedColumnNames: id
+            referencedTableName: internship
+            referencedTableSchemaName: public
