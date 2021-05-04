@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { ModalStyled, ModalInfo, EmailIcon, CloseModal } from './components';
+import { ModalStyled, ModalInfo, CloseModal } from './components';
 import { IModal } from '../types';
+import { IconEmail } from '../IconEmail';
 
 export const Modal: React.FunctionComponent<IModal> = ({
 	showModal,
@@ -52,7 +53,7 @@ export const Modal: React.FunctionComponent<IModal> = ({
 					<p className="email" id="transition-modal-description">
 						{emailTrainee}
 					</p>
-					<EmailIcon />
+					<IconEmail />
 				</ModalInfo>
 			</Fade>
 		</ModalStyled>

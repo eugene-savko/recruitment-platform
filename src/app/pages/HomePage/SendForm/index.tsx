@@ -52,16 +52,16 @@ export const SendForm: React.FunctionComponent = () => {
 		const objectDto = {
 			specialityId: '1',
 			englishLevel,
-			cv: 'this is a link to CV',
+			cv:
+				'https://drive.google.com/file/d/1nUKSLwq5zh_GhVKQg6o1FalLrG2Bwuvc/view?usp=sharing',
 			internshipId: '1',
 			timeForCall,
-			// countryId: '1',
+			country,
+			city,
 			userDto: {
 				firstName,
 				lastName,
 				email,
-				country,
-				city,
 				phone,
 				otherInformation: textArea,
 			},
