@@ -1,6 +1,6 @@
 import React from 'react';
-
 import {
+	DetailsLink,
 	TrainingItemWrapper,
 	MainInfo,
 	Details,
@@ -27,9 +27,11 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 		<MainInfo>
 			<Title>{name}</Title>
 			<SubTitle>{destination}</SubTitle>
-			<StatusLabel>{status}</StatusLabel>
+			<StatusLabel>{status && 'Hot'}</StatusLabel>
 		</MainInfo>
 		<DescrtiptionInternship>{info}</DescrtiptionInternship>
-		<Details>Details</Details>
+		<DetailsLink to="/training-page">
+			<Details>Details</Details>
+		</DetailsLink>
 	</TrainingItemWrapper>
 );

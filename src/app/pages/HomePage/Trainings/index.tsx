@@ -10,20 +10,21 @@ import { TrainingList } from './TrainingList';
 // Data
 
 import { ITrainingItem } from './types';
-import API from './API';
+import { fetchInternships } from './API/interships';
 
 export const Trainings: React.FunctionComponent = () => {
-	const [trainingList, setTrainingList] = useState<Array<ITrainingItem>>([]);
+	const [trainings, setTrainings] = useState<Array<ITrainingItem>>([]);
+	const [currentPage, setCurrentPage] = useState(1);
 	useEffect(() => {
 		const fetchData = async () => {
-			const { data } = await API.get(`internships/`);
-			setTrainingList(data);
+			const data = await fetchInternships();
+			setTrainings(data);
 		};
 		fetchData();
 	}, []);
 	return (
 		<FilterContext.Provider
-			value={{ trainings: trainingList, setTrainings: setTrainingList }}
+			value={{ trainings, setTrainings, currentPage, setCurrentPage }}
 		>
 			<Filter />
 			<TrainingList />

@@ -1,5 +1,5 @@
 interface ISpecializationItem {
-	id: number | string;
+	id: number | null | undefined;
 	speciality: string;
 	checked: boolean;
 }

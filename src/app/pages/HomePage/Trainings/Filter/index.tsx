@@ -19,7 +19,7 @@ import { DropdownListItem } from './DropdownListItem';
 
 import FilterDropdownWrapper from './components/FilterMenuWrapper';
 import ControledForm from './components/FormControled';
-import API from '../API';
+import { fetchInternships } from '../API/interships';
 
 const initialState: IFilterState = {
 	specialization: 'Any Speciallization',
@@ -27,7 +27,9 @@ const initialState: IFilterState = {
 };
 
 export const Filter: React.FunctionComponent = () => {
-	const { setTrainings } = useContext(FilterContext);
+	const { setTrainings, setCurrentPage, currentPage } = useContext(
+		FilterContext
+	);
 
 	const [filterState, setFilterState] = useState<IFilterState>(initialState);
 
@@ -42,7 +44,7 @@ export const Filter: React.FunctionComponent = () => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
 	const handleClickMenuSpecializationItem = (value: string) => {
-		const specializationsCheckToogle = SpecializationItemsData.map((item) => {
+		const specializationsCheckToggle = SpecializationItemsData.map((item) => {
 			if (item.checked === true) {
 				const itemCopy = { ...item };
 				itemCopy.checked = false;
@@ -55,10 +57,10 @@ export const Filter: React.FunctionComponent = () => {
 			}
 			return item;
 		});
-		setSpecializationItems(specializationsCheckToogle);
+		setSpecializationItems(specializationsCheckToggle);
 	};
 
-	const toogleMenuSpecialization = () =>
+	const toggleMenuSpecialization = () =>
 		!specializationMenuState
 			? setSpecializationMenuState(true)
 			: setSpecializationMenuState(false);
@@ -74,23 +76,22 @@ export const Filter: React.FunctionComponent = () => {
 		});
 
 	// Click Search
-	const [getId, setGetId] = useState<number | string | undefined>('any');
+	const [getId, setGetId] = useState<number | null | undefined>(null);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			let id = '';
-			if (getId !== 'any' && getId) {
-				id = `specialities/${getId}`;
-			}
-			const { data } = await API.get(`internships/${id}`);
+			const data = await fetchInternships(getId);
+			console.log(data);
 			setTrainings?.(data);
 		};
 		fetchData();
 	}, [getId]);
-
 	const handleClickSearch = () => {
 		const specialization = specializationItems.find((elem) => elem.checked);
-		console.log(specialization?.id);
 		setGetId(specialization?.id);
+		if (currentPage > 1) {
+			setCurrentPage?.(1);
+		}
 		setSpecializationMenuState(null);
 	};
 	const handleClickOutside = (event: MouseEvent) => {
@@ -113,7 +114,7 @@ export const Filter: React.FunctionComponent = () => {
 						<DropdownMenuButton
 							type="button"
 							menuState={specializationMenuState}
-							onClick={toogleMenuSpecialization}
+							onClick={toggleMenuSpecialization}
 						>
 							{filterState.specialization}
 						</DropdownMenuButton>
