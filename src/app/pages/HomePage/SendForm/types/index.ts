@@ -5,6 +5,7 @@ import ITextArea from './ITextArea';
 import IFileLoader from './IFileLoader';
 import IAgreements from './IAgreements';
 import IFieldTimeCall from './IFieldTimeCall';
+import IModal from './IModal';
 
 export type {
 	IListItemSelect,
@@ -14,4 +15,5 @@ export type {
 	ITextArea,
 	IAgreements,
 	IFieldTimeCall,
+	IModal,
 };
