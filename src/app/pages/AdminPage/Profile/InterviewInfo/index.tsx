@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 // styles
 import {
@@ -21,12 +22,6 @@ interface IInfoProps {
 
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 	const fullName = (first: string, second: string) => `${first} ${second}`;
-	const dataInterview = (time: number) =>
-		`${new Date(time).getDate()}/${new Date(time).getMonth()}/${new Date(
-			time
-		).getFullYear()}  ${new Date(time).getHours()}:${new Date(
-			time
-		).getMinutes()}`;
 
 	return (
 		<React.Fragment>
@@ -51,7 +46,9 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={dataInterview(info[0].userTime.startDateTime)}
+							secondary={moment(info[0].userTime.startDateTime).format(
+								'DD/MM/YYYY H:mm'
+							)}
 						/>
 					</ListItem>
 
@@ -74,7 +71,9 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={dataInterview(info[1].userTime.startDateTime)}
+							secondary={moment(info[1].userTime.startDateTime).format(
+								'DD/MM/YYYY H:mm'
+							)}
 						/>
 					</ListItem>
 				</List>
