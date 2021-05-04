@@ -19,16 +19,20 @@ import IListItemSelect from '../types/IListItemSelect';
 
 // type
 import IFormFields from '../types/IFormFields';
+import IFeedbackInfo from '../types/IFeedbackInfo';
 
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
+	feedbackContent: Array<IFeedbackInfo>;
 }
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
+	feedbackContent,
 }) => {
-	const [isShown, setIsShown] = useState<boolean>(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
+	const { feedback } = feedbackContent[0];
+	const [isShown, setIsShown] = useState(false);
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
 	const { register, handleSubmit } = useForm<IFormFields>();
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -78,7 +82,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 							))}
 						</Select>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
-							Send feedback
+							Save feedback
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>

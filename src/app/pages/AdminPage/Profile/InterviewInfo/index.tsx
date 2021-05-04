@@ -13,13 +13,21 @@ import { ContainerInterviewInfo } from './components';
 import { AccountBoxSharpIcon, EventIcon } from '../components/IconsMaterial';
 
 // types
-import IInterviewInfo from '../types/IInterviewInfo';
+import IFeedbackInfo from '../types/IFeedbackInfo';
 
 interface IInfoProps {
-	info: IInterviewInfo;
+	info: Array<IFeedbackInfo>;
 }
 
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
+	const fullName = (first: string, second: string) => `${first} ${second}`;
+	const dataInterview = (time: number) =>
+		`${new Date(time).getDate()}/${new Date(time).getMonth()}/${new Date(
+			time
+		).getFullYear()}  ${new Date(time).getHours()}:${new Date(
+			time
+		).getMinutes()}`;
+
 	return (
 		<React.Fragment>
 			<ContainerInterviewInfo>
@@ -30,7 +38,10 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="Name recruiter:"
-							secondary={info.nameRecruiter}
+							secondary={fullName(
+								info[0].specialist.firstName,
+								info[0].specialist.lastName
+							)}
 						/>
 					</ListItem>
 
@@ -40,7 +51,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={info.dataInterviewRecruiter}
+							secondary={dataInterview(info[0].userTime.startDateTime)}
 						/>
 					</ListItem>
 
@@ -50,7 +61,10 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="Name Tech:"
-							secondary={info.nameTech}
+							secondary={fullName(
+								info[1].specialist.firstName,
+								info[1].specialist.lastName
+							)}
 						/>
 					</ListItem>
 
@@ -60,7 +74,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={info.dataInterviewTech}
+							secondary={dataInterview(info[1].userTime.startDateTime)}
 						/>
 					</ListItem>
 				</List>

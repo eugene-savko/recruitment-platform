@@ -18,7 +18,7 @@ import {
 import IFormFields from '../types/IFormFields';
 
 const TechField: React.FunctionComponent = () => {
-	const [isShown, setIsShown] = useState<boolean>(false);
+	const [isShown, setIsShown] = useState(false);
 	const [feedbackTech, setFeedbackTech] = useState<string>();
 	const { handleSubmit } = useForm<IFormFields>();
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -55,7 +55,7 @@ const TechField: React.FunctionComponent = () => {
 							Schedule
 						</ButtonMaterial>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
-							Send feedback
+							Save feedback
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>

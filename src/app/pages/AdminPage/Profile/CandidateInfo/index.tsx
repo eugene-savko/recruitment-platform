@@ -34,7 +34,7 @@ interface IInfoProps {
 }
 
 const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
-	const [isShown, setIsShown] = useState<boolean>(false);
+	const [isShown, setIsShown] = useState(false);
 	const toggle = () => setIsShown(!isShown);
 
 	return (
@@ -106,7 +106,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 				</List>
 
 				<ButtonMaterial variant="outlined" color="primary" onClick={toggle}>
-					OtherInformation
+					More info
 				</ButtonMaterial>
 			</ContainerInfo>
 			<MoreInfoModal

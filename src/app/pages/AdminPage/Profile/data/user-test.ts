@@ -13,7 +13,7 @@ const user: IUserInfo = {
 	city: 'Minsk',
 	phone: '667666',
 	otherInformation:
-		'some information some information some information some information some some information some information some information some information some information some information some information some information some information some information information some information some information',
+		'some information  some information some information some information some information some information some information some information some information some information some information some information ',
 };
 
 export default user;

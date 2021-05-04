@@ -4,7 +4,7 @@ import React from 'react';
 import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
 
 // components
-import CloseCross from './CloseCross';
+import ArrowBack from './ArrowBack';
 import RecruiterField from './RecruiterField';
 import TechField from './TechField';
 import CandidateInfo from './CandidateInfo';
@@ -12,7 +12,8 @@ import InterviewInfo from './InterviewInfo';
 
 // data
 import user from './data/user-test';
-import interviewInfo from './data/interviewInfo-test';
+import feedbackInfo from './data/feedbackInfo';
+// import interviewInfo from './data/interviewInfo-test';
 import listEnglishLevel from './data/listEnglishLevel';
 
 export const Profile: React.FunctionComponent = () => {
@@ -23,13 +24,16 @@ export const Profile: React.FunctionComponent = () => {
 	return (
 		<React.Fragment>
 			<ProfileContainer>
-				<CloseCross close={handlerClose} />
+				<ArrowBack close={handlerClose} />
 				<SidebarInfo>
 					<CandidateInfo info={user} />
-					<InterviewInfo info={interviewInfo} />
+					<InterviewInfo info={feedbackInfo} />
 				</SidebarInfo>
 				<AdminsFields>
-					<RecruiterField englishLevel={listEnglishLevel} />
+					<RecruiterField
+						englishLevel={listEnglishLevel}
+						feedbackContent={feedbackInfo}
+					/>
 					<TechField />
 				</AdminsFields>
 			</ProfileContainer>
