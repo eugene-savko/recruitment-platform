@@ -15,22 +15,19 @@ import {
 } from '../components';
 import { Select } from './components';
 
-import IListItemSelect from '../types/IListItemSelect';
-
 // type
-import IFormFields from '../types/IFormFields';
-import IFeedbackInfo from '../types/IFeedbackInfo';
+import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
-	feedbackContent: Array<IFeedbackInfo>;
+	feedbackContent: IFeedbackInfo;
 }
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
 }) => {
-	const { feedback } = feedbackContent[0];
+	const { feedback } = feedbackContent;
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
 	const { register, handleSubmit } = useForm<IFormFields>();

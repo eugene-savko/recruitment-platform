@@ -15,11 +15,18 @@ import {
 } from '../components';
 
 // type
-import IFormFields from '../types/IFormFields';
+import { IFormFields, IFeedbackInfo } from '../types';
 
-const TechField: React.FunctionComponent = () => {
+interface ITechFieldProps {
+	feedbackContent: IFeedbackInfo;
+}
+
+const TechField: React.FunctionComponent<ITechFieldProps> = ({
+	feedbackContent,
+}) => {
+	const { feedback } = feedbackContent;
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackTech, setFeedbackTech] = useState<string>();
+	const [feedbackTech, setFeedbackTech] = useState(feedback);
 	const { handleSubmit } = useForm<IFormFields>();
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
 		setFeedbackTech(event.target.value);

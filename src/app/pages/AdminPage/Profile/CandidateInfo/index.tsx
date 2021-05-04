@@ -27,7 +27,7 @@ import {
 } from '../components/IconsMaterial';
 
 // types
-import IUserInfo from '../types/IUserInfo';
+import { IUserInfo } from '../types';
 
 interface IInfoProps {
 	info: IUserInfo;
@@ -36,6 +36,7 @@ interface IInfoProps {
 const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 	const [isShown, setIsShown] = useState(false);
 	const toggle = () => setIsShown(!isShown);
+	const fullName = (first: string, second: string) => `${first} ${second}`;
 
 	return (
 		<React.Fragment>
@@ -45,7 +46,9 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						<ListItemIconCustom>
 							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.firstName} />
+						<ListItemTextCustom
+							secondary={fullName(info.firstName, info.lastName)}
+						/>
 					</ListItem>
 
 					<ListItem>

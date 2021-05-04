@@ -13,10 +13,11 @@ import InterviewInfo from './InterviewInfo';
 // data
 import user from './data/user-test';
 import feedbackInfo from './data/feedbackInfo';
-// import interviewInfo from './data/interviewInfo-test';
 import listEnglishLevel from './data/listEnglishLevel';
 
 export const Profile: React.FunctionComponent = () => {
+	const feedbackRecruiter = feedbackInfo[1];
+	const feedbackTech = feedbackInfo[0];
 	const handlerClose = () => {
 		// exit from Profile
 	};
@@ -32,9 +33,9 @@ export const Profile: React.FunctionComponent = () => {
 				<AdminsFields>
 					<RecruiterField
 						englishLevel={listEnglishLevel}
-						feedbackContent={feedbackInfo}
+						feedbackContent={feedbackRecruiter}
 					/>
-					<TechField />
+					<TechField feedbackContent={feedbackTech} />
 				</AdminsFields>
 			</ProfileContainer>
 		</React.Fragment>

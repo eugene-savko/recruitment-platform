@@ -20,7 +20,6 @@ const Select = styled.select`
 	outline: none;
 	appearance: none;
 	cursor: pointer;
-	/* box-sizing: border-box; */
 	transition: ease-in-out 0.2s;
 	background: url(${ArrowDown}) 95% no-repeat;
 	&:hover {

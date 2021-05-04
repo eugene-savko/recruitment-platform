@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 // components
 import CloseCross from './CloseCross';
 
+// style
 import {
 	Wrapper,
 	Header,
