@@ -1,0 +1,10 @@
+databaseChangeLog:
+    - changeSet:
+          id: 2021-05-05-modify-table_status
+          author: alex_over
+          changes:
+              - sqlFile:
+                    splitStatements: true
+                    relativeToChangelogFile: true
+                    path: ../2021-05-05-modify-data-status.sql
+                    stripComments: true
