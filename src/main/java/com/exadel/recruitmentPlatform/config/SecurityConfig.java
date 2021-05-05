@@ -47,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
                 .and().logout().permitAll()
-                .and().exceptionHandling()
-                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                .and().exceptionHandling();
+//                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
     }
 
     //TODO delete method, when there is security on frontend
@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers(HttpMethod.GET, "/api/**")
                 .antMatchers(HttpMethod.OPTIONS, "/internship-request")
-                .antMatchers(HttpMethod.POST, "/internship-request");
+                .antMatchers(HttpMethod.POST, "/internship-request")
+                .antMatchers("/**");
     }
 }
