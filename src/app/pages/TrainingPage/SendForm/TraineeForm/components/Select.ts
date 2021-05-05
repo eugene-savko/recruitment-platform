@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import ArrowDown from 'app/pages/HomePage/SendForm/TraineeForm/assets/select-arrow-down 4.png';
+import ArrowDown from '../assets/select-arrow-down.png';
 
 const Select = styled.select`
 	width: 100%;
-	max-width: 470px;
+	max-width: 450px;
 
 	padding: 15px;
 	margin: 0 auto;

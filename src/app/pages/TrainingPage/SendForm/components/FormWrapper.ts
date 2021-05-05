@@ -7,6 +7,17 @@ const FormWrapper = styled.div`
 	margin: 0 auto;
 	max-width: 1032px;
 
+	/* CSSTransition */
+
+	&.show-form-transition-enter-active {
+		opacity: 0;
+	}
+
+	&.show-form-transition-enter-done {
+		opacity: 1;
+		transition: 0.5s;
+	}
+
 	@media (max-width: 1047px) {
 		max-width: 500px;
 	}
