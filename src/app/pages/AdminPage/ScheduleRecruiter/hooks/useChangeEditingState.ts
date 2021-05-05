@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
-import { schedulerData } from '../helpers/schedulerData';
+import { schedulerData } from '../db/schedulerData';
 import { IUseChangeEditingState } from '../types';
 
 export const useChangeEditingState = (): IUseChangeEditingState => {

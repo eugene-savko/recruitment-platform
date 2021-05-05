@@ -2,25 +2,32 @@ import React, { useEffect, useState } from 'react';
 
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { MenuItem, TextField, FormControl, Select } from '@material-ui/core';
-import { databaseCandidates } from '../helpers/databaseCandidates';
-import { TitleLable } from '../components/TitleLable';
+import { MenuItem, FormControl, Select } from '@material-ui/core';
+import { databaseCandidates } from '../db/databaseCandidates';
+import { TitleLable, PreferablyTime } from '../components';
+
 import IDatabaseCandidates from '../types/IDatabaseCandidates';
 
 export const BasicLayout:
 	| React.ComponentType<AppointmentForm.BasicLayoutProps>
 	| undefined = ({ onFieldChange, appointmentData, ...restProps }) => {
-	const [state] = useState({
+	const [state, setState] = useState<IDatabaseCandidates>({
 		nameUser: 'Karl Greening',
 		id: 4,
-		periodTime: 'from 10:00 to 12:00',
+		periodTime: 'from 08:00 to 12:00',
 	});
-
 	const [userName, setUserName] = useState('');
+
 	const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-		onFieldChange({ title: e.target.value });
 		setUserName(e.target.value as string);
+		databaseCandidates.forEach((candidate) => {
+			if (candidate.id === e.target.value) setState(candidate);
+		});
 	};
+
+	useEffect(() => {
+		onFieldChange({ title: state.nameUser });
+	}, [state]);
 
 	useEffect(() => {
 		return appointmentData.title !== undefined
@@ -47,7 +54,7 @@ export const BasicLayout:
 						Choose another a candidate
 					</MenuItem>
 					{databaseCandidates.map(({ id, nameUser }: IDatabaseCandidates) => (
-						<MenuItem key={id} value={nameUser}>
+						<MenuItem key={id} value={id}>
 							{nameUser}
 						</MenuItem>
 					))}
@@ -55,12 +62,7 @@ export const BasicLayout:
 			</FormControl>
 
 			<TitleLable>Preferred time for an interview</TitleLable>
-			<TextField
-				disabled
-				fullWidth
-				defaultValue={state.periodTime}
-				variant="outlined"
-			/>
+			<PreferablyTime>{state.periodTime}</PreferablyTime>
 		</AppointmentForm.BasicLayout>
 	);
 };
