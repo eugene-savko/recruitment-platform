@@ -23,7 +23,6 @@ public class CityServiceImpl implements CityService {
     public Long save(String cityName) {
         City city = Optional.ofNullable(cityRepository
                 .findByName(cityName))
-                .map(item -> update(cityName))
                 .orElseGet(() -> create(cityName));
         cityRepository.save(city);
         return city.getId();
@@ -31,13 +30,6 @@ public class CityServiceImpl implements CityService {
 
     private City create(String cityName) {
         City city = cityMapper.toEntity(new CityDto(cityName));
-        City saved = cityRepository.save(city);
-        return saved;
-    }
-
-    private City update(String cityName) {
-        City city = cityRepository.findByName(cityName);
-        cityMapper.update(cityName, city);
         City saved = cityRepository.save(city);
         return saved;
     }

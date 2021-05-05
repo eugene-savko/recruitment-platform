@@ -19,28 +19,19 @@ import java.util.Set;
 public class CountryServiceImpl implements CountryService {
 
     private final CountryRepository countryRepository;
-    private final CountryMapper mapper;
+    private final CountryMapper countryMapper;
 
     @Override
     public Long save(String countryName) {
         Country country = Optional.ofNullable(countryRepository
                 .findByName(countryName))
-                .map(item -> update(countryName))
                 .orElseGet(() -> create(countryName));
         countryRepository.save(country);
         return country.getId();
     }
 
     private Country create(String countryName) {
-        Country country = mapper.toEntity(new CountryDto(countryName));
-        Country saved = countryRepository.save(country);
-        return saved;
-    }
-
-    private Country update(String countryName) {
-        Country country = countryRepository.findByName(countryName);
-        /*.orElseThrow(() -> new EntityNotFoundException("User with id=" + userDto.getId() + " doesn't exist"));*/
-        mapper.update(countryName, country);
+        Country country = countryMapper.toEntity(new CountryDto(countryName));
         Country saved = countryRepository.save(country);
         return saved;
     }

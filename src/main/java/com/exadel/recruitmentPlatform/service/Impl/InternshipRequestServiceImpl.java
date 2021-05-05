@@ -6,6 +6,8 @@ import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
+import com.exadel.recruitmentPlatform.service.CityService;
+import com.exadel.recruitmentPlatform.service.CountryService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,8 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
 
     private final InternshipRequestRepository internshipRequestRepository;
     private final InternshipRequestMapper internshipRequestMapper;
-    private CountryServiceImpl countryService;
-    private CityServiceImpl cityService;
+    private CountryService countryService;
+    private CityService cityService;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
@@ -29,7 +31,6 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         internshipRequestDto.setCountryId(countryService.save(internshipRequestDto.getCountry()));
         internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()));
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
-
         InternshipRequest newRequest = internshipRequestRepository.save(internshipRequest);
         return internshipRequestMapper.toDto(newRequest);
     }

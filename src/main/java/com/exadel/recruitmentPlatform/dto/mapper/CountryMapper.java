@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@AllArgsConstructor
 public class CountryMapper implements BaseMapper<Country, CountryDto> {
 
 
@@ -34,8 +33,8 @@ public class CountryMapper implements BaseMapper<Country, CountryDto> {
         return countries.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    public void update(String countryName, Country country) {
+   /* public void update(String countryName, Country country) {
         country.setName(countryName);
 
-    }
+    }*/
 }
