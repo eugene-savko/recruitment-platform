@@ -56,7 +56,16 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 		<React.Fragment>
 			<Prompt
 				when={checkOut}
-				message="Please save your review or it will be lost"
+				message={(location, action) => {
+					if (action === 'POP') {
+						// eslint-disable-next-line no-console
+						console.log('Backing up...');
+					}
+
+					return location.pathname.startsWith('/app')
+						? true
+						: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
+				}}
 			/>
 			<Container>
 				<Title>Recruiter field</Title>
