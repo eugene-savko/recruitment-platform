@@ -13,8 +13,8 @@ export const InputField = forwardRef((props: IInputField, ref) => {
 		<div>
 			<FormLabel>Full Name</FormLabel>
 			<FormInput
-				inputRef={ref}
 				{...props}
+				inputRef={ref}
 				placeholder="Full Name"
 				disableUnderline
 			/>

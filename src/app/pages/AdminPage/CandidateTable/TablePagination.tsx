@@ -5,7 +5,7 @@ import {
 	ArrowForwardIos as ArrowForwardIosIcon,
 } from '@material-ui/icons';
 
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
 	Label,
 	NumberPageInput,
@@ -42,11 +42,33 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 	pageSize,
 	setPageSize,
 }) => {
-	const rowPerPage = useMemo(() => ROW_PER_PAGE, []);
-	const handleRowPerPage = (opt: IFilterOption) => {
-		const { value } = opt;
-		setPageSize(Number(value));
-	};
+	const rowPerPage = ROW_PER_PAGE;
+
+	const numberPageInputProps = useMemo(() => {
+		return { max: pageOptions.length, min: 0 };
+	}, [pageOptions]);
+
+	const handleRowPerPage = useCallback(
+		(opt: IFilterOption) => {
+			const { name } = opt;
+			setPageSize(Number(name));
+		},
+		[pageSize]
+	);
+	const getOptionLabel = useCallback((option: IFilterOption) => option.name, [
+		pageSize,
+	]);
+	const getOptionValue = useCallback((option: IFilterOption) => option.name, [
+		pageSize,
+	]);
+	// 1
+	const handleNumberPage = useCallback(
+		(e) => {
+			const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
+			gotoPage(pageNumber);
+		},
+		[pageIndex]
+	);
 	return (
 		<TablePaginationList>
 			<TablePaginationItem>
@@ -57,9 +79,9 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 					id="table-pagination__select"
 					value={pageSize}
 					options={rowPerPage}
-					getOptionLabel={(option: IFilterOption) => option.value}
-					getOptionValue={(option: IFilterOption) => option.value}
-					onChange={(opt: IFilterOption) => handleRowPerPage(opt)}
+					getOptionLabel={getOptionLabel}
+					getOptionValue={getOptionValue}
+					onChange={handleRowPerPage}
 					placeholder={pageSize}
 				/>
 			</TablePaginationItem>
@@ -72,11 +94,8 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 				<NumberPageInput
 					type="number"
 					defaultValue={pageIndex + 1}
-					onChange={(e) => {
-						const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
-						gotoPage(pageNumber);
-					}}
-					inputProps={{ max: pageOptions.length, min: 0 }}
+					onChange={handleNumberPage}
+					inputProps={numberPageInputProps}
 					disableUnderline
 				/>
 			</TablePaginationItem>

@@ -1,5 +1,5 @@
 import { TableBody, TableHead } from '@material-ui/core';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
 	useTable,
 	useFilters,
@@ -15,24 +15,19 @@ import { DATA_TABLE } from './data';
 import { Table, TableCell, TableHeaderRow, TableRow } from './components';
 
 import TableColumns, { IBodyRow } from './TableColumns';
-import ColumnFilter from './Filters/ColumnFilter';
+
 import TraineeFilter from './TraineeFilter';
 import { TablePagination } from './TablePagination';
 import { IFilterOption } from './types';
 
 export const CandidateTable: React.FunctionComponent = () => {
 	// Data From Server
-	const columns = useMemo(() => TableColumns, []);
-	const data = useMemo(() => DATA_TABLE, []);
+	const columns = TableColumns;
+	const data = DATA_TABLE;
 
 	// State Data Table
 	const [tableData] = useState(data);
-	// Default Column
-	const defaultColumn = useMemo(() => {
-		return {
-			Filter: ColumnFilter,
-		};
-	}, []);
+
 	// Global Filter Function(experimental)
 	const ourGlobalFilterFunction = useCallback(
 		(
@@ -40,11 +35,11 @@ export const CandidateTable: React.FunctionComponent = () => {
 			ids: IdType<string | Extract<keyof IBodyRow, string>>[],
 			query: IFilterOption
 		) => {
-			const { value, id } = query;
-
+			const { name, id } = query;
+			console.log(query);
 			if (id) {
-				const arrValues = value.split(' ');
-				switch (value) {
+				const arrValues = name.split(' ');
+				switch (name) {
 					case 'Java & Javascript Internship':
 						return rows.filter((row) =>
 							arrValues.includes(row.values.primary_skill)
@@ -59,7 +54,7 @@ export const CandidateTable: React.FunctionComponent = () => {
 			}
 			return rows;
 		},
-		[]
+		[tableData]
 	);
 	const {
 		getTableProps,
@@ -81,7 +76,6 @@ export const CandidateTable: React.FunctionComponent = () => {
 		{
 			columns,
 			data: tableData,
-			defaultColumn,
 			globalFilter: ourGlobalFilterFunction,
 		},
 		useFilters,
@@ -89,10 +83,10 @@ export const CandidateTable: React.FunctionComponent = () => {
 		useSortBy,
 		usePagination
 	);
-	const { pageIndex, pageSize } = state;
+	const { pageIndex, pageSize, globalFilter } = state;
 
 	return (
-		<TraineeFilter setFilter={setGlobalFilter}>
+		<TraineeFilter setFilter={setGlobalFilter} filter={globalFilter}>
 			<Table {...getTableProps()}>
 				<TableHead>
 					{headerGroups.map((headerGroup) => (

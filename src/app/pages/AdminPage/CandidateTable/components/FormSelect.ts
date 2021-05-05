@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 const FormSelect = styled(Select)`
 	margin-top: 10px;
-	font-family: Inter;
+	font-family: Inter, sans-serif;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 12px;

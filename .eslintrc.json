@@ -80,8 +80,7 @@
       "html": "ignore",
       "custom": "ignore",
       "exceptions": [""]
-    }],
-		"no-nested-ternary": "off"
+    }]
   },
   "settings": {
     "import/resolver": {

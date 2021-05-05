@@ -1,4 +1,5 @@
 import React, { BaseSyntheticEvent } from 'react';
+
 import { Form, FormButton } from './components';
 
 export interface ITableForm {
@@ -14,7 +15,7 @@ export const TableForm: React.FunctionComponent<ITableForm> = ({
 	return (
 		<Form onSubmit={onSubmit} noValidate>
 			{children}
-			<FormButton autoFocus onClick={() => close()}>
+			<FormButton autoFocus onClick={close}>
 				Back
 			</FormButton>
 			<FormButton type="submit" autoFocus>

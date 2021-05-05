@@ -1,5 +1,5 @@
 import FilterListIcon from '@material-ui/icons/FilterList';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -16,50 +16,72 @@ import { FILTER_SELECTS, GLOBAL_FILTER_SELECT } from './data';
 import { SelectField } from './SelectField';
 import { TableForm } from './TableForm';
 import { IFilterOption } from './types';
+import { fetchInternships } from './API/intenships';
 
 interface ITraineeFilter {
+	filter: IFilterOption | Array<string | IFilterOption>;
 	setFilter: (filter?: IFilterOption | Array<string | IFilterOption>) => void;
-
 	children?: React.ReactNode;
 }
 
 const TraineeFilter: React.FunctionComponent<ITraineeFilter> = ({
+	filter,
 	setFilter,
 	children,
 }) => {
 	const { register, handleSubmit, control } = useForm();
 
-	// data
-	const globalFilterSelectData = useMemo(() => GLOBAL_FILTER_SELECT, []);
-	const { primary_skills, trainee_status } = useMemo(() => FILTER_SELECTS, []);
-
-	const onSubmit = (data: IFilterOption) => {
-		setFilter(data);
-	};
+	// temporary data;
+	const globalFilterSelectData = GLOBAL_FILTER_SELECT;
+	const { primary_skills, trainee_status } = FILTER_SELECTS;
 
 	const [open, setOpen] = useState(false);
-	const handleClickOpen = () => {
+	const [internships, setInternships] = useState<Array<IFilterOption>>([]);
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await fetchInternships();
+			setInternships(data);
+			console.log(data);
+		};
+		fetchData();
+	}, []);
+	const onSubmit = useCallback(
+		(data: IFilterOption) => {
+			setFilter(data);
+		},
+		[filter]
+	);
+
+	const getOptionLabel = useCallback((option: IFilterOption) => option.name, [
+		filter,
+	]);
+
+	const getOptionValue = useCallback((option: IFilterOption) => option.name, [
+		filter,
+	]);
+	const handleClickOpen = useCallback(() => {
 		setOpen(!open);
-	};
+	}, [open]);
 
-	const handleClose = () => {
+	const handleClose = useCallback(() => {
 		setOpen(false);
-	};
+	}, [open]);
 
-	const handleGlobalFilterSelectChange = (data: IFilterOption) => {
-		setFilter(data);
-	};
+	const handleGlobalFilterSelectChange = useCallback(
+		(data: IFilterOption) => {
+			setFilter(data);
+		},
+		[filter]
+	);
 	return (
 		<WrapperCandidateTable container>
 			<PaperTable>
 				<InternshipFilterSelect
 					classNamePrefix="Select"
-					options={globalFilterSelectData}
-					getOptionLabel={(option: IFilterOption) => option.value}
-					getOptionValue={(option: IFilterOption) => option.value}
-					onChange={(data: IFilterOption) =>
-						handleGlobalFilterSelectChange(data)
-					}
+					options={internships}
+					getOptionLabel={getOptionLabel}
+					getOptionValue={getOptionValue}
+					onChange={handleGlobalFilterSelectChange}
 					isFocused={false}
 					placeholder="Internship Filter"
 				/>

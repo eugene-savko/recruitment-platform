@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+
 import { useAsyncDebounce } from 'react-table';
-import { v4 as uuidv4 } from 'uuid';
 
 interface IColumnFilter {
 	children?: React.ReactNode;
@@ -15,21 +15,23 @@ const ColumnFilter: React.FunctionComponent<IColumnFilter> = ({
 }) => {
 	const { filterValue, setFilter } = column;
 	const [value, setValue] = useState(filterValue);
-
-	const handleChange = useAsyncDebounce((v) => {
-		setFilter(v || undefined);
-	}, 500);
+	const onInputChange = useCallback(
+		(e) => {
+			setValue(e.target.value);
+			useAsyncDebounce((v) => {
+				setFilter(v || undefined);
+			}, 500);
+		},
+		[value]
+	);
 	return (
 		<form>
 			<label htmlFor="filterColumn">
 				<input
 					name={filterValue}
-					id={uuidv4()}
+					id="filterColumn"
 					value={value || ''}
-					onChange={(e) => {
-						setValue(e.target.value);
-						handleChange(e.target.value);
-					}}
+					onChange={onInputChange}
 					placeholder="Search..."
 				/>
 				{children}

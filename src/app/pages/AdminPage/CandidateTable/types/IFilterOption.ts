@@ -1,5 +1,5 @@
 interface IFilterOption {
 	id: string | number;
-	value: string;
+	name: string;
 }
 export default IFilterOption;

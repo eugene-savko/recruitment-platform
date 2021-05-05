@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { TableRow as MaterialTableRow } from '@material-ui/core';
 
 const TableRow = styled(MaterialTableRow)`
-	//background-color: #fff;
 	border-bottom: 1px solid lightgray;
 	&:last-child {
 		border-bottom: none;
