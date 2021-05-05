@@ -1,14 +1,23 @@
 package com.exadel.recruitmentPlatform.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum InternshipRequestStatus {
 
-    UNDER_CONSIDERATION,
-    RECRUITER_INTERVIEW,
-    TECHNICAL_SPECIALIST_INTERVIEW,
-    RECRUITER_INTERVIEW_PASSED,
-    TECHNICAL_SPECIALIST_INTERVIEW_PASSED,
-    REFUSED,
-    ACCEPTED,
-    REJECTED,
-    AWAITING
+    UNDER_CONSIDERATION("under.consideration"),
+    RECRUITER_INTERVIEW("recruiter.interview"),
+    TECHNICAL_SPECIALIST_INTERVIEW("technical.specialist.interview"),
+    RECRUITER_INTERVIEW_PASSED("recruiter.interview.passed"),
+    TECHNICAL_SPECIALIST_INTERVIEW_PASSED("technical.specialist.interview.passed"),
+    REFUSED("refused"),
+    ACCEPTED("accepted"),
+    REJECTED("rejected"),
+    AWAITING("awaiting");
+
+    private String messageKey;
+
+    InternshipRequestStatus(String message) {
+        this.messageKey = message;
+    }
 }
