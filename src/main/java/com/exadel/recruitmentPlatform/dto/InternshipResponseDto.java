@@ -39,6 +39,9 @@ public class InternshipResponseDto extends BaseDto {
     @NotNull
     private InternshipStatus status;
 
+    @NotBlank
+    private String statusMessageKey;
+
     @NotEmpty
     private List<SpecialityDto> specialities;
 

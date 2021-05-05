@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-05-02-create-table_time_intervals
+      author: aliaksandrKryvulko
+      changes:
+        - createTable:
+            tableName: time_interval
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: timestamp(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_time
+                  type: timestamp(1)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp(1) with time zone
+              - column:
+                  name: updated
+                  type: timestamp(1) with time zone
+  - changeSet:
+      id: 2021-05-02-filling-fields-time-interval
+      author: aliaksandrKryvulko
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-05-02-filling_fields_time_interval.sql
+            stripComments: true
