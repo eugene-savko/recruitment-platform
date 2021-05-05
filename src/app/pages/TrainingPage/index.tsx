@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import {
 	HandleButton,
@@ -12,8 +13,13 @@ import {
 
 import { Share } from './Share';
 import { SubInformation } from './SubInformation';
+import { SendForm } from './SendForm';
 
 export const TrainingPage: React.FunctionComponent = () => {
+	const [showForm, setShowForm] = useState(false);
+
+	const showFormOnClick = useCallback(() => setShowForm(true), [showForm]);
+
 	return (
 		<Wrapper>
 			<Title>JavaScript internship program</Title>
@@ -49,7 +55,20 @@ export const TrainingPage: React.FunctionComponent = () => {
 				skills to the limit, expand your abilities and work with one of the
 				largest privately owned organizations in the United States.
 			</Paragraph>
-			<HandleButton>Apply</HandleButton>
+
+			{!showForm && (
+				<HandleButton onClick={showFormOnClick}>Apply</HandleButton>
+			)}
+
+			<CSSTransition
+				in={showForm}
+				timeout={0}
+				classNames="show-form-transition"
+				unmountOnExit
+			>
+				<SendForm />
+			</CSSTransition>
+
 			<Paragraph>
 				<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 				We are looking for a self-motivated and experienced Lead .NET Developer
