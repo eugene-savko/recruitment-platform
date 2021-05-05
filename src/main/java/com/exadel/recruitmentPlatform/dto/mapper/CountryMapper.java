@@ -2,7 +2,6 @@ package com.exadel.recruitmentPlatform.dto.mapper;
 
 import com.exadel.recruitmentPlatform.dto.CountryDto;
 import com.exadel.recruitmentPlatform.entity.Country;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,9 +31,4 @@ public class CountryMapper implements BaseMapper<Country, CountryDto> {
         CountryDto countryDto = new CountryDto();
         return countries.stream().map(this::toDto).collect(Collectors.toList());
     }
-
-   /* public void update(String countryName, Country country) {
-        country.setName(countryName);
-
-    }*/
 }
