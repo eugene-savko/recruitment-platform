@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Prompt } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -28,14 +29,18 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	feedbackContent,
 }) => {
 	const { feedback } = feedbackContent;
+	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
 	const { register, handleSubmit } = useForm<IFormFields>();
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackRecruiter(event.target.value);
+		setCheckOut(true);
+	};
 
 	const onSubmit = (data: IFormFields) => {
+		setCheckOut(false);
 		setIsShown(true);
 		setTimeout(() => setIsShown(false), 3000);
 		const { levelEnglishRecruiter } = data;
@@ -49,6 +54,10 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 
 	return (
 		<React.Fragment>
+			<Prompt
+				when={checkOut}
+				message="Please save your review or it will be lost"
+			/>
 			<Container>
 				<Title>Recruiter field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>

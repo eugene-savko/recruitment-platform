@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Prompt } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -25,13 +26,17 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	feedbackContent,
 }) => {
 	const { feedback } = feedbackContent;
+	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackTech, setFeedbackTech] = useState(feedback);
 	const { handleSubmit } = useForm<IFormFields>();
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackTech(event.target.value);
+		setCheckOut(true);
+	};
 
 	const onSubmit = () => {
+		setCheckOut(false);
 		setIsShown(true);
 		setTimeout(() => setIsShown(false), 3000);
 		const sendDataTech = {
@@ -43,6 +48,10 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 
 	return (
 		<React.Fragment>
+			<Prompt
+				when={checkOut}
+				message="Please save your review or it will be lost"
+			/>
 			<Container>
 				<Title>Tech field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
