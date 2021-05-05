@@ -1,0 +1,22 @@
+databaseChangeLog:
+    - changeSet:
+          id:  2021-05-05-modify-table_internship_request-1
+          author:  alex_over
+          changes:
+              - dropForeignKeyConstraint:
+                    baseTableName:  internship_request
+                    baseTableSchemaName:  public
+                    constraintName:  fk_internship_request_status
+
+    - changeSet:
+          id: 2021-05-05-modify-table_internship_request-2
+          author: alex_over
+          changes:
+              - renameColumn:
+                  newColumnName:  status
+                  oldColumnName:  status_id
+                  tableName:  internship_request
+              - modifyDataType:
+                  columnName: status
+                  newDataType: varchar(50)
+                  tableName: internship_request
