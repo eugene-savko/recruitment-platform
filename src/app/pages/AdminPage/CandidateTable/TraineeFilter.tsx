@@ -2,6 +2,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import React, { useState, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { fetchInternships } from 'app/API/intenships';
 import {
 	ModalFilterButton,
 	TableFormTitle,
@@ -16,7 +17,6 @@ import { FILTER_SELECTS, GLOBAL_FILTER_SELECT } from './data';
 import { SelectField } from './SelectField';
 import { TableForm } from './TableForm';
 import { IFilterOption } from './types';
-import { fetchInternships } from './API/intenships';
 
 interface ITraineeFilter {
 	filter: IFilterOption | Array<string | IFilterOption>;
