@@ -12,21 +12,21 @@ const InternshipFilterSelect = styled(Select)`
 	text-transform: uppercase;
 	width: 500px;
 	color: #6e6893;
-	& .Select__control {
+	& .select__control {
 		border-color: #7986cb;
 	}
-	& .Select__menu {
+	& .select__menu {
 		top: -10px;
 		left: 0;
 	}
-	& .Select__control {
+	& .select__control {
 		border-color: #7986cb;
 		box-shadow: none;
 		&:hover {
 			border-color: #7986cb;
 		}
 	}
-	& .Select__indicator-separator {
+	& .select__indicator-separator {
 		display: none;
 	}
 `;

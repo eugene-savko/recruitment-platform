@@ -1,44 +1,44 @@
 interface IGlobalFilterData {
 	id: number;
-	value: string;
+	name: string;
 }
 
 const GLOBAL_FILTER_SELECT: Array<IGlobalFilterData> = [
 	{
 		id: 1,
-		value: 'Java & Javascript Internship',
+		name: 'Java & Javascript Internship',
 	},
 	{
 		id: 2,
-		value: 'Ruby & Javascript Internship',
+		name: 'Ruby & Javascript Internship',
 	},
 	{
 		id: 3,
-		value: 'Backend Java Internship',
+		name: 'Backend Java Internship',
 	},
 	{
 		id: 4,
-		value: 'Backend Ruby Internship',
+		name: 'Backend Ruby Internship',
 	},
 	{
 		id: 5,
-		value: 'Frontend Javascript Internship',
+		name: 'Frontend Javascript Internship',
 	},
 	{
 		id: 6,
-		value: 'Frontend Python Internship',
+		name: 'Frontend Python Internship',
 	},
 	{
 		id: 7,
-		value: 'Data & Analytics Python Internship',
+		name: 'Data & Analytics Python Internship',
 	},
 	{
 		id: 8,
-		value: 'C++ Developer Internship',
+		name: 'C++ Developer Internship',
 	},
 	{
 		id: 9,
-		value: 'Go Developer Internship',
+		name: 'Go Developer Internship',
 	},
 ];
 

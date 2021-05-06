@@ -32,52 +32,51 @@ const TraineeFilter: React.FunctionComponent<ITraineeFilter> = ({
 	const { register, handleSubmit, control } = useForm();
 
 	// temporary data;
-	const globalFilterSelectData = GLOBAL_FILTER_SELECT;
 	const { primary_skills, trainee_status } = FILTER_SELECTS;
 
 	const [open, setOpen] = useState(false);
 	const [internships, setInternships] = useState<Array<IFilterOption>>([]);
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await fetchInternships();
-			setInternships(data);
-			console.log(data);
+			try {
+				const data = await fetchInternships();
+				setInternships(data);
+				console.log(data);
+			} catch (e) {
+				setInternships(GLOBAL_FILTER_SELECT);
+			}
 		};
 		fetchData();
 	}, []);
-	const onSubmit = useCallback(
-		(data: IFilterOption) => {
-			setFilter(data);
-		},
-		[filter]
+	const onSubmit = useCallback((data: IFilterOption) => {
+		setFilter(data);
+	}, []);
+
+	const getOptionLabel = useCallback(
+		(option: IFilterOption) => option.name,
+		[]
 	);
 
-	const getOptionLabel = useCallback((option: IFilterOption) => option.name, [
-		filter,
-	]);
-
-	const getOptionValue = useCallback((option: IFilterOption) => option.name, [
-		filter,
-	]);
+	const getOptionValue = useCallback(
+		(option: IFilterOption) => option.name,
+		[]
+	);
 	const handleClickOpen = useCallback(() => {
 		setOpen(!open);
-	}, [open]);
+	}, []);
 
 	const handleClose = useCallback(() => {
 		setOpen(false);
-	}, [open]);
+	}, []);
 
-	const handleGlobalFilterSelectChange = useCallback(
-		(data: IFilterOption) => {
-			setFilter(data);
-		},
-		[filter]
-	);
+	const handleGlobalFilterSelectChange = useCallback((data: IFilterOption) => {
+		setFilter(data);
+	}, []);
 	return (
 		<WrapperCandidateTable container>
 			<PaperTable>
 				<InternshipFilterSelect
-					classNamePrefix="Select"
+					classNamePrefix="select"
 					options={internships}
 					getOptionLabel={getOptionLabel}
 					getOptionValue={getOptionValue}

@@ -21,12 +21,8 @@ import { TablePagination } from './TablePagination';
 import { IFilterOption } from './types';
 
 export const CandidateTable: React.FunctionComponent = () => {
-	// Data From Server
-	const columns = TableColumns;
-	const data = DATA_TABLE;
-
 	// State Data Table
-	const [tableData] = useState(data);
+	const [tableData] = useState(DATA_TABLE);
 
 	// Global Filter Function(experimental)
 	const ourGlobalFilterFunction = useCallback(
@@ -74,7 +70,7 @@ export const CandidateTable: React.FunctionComponent = () => {
 		state,
 	} = useTable(
 		{
-			columns,
+			columns: TableColumns,
 			data: tableData,
 			globalFilter: ourGlobalFilterFunction,
 		},

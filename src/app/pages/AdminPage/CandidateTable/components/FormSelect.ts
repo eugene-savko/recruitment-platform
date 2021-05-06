@@ -12,7 +12,7 @@ const FormSelect = styled(Select)`
 	text-transform: uppercase;
 	color: #3f51b5;
 	outline: 0;
-	& .Select__control {
+	& .select__control {
 		border-color: #7986cb;
 		box-shadow: none;
 		&:hover {

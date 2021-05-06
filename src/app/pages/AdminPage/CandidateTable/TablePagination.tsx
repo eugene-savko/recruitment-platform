@@ -42,32 +42,29 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 	pageSize,
 	setPageSize,
 }) => {
-	const rowPerPage = ROW_PER_PAGE;
-
 	const numberPageInputProps = useMemo(() => {
 		return { max: pageOptions.length, min: 0 };
 	}, [pageOptions]);
 
-	const handleRowPerPage = useCallback(
-		(opt: IFilterOption) => {
-			const { name } = opt;
-			setPageSize(Number(name));
-		},
-		[pageSize]
+	const handleRowPerPage = useCallback((opt: IFilterOption) => {
+		const { name } = opt;
+		setPageSize(Number(name));
+	}, []);
+	const getOptionLabel = useCallback(
+		(option: IFilterOption) => option.name,
+		[]
 	);
-	const getOptionLabel = useCallback((option: IFilterOption) => option.name, [
-		pageSize,
-	]);
-	const getOptionValue = useCallback((option: IFilterOption) => option.name, [
-		pageSize,
-	]);
+	const getOptionValue = useCallback(
+		(option: IFilterOption) => option.name,
+		[]
+	);
 	// 1
 	const handleNumberPage = useCallback(
 		(e) => {
 			const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
 			gotoPage(pageNumber);
 		},
-		[pageIndex]
+		[gotoPage]
 	);
 	return (
 		<TablePaginationList>
@@ -75,10 +72,10 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 				<Label htmlFor="table-pagination__select">Row per page</Label>
 				<TablePaginationSelect
 					name="table-select"
-					classNamePrefix="Select"
+					classNamePrefix="select"
 					id="table-pagination__select"
 					value={pageSize}
-					options={rowPerPage}
+					options={ROW_PER_PAGE}
 					getOptionLabel={getOptionLabel}
 					getOptionValue={getOptionValue}
 					onChange={handleRowPerPage}

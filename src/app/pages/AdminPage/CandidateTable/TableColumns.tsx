@@ -1,5 +1,5 @@
-import { Column } from 'react-table';
 import React from 'react';
+import { Column } from 'react-table';
 import { TableCellButton } from './TableCellButton';
 import { TableHeaderButton } from './TableHeaderButton';
 

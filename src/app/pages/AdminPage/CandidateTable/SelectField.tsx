@@ -14,43 +14,42 @@ export const SelectField: React.FunctionComponent<ISelectField> = ({
 	control,
 	name,
 }) => {
+	const renderSelect = useCallback(({ onChange, value, ref }) => {
+		const getOptionLabel = useCallback(
+			(option: IFilterOption) => option.name,
+			[]
+		);
+
+		const getOptionValue = useCallback(
+			(option: IFilterOption) => option.name,
+			[]
+		);
+		const handleSelectChange = useCallback((val: Array<IFilterOption>) => {
+			onChange(val);
+		}, []);
+		return (
+			<SelectFieldWrapper>
+				<FormLabel>{name}</FormLabel>
+				<FormSelect
+					isMulti
+					variant="outlined"
+					inputRef={ref}
+					value={value}
+					options={data}
+					classNamePrefix="select"
+					getOptionLabel={getOptionLabel}
+					getOptionValue={getOptionValue}
+					onChange={handleSelectChange}
+				/>
+			</SelectFieldWrapper>
+		);
+	}, []);
 	return (
 		<Controller
 			control={control}
 			defaultValue={name}
 			name={name}
-			render={({ onChange, value, ref }) => {
-				const getOptionLabel = useCallback(
-					(option: IFilterOption) => option.name,
-					[value]
-				);
-
-				const getOptionValue = useCallback(
-					(option: IFilterOption) => option.name,
-					[value]
-				);
-				const handleSelectChange = useCallback(
-					(val: Array<IFilterOption>) => {
-						onChange(val);
-					},
-					[value]
-				);
-				return (
-					<SelectFieldWrapper>
-						<FormLabel>{name}</FormLabel>
-						<FormSelect
-							isMulti
-							variant="outlined"
-							inputRef={ref}
-							value={value}
-							options={data}
-							getOptionLabel={getOptionLabel}
-							getOptionValue={getOptionValue}
-							onChange={handleSelectChange}
-						/>
-					</SelectFieldWrapper>
-				);
-			}}
+			render={renderSelect}
 		/>
 	);
 };

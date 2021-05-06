@@ -11,17 +11,17 @@ const TablePaginationSelect = styled(Select)`
 	text-transform: uppercase;
 	width: 100px;
 	color: #6e6893;
-	& .Select__control {
+	& .select__control {
 		border-color: #7986cb;
 	}
-	& .Select__menu {
+	& .select__menu {
 		top: 0;
 		left: 20px;
 	}
-	& .Select__indicator {
+	& .select__indicator {
 		border-color: #7986cb;
 	}
-	& .Select__option {
+	& .select__option {
 		padding: 2px 2px;
 	}
 `;
