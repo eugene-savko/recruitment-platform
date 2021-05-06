@@ -2,18 +2,14 @@ package com.exadel.recruitmentPlatform.dto.mapper;
 
 import com.exadel.recruitmentPlatform.dto.CountryDto;
 import com.exadel.recruitmentPlatform.entity.Country;
-import com.exadel.recruitmentPlatform.repository.CountryRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@AllArgsConstructor
 public class CountryMapper implements BaseMapper<Country, CountryDto> {
 
-    private final CountryRepository countryRepository;
 
     @Override
     public Country toEntity(CountryDto dto) {

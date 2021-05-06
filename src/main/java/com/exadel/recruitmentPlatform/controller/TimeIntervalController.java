@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/timeInterval")
+@RequestMapping("api/timeInterval")
 public class TimeIntervalController {
 
-private final TimeIntervalService timeIntervalService;
+    private final TimeIntervalService timeIntervalService;
 
     @GetMapping
-    public List<TimeIntervalDto> getInterval(){
+    public List<TimeIntervalDto> getInterval() {
         return timeIntervalService.getTimeInterval();
     }
 }

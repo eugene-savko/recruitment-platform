@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "internship_request", schema = "public")
-public class InternshipRequest extends BaseEntity{
+public class InternshipRequest extends BaseEntity {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -37,5 +37,8 @@ public class InternshipRequest extends BaseEntity{
 
     @Column(name = "country_id")
     private Long countryId;
+
+    @Column(name = "city_id")
+    private Long cityId;
 
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class InternshipRequestMapper implements BaseMapper<InternshipRequest, InternshipRequestDto>{
+public class InternshipRequestMapper implements BaseMapper<InternshipRequest, InternshipRequestDto> {
 
     private final UserMapper userMapper;
 
@@ -22,6 +22,7 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest, In
         request.setEnglishLevel(dto.getEnglishLevel());
         request.setSpecialityId(dto.getSpecialityId());
         request.setCountryId(dto.getCountryId());
+        request.setCityId(dto.getCityId());
         return request;
     }
 
@@ -36,6 +37,7 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest, In
         internshipRequestDto.setUserDto(entity.getUser() != null ? userMapper.toDto(entity.getUser()) : null);
         internshipRequestDto.setCv(entity.getCv());
         internshipRequestDto.setCountryId(entity.getCountryId());
+        internshipRequestDto.setCityId(entity.getCityId());
         return internshipRequestDto;
     }
 }

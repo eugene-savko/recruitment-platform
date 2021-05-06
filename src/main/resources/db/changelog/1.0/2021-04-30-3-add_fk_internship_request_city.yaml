@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-04-30-1-modify-table-internship_request
+      author: vados.stradze
+      changes:
+        - addColumn:
+            tableName: internship_request
+            columns:
+              - column:
+                  name: city_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 2021-04-30-2-modify-table_internship_request
+      author: vados.stradze
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: city_id
+            baseTableName: internship_request
+            baseTableSchemaName: public
+            constraintName: fk_internship_request_city
+            referencedColumnNames: id
+            referencedTableName: city
+            referencedTableSchemaName: public
