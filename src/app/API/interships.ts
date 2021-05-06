@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ITrainingItem } from '../types';
+import { ITrainingItem } from '../pages/HomePage/Trainings/types';
 
 export const API = axios.create({
 	baseURL: 'https://recruitment-platform.herokuapp.com/api/',
@@ -8,10 +8,8 @@ export const API = axios.create({
 export const fetchInternships = async (
 	id?: number | null | undefined
 ): Promise<Array<ITrainingItem>> => {
-	if (id) {
-		const { data } = await API.get(`internships/specialities/${id}`);
-		return data;
-	}
-	const { data } = await API.get(`internships/`);
+	const url =
+		id !== undefined ? `internships/specialities/${id}` : 'internships/';
+	const { data } = await API.get(url);
 	return data;
 };

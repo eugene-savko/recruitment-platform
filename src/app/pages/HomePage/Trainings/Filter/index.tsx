@@ -4,6 +4,8 @@ import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
+import { fetchInternships } from 'app/API/interships';
+import { INTERNSHIPS_DATA } from 'app/API/data/INTERNSHIPS_DATA';
 import {
 	DropdownList,
 	DropdownMenu,
@@ -19,7 +21,6 @@ import { DropdownListItem } from './DropdownListItem';
 
 import FilterDropdownWrapper from './components/FilterMenuWrapper';
 import ControledForm from './components/FormControled';
-import { fetchInternships } from '../API/interships';
 
 const initialState: IFilterState = {
 	specialization: 'Any Speciallization',
@@ -76,13 +77,16 @@ export const Filter: React.FunctionComponent = () => {
 		});
 
 	// Click Search
-	const [getId, setGetId] = useState<number | null | undefined>(null);
+	const [getId, setGetId] = useState<number | null | undefined>(undefined);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await fetchInternships(getId);
-			console.log(data);
-			setTrainings?.(data);
+			try {
+				const data = await fetchInternships(getId);
+				setTrainings?.(data);
+			} catch (e) {
+				setTrainings?.(INTERNSHIPS_DATA);
+			}
 		};
 		fetchData();
 	}, [getId]);

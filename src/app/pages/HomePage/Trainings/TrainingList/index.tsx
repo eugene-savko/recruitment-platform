@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import { FilterContext } from 'app/contexts/FilterContext';
 
-import { InternshipStatus } from 'customs/InternshipStatus';
+import { INTERNSHIP_STATUS } from 'app/customs/InternshipStatus';
 import { LoadMoreInternship, TrainingListWrappper } from './components';
 
 import { TrainingItem } from './TrainingItem';
@@ -21,13 +19,13 @@ export const TrainingList: React.FunctionComponent = () => {
 
 	return (
 		<TrainingListWrappper>
-			{trainingsList.map(({ name, countries, description, status }) => (
+			{trainingsList.map(({ name, countries, description, status, id }) => (
 				<TrainingItem
-					key={uuidv4()}
+					key={id}
 					name={name}
-					destination={countries[0].name}
+					destinations={countries}
 					info={description}
-					status={status}
+					status={INTERNSHIP_STATUS[`${status}`]}
 				/>
 			))}
 			<LoadMoreInternship onClick={load}>
