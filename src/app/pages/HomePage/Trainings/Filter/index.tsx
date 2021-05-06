@@ -4,6 +4,7 @@ import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
+import API from 'app/API';
 import {
 	DropdownList,
 	DropdownMenu,
@@ -19,7 +20,6 @@ import { DropdownListItem } from './DropdownListItem';
 
 import FilterDropdownWrapper from './components/FilterMenuWrapper';
 import ControledForm from './components/FormControled';
-import API from '../API';
 
 const initialState: IFilterState = {
 	specialization: 'Any Speciallization',

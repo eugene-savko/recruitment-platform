@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { FilterContext } from 'app/contexts/FilterContext';
 
 // Smart component
+import API from 'app/API';
 import { Filter } from './Filter';
 import { TrainingList } from './TrainingList';
 
 // Data
 
 import { ITrainingItem } from './types';
-import API from './API';
 
 export const Trainings: React.FunctionComponent = () => {
 	const [trainingList, setTrainingList] = useState<Array<ITrainingItem>>([]);
