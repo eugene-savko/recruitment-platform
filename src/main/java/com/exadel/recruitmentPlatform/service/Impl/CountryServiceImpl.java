@@ -22,12 +22,11 @@ public class CountryServiceImpl implements CountryService {
     private final CountryMapper countryMapper;
 
     @Override
-    public Long save(String countryName) {
+    public Country save(String countryName) {
         Country country = Optional.ofNullable(countryRepository
                 .findByName(countryName))
                 .orElseGet(() -> create(countryName));
-        countryRepository.save(country);
-        return country.getId();
+        return country;
     }
 
     private Country create(String countryName) {
@@ -42,12 +41,12 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country getCountryById(Long id) {
+    public Country getCountry(Long id) {
         return countryRepository.findById(id).get();
     }
 
     @Override
-    public Long getCountryByName(String name) {
+    public Long getCountryId(String name) {
         return countryRepository.findByName(name).getId();
     }
 }

@@ -5,6 +5,7 @@ import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.UserRole;
+import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.service.CityService;
 import com.exadel.recruitmentPlatform.service.CountryService;
@@ -21,15 +22,15 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
 
     private final InternshipRequestRepository internshipRequestRepository;
     private final InternshipRequestMapper internshipRequestMapper;
-    private CountryService countryService;
-    private CityService cityService;
+    private final CountryService countryService;
+    private final CityService cityService;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
         internshipRequestDto.setStatus(InternshipRequestStatus.UNDER_CONSIDERATION);
         internshipRequestDto.getUserDto().setRole(UserRole.INTERN);
-        internshipRequestDto.setCountryId(countryService.save(internshipRequestDto.getCountry()));
-        internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()));
+        internshipRequestDto.setCountryId(countryService.save(internshipRequestDto.getCountry()).getId());
+        internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()).getId());
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
         InternshipRequest newRequest = internshipRequestRepository.save(internshipRequest);
         return internshipRequestMapper.toDto(newRequest);
@@ -38,7 +39,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     @Override
     public InternshipRequestDto get(Long id) {
         return internshipRequestRepository.findById(id).map(internshipRequestMapper::toDto).orElseThrow(() ->
-                new NullPointerException("Internship request with id=" + id + " doesn't exist"));
+                new EntityNotFoundException("Internship request with id=" + id + " doesn't exist"));
     }
 }
 

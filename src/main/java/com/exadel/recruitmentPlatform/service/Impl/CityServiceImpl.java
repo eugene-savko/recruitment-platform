@@ -15,17 +15,16 @@ import java.util.Optional;
 @Transactional
 @AllArgsConstructor
 public class CityServiceImpl implements CityService {
-    private final CityRepository cityRepository;
 
+    private final CityRepository cityRepository;
     private final CityMapper cityMapper;
 
     @Override
-    public Long save(String cityName) {
+    public City save(String cityName) {
         City city = Optional.ofNullable(cityRepository
                 .findByName(cityName))
                 .orElseGet(() -> create(cityName));
-        cityRepository.save(city);
-        return city.getId();
+        return city;
     }
 
     private City create(String cityName) {
@@ -35,7 +34,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public Long getCityByName(String name) {
+    public Long getCityId(String name) {
         return cityRepository.findByName(name).getId();
     }
 
