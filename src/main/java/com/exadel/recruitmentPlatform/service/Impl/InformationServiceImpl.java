@@ -7,7 +7,7 @@ import com.exadel.recruitmentPlatform.dto.mapper.SkillShortMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.repository.InternshipRepository;
 import com.exadel.recruitmentPlatform.service.InformationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,12 +17,11 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class InformationServiceImpl implements InformationService {
 
-    @Autowired
-    private InternshipRepository internshipRepository;
-    @Autowired
-    private SkillShortMapper skillShortMapper;
+    private final InternshipRepository internshipRepository;
+    private final SkillShortMapper skillShortMapper;
 
     @Override
     public InformationRequestDto getInternshipSkillsAndAllUserStatuses(Long internshipId) {

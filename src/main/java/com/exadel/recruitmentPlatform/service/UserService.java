@@ -10,6 +10,6 @@ public interface UserService {
     UserDto save(UserDto dto);
     UserDto findById(Long id);
     UserDto getAuthenticatedUser(Authentication authentication);
-    Page<UserDto> getUsersWithInternshipRole(Pageable pageable);
+    Page<UserDto> getInternsUser(Pageable pageable);
 
 }
