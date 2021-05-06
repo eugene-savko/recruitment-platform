@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
@@ -142,7 +142,7 @@ export const Filter: React.FunctionComponent = () => {
 							<DropdownListItem
 								value={item.name}
 								id={item.id}
-								key={uuidv4()}
+								key={item.id}
 								check={item.checked}
 								inputCheckboxChange={inputCheckboxSpecializationChange}
 								click={handleClickMenuSpecializationItem}

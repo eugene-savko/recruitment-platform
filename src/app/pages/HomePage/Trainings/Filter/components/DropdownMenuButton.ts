@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import arrowIcon from 'app/pages/HomePage/Trainings/assets/img/dropdown-arrow.png';
+import arrowIcon from 'app/assets/img/HomePage/Trainings/dropdown-arrow.png';
 
 interface IDropdownMenuButton {
 	menuState: boolean | null;
