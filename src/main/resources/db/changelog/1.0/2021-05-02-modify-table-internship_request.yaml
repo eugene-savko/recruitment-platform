@@ -1,25 +1,37 @@
 databaseChangeLog:
-    - changeSet:
-          id: 2021-05-02-modify-table_internship_request-1
-          author: alex_over
-          changes:
-              - renameColumn:
-                  newColumnName:  status_id
-                  oldColumnName:  status
-                  tableName:  internship_request
-              - modifyDataType:
-                  columnName: status_id
-                  newDataType: BIGINT
-                  tableName: internship_request
-    - changeSet:
-        id: 2021-05-02-modify-table_internship_request-2
-        author: alex_over
-        changes:
-          - addForeignKeyConstraint:
-              baseColumnNames: status_id
-              baseTableName: internship_request
-              baseTableSchemaName: public
-              constraintName: fk_internship_request_status
-              referencedColumnNames: id
-              referencedTableName: status
-              referencedTableSchemaName: public
+  - changeSet:
+      id: 2021-05-02-modify-table_internship_request-1
+      author: alex_over
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExist:
+          schemaName: public
+          tableName: internship_request
+          columnName: status
+      changes:
+        - renameColumn:
+            newColumnName:  status_id
+            oldColumnName:  status
+            tableName:  internship_request
+        - modifyDataType:
+            columnName: status_id
+            newDataType: BIGINT
+            tableName: internship_request
+  - changeSet:
+      id: 2021-05-02-modify-table_internship_request-2
+      author: alex_over
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExist:
+          schemaName: public
+          tableName: internship_request
+          columnName: status_id
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: status_id
+            baseTableName: internship_request
+            baseTableSchemaName: public
+            constraintName: fk_internship_request_status
+            referencedColumnNames: id
+            referencedTableName: status
+            referencedTableSchemaName: public
