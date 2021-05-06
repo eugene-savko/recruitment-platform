@@ -5,7 +5,7 @@ import com.exadel.recruitmentPlatform.dto.mapper.TimeIntervalMapper;
 import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.repository.TimeIntervalRepository;
 import com.exadel.recruitmentPlatform.service.TimeIntervalService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +13,11 @@ import java.util.List;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class TimeIntervalServiceImpl implements TimeIntervalService {
 
-    @Autowired
-    TimeIntervalRepository timeIntervalRepository;
-
-    @Autowired
-    TimeIntervalMapper timeIntervalMapper;
+    private final TimeIntervalRepository timeIntervalRepository;
+    private final TimeIntervalMapper timeIntervalMapper;
 
     @Override
     public List<TimeIntervalDto> getTimeInterval() {

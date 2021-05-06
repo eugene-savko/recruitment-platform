@@ -5,5 +5,5 @@ import com.exadel.recruitmentPlatform.dto.TimeIntervalDto;
 import java.util.List;
 
 public interface TimeIntervalService {
-    List <TimeIntervalDto> getTimeInterval();
+    List<TimeIntervalDto> getTimeInterval();
 }
