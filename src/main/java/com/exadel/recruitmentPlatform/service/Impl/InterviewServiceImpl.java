@@ -1,7 +1,8 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.dto.InterviewDto;
+import com.exadel.recruitmentPlatform.dto.InterviewResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InterviewMapper;
+import com.exadel.recruitmentPlatform.dto.InterviewDto;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.Interview;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -52,6 +54,11 @@ public class InterviewServiceImpl implements InterviewService {
         internshipRequestRepository.save(internshipRequest);
 
         return interviewMapper.toDto(interview);
+    }
+
+    @Override
+    public List<InterviewResponseDto> getInterviews(Long toUserId, Long internshipId) {
+        return interviewMapper.toResponseDtos(interviewRepository.findByToUserIdAndInternshipId(toUserId, internshipId));
     }
 
 }

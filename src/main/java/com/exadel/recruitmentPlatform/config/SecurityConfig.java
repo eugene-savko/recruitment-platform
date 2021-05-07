@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS, "/api/**")
                 .antMatchers(HttpMethod.GET, "/api/**")
                 .antMatchers(HttpMethod.OPTIONS, "/internship-request")
                 .antMatchers(HttpMethod.POST, "/internship-request");
