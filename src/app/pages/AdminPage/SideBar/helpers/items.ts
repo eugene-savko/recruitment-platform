@@ -12,9 +12,9 @@ export const items = [
 		title: 'DashBoard',
 	},
 	{
-		href: '/candidate',
+		href: '/table',
 		icon: PersonIcon,
-		title: 'Candidate',
+		title: 'AdminTable',
 	},
 	{
 		href: '/profile',
