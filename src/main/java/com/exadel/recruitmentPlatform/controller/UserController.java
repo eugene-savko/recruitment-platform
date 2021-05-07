@@ -26,8 +26,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public Page<UserDto> getUsersWithInternshipRole(@PageableDefault Pageable pageable) {
-        return userService.getUsersWithInternshipRole(pageable);
+    public Page<UserDto> getInternsUser(@PageableDefault Pageable pageable) {
+        return userService.getInternUsers(pageable);
     }
 
     @GetMapping("/{id}")
