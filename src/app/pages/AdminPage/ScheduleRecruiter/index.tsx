@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
 	EditingState,
@@ -28,13 +28,27 @@ import {
 	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { indigo, teal, purple } from '@material-ui/core/colors';
+import axios from 'axios';
+
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
 import { useChangeEditingState } from './hooks/useChangeEditingState';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const { commitChanges, data } = useChangeEditingState();
+	const [useListRecruters, setUseListRecruiters] = useState([
+		{
+			text: 'No appointment',
+			id: 1,
+			color: 'indigo',
+		},
+	]);
+
+	useEffect(() => {
+		axios.get('http://localhost:4000/recruiters').then((resp: any) => {
+			setUseListRecruiters(resp.data);
+		});
+	}, []);
 
 	const messages: AppointmentFormBase.LocalizationMessages = {
 		moreInformationLabel: '',
@@ -47,23 +61,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 			fieldName: 'members',
 			title: 'Name of recruiter',
 			allowMultiple: false,
-			instances: [
-				{
-					text: 'Ivan Graying',
-					id: 1,
-					color: indigo,
-				},
-				{
-					text: 'Ann Reading',
-					id: 2,
-					color: teal,
-				},
-				{
-					text: 'Kate Blacking',
-					id: 3,
-					color: purple,
-				},
-			],
+			instances: useListRecruters,
 		},
 	];
 
