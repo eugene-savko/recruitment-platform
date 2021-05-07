@@ -9,7 +9,7 @@ const ListItem = styled.li`
 `;
 interface IDropdownListItem {
 	value: string;
-	id: number | string;
+	id: number | null | undefined;
 	check: boolean;
 	click(arg0: string): void;
 	inputCheckboxChange(event: React.ChangeEvent<HTMLInputElement>): void;

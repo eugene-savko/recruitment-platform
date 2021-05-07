@@ -4,7 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { FilterContext } from 'app/contexts/FilterContext';
 
 // Smart component
-import API from 'app/API';
+
+import { fetchInternships } from 'app/API/interships';
+import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
+
 import { Filter } from './Filter';
 import { TrainingList } from './TrainingList';
 
@@ -13,17 +16,22 @@ import { TrainingList } from './TrainingList';
 import { ITrainingItem } from './types';
 
 export const Trainings: React.FunctionComponent = () => {
-	const [trainingList, setTrainingList] = useState<Array<ITrainingItem>>([]);
+	const [trainings, setTrainings] = useState<Array<ITrainingItem>>([]);
+	const [currentPage, setCurrentPage] = useState(1);
 	useEffect(() => {
 		const fetchData = async () => {
-			const { data } = await API.get(`internships/`);
-			setTrainingList(data);
+			try {
+				const data = await fetchInternships();
+				setTrainings?.(data);
+			} catch (e) {
+				setTrainings?.(INTERNSHIPS_DATA);
+			}
 		};
 		fetchData();
 	}, []);
 	return (
 		<FilterContext.Provider
-			value={{ trainings: trainingList, setTrainings: setTrainingList }}
+			value={{ trainings, setTrainings, currentPage, setCurrentPage }}
 		>
 			<Filter />
 			<TrainingList />

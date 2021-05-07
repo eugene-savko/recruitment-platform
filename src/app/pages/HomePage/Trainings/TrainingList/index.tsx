@@ -1,38 +1,31 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
+import { INTERNSHIP_STATUS } from 'app/data/INTERNSHIPS_STATUS';
 import { LoadMoreInternship, TrainingListWrappper } from './components';
 
 import { TrainingItem } from './TrainingItem';
 
 export const TrainingList: React.FunctionComponent = () => {
-	const { trainings } = useContext(FilterContext);
-	const currentPage = useRef(1);
-	const [trainingsList, setTrainingsList] = useState(trainings.slice(0, 5));
-
+	const { trainings, currentPage, setCurrentPage } = useContext(FilterContext);
+	const [trainingsList, setTrainingsList] = useState(trainings);
 	useEffect(() => {
-		setTrainingsList(trainings.slice(0, 5));
-	}, [trainings]);
-
+		setTrainingsList(trainings.slice(0, currentPage * 5));
+	}, [trainings, currentPage]);
 	const load = () => {
-		if (trainings.length / 5 >= currentPage.current) {
-			currentPage.current += 1;
-		}
-		const newArr = trainings.slice(0, currentPage.current * 5);
-		setTrainingsList(newArr);
+		setCurrentPage?.((prev) => prev + 1);
 	};
 
 	return (
 		<TrainingListWrappper>
-			{trainingsList.map(({ name, countries, description, status }) => (
+			{trainingsList.map(({ name, countries, description, status, id }) => (
 				<TrainingItem
-					key={uuidv4()}
+					key={id}
 					name={name}
-					destination={countries[0].name}
+					destinations={countries}
 					info={description}
-					status={status}
+					status={INTERNSHIP_STATUS[`${status}`]}
 				/>
 			))}
 			<LoadMoreInternship onClick={load}>

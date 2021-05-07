@@ -1,10 +1,14 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
-import API from 'app/API';
+import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
+import { fetchSpecialities } from 'app/API/specialities';
+import { fetchInternships } from 'app/API/interships';
+import SPECIALIZATION_ITEMS_DATA from 'app/data/SPECIALIZATION_ITEMS_DATA';
+
 import {
 	DropdownList,
 	DropdownMenu,
@@ -14,7 +18,6 @@ import {
 	SearchButton,
 } from './components';
 import { IFilterState, ISpecializationItem } from './types';
-import { SpecializationItemsData } from './data';
 
 import { DropdownListItem } from './DropdownListItem';
 
@@ -27,13 +30,15 @@ const initialState: IFilterState = {
 };
 
 export const Filter: React.FunctionComponent = () => {
-	const { setTrainings } = useContext(FilterContext);
+	const { setTrainings, setCurrentPage, currentPage } = useContext(
+		FilterContext
+	);
 
 	const [filterState, setFilterState] = useState<IFilterState>(initialState);
 
 	const [specializationItems, setSpecializationItems] = useState<
 		Array<ISpecializationItem>
-	>(SpecializationItemsData);
+	>([]);
 
 	const [specializationMenuState, setSpecializationMenuState] = useState<
 		boolean | null
@@ -42,23 +47,23 @@ export const Filter: React.FunctionComponent = () => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
 	const handleClickMenuSpecializationItem = (value: string) => {
-		const specializationsCheckToogle = SpecializationItemsData.map((item) => {
+		const specializationsCheckToggle = specializationItems.map((item) => {
 			if (item.checked === true) {
 				const itemCopy = { ...item };
 				itemCopy.checked = false;
 				return itemCopy;
 			}
-			if (item.speciality === value) {
+			if (item.name === value) {
 				const itemCopy = { ...item };
 				itemCopy.checked = true;
 				return itemCopy;
 			}
 			return item;
 		});
-		setSpecializationItems(specializationsCheckToogle);
+		setSpecializationItems(specializationsCheckToggle);
 	};
 
-	const toogleMenuSpecialization = () =>
+	const toggleMenuSpecialization = () =>
 		!specializationMenuState
 			? setSpecializationMenuState(true)
 			: setSpecializationMenuState(false);
@@ -74,23 +79,38 @@ export const Filter: React.FunctionComponent = () => {
 		});
 
 	// Click Search
-	const [getId, setGetId] = useState<number | string | undefined>('any');
+	const [getId, setGetId] = useState<number | undefined>(0);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			let id = '';
-			if (getId !== 'any' && getId) {
-				id = `specialities/${getId}`;
+			try {
+				const specialities = await fetchSpecialities();
+				console.log(specialities);
+				setSpecializationItems(specialities);
+			} catch (e) {
+				setSpecializationItems(SPECIALIZATION_ITEMS_DATA);
 			}
-			const { data } = await API.get(`internships/${id}`);
-			setTrainings?.(data);
+		};
+		fetchData();
+	}, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				console.log(getId);
+				const data = await fetchInternships(getId);
+				setTrainings?.(data);
+			} catch (e) {
+				setTrainings?.(INTERNSHIPS_DATA);
+			}
 		};
 		fetchData();
 	}, [getId]);
-
 	const handleClickSearch = () => {
 		const specialization = specializationItems.find((elem) => elem.checked);
-		console.log(specialization?.id);
 		setGetId(specialization?.id);
+		if (currentPage > 1) {
+			setCurrentPage?.(1);
+		}
 		setSpecializationMenuState(null);
 	};
 	const handleClickOutside = (event: MouseEvent) => {
@@ -113,7 +133,7 @@ export const Filter: React.FunctionComponent = () => {
 						<DropdownMenuButton
 							type="button"
 							menuState={specializationMenuState}
-							onClick={toogleMenuSpecialization}
+							onClick={toggleMenuSpecialization}
 						>
 							{filterState.specialization}
 						</DropdownMenuButton>
@@ -121,9 +141,9 @@ export const Filter: React.FunctionComponent = () => {
 					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (
 							<DropdownListItem
-								value={item.speciality}
+								value={item.name}
 								id={item.id}
-								key={uuidv4()}
+								key={item.id}
 								check={item.checked}
 								inputCheckboxChange={inputCheckboxSpecializationChange}
 								click={handleClickMenuSpecializationItem}
