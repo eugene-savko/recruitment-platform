@@ -4,6 +4,6 @@ import com.exadel.recruitmentPlatform.dto.InformationRequestDto;
 
 public interface InformationService {
 
-    InformationRequestDto getInternshipSkillsAndAllUserStatuses(Long internshipId);
+    InformationRequestDto getInternshipsInformation(Long internshipId);
 
 }

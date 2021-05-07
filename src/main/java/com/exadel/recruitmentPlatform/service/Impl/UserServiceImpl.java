@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserDto> getInternsUser(Pageable pageable) {
-        return userRepository.findAllByRole(pageable, UserRole.INTERN).map(userMapper::toDto);
+    public Page<UserDto> getInternUsers(Pageable pageable) {
+        return userRepository.findByRole(pageable, UserRole.INTERN).map(userMapper::toDto);
     }
 }

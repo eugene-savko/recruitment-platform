@@ -17,6 +17,6 @@ public interface InternshipRepository extends JpaRepository<Internship, Long> {
     List<Internship> findInternshipsByCountryId(@Param("countryId") Long countryId);
 
     @Query(value = "select i.skills from Internship i where i.id = :internshipId")
-    List<Skill> findSkillsByInternshipId(@Param("internshipId") Long internshipId);
+    List<Skill> findSkillById(@Param("id") Long internshipId);
 
 }

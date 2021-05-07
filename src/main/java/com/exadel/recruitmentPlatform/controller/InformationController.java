@@ -15,9 +15,9 @@ public class InformationController {
 
     private final InformationService informationService;
 
-    @GetMapping("/{InternshipId}")
-    public InformationRequestDto getUser(@PathVariable Long InternshipId) {
-        return informationService.getInternshipSkillsAndAllUserStatuses(InternshipId);
+    @GetMapping("/{internshipId}")
+    public InformationRequestDto getUser(@PathVariable Long internshipId) {
+        return informationService.getInternshipsInformation(internshipId);
     }
 
 }

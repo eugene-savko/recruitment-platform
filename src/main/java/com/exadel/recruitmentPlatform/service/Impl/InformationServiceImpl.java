@@ -6,6 +6,7 @@ import com.exadel.recruitmentPlatform.dto.SkillShortDto;
 import com.exadel.recruitmentPlatform.dto.mapper.SkillShortMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.repository.InternshipRepository;
+import com.exadel.recruitmentPlatform.repository.SkillRepository;
 import com.exadel.recruitmentPlatform.service.InformationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,13 @@ public class InformationServiceImpl implements InformationService {
 
     private final InternshipRepository internshipRepository;
     private final SkillShortMapper skillShortMapper;
+//    private final SkillRepository skillRepository;
 
     @Override
-    public InformationRequestDto getInternshipSkillsAndAllUserStatuses(Long internshipId) {
-        List<SkillShortDto> skills = internshipRepository.findSkillsByInternshipId(internshipId)
+    public InformationRequestDto getInternshipsInformation(Long internshipId) {
+//        List<SkillShortDto> skills = skillRepository.findByInternshipsIs(internshipId)
+//                .stream().map(skillShortMapper::toDto).collect(Collectors.toList());
+        List<SkillShortDto> skills = internshipRepository.findSkillById(internshipId)
                 .stream().map(skillShortMapper::toDto).collect(Collectors.toList());
 
         List<InternshipRequestStatusDto> internshipRequestStatuses = new ArrayList<>();
