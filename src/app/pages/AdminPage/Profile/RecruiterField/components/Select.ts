@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ArrowDown from '../../assets/select-arrow-down 4.png';
+import ArrowDown from 'app/assets/img/Profile/select-arrow-down 4.png';
 
 const Select = styled.select`
 	display: block;

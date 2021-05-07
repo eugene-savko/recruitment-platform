@@ -1,10 +1,10 @@
 import React from 'react';
 
+// image
+import Cross from 'app/assets/img/Profile/cross.png';
+
 // style
 import ImageCross from './CloseCross';
-
-// image
-import Cross from '../../../assets/cross.png';
 
 interface ICloseCrossProps {
 	close: () => void;
