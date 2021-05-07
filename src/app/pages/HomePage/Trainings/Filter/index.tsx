@@ -8,6 +8,7 @@ import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
 import { fetchSpecialities } from 'app/API/specialities';
 import { fetchInternships } from 'app/API/interships';
 import SPECIALIZATION_ITEMS_DATA from 'app/data/SPECIALIZATION_ITEMS_DATA';
+
 import {
 	DropdownList,
 	DropdownMenu,

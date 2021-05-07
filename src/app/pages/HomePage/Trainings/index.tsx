@@ -4,8 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { FilterContext } from 'app/contexts/FilterContext';
 
 // Smart component
+
 import { fetchInternships } from 'app/API/interships';
 import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
+
 import { Filter } from './Filter';
 import { TrainingList } from './TrainingList';
 
