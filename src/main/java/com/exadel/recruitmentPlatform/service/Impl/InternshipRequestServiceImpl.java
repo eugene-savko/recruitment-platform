@@ -36,7 +36,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()).getId());
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
         InternshipRequest newRequest = internshipRequestRepository.save(internshipRequest);
-        userTimeService.splitIntervalIntoSlotsAndSave(internshipRequestDto.getUserTimeDto(), internshipRequest.getUser());
+        userTimeService.saveAll(userTimeService.splitIntervalIntoSlots(internshipRequestDto.getUserTime(), internshipRequest.getUser()));
         return internshipRequestMapper.toDto(newRequest);
     }
 

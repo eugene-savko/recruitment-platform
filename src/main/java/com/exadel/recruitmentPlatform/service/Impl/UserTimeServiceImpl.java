@@ -1,7 +1,9 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeDto;
+import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
+import com.exadel.recruitmentPlatform.dto.mapper.UserTimeMapper;
+import com.exadel.recruitmentPlatform.entity.SlotStatus;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
@@ -11,26 +13,36 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
 @AllArgsConstructor
 public class UserTimeServiceImpl implements UserTimeService {
 
-    private UserTimeRepository userTimeRepository;
+    public static final Long DURATION = 30L;
+
+    private final UserTimeRepository userTimeRepository;
+    private final UserTimeMapper userTimeMapper;
 
     @Override
-    public List<UserTime> splitIntervalIntoSlotsAndSave(UserTimeDto dto, User user) {
-        List<UserTime> userTimeSlots = new ArrayList<>();
+    public List<UserTime> splitIntervalIntoSlots(UserTimeDto dto, User user) {
+        List<UserTime> userTimeSlots = new LinkedList<>();
 
         for (LocalDateTime time = dto.getStartDateTime();
              time.isBefore(dto.getEndDateTime());
-             time = time.plusMinutes(UserTime.DURATION)){
+             time = time.plusMinutes(DURATION)){
 
-            userTimeSlots.add(userTimeRepository.save(new UserTime(time, true, user)));
+            userTimeSlots.add(new UserTime(time, SlotStatus.FREE, user));
         }
         return userTimeSlots;
+    }
+
+    @Override
+    public List<UserTimeResponseDto> saveAll(List<UserTime> userTimes) {
+        return userTimeRepository.saveAll(userTimes)
+                .stream().map(userTimeMapper::toDto).collect(Collectors.toList());
     }
 }

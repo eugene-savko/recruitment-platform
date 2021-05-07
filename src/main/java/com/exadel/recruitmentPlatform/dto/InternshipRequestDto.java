@@ -20,6 +20,6 @@ public class InternshipRequestDto extends BaseDto {
     private String city;
     private Long countryId;
     private Long cityId;
-    private UserTimeDto userTimeDto;
+    private UserTimeDto userTime;
 
 }
