@@ -86,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             res.setHeader("Access-Control-Allow-Methods", "*");
             res.setHeader("Access-Control-Max-Age", "3600");
             res.setHeader("Access-Control-Allow-Headers", "*");
+            res.setHeader("Access-Control-Allow-Credentials", "true");
             chain.doFilter(request, res);
         }
         @Override
