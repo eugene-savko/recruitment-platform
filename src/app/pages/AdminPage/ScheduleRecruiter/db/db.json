@@ -1,84 +1,84 @@
 {
-  "candidate": [
-    {
-      "city": "Minsk",
-      "country": "Belarus",
-      "cv": "www.somesite.com",
-      "dataInterviewRecruiter": "13.04.21",
-      "dataInterviewTech": "16.04.21",
-      "email": "joepink@gmail.com",
-      "englishLevel": "B2",
-      "englishLevelRecruiter": "A1",
-      "firstName": "Joe",
-      "internshipId": 533,
-      "lastName": "Pink",
-      "nameRecruiter": "Masha Bluing",
-      "nameTech": "Bob Marley",
-      "otherInformation": "some information",
-      "userId": 1
-    }
-  ],
-  "databaseCandidates": [
-    {
-      "id": 1,
-      "nameUser": "Feador Reding",
-      "periodTime": "from 10:00 to 12:00"
-    },
-    {
-      "id": 2,
-      "nameUser": "Ann Blueing",
-      "periodTime": "from 12:00 to 14:00"
-    },
-    {
-      "id": 3,
-      "nameUser": "Kate Darking",
-      "periodTime": "from 14:00 to 16:00"
-    },
-    {
-      "id": 4,
-      "nameUser": "Karl Greening",
-      "periodTime": "from 10:00 to 12:00"
-    },
-    {
-      "id": 5,
-      "nameUser": "Joni Daringk",
-      "periodTime": "from 14:00 to 16:00"
-    },
-    {
-      "id": 6,
-      "nameUser": "Fira Blueing",
-      "periodTime": "from 10:00 to 12:00"
-    }
-  ],
-  "recruiters": [
-    {
-      "color": "indigo",
-      "id": 1,
-      "text": "Ivan Graying"
-    },
-    {
-      "color": "teal",
-      "id": 2,
-      "text": "Ann Reading"
-    },
-    {
-      "color": "purple",
-      "id": 3,
-      "text": "Kate Blacking"
-    },
-    {
-      "color": "blue",
-      "id": 4,
-      "text": "Toni Stark"
-    }
-  ],
-  "schedulerData": [
-    {
-      "title": "Karl Greening",
-      "startDate": 1620207000000,
-      "endDate": 1620210600000,
-      "id": 0,
-      "members": 1
-    }
-  ]
+	"candidate": [
+		{
+			"city": "Minsk",
+			"country": "Belarus",
+			"cv": "www.somesite.com",
+			"dataInterviewRecruiter": "13.04.21",
+			"dataInterviewTech": "16.04.21",
+			"email": "joepink@gmail.com",
+			"englishLevel": "B2",
+			"englishLevelRecruiter": "A1",
+			"firstName": "Joe",
+			"internshipId": 533,
+			"lastName": "Pink",
+			"nameRecruiter": "Mashy Bluing",
+			"nameTech": "Bob Marley",
+			"otherInformation": "some information",
+			"userId": 1
+		}
+	],
+	"databaseCandidates": [
+		{
+			"id": 1,
+			"nameUser": "Feater Reding",
+			"periodTime": "from 10:00 to 12:00"
+		},
+		{
+			"id": 2,
+			"nameUser": "Ann Blueing",
+			"periodTime": "from 12:00 to 14:00"
+		},
+		{
+			"id": 3,
+			"nameUser": "Kate Darking",
+			"periodTime": "from 14:00 to 16:00"
+		},
+		{
+			"id": 4,
+			"nameUser": "Karl Greening",
+			"periodTime": "from 10:00 to 12:00"
+		},
+		{
+			"id": 5,
+			"nameUser": "Joni Darings",
+			"periodTime": "from 14:00 to 16:00"
+		},
+		{
+			"id": 6,
+			"nameUser": "Fire Blueing",
+			"periodTime": "from 10:00 to 12:00"
+		}
+	],
+	"recruiters": [
+		{
+			"color": "indigo",
+			"id": 1,
+			"text": "Ivan Graying"
+		},
+		{
+			"color": "teal",
+			"id": 2,
+			"text": "Ann Reading"
+		},
+		{
+			"color": "purple",
+			"id": 3,
+			"text": "Kate Blacking"
+		},
+		{
+			"color": "blue",
+			"id": 4,
+			"text": "Toni Stark"
+		}
+	],
+	"schedulerData": [
+		{
+			"title": "Karl Greening",
+			"startDate": 1620207000000,
+			"endDate": 1620210600000,
+			"id": 0,
+			"members": 1
+		}
+	]
 }
