@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { Drawer, Hidden } from '@material-ui/core';
 
 import {
-	// eslint-disable-next-line camelcase
 	unstable_createMuiStrictModeTheme,
 	ThemeProvider,
 } from '@material-ui/core/styles';

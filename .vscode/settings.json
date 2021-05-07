@@ -1,8 +1,7 @@
 {
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vscode-icons",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "editor.fontSize": 12,
   "editor.insertSpaces": false,
   "editor.tabSize": 2,
   "editor.formatOnPaste": false,
@@ -38,7 +37,5 @@
       "source.fixAll.eslint": true,
     }
   },
-  "cSpell.words": [
-    "sesion"
-  ]
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
