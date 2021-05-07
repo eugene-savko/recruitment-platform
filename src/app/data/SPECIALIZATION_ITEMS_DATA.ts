@@ -1,6 +1,6 @@
-import { ISpecializationItem } from '../types';
+import { ISpecializationItem } from 'app/pages/HomePage/Trainings/Filter/types';
 
-const SpecializationItemsData: Array<ISpecializationItem> = [
+const SPECIALIZATION_ITEMS_DATA: Array<ISpecializationItem> = [
 	{ id: 1, name: 'Java', checked: false },
 	{ id: 2, name: 'Javascript', checked: false },
 	{ id: 3, name: 'C++', checked: false },
@@ -8,4 +8,4 @@ const SpecializationItemsData: Array<ISpecializationItem> = [
 	{ id: 5, name: 'Python', checked: false },
 ];
 
-export default SpecializationItemsData;
+export default SPECIALIZATION_ITEMS_DATA;

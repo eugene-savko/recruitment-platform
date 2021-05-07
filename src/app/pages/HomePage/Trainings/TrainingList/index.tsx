@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
-import { INTERNSHIP_STATUS } from 'app/customs/InternshipStatus';
+import { INTERNSHIP_STATUS } from 'app/data/INTERNSHIPS_STATUS';
 import { LoadMoreInternship, TrainingListWrappper } from './components';
 
 import { TrainingItem } from './TrainingItem';

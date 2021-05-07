@@ -5,7 +5,7 @@ import { FilterContext } from 'app/contexts/FilterContext';
 
 // Smart component
 import { fetchInternships } from 'app/API/interships';
-import { INTERNSHIPS_DATA } from 'app/API/data/INTERNSHIPS_DATA';
+import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
 import { Filter } from './Filter';
 import { TrainingList } from './TrainingList';
 

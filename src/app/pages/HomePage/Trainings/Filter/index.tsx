@@ -4,8 +4,10 @@ import { Search as SearchIcon } from '@material-ui/icons';
 
 import { FilterContext } from 'app/contexts/FilterContext';
 
+import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
+import { fetchSpecialities } from 'app/API/specialities';
 import { fetchInternships } from 'app/API/interships';
-import { INTERNSHIPS_DATA } from 'app/API/data/INTERNSHIPS_DATA';
+import SPECIALIZATION_ITEMS_DATA from 'app/data/SPECIALIZATION_ITEMS_DATA';
 import {
 	DropdownList,
 	DropdownMenu,
@@ -15,7 +17,6 @@ import {
 	SearchButton,
 } from './components';
 import { IFilterState, ISpecializationItem } from './types';
-import { SpecializationItemsData } from './data';
 
 import { DropdownListItem } from './DropdownListItem';
 
@@ -36,7 +37,7 @@ export const Filter: React.FunctionComponent = () => {
 
 	const [specializationItems, setSpecializationItems] = useState<
 		Array<ISpecializationItem>
-	>(SpecializationItemsData);
+	>([]);
 
 	const [specializationMenuState, setSpecializationMenuState] = useState<
 		boolean | null
@@ -45,13 +46,13 @@ export const Filter: React.FunctionComponent = () => {
 	const ref = useRef<HTMLDivElement | null>(null);
 
 	const handleClickMenuSpecializationItem = (value: string) => {
-		const specializationsCheckToggle = SpecializationItemsData.map((item) => {
+		const specializationsCheckToggle = specializationItems.map((item) => {
 			if (item.checked === true) {
 				const itemCopy = { ...item };
 				itemCopy.checked = false;
 				return itemCopy;
 			}
-			if (item.speciality === value) {
+			if (item.name === value) {
 				const itemCopy = { ...item };
 				itemCopy.checked = true;
 				return itemCopy;
@@ -77,11 +78,24 @@ export const Filter: React.FunctionComponent = () => {
 		});
 
 	// Click Search
-	const [getId, setGetId] = useState<number | null | undefined>(undefined);
+	const [getId, setGetId] = useState<number | undefined>(0);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+				const specialities = await fetchSpecialities();
+				console.log(specialities);
+				setSpecializationItems(specialities);
+			} catch (e) {
+				setSpecializationItems(SPECIALIZATION_ITEMS_DATA);
+			}
+		};
+		fetchData();
+	}, []);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				console.log(getId);
 				const data = await fetchInternships(getId);
 				setTrainings?.(data);
 			} catch (e) {
@@ -126,7 +140,7 @@ export const Filter: React.FunctionComponent = () => {
 					<DropdownList menuState={specializationMenuState}>
 						{specializationItems.map((item) => (
 							<DropdownListItem
-								value={item.speciality}
+								value={item.name}
 								id={item.id}
 								key={uuidv4()}
 								check={item.checked}

@@ -1,6 +1,6 @@
 interface ISpecializationItem {
-	id: number | null | undefined;
-	speciality: string;
+	id?: number;
+	name: string;
 	checked: boolean;
 }
 
