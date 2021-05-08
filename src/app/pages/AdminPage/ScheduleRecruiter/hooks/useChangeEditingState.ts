@@ -4,6 +4,7 @@ import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
 
 import moment from 'moment';
 // import { schedulerData } from '../db/schedulerData';
+import { schedulerData } from '../db/schedulerData';
 import { IUseChangeEditingState } from '../types';
 
 export const useChangeEditingState = (): IUseChangeEditingState => {
