@@ -35,7 +35,7 @@ export const Profile: React.FunctionComponent = () => {
 		setTimeout(() => {
 			setUser(json.data);
 			setIsFetching(true);
-		}, 3000);
+		}, 90000);
 	};
 
 	useEffect(() => {
