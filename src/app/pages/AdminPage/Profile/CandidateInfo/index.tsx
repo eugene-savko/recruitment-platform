@@ -48,7 +48,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							title="Full name candidate"
-							secondary={fullName(info.firstName, info.lastName)}
+							secondary={fullName(info.first_name, info.last_name)}
 						/>
 					</ListItem>
 
