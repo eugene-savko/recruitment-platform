@@ -28,20 +28,21 @@ public class UserTimeServiceImpl implements UserTimeService {
     private final UserTimeMapper userTimeMapper;
 
     @Override
-    public List<UserTime> splitIntervalIntoSlots(UserTimeDto dto, User user) {
+    public List<UserTime> splitIntervalIntoSlots(UserTimeDto dto) {
         List<UserTime> userTimeSlots = new LinkedList<>();
 
         for (LocalDateTime time = dto.getStartDateTime();
              time.isBefore(dto.getEndDateTime());
              time = time.plusMinutes(DURATION)){
 
-            userTimeSlots.add(new UserTime(time, SlotStatus.FREE, user));
+            userTimeSlots.add(new UserTime(time, SlotStatus.FREE));
         }
         return userTimeSlots;
     }
 
     @Override
-    public List<UserTimeResponseDto> saveAll(List<UserTime> userTimes) {
+    public List<UserTimeResponseDto> saveUserIntervals(User user, List<UserTime> userTimes) {
+        userTimes.forEach(userTime -> userTime.setUser(user));
         return userTimeRepository.saveAll(userTimes)
                 .stream().map(userTimeMapper::toDto).collect(Collectors.toList());
     }

@@ -27,4 +27,8 @@ public class UserTime extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public UserTime(LocalDateTime startDateTime, SlotStatus status) {
+        this.startDateTime = startDateTime;
+        this.status = status;
+    }
 }

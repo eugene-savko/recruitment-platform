@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface UserTimeService {
 
-    List<UserTime> splitIntervalIntoSlots (UserTimeDto dto, User user);
+    List<UserTime> splitIntervalIntoSlots (UserTimeDto dto);
 
-    List<UserTimeResponseDto> saveAll (List<UserTime> userTimes);
+    List<UserTimeResponseDto> saveUserIntervals (User user, List<UserTime> userTimes);
 
 }
