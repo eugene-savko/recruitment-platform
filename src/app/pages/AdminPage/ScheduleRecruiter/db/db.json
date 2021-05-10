@@ -92,85 +92,22 @@
     }
   ],
   "schedulerData": [
-    {
-      "allDay": false,
-      "endDate": 1620633600000,
-      "members": 1,
-      "startDate": 1620631800000,
-      "title": "Fire Blueing",
-      "id": 1
-    },
-    {
-      "allDay": false,
-      "endDate": 1620806400000,
-      "members": 1,
-      "startDate": 1620804600000,
-      "title": "Ann Blueing",
-      "id": 2
-    },
-    {
-      "allDay": false,
-      "endDate": 1620810000000,
-      "members": 1,
-      "startDate": 1620808200000,
-      "title": "Karl Greening",
-      "id": 3
-    },
-    {
-      "allDay": false,
-      "endDate": 1620547200000,
-      "members": 1,
-      "startDate": 1620545400000,
-      "title": "Karl Greening",
-      "id": 4
-    },
-    {
-      "allDay": false,
-      "endDate": 1620637200000,
-      "members": 1,
-      "startDate": 1620635400000,
-      "title": "Joni Darings",
-      "id": 5
-    },
-    {
-      "allDay": false,
-      "endDate": 1620979200000,
-      "members": 1,
-      "startDate": 1620977400000,
-      "title": "Joni Darings",
-      "id": 6
-    },
-    {
-      "allDay": false,
-      "endDate": 1620982800000,
-      "members": 1,
-      "startDate": 1620981000000,
-      "title": "Feater Reding",
-      "id": 7
-    },
-    {
-      "allDay": false,
-      "endDate": 1620720000000,
-      "members": 1,
-      "startDate": 1620718200000,
-      "title": "Karl Greening",
-      "id": 8
-    },
-    {
-      "allDay": false,
-      "endDate": 1620813600000,
-      "members": 1,
-      "startDate": 1620811800000,
-      "id": 9,
-      "title": "Adi Stark"
-    },
+
     {
       "allDay": false,
       "endDate": 1620640800000,
       "members": 1,
-      "startDate": 1620639000000,
-      "title": "Fire Blueing",
-      "id": 11
+      "startDate": 1620635400000,
+      "title": "Joe Pink",
+      "id": 1
+    },
+    {
+      "allDay": false,
+      "endDate": "2021-05-13T08:30:00.000Z",
+      "members": 2,
+      "startDate": "2021-05-13T07:30:00.000Z",
+      "title": "Adi Stark",
+      "id": 2
     }
   ]
 }
