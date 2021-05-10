@@ -69,15 +69,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
     }
 
-    //TODO delete method, when there is security on frontend
-    /*@Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers(HttpMethod.GET, "/api/**")
-                .antMatchers(HttpMethod.OPTIONS, "/internship-request")
-                .antMatchers(HttpMethod.POST, "/internship-request");
-    }*/
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
