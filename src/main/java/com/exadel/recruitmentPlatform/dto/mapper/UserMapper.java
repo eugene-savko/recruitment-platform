@@ -37,16 +37,4 @@ public class UserMapper implements BaseMapper<User, UserDto> {
         return userDto;
     }
 
-    public void update(UserDto userDto, User user) {
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setEmail(userDto.getEmail());
-        user.setRole(userDto.getRole());
-        user.setSkype(userDto.getSkype());
-        user.setPhoto(userDto.getPhoto());
-        user.setPhone(userDto.getPhone());
-        user.setOtherInformation(userDto.getOtherInformation());
-
-    }
-
 }
