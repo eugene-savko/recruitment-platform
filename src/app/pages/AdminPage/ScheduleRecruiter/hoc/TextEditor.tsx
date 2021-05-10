@@ -1,19 +1,19 @@
 import React from 'react';
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
-export const TextEditor:
-	| React.ComponentType<AppointmentForm.TextEditorProps>
-	| undefined = (props) => {
-	// eslint-disable-next-line react/destructuring-assignment
-	if (props.type === 'multilineTextEditor') {
+export const TextEditor: React.ComponentType<AppointmentForm.TextEditorProps> = ({
+	type,
+	...restProps
+}) => {
+	if (type === 'multilineTextEditor') {
 		return null;
 	}
 
 	return (
 		<AppointmentForm.TextEditor
-			{...props}
-			// eslint-disable-next-line react/destructuring-assignment
-			readOnly={props.type === 'titleTextEditor'}
+			type="titleTextEditor"
+			{...restProps}
+			readOnly={type === 'titleTextEditor'}
 		/>
 	);
 };

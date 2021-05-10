@@ -1,84 +1,176 @@
 {
-	"candidate": [
-		{
-			"city": "Minsk",
-			"country": "Belarus",
-			"cv": "www.somesite.com",
-			"dataInterviewRecruiter": "13.04.21",
-			"dataInterviewTech": "16.04.21",
-			"email": "joepink@gmail.com",
-			"englishLevel": "B2",
-			"englishLevelRecruiter": "A1",
-			"firstName": "Joe",
-			"internshipId": 533,
-			"lastName": "Pink",
-			"nameRecruiter": "Mashy Bluing",
-			"nameTech": "Bob Marley",
-			"otherInformation": "some information",
-			"userId": 1
-		}
-	],
-	"databaseCandidates": [
-		{
-			"id": 1,
-			"nameUser": "Feater Reding",
-			"periodTime": "from 10:00 to 12:00"
-		},
-		{
-			"id": 2,
-			"nameUser": "Ann Blueing",
-			"periodTime": "from 12:00 to 14:00"
-		},
-		{
-			"id": 3,
-			"nameUser": "Kate Darking",
-			"periodTime": "from 14:00 to 16:00"
-		},
-		{
-			"id": 4,
-			"nameUser": "Karl Greening",
-			"periodTime": "from 10:00 to 12:00"
-		},
-		{
-			"id": 5,
-			"nameUser": "Joni Darings",
-			"periodTime": "from 14:00 to 16:00"
-		},
-		{
-			"id": 6,
-			"nameUser": "Fire Blueing",
-			"periodTime": "from 10:00 to 12:00"
-		}
-	],
-	"recruiters": [
-		{
-			"color": "indigo",
-			"id": 1,
-			"text": "Ivan Graying"
-		},
-		{
-			"color": "teal",
-			"id": 2,
-			"text": "Ann Reading"
-		},
-		{
-			"color": "purple",
-			"id": 3,
-			"text": "Kate Blacking"
-		},
-		{
-			"color": "blue",
-			"id": 4,
-			"text": "Toni Stark"
-		}
-	],
-	"schedulerData": [
-		{
-			"title": "Karl Greening",
-			"startDate": 1620207000000,
-			"endDate": 1620210600000,
-			"id": 0,
-			"members": 1
-		}
-	]
+  "candidate": [
+    {
+      "city": "Minsk",
+      "country": "Belarus",
+      "cv": "www.somesite.com",
+      "dataInterviewRecruiter": "13.04.21",
+      "dataInterviewTech": "16.04.21",
+      "email": "joepink@gmail.com",
+      "englishLevel": "B2",
+      "englishLevelRecruiter": "A1",
+      "firstName": "Joe",
+      "internshipId": 533,
+      "lastName": "Pink",
+      "nameRecruiter": "Mashy Bluing",
+      "nameTech": "Bob Marley",
+      "otherInformation": "some information",
+      "id": 1,
+      "periodTime": "from 08:00 to 9:00"
+    },
+    {
+      "city": "Vitebsk",
+      "country": "Belarus",
+      "cv": "www.somesite.com",
+      "dataInterviewRecruiter": "13.04.21",
+      "dataInterviewTech": "16.04.21",
+      "email": "joepink@gmail.com",
+      "englishLevel": "B1",
+      "englishLevelRecruiter": "A2",
+      "firstName": "Adi",
+      "internshipId": 533,
+      "lastName": "Stark",
+      "nameRecruiter": "Mashy Bluing",
+      "nameTech": "Bob Marley",
+      "otherInformation": "some information",
+      "id": 2,
+      "periodTime": "from 16:00 to 17:00"
+    }
+  ],
+  "databaseCandidates": [
+    {
+      "id": 1,
+      "nameUser": "Feater Reding",
+      "periodTime": "from 10:00 to 12:00"
+    },
+    {
+      "id": 2,
+      "nameUser": "Ann Blueing",
+      "periodTime": "from 12:00 to 14:00"
+    },
+    {
+      "id": 3,
+      "nameUser": "Kate Darking",
+      "periodTime": "from 14:00 to 16:00"
+    },
+    {
+      "id": 4,
+      "nameUser": "Karl Greening",
+      "periodTime": "from 10:00 to 12:00"
+    },
+    {
+      "id": 5,
+      "nameUser": "Joni Darings",
+      "periodTime": "from 14:00 to 16:00"
+    },
+    {
+      "id": 6,
+      "nameUser": "Fire Blueing",
+      "periodTime": "from 10:00 to 12:00"
+    }
+  ],
+  "recruiters": [
+    {
+      "color": "indigo",
+      "id": 1,
+      "text": "Ivan Graying"
+    },
+    {
+      "color": "teal",
+      "id": 2,
+      "text": "Ann Reading"
+    },
+    {
+      "color": "purple",
+      "id": 3,
+      "text": "Kate Blacking"
+    },
+    {
+      "color": "blue",
+      "id": 4,
+      "text": "Toni Stark"
+    }
+  ],
+  "schedulerData": [
+    {
+      "allDay": false,
+      "endDate": 1620633600000,
+      "members": 1,
+      "startDate": 1620631800000,
+      "title": "Fire Blueing",
+      "id": 1
+    },
+    {
+      "allDay": false,
+      "endDate": 1620806400000,
+      "members": 1,
+      "startDate": 1620804600000,
+      "title": "Ann Blueing",
+      "id": 2
+    },
+    {
+      "allDay": false,
+      "endDate": 1620810000000,
+      "members": 1,
+      "startDate": 1620808200000,
+      "title": "Karl Greening",
+      "id": 3
+    },
+    {
+      "allDay": false,
+      "endDate": 1620547200000,
+      "members": 1,
+      "startDate": 1620545400000,
+      "title": "Karl Greening",
+      "id": 4
+    },
+    {
+      "allDay": false,
+      "endDate": 1620637200000,
+      "members": 1,
+      "startDate": 1620635400000,
+      "title": "Joni Darings",
+      "id": 5
+    },
+    {
+      "allDay": false,
+      "endDate": 1620979200000,
+      "members": 1,
+      "startDate": 1620977400000,
+      "title": "Joni Darings",
+      "id": 6
+    },
+    {
+      "allDay": false,
+      "endDate": 1620982800000,
+      "members": 1,
+      "startDate": 1620981000000,
+      "title": "Feater Reding",
+      "id": 7
+    },
+    {
+      "allDay": false,
+      "endDate": 1620720000000,
+      "members": 1,
+      "startDate": 1620718200000,
+      "title": "Karl Greening",
+      "id": 8
+    },
+    {
+      "allDay": false,
+      "endDate": 1620813600000,
+      "members": 1,
+      "startDate": 1620811800000,
+      "id": 9,
+      "title": "Adi Stark"
+    },
+    {
+      "allDay": false,
+      "endDate": 1620640800000,
+      "members": 1,
+      "startDate": 1620639000000,
+      "title": "Fire Blueing",
+      "id": 11
+    }
+  ]
 }
