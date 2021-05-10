@@ -48,7 +48,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     }
 
     @Override
-    public InternshipRequestProfileDto getInternshipRequestForProfile(Long id) {
+    public InternshipRequestProfileDto getInternshipRequestProfile(Long id) {
         InternshipRequest internshipRequest = internshipRequestRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Internship request with id=" + id + " doesn't exist"));
         InternshipRequestProfileDto internshipRequestProfileDto = internshipRequestProfileMapper.toDto(internshipRequest);

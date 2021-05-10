@@ -7,6 +7,6 @@ public interface InternshipRequestService {
 
     InternshipRequestDto save(InternshipRequestDto InternshipRequestDto);
     InternshipRequestDto get(Long id);
-    InternshipRequestProfileDto getInternshipRequestForProfile(Long id);
+    InternshipRequestProfileDto getInternshipRequestProfile(Long id);
 
 }

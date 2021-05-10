@@ -57,8 +57,8 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public List<InterviewResponseDto> getInterviews(Long toUserId, Long internshipId) {
-        return interviewMapper.toResponseDtos(interviewRepository.findByToUserIdAndInternshipId(toUserId, internshipId));
+    public List<InterviewResponseDto> getInterviews(Long userId, Long internshipId) {
+        return interviewMapper.toResponseDtos(interviewRepository.findByToUserIdAndInternshipId(userId, internshipId));
     }
 
 }

@@ -7,6 +7,11 @@ databaseChangeLog:
       - tableExist:
         schemaName: public
         tableName: interview
+      - not:
+        columnExist:
+         schemaName: public
+         tableName: interview
+         columnName: english_level
     changes:
       - addColumn:
           tableName: interview

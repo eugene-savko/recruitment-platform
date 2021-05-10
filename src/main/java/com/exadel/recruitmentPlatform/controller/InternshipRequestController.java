@@ -28,8 +28,8 @@ public class InternshipRequestController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<InternshipRequestProfileDto> getInternshipRequestForProfile (@PathVariable Long id) {
-        return ResponseEntity.ok(internshipRequestService.getInternshipRequestForProfile(id));
+    public ResponseEntity<InternshipRequestProfileDto> getInternshipRequestProfile (@PathVariable Long id) {
+        return ResponseEntity.ok(internshipRequestService.getInternshipRequestProfile(id));
     }
 }
 
