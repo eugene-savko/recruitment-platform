@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findByRole(Pageable pageable, UserRole role);
 
-
+    @Query("select u from User u join u.internshipRequest i where i.internshipId = :internshipId and i.specialityId in :specialityIds and i.status in :statuses")
     Page<User> findByFilterParam(Pageable pageable, String fullName, Long internshipId,
                                  List<Long> specialityIds, List<String> statuses);
 
