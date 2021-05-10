@@ -15,7 +15,7 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 
 	useEffect(() => {
 		const getCurrentCandidate = async () => {
-			const gettedCurrentCandidate = await fetchCurrentCandidate(2);
+			const gettedCurrentCandidate = await fetchCurrentCandidate(1);
 			setCurrentCandidate(gettedCurrentCandidate);
 
 			return appointmentData.title !== undefined

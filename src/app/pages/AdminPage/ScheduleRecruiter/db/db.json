@@ -1,22 +1,9 @@
 {
   "candidate": [
     {
-      "city": "Minsk",
-      "country": "Belarus",
-      "cv": "www.somesite.com",
-      "dataInterviewRecruiter": "13.04.21",
-      "dataInterviewTech": "16.04.21",
-      "email": "joepink@gmail.com",
-      "englishLevel": "B2",
-      "englishLevelRecruiter": "A1",
-      "firstName": "Joe",
-      "internshipId": 533,
-      "lastName": "Pink",
-      "nameRecruiter": "Mashy Bluing",
-      "nameTech": "Bob Marley",
-      "otherInformation": "some information",
-      "id": 1,
-      "periodTime": "from 08:00 to 9:00"
+      "startDate": 1620720000000,
+      "endDate": 1620721800000,
+      "id": 1
     },
     {
       "city": "Vitebsk",
@@ -92,22 +79,53 @@
     }
   ],
   "schedulerData": [
-
     {
       "allDay": false,
-      "endDate": 1620640800000,
-      "members": 1,
-      "startDate": 1620635400000,
-      "title": "Joe Pink",
+      "endDate": 1620889200000,
+      "members": 2,
+      "startDate": 1620887400000,
+      "title": "Adi Stark",
       "id": 1
     },
     {
       "allDay": false,
-      "endDate": "2021-05-13T08:30:00.000Z",
-      "members": 2,
-      "startDate": "2021-05-13T07:30:00.000Z",
+      "endDate": 1621063800000,
+      "members": 1,
+      "startDate": 1621062000000,
       "title": "Adi Stark",
       "id": 2
+    },
+    {
+      "allDay": false,
+      "endDate": 1620808200000,
+      "members": 2,
+      "startDate": 1620806400000,
+      "title": "Adi Stark",
+      "id": 3
+    },
+    {
+      "allDay": false,
+      "endDate": 1620892800000,
+      "members": 1,
+      "startDate": 1620891000000,
+      "title": "Adi Stark",
+      "id": 4
+    },
+    {
+      "title": "Joe Pink",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1620721800000,
+      "startDate": 1620720000000,
+      "id": 5
+    },
+    {
+      "title": "Joe Pink",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1620896400000,
+      "startDate": 1620894600000,
+      "id": 6
     }
   ]
 }

@@ -1,6 +1,5 @@
 import { AppointmentModel } from '@devexpress/dx-react-scheduler';
 import axios from 'axios';
-import moment from 'moment';
 import {
 	ICurrentCandidate,
 	IDatabaseCandidates,
@@ -73,8 +72,6 @@ export const addedAppointment = async (
 			method: 'post',
 			data: {
 				...addedData,
-				startDate: moment(addedData?.startDate).valueOf(),
-				endDate: moment(addedData?.endDate).valueOf(),
 			},
 			headers: { 'Content-Type': 'application/json' },
 		});
@@ -82,6 +79,28 @@ export const addedAppointment = async (
 		return data;
 	} catch (error) {
 		throw new Error('You did not post appointment');
+	}
+};
+
+export const putCurrentCandidate = async (
+	puttedInfo: AppointmentModel,
+	id: number
+): Promise<void> => {
+	const { startDate, endDate } = puttedInfo;
+
+	try {
+		const { data } = await axios({
+			url: `http://localhost:4000/candidate/${id}`,
+			method: 'put',
+			data: {
+				startDate,
+				endDate,
+			},
+			headers: { 'Content-Type': 'application/json' },
+		});
+		return data;
+	} catch (error) {
+		throw new Error('You did not change info about candidate');
 	}
 };
 

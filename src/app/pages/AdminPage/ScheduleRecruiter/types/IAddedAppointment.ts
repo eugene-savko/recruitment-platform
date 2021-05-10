@@ -1,8 +1,8 @@
 interface IAddedAppointment {
 	allDay: boolean;
-	endDate: Date;
+	endDate: Date | number;
 	members: number;
-	startDate: Date;
+	startDate: Date | number;
 	title: string;
 }
 export default IAddedAppointment;
