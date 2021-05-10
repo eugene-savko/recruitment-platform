@@ -37,31 +37,41 @@ public class UserServiceImpl implements UserService {
 
     private User create(final UserDto userDto) {
         User user = userMapper.toEntity(userDto);
-        User saved = userRepository.save(user);
-        return saved;
+        return userRepository.save(user);
     }
 
     private User update(final UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new EntityNotFoundException("User with id=" + userDto.getId() + " doesn't exist"));
-        userMapper.update(userDto, user);
-        User saved = userRepository.save(user);
-        return saved;
+        update(userDto, user);
+        return userRepository.save(user);
+    }
+
+    private void update(UserDto userDto, User user) {
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setRole(userDto.getRole());
+        user.setSkype(userDto.getSkype());
+        user.setPhoto(userDto.getPhoto());
+        user.setPhone(userDto.getPhone());
+        user.setOtherInformation(userDto.getOtherInformation());
     }
 
     @Override
     public UserDto findById(Long id) {
-        return userRepository.findById(id).map(userMapper::toDto)
+        return userRepository.findById(id)
+                .map(userMapper::toDto)
                 .orElseThrow(() -> new EntityNotFoundException("User with id=" + id + " doesn't exist"));
     }
 
-    public UserDto getAuthenticatedUser(Authentication authentication){
-        AuthenticatedUser user = (AuthenticatedUser)authentication.getPrincipal();
+    public UserDto getAuthenticatedUser(Authentication authentication) {
+        AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
         return findById(user.getId());
     }
 
     @Override
-    public Page<UserDto> getUsersWithInternshipRole(Pageable pageable) {
-        return userRepository.findUsersByRoleInternship(pageable, UserRole.INTERN).map(userMapper::toDto);
+    public Page<UserDto> getInternUsers(Pageable pageable) {
+        return userRepository.findByRole(pageable, UserRole.INTERN).map(userMapper::toDto);
     }
 }
