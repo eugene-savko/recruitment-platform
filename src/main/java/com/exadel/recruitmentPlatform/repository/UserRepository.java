@@ -1,5 +1,6 @@
 package com.exadel.recruitmentPlatform.repository;
 
+import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import org.springframework.data.domain.Page;
@@ -19,8 +20,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findByRole(Pageable pageable, UserRole role);
 
-    @Query("select u from User u join u.internshipRequest i where i.internshipId = :internshipId and i.specialityId in :specialityIds and i.status in :statuses")
-    Page<User> findByFilterParam(Pageable pageable, String fullName, Long internshipId,
-                                 List<Long> specialityIds, List<String> statuses);
+    @Query("select u from User u join u.internshipRequest i where i.internshipId = :internshipId " +
+            "or :internshipId is empty and i.specialityId in :specialityIds or :specialityIds is empty " +
+            "and i.status in :statuses or :statuses is empty " +
+            "and concat(u.firstName, ' ', u.lastName) like :fullName or :fullName is empty ")
+    Page<User> findByFilterParam(Pageable pageable, Long internshipId, List<Long> specialityIds,
+                                 List<InternshipRequestStatus> statuses, String fullName);
 
 }
