@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
@@ -15,6 +17,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u.id from User u where u.email = :email")
     Long findIdByEmail(@Param("email") String email);
 
-    Page<User> findByRole(Pageable pageable, @Param("role") UserRole role);
+    Page<User> findByRole(Pageable pageable, UserRole role);
+
+
+    Page<User> findByFilterParam(Pageable pageable, String fullName, Long internshipId,
+                                 List<Long> specialityIds, List<String> statuses);
 
 }

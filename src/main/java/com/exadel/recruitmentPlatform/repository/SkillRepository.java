@@ -11,6 +11,6 @@ public interface SkillRepository extends JpaRepository <Skill, Long> {
     Skill findByName(String name);
     List<Skill> findByIdIn(Set<Long> ids);
 
-    List<Skill> findByInternships_Id(@Param("internshipId") Long internshipId);
+    List<Skill> findByInternships_Id(Long internshipId);
 
 }

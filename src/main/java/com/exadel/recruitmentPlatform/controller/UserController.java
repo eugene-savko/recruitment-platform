@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -39,6 +40,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserDto> save(@Valid @RequestBody UserDto userDto) {
         return ResponseEntity.ok(userService.save(userDto));
+    }
+
+    @PostMapping("/filtered-users")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<UserDto> getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
+        return userService.getFilteredUsers(userRequestDto);
     }
 
 }

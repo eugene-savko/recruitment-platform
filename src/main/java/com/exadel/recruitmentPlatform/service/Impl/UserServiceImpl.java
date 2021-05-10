@@ -1,16 +1,18 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
-
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
+import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
 
     @Override
     public UserDto save(final UserDto userDto) {
@@ -63,5 +64,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<UserDto> getInternUsers(Pageable pageable) {
         return userRepository.findByRole(pageable, UserRole.INTERN).map(userMapper::toDto);
+    }
+
+    @Override
+    public Page<UserDto> getFilteredUsers(UserRequestDto userRequestDto) {
+        return userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPage(), userRequestDto.getSize()),
+                userRequestDto.getFullName(), userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
+                userRequestDto.getStatuses()).map(userMapper::toDto);
     }
 }
