@@ -1,9 +1,7 @@
 import { AppointmentModel } from '@devexpress/dx-react-scheduler';
 import axios from 'axios';
-import {
-	ICurrentCandidate,
-	IDatabaseCandidates,
-} from 'app/pages/AdminPage/ScheduleRecruiter/types';
+import { ICurrentCandidate } from 'app/pages/AdminPage/ScheduleRecruiter/types';
+import moment from 'moment';
 import IListRecruiters from '../pages/AdminPage/ScheduleRecruiter/types/IListRecruiters';
 import IAddedAppointment from '../pages/AdminPage/ScheduleRecruiter/types/IAddedAppointment';
 
@@ -18,20 +16,6 @@ export const fetchCurrentCandidate = async (
 		return data;
 	} catch (error) {
 		throw new Error('You did not receive a candidate');
-	}
-};
-
-export const fetchListCandidate = async (): Promise<
-	Array<IDatabaseCandidates>
-> => {
-	try {
-		const { data } = await axios({
-			url: 'http://localhost:4000/databaseCandidates',
-			method: 'get',
-		});
-		return data;
-	} catch (error) {
-		throw new Error('You did not receive list of recruiter');
 	}
 };
 
@@ -82,19 +66,21 @@ export const addedAppointment = async (
 	}
 };
 
-export const putCurrentCandidate = async (
+// todo putt
+export const patchCurrentCandidate = async (
 	puttedInfo: AppointmentModel,
-	id: number
+	id: number,
+	requiter: string
 ): Promise<void> => {
 	const { startDate, endDate } = puttedInfo;
-
 	try {
 		const { data } = await axios({
 			url: `http://localhost:4000/candidate/${id}`,
-			method: 'put',
+			method: 'patch',
 			data: {
-				startDate,
-				endDate,
+				recruiterInterview: requiter,
+				startDateRecruiter: moment(startDate).valueOf(),
+				endDateRecruiter: moment(endDate).valueOf(),
 			},
 			headers: { 'Content-Type': 'application/json' },
 		});
@@ -104,15 +90,18 @@ export const putCurrentCandidate = async (
 	}
 };
 
-export const changedAppointment = async (
+export const putAppointment = async (
 	dataToServerChange: AppointmentModel
 ): Promise<AppointmentModel> => {
+	const { startDate, endDate } = dataToServerChange;
 	try {
 		const { data } = await axios({
 			url: `http://localhost:4000/schedulerData/${dataToServerChange.id}`,
 			method: 'put',
 			data: {
 				...dataToServerChange,
+				startDate: moment(startDate).valueOf(),
+				endDate: moment(endDate).valueOf(),
 			},
 			headers: { 'Content-Type': 'application/json' },
 		});
@@ -121,7 +110,7 @@ export const changedAppointment = async (
 		throw new Error('You do not change appointment');
 	}
 };
-
+// todo преписать на пустую строку
 export const deleteAppointment = async (
 	appointment: AppointmentModel
 ): Promise<void> => {

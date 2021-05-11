@@ -1,3 +1,5 @@
+// todo создавать пустой title
+// todo alert time
 import React, { useEffect, useState } from 'react';
 
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
@@ -12,18 +14,15 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	...restProps
 }) => {
 	const [currentCandidate, setCurrentCandidate] = useState<ICurrentCandidate>();
-
 	useEffect(() => {
 		const getCurrentCandidate = async () => {
-			const gettedCurrentCandidate = await fetchCurrentCandidate(1);
+			//! --------------------------------------------------------передача текущего кандидата
+			const gettedCurrentCandidate = await fetchCurrentCandidate(2);
+			const { firstName, lastName } = gettedCurrentCandidate;
 			setCurrentCandidate(gettedCurrentCandidate);
-
-			return appointmentData.title !== undefined
-				? onFieldChange({ title: appointmentData.title })
-				: onFieldChange({
-						title: `${gettedCurrentCandidate.firstName} ${gettedCurrentCandidate.lastName}`,
-				  });
+			return onFieldChange({ title: `${firstName} ${lastName}` });
 		};
+
 		getCurrentCandidate();
 	}, []);
 

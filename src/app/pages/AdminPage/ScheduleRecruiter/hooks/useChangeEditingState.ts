@@ -1,21 +1,22 @@
-// todo убрать радио button
 // todo кнопуку выхода на profile
-// todo отправку данных текущего кандидата на сервер
-// todo добавить рекрутера в профиль кандидата
+
 import { useState, useCallback, useEffect } from 'react';
 import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
 
 import {
 	deleteAppointment,
-	changedAppointment,
+	putAppointment,
 	fetchListAppointments,
 	addedAppointment,
 } from 'app/API/scheduleRecruiter';
 import moment from 'moment';
 import { IUseChangeEditingState } from '../types';
-import { putCurrentCandidate } from '../../../../API/scheduleRecruiter';
+import { patchCurrentCandidate } from '../../../../API/scheduleRecruiter';
+import IListRecruiters from '../types/IListRecruiters';
 
-export const useChangeEditingState = (): IUseChangeEditingState => {
+export const useChangeEditingState = (
+	listRecruters: Array<IListRecruiters>
+): IUseChangeEditingState => {
 	const [data, setData] = useState<Array<AppointmentModel>>([]);
 
 	useEffect(() => {
@@ -46,32 +47,38 @@ export const useChangeEditingState = (): IUseChangeEditingState => {
 			}
 
 			if (changed) {
-				const dataChanged: AppointmentModel[] = data.map(
-					(appointment: AppointmentModel) => {
-						if (appointment.id !== undefined) {
-							return changed[appointment.id]
-								? {
-										...appointment,
-										...changed[appointment.id],
-										startDate: moment(appointment.startDate).valueOf(),
-										endDate: moment(appointment.endDate).valueOf(),
-								  }
-								: appointment;
-						}
-						return appointment;
-					}
-				);
-				setData(dataChanged);
-				const appointmentChanged = dataChanged.filter(
-					(appointment: AppointmentModel) => {
-						return appointment.id !== undefined
-							? changed[appointment.id]
+				const dataChanged: AppointmentModel[] = data.map((appointment) => {
+					if (appointment.id !== undefined) {
+						return changed[appointment.id]
+							? {
+									...appointment,
+									...changed[appointment.id],
+							  }
 							: appointment;
 					}
+					return appointment;
+				});
+				setData(dataChanged);
+
+				const appointmentChanged = dataChanged.filter((appointment) => {
+					return appointment.id !== undefined
+						? changed[appointment.id]
+						: appointment;
+				});
+
+				putAppointment(appointmentChanged[0]);
+
+				const currentRecruiter = listRecruters.filter(
+					(recruiter: IListRecruiters) =>
+						recruiter.id === appointmentChanged[0].members
 				);
-				console.log(appointmentChanged[0]);
-				changedAppointment(appointmentChanged[0]);
-				putCurrentCandidate(appointmentChanged[0], 1);
+
+				//! --------------------------------------------------------передача текущего кандидата
+				patchCurrentCandidate(
+					appointmentChanged[0],
+					2,
+					currentRecruiter[0].text
+				);
 			}
 
 			if (deleted !== undefined) {

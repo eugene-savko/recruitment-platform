@@ -25,7 +25,6 @@ interface ITraineeFilter {
 }
 
 const TraineeFilter: React.FunctionComponent<ITraineeFilter> = ({
-	filter,
 	setFilter,
 	children,
 }) => {
@@ -41,7 +40,6 @@ const TraineeFilter: React.FunctionComponent<ITraineeFilter> = ({
 			try {
 				const data = await fetchInternships();
 				setInternships(data);
-				console.log(data);
 			} catch (e) {
 				setInternships(GLOBAL_FILTER_SELECT);
 			}

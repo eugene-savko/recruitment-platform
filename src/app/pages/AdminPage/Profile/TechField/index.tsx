@@ -30,8 +30,6 @@ const TechField: React.FunctionComponent = () => {
 		const sendDataTech = {
 			feedbackTech,
 		};
-		// eslint-disable-next-line no-console
-		console.log(sendDataTech);
 	};
 
 	return (

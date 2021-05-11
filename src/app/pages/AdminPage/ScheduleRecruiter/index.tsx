@@ -24,18 +24,16 @@ import {
 	TodayButton,
 	Resources,
 	GroupingPanel,
-	DragDropProvider,
 	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import axios from 'axios';
-
+import { fetchListRecruiters } from 'app/API/scheduleRecruiter';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
 import { useChangeEditingState } from './hooks/useChangeEditingState';
+import { BooleanEditor } from './hoc/BooleanEditor';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
-	const { commitChanges, data } = useChangeEditingState();
 	const [useListRecruters, setUseListRecruiters] = useState([
 		{
 			text: 'No appointment',
@@ -43,11 +41,14 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 			color: 'indigo',
 		},
 	]);
+	const { commitChanges, data } = useChangeEditingState(useListRecruters);
 
 	useEffect(() => {
-		axios.get('http://localhost:4000/recruiters').then((resp: any) => {
-			setUseListRecruiters(resp.data);
-		});
+		const fetchData = async () => {
+			const listRecruiter = await fetchListRecruiters();
+			setUseListRecruiters(listRecruiter);
+		};
+		fetchData();
 	}, []);
 
 	const messages: AppointmentFormBase.LocalizationMessages = {
@@ -66,7 +67,6 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	];
 
 	const grouping: Array<Grouping> = [{ resourceName: 'members' }];
-
 	return (
 		<Paper>
 			<Scheduler data={data} height={850}>
@@ -75,7 +75,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<GroupingState grouping={grouping} />
 
 				<DayView startDayHour={10} endDayHour={18} />
-				<WeekView startDayHour={10} endDayHour={18} />
+				<WeekView excludedDays={[0]} startDayHour={10} endDayHour={18} />
 				<MonthView />
 
 				<Appointments />
@@ -93,11 +93,11 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<AppointmentForm
 					basicLayoutComponent={BasicLayout}
 					textEditorComponent={TextEditor}
+					booleanEditorComponent={BooleanEditor}
 					messages={messages}
 				/>
 
 				<GroupingPanel />
-				<DragDropProvider />
 			</Scheduler>
 		</Paper>
 	);

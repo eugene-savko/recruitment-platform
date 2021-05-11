@@ -1,39 +1,58 @@
 {
   "candidate": [
     {
-      "startDate": 1620720000000,
-      "endDate": 1620721800000,
-      "id": 1
-    },
-    {
-      "city": "Vitebsk",
-      "country": "Belarus",
+      "id": 1,
+      "lastName": "Immanuel",
+      "firstName": "Kant",
+      "startDateRecruiter": 1620810000000,
+      "endDateRecruiter": 1620815400000,
+      "nameTechSpecialist": "Kant",
+      "startDateTechSpecialist": 0,
+      "endDateTechSpecialist": 0,
+      "nameRecruiter": "Mashy Bluing",
+      "internshipId": 533,
       "cv": "www.somesite.com",
-      "dataInterviewRecruiter": "13.04.21",
-      "dataInterviewTech": "16.04.21",
+      "otherInformation": "some information",
+      "city": "Minsk",
       "email": "joepink@gmail.com",
+      "periodTime": "from 16:00 to 17:00",
+      "country": "Belarus",
       "englishLevel": "B1",
       "englishLevelRecruiter": "A2",
-      "firstName": "Adi",
-      "internshipId": 533,
-      "lastName": "Stark",
-      "nameRecruiter": "Mashy Bluing",
-      "nameTech": "Bob Marley",
-      "otherInformation": "some information",
+      "recruiterInterview": "Silvester Stalone"
+    },
+    {
       "id": 2,
-      "periodTime": "from 16:00 to 17:00"
+      "lastName": "Arthur",
+      "firstName": "Schopenhauer",
+      "startDateRecruiter": 1620631800000,
+      "endDateRecruiter": 1620644400000,
+      "nameTechSpecialist": "Kant",
+      "startDateTechSpecialist": 0,
+      "endDateTechSpecialist": 0,
+      "nameRecruiter": "Mashy Bluing",
+      "internshipId": 533,
+      "cv": "www.somesite.com",
+      "otherInformation": "some information",
+      "city": "Brest",
+      "email": "arture@gmail.com",
+      "periodTime": "from 09:00 to 11:00",
+      "country": "Belarus",
+      "englishLevel": "C1",
+      "englishLevelRecruiter": "B2",
+      "recruiterInterview": "Ann Reading"
     }
   ],
   "databaseCandidates": [
     {
       "id": 1,
-      "nameUser": "Feater Reding",
-      "periodTime": "from 10:00 to 12:00"
+      "periodTime": "from 10:00 to 12:00",
+      "nameUser": "Feater Reding"
     },
     {
       "id": 2,
-      "nameUser": "Ann Blueing",
-      "periodTime": "from 12:00 to 14:00"
+      "periodTime": "from 12:00 to 14:00",
+      "nameUser": "Ann Blueing"
     },
     {
       "id": 3,
@@ -52,80 +71,96 @@
     },
     {
       "id": 6,
-      "nameUser": "Fire Blueing",
-      "periodTime": "from 10:00 to 12:00"
+      "periodTime": "from 10:00 to 12:00",
+      "nameUser": "Fire Blueing"
     }
   ],
   "recruiters": [
     {
-      "color": "indigo",
       "id": 1,
-      "text": "Ivan Graying"
+      "text": "Ivan Graying",
+      "color": "indigo"
     },
     {
-      "color": "teal",
       "id": 2,
+      "color": "teal",
       "text": "Ann Reading"
     },
     {
-      "color": "purple",
       "id": 3,
+      "color": "purple",
       "text": "Kate Blacking"
     },
     {
-      "color": "blue",
       "id": 4,
-      "text": "Toni Stark"
+      "text": "Toni Stark",
+      "color": "blue"
     }
   ],
   "schedulerData": [
     {
+      "title": "Schopenhauer Arthur",
       "allDay": false,
-      "endDate": 1620889200000,
-      "members": 2,
-      "startDate": 1620887400000,
-      "title": "Adi Stark",
+      "members": 1,
+      "endDate": 1620828000000,
+      "startDate": 1620819000000,
       "id": 1
     },
     {
+      "title": "Schopenhauer Arthur",
       "allDay": false,
-      "endDate": 1621063800000,
       "members": 1,
-      "startDate": 1621062000000,
-      "title": "Adi Stark",
+      "endDate": 1620730800000,
+      "startDate": 1620718200000,
       "id": 2
     },
     {
+      "title": "Schopenhauer Arthur",
       "allDay": false,
-      "endDate": 1620808200000,
-      "members": 2,
-      "startDate": 1620806400000,
-      "title": "Adi Stark",
+      "members": 1,
+      "endDate": 1620729000000,
+      "startDate": 1620727200000,
       "id": 3
     },
     {
+      "title": "Schopenhauer Arthur",
       "allDay": false,
-      "endDate": 1620892800000,
       "members": 1,
-      "startDate": 1620891000000,
-      "title": "Adi Stark",
+      "endDate": 1620741600000,
+      "startDate": 1620736200000,
       "id": 4
     },
     {
-      "title": "Joe Pink",
+      "title": "Schopenhauer Arthur",
       "allDay": false,
       "members": 1,
-      "endDate": 1620721800000,
-      "startDate": 1620720000000,
+      "endDate": 1620901800000,
+      "startDate": 1620891000000,
       "id": 5
     },
     {
-      "title": "Joe Pink",
+      "title": "Schopenhauer Arthur",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1620644400000,
+      "startDate": 1620631800000,
+      "id": 7
+    },
+    {
+      "title": "Schopenhauer Arthur",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1620646200000,
+      "startDate": 1620637200000,
+      "id": 8
+    },
+    {
+      "title": "Schopenhauer Arthur",
       "allDay": false,
       "members": 1,
-      "endDate": 1620896400000,
-      "startDate": 1620894600000,
-      "id": 6
+      "endDate": 1620635400000,
+      "startDate": 1620633600000,
+      "id": 9
     }
   ]
 }
