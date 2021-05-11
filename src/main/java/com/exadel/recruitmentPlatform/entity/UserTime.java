@@ -20,10 +20,15 @@ public class UserTime extends BaseEntity {
     private LocalDateTime startDateTime;
 
     @Column(name = "status")
-    private Boolean status;
+    @Enumerated(EnumType.STRING)
+    private SlotStatus status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    public UserTime(LocalDateTime startDateTime, SlotStatus status) {
+        this.startDateTime = startDateTime;
+        this.status = status;
+    }
 }
