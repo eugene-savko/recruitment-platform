@@ -7,16 +7,19 @@ import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestProfileMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.UserRole;
+import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.service.CityService;
 import com.exadel.recruitmentPlatform.service.CountryService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import com.exadel.recruitmentPlatform.service.InterviewService;
+import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -30,6 +33,8 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     private final InternshipRequestProfileMapper internshipRequestProfileMapper;
     private final InterviewService interviewService;
 
+    private final UserTimeService userTimeService;
+
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
         internshipRequestDto.setStatus(InternshipRequestStatus.UNDER_CONSIDERATION);
@@ -38,6 +43,8 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()).getId());
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
         InternshipRequest newRequest = internshipRequestRepository.save(internshipRequest);
+        List<UserTime> userTimes = userTimeService.splitIntervalIntoSlots(internshipRequestDto.getUserTime());
+        userTimeService.saveUserIntervals(internshipRequest.getUser(), userTimes);
         return internshipRequestMapper.toDto(newRequest);
     }
 
