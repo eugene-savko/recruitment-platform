@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-05-07-modify-column-data-type-table-user_time
+      author: ZheltokMariya
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExist:
+          schemaName: public
+          tableName: user_time
+          columnName: status
+      changes:
+        - modifyDataType:
+            columnName: status
+            newDataType: varchar(50)
+            tableName: user_time
