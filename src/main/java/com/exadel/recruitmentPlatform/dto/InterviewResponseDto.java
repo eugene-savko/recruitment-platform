@@ -5,30 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class InterviewDto extends BaseDto {
+public class InterviewResponseDto extends BaseDto {
 
-    @NotBlank
     private String feedback;
 
     private String englishLevel;
 
     @NotNull
-    private Long toUserId;
+    private UserResponseDto fromUser;
 
     @NotNull
-    private Long fromUserId;
-
-    @NotNull
-    private Long userTimeId;
-
-    @NotNull
-    private Long internshipId;
-
+    private LocalDateTime startDateTime;
 }

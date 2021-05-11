@@ -39,7 +39,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City getCityById(Long id) {
+    public City getCity(Long id) {
         return cityRepository.findById(id).get();
     }
 }
