@@ -21,14 +21,14 @@ import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
-	feedbackContent: IFeedbackInfo;
+	feedbackContent: Array<IFeedbackInfo>;
 }
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
 }) => {
-	const { feedback } = feedbackContent;
+	const { feedback } = feedbackContent[1];
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
@@ -76,7 +76,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						name="feedbackRecruiter"
 						rows={12}
 						multiline
-						value={feedbackRecruiter}
+						value={feedbackRecruiter || ''}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"

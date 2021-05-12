@@ -1,13 +1,14 @@
 interface IFeedbackInfo {
-	feedback?: string | null;
-	specialist: {
-		firstName: string;
-		lastName: string;
-		role: string;
+	id?: number;
+	feedback?: string;
+	englishLevel?: null;
+	fromUser: {
+		firstName?: string;
+		id?: number;
+		lastName?: string;
+		role?: string;
 	};
-	userTime: {
-		startDateTime: number;
-	};
+	startDateTime?: number;
 }
 
 export default IFeedbackInfo;

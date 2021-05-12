@@ -19,13 +19,13 @@ import {
 import { IFormFields, IFeedbackInfo } from '../types';
 
 interface ITechFieldProps {
-	feedbackContent: IFeedbackInfo;
+	feedbackContent: Array<IFeedbackInfo>;
 }
 
 const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	feedbackContent,
 }) => {
-	const { feedback } = feedbackContent;
+	const { feedback } = feedbackContent[0];
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackTech, setFeedbackTech] = useState(feedback);
@@ -70,7 +70,7 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 						name="feedbackTech"
 						rows={12}
 						multiline
-						value={feedbackTech}
+						value={feedbackTech || ''}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"

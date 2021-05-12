@@ -21,8 +21,6 @@ interface IInfoProps {
 }
 
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
-	const fullName = (first: string, second: string) => `${first} ${second}`;
-
 	return (
 		<React.Fragment>
 			<ContainerInterviewInfo>
@@ -33,10 +31,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="Name recruiter:"
-							secondary={fullName(
-								info[0].specialist.firstName,
-								info[0].specialist.lastName
-							)}
+							secondary={`${info[0].fromUser.firstName} ${info[0].fromUser.lastName}`}
 						/>
 					</ListItem>
 
@@ -46,7 +41,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={moment(info[0].userTime.startDateTime).format(
+							secondary={moment(info[0].startDateTime).format(
 								'DD/MM/YYYY H:mm'
 							)}
 						/>
@@ -58,10 +53,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="Name Tech:"
-							secondary={fullName(
-								info[1].specialist.firstName,
-								info[1].specialist.lastName
-							)}
+							secondary={`${info[1].fromUser.firstName} ${info[1].fromUser.lastName}`}
 						/>
 					</ListItem>
 
@@ -71,7 +63,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={moment(info[1].userTime.startDateTime).format(
+							secondary={moment(info[1].startDateTime).format(
 								'DD/MM/YYYY H:mm'
 							)}
 						/>
