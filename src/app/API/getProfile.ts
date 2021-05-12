@@ -1,7 +1,7 @@
 import { API } from './axios';
 
 interface IProfile {
-	[name: string]: string;
+	[name: string]: string | number;
 }
 
 const getProfile = async (): Promise<IProfile> => {

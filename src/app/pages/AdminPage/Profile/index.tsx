@@ -12,7 +12,7 @@ import CandidateInfo from './CandidateInfo';
 import InterviewInfo from './InterviewInfo';
 
 // preloader
-import Preloader from '../Preloader';
+import Preloader from '../components/Preloader';
 
 // data
 // import user from './data/user-test';
@@ -35,7 +35,7 @@ export const Profile: React.FunctionComponent = () => {
 		setTimeout(() => {
 			setUser(json.data);
 			setIsFetching(true);
-		}, 90000);
+		}, 900000);
 	};
 
 	useEffect(() => {
