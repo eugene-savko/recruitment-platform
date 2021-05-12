@@ -1,16 +1,16 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
+import com.exadel.recruitmentPlatform.dto.InternshipOnAdminPageResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.InternshipOnAdminPageMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipShortMapper;
-import com.exadel.recruitmentPlatform.entity.Country;
-import com.exadel.recruitmentPlatform.entity.Internship;
-import com.exadel.recruitmentPlatform.entity.Skill;
-import com.exadel.recruitmentPlatform.entity.Speciality;
+import com.exadel.recruitmentPlatform.entity.*;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRepository;
+import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.service.CountryService;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import com.exadel.recruitmentPlatform.service.SkillService;
@@ -30,10 +30,16 @@ public class InternshipServiceImpl implements InternshipService {
     private InternshipRepository internshipRepository;
 
     @Autowired
+    private InternshipRequestRepository internshipRequestRepository;
+
+    @Autowired
     private InternshipMapper internshipMapper;
 
     @Autowired
     private InternshipShortMapper internshipShortMapper;
+
+    @Autowired
+    private InternshipOnAdminPageMapper internshipOnAdminPageMapper;
 
     @Autowired
     private SpecialityService specialityService;
@@ -93,7 +99,26 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     @Override
-    public List<InternshipShortDto> getIdsAndNamesOfInternships(){
+    public List<InternshipOnAdminPageResponseDto> getInternshipsOnAdminPage() {
+        return listToAdminPageDto(internshipRepository.findAll());
+    }
+
+    public List<InternshipOnAdminPageResponseDto> listToAdminPageDto(List<Internship> internships) {
+        return internships.stream().map(internshipOnAdminPageMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer getAmountOfInternshipRequests(Internship internship) {
+        return internshipRequestRepository.countAllByInternshipId(internship.getId());
+    }
+
+    @Override
+    public Integer getAmountOfInternshipRequestsByStatus(Internship internship) {
+        return internshipRequestRepository.countAllByStatusAndInternshipId(InternshipRequestStatus.ACCEPTED, internship.getId());
+    }
+
+    @Override
+    public List<InternshipShortDto> getIdsAndNamesOfInternships() {
         return listToShortDto(internshipRepository.findAll());
     }
 

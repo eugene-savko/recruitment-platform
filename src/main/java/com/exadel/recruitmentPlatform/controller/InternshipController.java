@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
+import com.exadel.recruitmentPlatform.dto.InternshipOnAdminPageResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
 import com.exadel.recruitmentPlatform.service.InternshipService;
@@ -59,4 +60,8 @@ public class InternshipController {
         return internshipService.getIdsAndNamesOfInternships();
     }
 
+    @GetMapping(value = "/admin-page")
+    public List<InternshipOnAdminPageResponseDto> getInternshipsOnAdminPage(){
+        return internshipService.getInternshipsOnAdminPage();
+    }
 }
