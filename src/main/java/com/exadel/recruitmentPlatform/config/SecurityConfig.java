@@ -4,6 +4,7 @@ import com.exadel.recruitmentPlatform.service.Impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -53,6 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                     .authorizeRequests()
+                    .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
+                    .antMatchers(HttpMethod.POST, "/internship-request").permitAll()
+                    .antMatchers(HttpMethod.OPTIONS, "/internship-request").permitAll()
                     .anyRequest()
                     .authenticated()
                 .and()
