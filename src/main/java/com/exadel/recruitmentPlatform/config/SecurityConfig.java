@@ -55,7 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers(HttpMethod.GET, "/api/**").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
                     .antMatchers(HttpMethod.POST, "/internship-request").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/internship-request").permitAll()
                     .anyRequest()
