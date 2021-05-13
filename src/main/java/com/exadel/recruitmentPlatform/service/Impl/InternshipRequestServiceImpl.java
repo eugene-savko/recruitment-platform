@@ -10,11 +10,8 @@ import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
-import com.exadel.recruitmentPlatform.service.CityService;
-import com.exadel.recruitmentPlatform.service.CountryService;
-import com.exadel.recruitmentPlatform.service.InternshipRequestService;
-import com.exadel.recruitmentPlatform.service.InterviewService;
-import com.exadel.recruitmentPlatform.service.UserTimeService;
+import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
+import com.exadel.recruitmentPlatform.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +29,10 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     private final CityService cityService;
     private final InternshipRequestProfileMapper internshipRequestProfileMapper;
     private final InterviewService interviewService;
-
+    private final SpecialityService specialityService;
+    private final InternshipService internshipService;
     private final UserTimeService userTimeService;
+    private final UserTimeRepository userTimeRepository;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
@@ -61,8 +60,14 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         InternshipRequestProfileDto internshipRequestProfileDto = internshipRequestProfileMapper.toDto(internshipRequest);
         internshipRequestProfileDto.setCountry(countryService.getCountry(internshipRequest.getCountryId()).getName());
         internshipRequestProfileDto.setCity(cityService.getCity(internshipRequest.getCityId()).getName());
-        internshipRequestProfileDto.setInterviews(interviewService.getInterviews(internshipRequest.getUser().getId(), internshipRequest.getInternshipId()));
+        internshipRequestProfileDto.setInternship(internshipService.get(internshipRequest.getInternshipId()).getName());
+        internshipRequestProfileDto.setSpeciality(
+                specialityService.getSpecialityById(internshipRequest.getSpecialityId()).getName());
+        internshipRequestProfileDto.setInterviews(
+                interviewService.getInterviews(internshipRequest.getUser().getId(), internshipRequest.getInternshipId()));
+        internshipRequestProfileDto.setStartPriorityTime(userTimeRepository.getStartPriorityTime());
+        internshipRequestProfileDto.setEndPriorityTime(userTimeRepository.getEndPriorityTime());
         return internshipRequestProfileDto;
     }
-}
 
+}
