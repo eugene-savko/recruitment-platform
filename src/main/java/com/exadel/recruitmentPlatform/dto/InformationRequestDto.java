@@ -12,6 +12,6 @@ import java.util.List;
 public class InformationRequestDto extends BaseDto {
 
     private List<InternshipRequestStatusDto> statuses;
-    private List<SkillShortDto> skills;
+    private List<SpecialityShortDto> specialities;
 
 }

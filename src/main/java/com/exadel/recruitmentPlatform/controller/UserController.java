@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.service.InternUserResponseService;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,11 +26,6 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
-
-    @GetMapping
-    public Page<UserDto> getInternsUser(@PageableDefault Pageable pageable) {
-        return userService.getInternUsers(pageable);
-    }
 
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable Long id) {

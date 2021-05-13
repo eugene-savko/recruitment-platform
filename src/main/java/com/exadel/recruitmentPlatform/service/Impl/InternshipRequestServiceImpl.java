@@ -16,9 +16,11 @@ import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import com.exadel.recruitmentPlatform.service.InterviewService;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Service
@@ -63,6 +65,11 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         internshipRequestProfileDto.setCity(cityService.getCity(internshipRequest.getCityId()).getName());
         internshipRequestProfileDto.setInterviews(interviewService.getInterviews(internshipRequest.getUser().getId(), internshipRequest.getInternshipId()));
         return internshipRequestProfileDto;
+    }
+
+    @Override
+    public Page<InternshipRequest> getInternshipRequestByInternUsers(Pageable pageable) {
+        return internshipRequestRepository.findByUserRole(pageable, UserRole.INTERN);
     }
 }
 
