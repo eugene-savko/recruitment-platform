@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AuthProvider from 'app/context/AuthLoggedContext';
+
 import { App } from './app';
 
 const MOUNT_NODE = document.getElementById('root');

@@ -5,8 +5,8 @@ const FeedbackField = styled(TextField)`
 	& > div {
 		height: 100%;
 	}
-	width: 80%;
-	margin: 10px;
+	flex-grow: 1;
+	margin: 0px 0px 10px 10px;
 `;
 
 export default FeedbackField;
