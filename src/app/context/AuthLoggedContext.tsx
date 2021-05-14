@@ -18,19 +18,11 @@ export const authContext = createContext<IAuthLoggedContextState>(
 const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 	const [auth, setAuth] = useState<IAuthState>(initAuthContext.auth);
 
-	const setAuthData = (dataLogin: IFormInput) => {
-		setAuth({ loading: false, dataLoginForm: dataLogin, dataRole: null });
-	};
-
 	const getAccess = async () => {
 		const { data } = await axios({
 			method: 'get',
 			url: 'https://recruitment-platform.herokuapp.com/users/current',
 			withCredentials: true,
-			headers: {
-				Cookie: 'Thu, 20 May 2021 18:24:57 GMT',
-				// Accept: 'application/x-www-form-urlencoded',
-			},
 		});
 		return data;
 	};
@@ -48,6 +40,42 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 			},
 		});
 		return status;
+	};
+
+	const logOut = () => {
+		setAuth({ loading: false, dataLoginForm: null, dataRole: null });
+	};
+
+	const logIn = async (dataLogin: IFormInput) => {
+		console.log(dataLogin);
+		try {
+			setAuth({
+				loading: true,
+				dataLoginForm: auth.dataLoginForm,
+				dataRole: auth.dataRole,
+			});
+
+			const statusSever = await fetchRequestLogin(
+				dataLogin.username,
+				dataLogin.password
+			);
+
+			if (statusSever) {
+				const data = await getAccess();
+				setAuth({
+					loading: false,
+					dataLoginForm: dataLogin,
+					dataRole: data,
+				});
+			}
+		} catch (error) {
+			setAuth({
+				loading: false,
+				dataLoginForm: auth.dataLoginForm,
+				dataRole: auth.dataRole,
+			});
+			console.dir(error);
+		}
 	};
 
 	useEffect(() => {
@@ -76,42 +104,8 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 		authenticateRefresh();
 	}, []);
 
-	useEffect(() => {
-		const authenticate = async () => {
-			try {
-				setAuth({
-					loading: true,
-					dataLoginForm: auth.dataLoginForm,
-					dataRole: auth.dataRole,
-				});
-
-				const statusSever = await fetchRequestLogin(
-					auth.dataLoginForm?.username,
-					auth.dataLoginForm?.password
-				);
-
-				if (statusSever) {
-					const data = await getAccess();
-					setAuth({
-						loading: false,
-						dataLoginForm: auth.dataLoginForm,
-						dataRole: data,
-					});
-				}
-			} catch (error) {
-				setAuth({
-					loading: false,
-					dataLoginForm: auth.dataLoginForm,
-					dataRole: auth.dataRole,
-				});
-				console.dir(error);
-			}
-		};
-		authenticate();
-	}, [auth.dataLoginForm]);
-
 	return (
-		<authContext.Provider value={{ auth, setAuthData }}>
+		<authContext.Provider value={{ auth, logIn, logOut }}>
 			{children}
 		</authContext.Provider>
 	);

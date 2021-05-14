@@ -27,10 +27,10 @@ export const Auth: React.FunctionComponent = () => {
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
 	});
-	const { setAuthData } = useContext(authContext);
+	const { logIn } = useContext(authContext);
 
 	const getInputsForm = async (dataLogin: IFormInput) => {
-		setAuthData?.(dataLogin);
+		logIn?.(dataLogin);
 		history.replace('/');
 	};
 
