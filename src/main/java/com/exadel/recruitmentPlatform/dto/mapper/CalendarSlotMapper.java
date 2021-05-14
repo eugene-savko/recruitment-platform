@@ -1,6 +1,6 @@
 package com.exadel.recruitmentPlatform.dto.mapper;
 
-import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
+import com.exadel.recruitmentPlatform.dto.CalendarSlotResponseDto;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.service.Impl.UserTimeServiceImpl;
 import lombok.AllArgsConstructor;
@@ -11,22 +11,22 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class CalendarSlotMapper implements BaseMapper<UserTime, CalendarSlotDto> {
+public class CalendarSlotMapper implements BaseMapper<UserTime, CalendarSlotResponseDto> {
 
     @Override
-    public CalendarSlotDto toDto(UserTime userTime) {
-        CalendarSlotDto calendarSlotDto = new CalendarSlotDto();
-        calendarSlotDto.setId(userTime.getId());
-        calendarSlotDto.setCandidate(userTime.getInterview() == null ? "" :
+    public CalendarSlotResponseDto toDto(UserTime userTime) {
+        CalendarSlotResponseDto calendarSlotResponseDto = new CalendarSlotResponseDto();
+        calendarSlotResponseDto.setId(userTime.getId());
+        calendarSlotResponseDto.setCandidate(userTime.getInterview() == null ? "" :
                 userTime.getInterview().getToUser().getFirstName() + " " + userTime.getInterview().getToUser().getLastName());
-        calendarSlotDto.setRecruiterId(userTime.getUser().getId());
-        calendarSlotDto.setStartDate(userTime.getStartDateTime());
-        calendarSlotDto.setEndDate(userTime.getStartDateTime().plusMinutes(UserTimeServiceImpl.DURATION));
+        calendarSlotResponseDto.setRecruiterId(userTime.getUser().getId());
+        calendarSlotResponseDto.setStartDate(userTime.getStartDateTime());
+        calendarSlotResponseDto.setEndDate(userTime.getStartDateTime().plusMinutes(UserTimeServiceImpl.DURATION));
 
-        return calendarSlotDto;
+        return calendarSlotResponseDto;
     }
 
-    public List<CalendarSlotDto> toDtos(List<UserTime> userTimes){
+    public List<CalendarSlotResponseDto> toDtos(List<UserTime> userTimes){
         return userTimes.stream().map(this::toDto).collect(Collectors.toList());
     }
 }
