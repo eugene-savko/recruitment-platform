@@ -27,7 +27,7 @@ export const Auth: React.FunctionComponent = () => {
 	const { handleSubmit, errors, register, control } = useForm({
 		defaultValues,
 	});
-	const { logIn } = useContext(authContext);
+	const { logIn, auth } = useContext(authContext);
 
 	const getInputsForm = async (dataLogin: IFormInput) => {
 		logIn?.(dataLogin);
@@ -44,12 +44,17 @@ export const Auth: React.FunctionComponent = () => {
 					{errors.username && (
 						<AuthErrorLabel>{errors.username.message}</AuthErrorLabel>
 					)}
+					{auth.hasError && (
+						<AuthErrorLabel>Check your email or password</AuthErrorLabel>
+					)}
 
 					<InputPassword ref={register(validation.password)} />
 					{errors.password && (
 						<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
 					)}
-
+					{auth.hasError && (
+						<AuthErrorLabel>Check your email or password</AuthErrorLabel>
+					)}
 					<CheckBoxRemember control={control} />
 
 					<ButtonSubmint />

@@ -26,7 +26,6 @@ export const PrivateRouteAuthAdminPage: React.FunctionComponent<IPrivateRouteAut
 			/>
 		);
 	}
-	console.log(auth.dataRole);
 	return (
 		<Route
 			{...restProps}

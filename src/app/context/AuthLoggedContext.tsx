@@ -9,6 +9,7 @@ const initAuthContext = {
 		loading: true,
 		dataLoginForm: null,
 		dataRole: null,
+		hasError: false,
 	},
 };
 export const authContext = createContext<IAuthLoggedContextState>(
@@ -27,7 +28,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 		return data;
 	};
 
-	const fetchRequestLogin = async (username: any, password: any) => {
+	const fetchRequestLogin = async (username: string, password: string) => {
 		const { status } = await axios({
 			method: 'POST',
 			url: 'https://recruitment-platform.herokuapp.com/login',
@@ -43,16 +44,21 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 	};
 
 	const logOut = () => {
-		setAuth({ loading: false, dataLoginForm: null, dataRole: null });
+		setAuth({
+			loading: false,
+			dataLoginForm: null,
+			dataRole: null,
+			hasError: false,
+		});
 	};
 
 	const logIn = async (dataLogin: IFormInput) => {
-		console.log(dataLogin);
 		try {
 			setAuth({
 				loading: true,
 				dataLoginForm: auth.dataLoginForm,
 				dataRole: auth.dataRole,
+				hasError: false,
 			});
 
 			const statusSever = await fetchRequestLogin(
@@ -66,6 +72,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 					loading: false,
 					dataLoginForm: dataLogin,
 					dataRole: data,
+					hasError: true,
 				});
 			}
 		} catch (error) {
@@ -73,8 +80,8 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 				loading: false,
 				dataLoginForm: auth.dataLoginForm,
 				dataRole: auth.dataRole,
+				hasError: true,
 			});
-			console.dir(error);
 		}
 	};
 
@@ -85,23 +92,29 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 					loading: true,
 					dataLoginForm: auth.dataLoginForm,
 					dataRole: auth.dataRole,
+					hasError: false,
 				});
+
 				const data = await getAccess();
 				setAuth({
 					loading: false,
 					dataLoginForm: auth.dataLoginForm,
 					dataRole: data,
+					hasError: false,
 				});
 			} catch (error) {
-				console.dir(error);
 				setAuth({
 					loading: false,
-					dataLoginForm: auth.dataLoginForm,
-					dataRole: auth.dataRole,
+					dataLoginForm: null,
+					dataRole: null,
+					hasError: false,
 				});
 			}
 		};
-		authenticateRefresh();
+
+		if (!auth.dataRole) {
+			authenticateRefresh();
+		}
 	}, []);
 
 	return (
