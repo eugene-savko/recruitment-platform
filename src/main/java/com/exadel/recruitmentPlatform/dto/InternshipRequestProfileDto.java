@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -16,16 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 public class InternshipRequestProfileDto extends BaseDto{
 
-    @NotBlank
-    @Size(min = 1, max = 50)
     private String firstName;
 
-    @NotBlank
-    @Size(min = 1, max = 50)
     private String lastName;
 
-    @Email
-    @Size(min = 5, max = 50)
     private String email;
 
     private String country;

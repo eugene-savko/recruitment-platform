@@ -1,11 +1,15 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
+import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
+import com.exadel.recruitmentPlatform.dto.mapper.CalendarSlotMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserTimeMapper;
 import com.exadel.recruitmentPlatform.entity.SlotStatus;
 import com.exadel.recruitmentPlatform.entity.User;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
+import com.exadel.recruitmentPlatform.repository.InternshipRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
@@ -26,6 +30,8 @@ public class UserTimeServiceImpl implements UserTimeService {
 
     private final UserTimeRepository userTimeRepository;
     private final UserTimeMapper userTimeMapper;
+    private final CalendarSlotMapper calendarSlotMapper;
+    private final InternshipRepository internshipRepository;
 
     @Override
     public List<UserTime> splitIntervalIntoSlots(UserTimeDto dto) {
@@ -46,4 +52,14 @@ public class UserTimeServiceImpl implements UserTimeService {
         return userTimeRepository.saveAll(userTimes)
                 .stream().map(userTimeMapper::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<CalendarSlotDto> getCalendarSlots(Long internshipId) {
+        return calendarSlotMapper.toDtos(userTimeRepository
+                .findByUserRoleAndUserIds(
+                        UserRole.RECRUITER,
+                        UserRole.SPECIALIST,
+                        internshipRepository.findUserIdsByInternshipId(internshipId)));
+    }
+
 }

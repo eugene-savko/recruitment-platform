@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -18,9 +17,7 @@ public class InterviewResponseDto extends BaseDto {
 
     private String englishLevel;
 
-    @NotNull
     private UserResponseDto fromUser;
 
-    @NotNull
     private LocalDateTime startDateTime;
 }
