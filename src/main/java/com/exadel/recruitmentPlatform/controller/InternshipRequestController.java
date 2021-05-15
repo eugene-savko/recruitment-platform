@@ -1,9 +1,12 @@
 package com.exadel.recruitmentPlatform.controller;
 
+import com.exadel.recruitmentPlatform.dto.EnglishLevelDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.dto.InterviewDto;
 import com.exadel.recruitmentPlatform.service.EmailService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
+import com.exadel.recruitmentPlatform.service.InterviewService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,7 @@ public class InternshipRequestController {
 
     private final InternshipRequestService internshipRequestService;
     private final EmailService emailService;
+    private final InterviewService interviewService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -30,6 +34,10 @@ public class InternshipRequestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<InternshipRequestProfileDto> getInternshipRequestProfile (@PathVariable Long id) {
         return ResponseEntity.ok(internshipRequestService.getInternshipRequestProfile(id));
+    }
+    @PutMapping(value = "/english")
+    public ResponseEntity<InterviewDto> updateEnglishLevel(@RequestBody EnglishLevelDto englishLevelDto){
+        return ResponseEntity.ok(interviewService.updateEnglishLevel(englishLevelDto.getId(),englishLevelDto.getEnglishLevel()));
     }
 }
 

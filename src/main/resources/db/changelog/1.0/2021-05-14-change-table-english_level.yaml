@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-05-14-create-time-field-for-english_level-table
+      author: vadim.stradze
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-05-14-adding-create-update-fields-to-english_level-table.sql
+            stripComments: true

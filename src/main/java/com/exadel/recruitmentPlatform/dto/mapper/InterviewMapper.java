@@ -23,6 +23,7 @@ public class InterviewMapper implements BaseMapper<Interview, InterviewDto> {
         interviewDto.setToUserId(interview.getToUser().getId());
         interviewDto.setUserTimeId(interview.getUserTime().getId());
         interviewDto.setInternshipId(interview.getInternshipId());
+        interviewDto.setEnglishLevel(interview.getEnglishLevel());
         return interviewDto;
     }
 
