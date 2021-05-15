@@ -1,25 +1,41 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar, Typography } from '@material-ui/core';
+import { authContext } from 'app/context/AuthLoggedContext';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { SideBarAvatarWrapper } from './components';
-import { user } from './helpers/user';
 
 export const UserPhoto: React.FunctionComponent = () => {
+	const {
+		auth: { dataRole },
+	} = useContext(authContext);
+
+	console.log(dataRole);
+	const namePerson =
+		`${dataRole?.firstName} ${dataRole?.lastName}` || 'No name';
+
+	const roleLowerCase = () => {
+		const FirstLaterUpperCase = dataRole?.role[0];
+		const AnotherLaterLowerCase = dataRole?.role.slice(1).toLowerCase();
+		const specialization = `${FirstLaterUpperCase}${AnotherLaterLowerCase}`;
+		return specialization;
+	};
+
 	return (
 		<SideBarAvatarWrapper>
-			<Avatar
-				src={user.avatar}
-				style={{
-					cursor: 'pointer',
-					width: 64,
-					height: 64,
-				}}
-			/>
-			<Typography color="textPrimary" variant="h5">
-				Jon Doe
+			{dataRole?.photo ? (
+				<Avatar src={dataRole?.photo} style={{ width: 64, height: 64 }} />
+			) : (
+				<AccountCircleIcon color="primary" style={{ width: 64, height: 64 }} />
+			)}
+			<Typography color="textSecondary" variant="h5">
+				{namePerson}
 			</Typography>
 			<Typography color="textSecondary" variant="body2">
-				JonDoe@gmail.com
+				{roleLowerCase()}
+			</Typography>
+			<Typography color="textSecondary" variant="body2">
+				{dataRole?.email || 'No email'}
 			</Typography>
 		</SideBarAvatarWrapper>
 	);
