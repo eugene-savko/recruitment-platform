@@ -10,6 +10,7 @@ import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
+import com.exadel.recruitmentPlatform.repository.TimeIntervalRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.*;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     private final InternshipService internshipService;
     private final UserTimeService userTimeService;
     private final UserTimeRepository userTimeRepository;
+    private final TimeIntervalRepository timeIntervalRepository;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
@@ -42,7 +44,10 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         internshipRequestDto.setCityId(cityService.save(internshipRequestDto.getCity()).getId());
         InternshipRequest internshipRequest = internshipRequestMapper.toEntity(internshipRequestDto);
         InternshipRequest newRequest = internshipRequestRepository.save(internshipRequest);
-        List<UserTime> userTimes = userTimeService.splitIntervalIntoSlots(internshipRequestDto.getUserTime());
+        List<UserTime> userTimes = userTimeService.splitIntervalIntoSlots(
+                timeIntervalRepository.findById(internshipRequestDto.getTimeIntervalId())
+                        .orElseThrow(() -> new EntityNotFoundException(
+                                "Doesn't find TimeInterval slots for this UserId " + internshipRequestDto.getTimeIntervalId())));
         userTimeService.saveUserIntervals(internshipRequest.getUser(), userTimes);
         return internshipRequestMapper.toDto(newRequest);
     }
@@ -65,8 +70,10 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
                 specialityService.getSpecialityById(internshipRequest.getSpecialityId()).getName());
         internshipRequestProfileDto.setInterviews(
                 interviewService.getInterviews(internshipRequest.getUser().getId(), internshipRequest.getInternshipId()));
-        internshipRequestProfileDto.setStartPriorityTime(userTimeRepository.getStartPriorityTime());
-        internshipRequestProfileDto.setEndPriorityTime(userTimeRepository.getEndPriorityTime());
+        internshipRequestProfileDto.setStartPriorityTime(
+                userTimeRepository.getStartPriorityTime(internshipRequest.getUser().getId()));
+        internshipRequestProfileDto.setEndPriorityTime(
+                userTimeRepository.getEndPriorityTime(internshipRequest.getUser().getId()));
         return internshipRequestProfileDto;
     }
 
