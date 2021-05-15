@@ -1,16 +1,5 @@
 import IFormInput from './IFormInput';
-
-interface IDataRole {
-	id: number;
-	firstName: string;
-	lastName: string;
-	email: string;
-	role: string;
-	skype: string;
-	photo: string;
-	phone: string;
-	otherInformation: string;
-}
+import IDataRole from './IDataRole';
 
 interface IAuthState {
 	loading: boolean;

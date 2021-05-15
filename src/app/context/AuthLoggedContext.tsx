@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState, createContext, useEffect } from 'react';
+import { getAccess, fetchRequestLogin } from 'app/API/auth';
 import IAuthLoggedContextState from '../pages/AuthPage/Auth/types/IAuthLoggedContextState';
 import IAuthState from '../pages/AuthPage/Auth/types/IAuthState';
 import IFormInput from '../pages/AuthPage/Auth/types/IFormInput';
@@ -18,30 +18,6 @@ export const authContext = createContext<IAuthLoggedContextState>(
 
 const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 	const [auth, setAuth] = useState<IAuthState>(initAuthContext.auth);
-
-	const getAccess = async () => {
-		const { data } = await axios({
-			method: 'get',
-			url: 'https://recruitment-platform.herokuapp.com/users/current',
-			withCredentials: true,
-		});
-		return data;
-	};
-
-	const fetchRequestLogin = async (username: string, password: string) => {
-		const { status } = await axios({
-			method: 'POST',
-			url: 'https://recruitment-platform.herokuapp.com/login',
-			data: new URLSearchParams({ username, password }),
-			withCredentials: true,
-			headers: {
-				Cookie: 'Thu, 20 May 2021 18:24:57 GMT',
-				Accept: 'application/x-www-form-urlencoded',
-				'content-type': 'application/x-www-form-urlencoded',
-			},
-		});
-		return status;
-	};
 
 	const logOut = () => {
 		setAuth({
@@ -68,6 +44,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 
 			if (statusSever) {
 				const data = await getAccess();
+
 				setAuth({
 					loading: false,
 					dataLoginForm: dataLogin,
@@ -96,6 +73,7 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 				});
 
 				const data = await getAccess();
+
 				setAuth({
 					loading: false,
 					dataLoginForm: auth.dataLoginForm,
