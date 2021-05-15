@@ -36,6 +36,8 @@ interface IInfoProps {
 const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 	const [isShown, setIsShown] = useState(false);
 	const toggle = () => setIsShown(!isShown);
+	const { firstName, lastName } = info;
+	const fullName = `${firstName} ${lastName}`;
 
 	return (
 		<React.Fragment>
@@ -47,7 +49,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							title="Full name candidate"
-							secondary={`${info.firstName} ${info.lastName}`}
+							secondary={fullName}
 						/>
 					</ListItem>
 

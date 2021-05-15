@@ -6,11 +6,11 @@ interface IUserInfo {
 	readonly cv?: string;
 	readonly email?: string;
 	readonly englishLevel?: string;
-	readonly firstName?: string;
+	firstName?: string;
 	readonly id?: number;
 	readonly internshipId?: number;
 	interviews: Array<IFeedbackInfo>;
-	readonly lastName?: string;
+	lastName?: string;
 	readonly otherInformation?: string;
 	readonly phone?: string;
 	readonly specialityId?: number;
