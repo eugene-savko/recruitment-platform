@@ -51,8 +51,6 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 		// eslint-disable-next-line no-console
 		console.log(sendDataRecruiter);
 	};
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleMessage = (location: { pathname: string }, action: string) => {
 		if (action === 'POP') {
 			// eslint-disable-next-line no-console
