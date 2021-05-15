@@ -10,7 +10,6 @@ export const UserPhoto: React.FunctionComponent = () => {
 		auth: { dataRole },
 	} = useContext(authContext);
 
-	console.log(dataRole);
 	const namePerson =
 		`${dataRole?.firstName} ${dataRole?.lastName}` || 'No name';
 

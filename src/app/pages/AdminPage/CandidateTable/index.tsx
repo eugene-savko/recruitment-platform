@@ -32,7 +32,6 @@ export const CandidateTable: React.FunctionComponent = () => {
 			query: IFilterOption
 		) => {
 			const { name, id } = query;
-			console.log(query);
 			if (id) {
 				const arrValues = name.split(' ');
 				switch (name) {
