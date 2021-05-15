@@ -1,3 +1,5 @@
+import IFeedbackInfo from './IFeedbackInfo';
+
 interface IUserInfo {
 	readonly city?: string;
 	readonly country?: string;
@@ -7,18 +9,7 @@ interface IUserInfo {
 	readonly firstName?: string;
 	readonly id?: number;
 	readonly internshipId?: number;
-	interviews: Array<{
-		id?: number;
-		feedback?: string;
-		englishLevel?: null;
-		fromUser: {
-			firstName?: string;
-			id?: number;
-			lastName?: string;
-			role?: string;
-		};
-		startDateTime?: number;
-	}>;
+	interviews: Array<IFeedbackInfo>;
 	readonly lastName?: string;
 	readonly otherInformation?: string;
 	readonly phone?: string;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Prompt } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -76,9 +76,11 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="outlined" color="primary">
-							Schedule
-						</ButtonMaterial>
+						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+							<ButtonMaterial variant="outlined" color="primary">
+								Schedule
+							</ButtonMaterial>
+						</Link>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Save feedback
 						</ButtonMaterial>

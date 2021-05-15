@@ -1,14 +1,14 @@
 interface IFeedbackInfo {
 	id?: number;
 	feedback?: string;
-	englishLevel?: null;
+	englishLevel?: null | string;
 	fromUser: {
 		firstName?: string;
 		id?: number;
 		lastName?: string;
 		role?: string;
 	};
-	startDateTime?: number;
+	startDateTime: number;
 }
 
 export default IFeedbackInfo;

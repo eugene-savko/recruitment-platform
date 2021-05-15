@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Prompt } from 'react-router-dom';
+import { Link, Prompt } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -82,9 +82,11 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="outlined" color="primary">
-							Schedule
-						</ButtonMaterial>
+						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+							<ButtonMaterial variant="outlined" color="primary">
+								Schedule
+							</ButtonMaterial>
+						</Link>
 						<Select
 							id="english-after-interview"
 							name="levelEnglishRecruiter"

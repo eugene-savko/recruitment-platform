@@ -4,7 +4,7 @@ import React from 'react';
 import ImageCross from './ImageCross';
 
 interface IArrowBackProps {
-	close: () => void;
+	close?: () => void;
 }
 
 const ArrowBack: React.FunctionComponent<IArrowBackProps> = ({ close }) => {

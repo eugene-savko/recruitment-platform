@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment';
+import dateFormat from 'dateformat';
 
 // styles
 import {
@@ -21,6 +21,8 @@ interface IInfoProps {
 }
 
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
+	const timeInterviewRecruter = new Date(info[0].startDateTime);
+	const timeInterviewTech = new Date(info[1].startDateTime);
 	return (
 		<React.Fragment>
 			<ContainerInterviewInfo>
@@ -41,9 +43,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={moment(info[0].startDateTime).format(
-								'DD/MM/YYYY H:mm'
-							)}
+							secondary={dateFormat(timeInterviewRecruter, 'dd/mm/yy - HH:MM')}
 						/>
 					</ListItem>
 
@@ -63,9 +63,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={moment(info[1].startDateTime).format(
-								'DD/MM/YYYY H:mm'
-							)}
+							secondary={dateFormat(timeInterviewTech, 'dd/mm/yy - HH:MM')}
 						/>
 					</ListItem>
 				</List>
