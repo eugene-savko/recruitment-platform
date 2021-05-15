@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public void setUserDetailsService(UserDetailsServiceImpl userDetailsService){
+    public void setUserDetailsService(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -53,23 +53,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors()
                 .and()
-                    .authorizeRequests()
-                    .antMatchers(HttpMethod.GET, "/api/**").permitAll()
-                    .antMatchers(HttpMethod.POST, "/internship-request").permitAll()
-                    .anyRequest()
-                    .authenticated()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/internship-request").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/internships").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/internships/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/internships/specialities/{specialityId}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/internships/countries/{countryId}").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                    .formLogin()
-                    .successHandler((request, response, authentication) -> response.sendError(HttpServletResponse.SC_OK))
-                    .failureHandler(new SimpleUrlAuthenticationFailureHandler())
-                    .permitAll()
+                .formLogin()
+                .successHandler((request, response, authentication) -> response.sendError(HttpServletResponse.SC_OK))
+                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .permitAll()
                 .and()
-                    .logout()
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .permitAll()
+                .logout()
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .permitAll()
                 .and()
-                    .exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                .exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
     }
 
     @Bean
