@@ -22,7 +22,17 @@ interface IInfoProps {
 
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 	const timeInterviewRecruter = new Date(info[0].startDateTime);
+	const formatTimeInterviewRecruter = dateFormat(
+		timeInterviewRecruter,
+		'dd/mm/yy - HH:MM'
+	);
 	const timeInterviewTech = new Date(info[1].startDateTime);
+	const formatTimeInterviewTech = dateFormat(
+		timeInterviewTech,
+		'dd/mm/yy - HH:MM'
+	);
+	const fullNameRecruiter = `${info[0].fromUser.firstName} ${info[0].fromUser.lastName}`;
+	const fullNameTech = `${info[1].fromUser.firstName} ${info[1].fromUser.lastName}`;
 	return (
 		<React.Fragment>
 			<ContainerInterviewInfo>
@@ -33,7 +43,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="Name recruiter:"
-							secondary={`${info[0].fromUser.firstName} ${info[0].fromUser.lastName}`}
+							secondary={fullNameRecruiter}
 						/>
 					</ListItem>
 
@@ -43,7 +53,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={dateFormat(timeInterviewRecruter, 'dd/mm/yy - HH:MM')}
+							secondary={formatTimeInterviewRecruter}
 						/>
 					</ListItem>
 
@@ -51,10 +61,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						<ListItemIconCustom>
 							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom
-							primary="Name Tech:"
-							secondary={`${info[1].fromUser.firstName} ${info[1].fromUser.lastName}`}
-						/>
+						<ListItemTextCustom primary="Name Tech:" secondary={fullNameTech} />
 					</ListItem>
 
 					<ListItem>
@@ -63,7 +70,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={dateFormat(timeInterviewTech, 'dd/mm/yy - HH:MM')}
+							secondary={formatTimeInterviewTech}
 						/>
 					</ListItem>
 				</List>
