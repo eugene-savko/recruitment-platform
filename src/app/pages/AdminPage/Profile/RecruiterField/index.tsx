@@ -52,21 +52,20 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 		console.log(sendDataRecruiter);
 	};
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleMessage = (location: { pathname: string }, action: string) => {
+		if (action === 'POP') {
+			// eslint-disable-next-line no-console
+			console.log('Backing up...');
+		}
+		return location.pathname.startsWith('/app')
+			? true
+			: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
+	};
+
 	return (
 		<React.Fragment>
-			<Prompt
-				when={checkOut}
-				message={(location, action) => {
-					if (action === 'POP') {
-						// eslint-disable-next-line no-console
-						console.log('Backing up...');
-					}
-
-					return location.pathname.startsWith('/app')
-						? true
-						: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
-				}}
-			/>
+			<Prompt when={checkOut} message={handleMessage} />
 			<Container>
 				<Title>Recruiter field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
