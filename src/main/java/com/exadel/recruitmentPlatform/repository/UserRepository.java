@@ -20,12 +20,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Page<User> findByRole(Pageable pageable, UserRole role);
 
-    @Query("select u from User u join u.internshipRequest i where i.internshipId = :internshipId " +
-            " and i.specialityId in :specialityIds" +
-            " and i.status in :statuses")
+    @Query("select u from User u join u.internshipRequest i where (:internshipId is null or i.internshipId = :internshipId) " +
+            " and (:specialityIds is null or i.specialityId in :specialityIds)" +
+            " and (:statuses is null or i.status in :statuses)" +
+            " and (:fullName is null or concat(u.firstName, ' ', u.lastName) like :fullName) ")
     Page<User> findByFilterParam(Pageable pageable, Long internshipId, List<Long> specialityIds,
-                                 List<InternshipRequestStatus> statuses);
+                                 List<InternshipRequestStatus> statuses, String fullName);
 
-//    , String fullName
-//            " + " and concat(u.firstName, ' ', u.lastName) like :fullName or :fullName is empty
 }
