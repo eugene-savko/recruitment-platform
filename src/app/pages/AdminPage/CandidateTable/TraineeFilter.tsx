@@ -41,7 +41,6 @@ const TraineeFilter: React.FunctionComponent<ITraineeFilter> = ({
 			try {
 				const data = await fetchInternships();
 				setInternships(data);
-				console.log(data);
 			} catch (e) {
 				setInternships(GLOBAL_FILTER_SELECT);
 			}

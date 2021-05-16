@@ -6,6 +6,7 @@ import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
+import IMapped from '../../types/IMapped';
 
 const dashboard = {
 	path: '/dashboard',
@@ -76,11 +77,7 @@ export const routesTechSpecialist: Array<IRoute> = [
 	homePage,
 ];
 
-export interface IRot {
-	[key: string]: IRoute[];
-}
-
-export const routes: IRot = {
+export const routes: IMapped<IRoute[]> = {
 	ADMIN: routesAdmin,
 	RECRUITER: routesRecruiter,
 	SPECIALIST: routesTechSpecialist,

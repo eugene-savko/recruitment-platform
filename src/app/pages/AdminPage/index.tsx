@@ -15,7 +15,7 @@ import { authContext } from '../../context/AuthLoggedContext';
 export const AdminPage: React.FunctionComponent = () => {
 	const [isSideBarOpen, setSideBarOpen] = useState(false);
 	const { auth } = useContext(authContext);
-	const role: string | undefined = auth.dataRole?.role;
+	const role = auth.dataRole?.role as string;
 	const routesRole = routes[`${role}`];
 
 	return (

@@ -5,6 +5,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import ISideBarItems from '../types/ISideBarItems';
+import IMapped from '../../../../types/IMapped';
 
 const dashboard: ISideBarItems = {
 	href: '/dashboard',
@@ -69,11 +70,7 @@ export const menuItemsTechSpecialist: ISideBarItems[] = [
 	scheduleTechSpecialist,
 ];
 
-interface IMenuItems {
-	[key: string]: ISideBarItems[];
-}
-
-export const menuItemsList: IMenuItems = {
+export const menuItemsList: IMapped<ISideBarItems[]> = {
 	ADMIN: menuItemsAdmin,
 	RECRUITER: menuItemsRecruiter,
 	SPECIALIST: menuItemsTechSpecialist,
