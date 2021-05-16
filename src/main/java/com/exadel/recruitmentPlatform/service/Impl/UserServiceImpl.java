@@ -80,7 +80,6 @@ public class UserServiceImpl implements UserService {
     public Page<UserDto> getFilteredUsers(UserRequestDto userRequestDto) {
         return userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPage(), userRequestDto.getSize()),
                  userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
-                userRequestDto.getStatuses()).map(userMapper::toDto);
-        //, userRequestDto.getFullName()
+                userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%").map(userMapper::toDto);
     }
 }
