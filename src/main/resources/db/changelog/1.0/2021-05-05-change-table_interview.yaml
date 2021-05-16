@@ -1,0 +1,23 @@
+databaseChangeLog:
+- changeSet:
+    id: 2021-05-05-add-column-to-interview_english-level
+    author: ZheltokMariya
+    preConditions:
+      - onFail: MARK_RAN
+      - tableExist:
+        schemaName: public
+        tableName: interview
+      - not:
+        columnExist:
+         schemaName: public
+         tableName: interview
+         columnName: english_level
+    changes:
+      - addColumn:
+          tableName: interview
+          columns:
+            - column:
+                name: english_level
+                type: varchar(50)
+                constraints:
+                  nullable: true

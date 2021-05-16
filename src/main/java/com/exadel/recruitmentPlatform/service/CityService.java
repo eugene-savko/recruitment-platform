@@ -5,7 +5,7 @@ import com.exadel.recruitmentPlatform.entity.City;
 public interface CityService {
     Long getCityId(String name);
 
-    City getCityById(Long id);
+    City getCity(Long id);
 
     City save(String cityName);
 }

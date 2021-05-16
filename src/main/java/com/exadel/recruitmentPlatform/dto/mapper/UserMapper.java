@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.dto.mapper;
 
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserResponseDto;
 import com.exadel.recruitmentPlatform.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -37,4 +38,24 @@ public class UserMapper implements BaseMapper<User, UserDto> {
         return userDto;
     }
 
+    public void update(UserDto userDto, User user) {
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setRole(userDto.getRole());
+        user.setSkype(userDto.getSkype());
+        user.setPhoto(userDto.getPhoto());
+        user.setPhone(userDto.getPhone());
+        user.setOtherInformation(userDto.getOtherInformation());
+
+    }
+
+    public UserResponseDto toResponseDto(User user) {
+        UserResponseDto userDto =  new UserResponseDto();
+        userDto.setId(user.getId());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setRole(user.getRole());
+        return userDto;
+    }
 }

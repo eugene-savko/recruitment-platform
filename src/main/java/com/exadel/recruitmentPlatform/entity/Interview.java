@@ -18,6 +18,10 @@ public class Interview extends BaseEntity{
     @Column(name = "feedback")
     private String feedback;
 
+    //TODO this is a temporary solution, in the future we need store english_level in table mark
+    @Column(name = "english_level")
+    private String englishLevel;
+
     @ManyToOne
     @JoinColumn(name = "to_user_id")
     private User toUser;
@@ -30,7 +34,7 @@ public class Interview extends BaseEntity{
     private Long internshipId;
 
     @OneToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "user_time_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_time_id")
     private UserTime userTime;
 
 }

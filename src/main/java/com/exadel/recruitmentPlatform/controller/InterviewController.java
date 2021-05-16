@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/interview")
+@RequestMapping("/api/interview")
 public class InterviewController {
 
     private final InterviewServiceImpl interviewService;
