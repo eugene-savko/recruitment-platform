@@ -15,6 +15,7 @@ import ButtonSubmint from './ButtonSubmint';
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import AuthTitle from './components/AuthTitle';
+import { AuthErrors } from './AuthErrors';
 
 const defaultValues: IFormInput = {
 	username: '',
@@ -41,27 +42,21 @@ export const Auth: React.FunctionComponent = () => {
 
 				<AuthForm noValidate onSubmit={handleSubmit(getInputsForm)}>
 					<InputEmail ref={register(validation.username)} />
-					{errors.username && (
-						<AuthErrorLabel>{errors.username.message}</AuthErrorLabel>
-					)}
-					{auth.hasError && (
-						<AuthErrorLabel>Check your email or password</AuthErrorLabel>
-					)}
+					<AuthErrors
+						errorsUserName={errors.username}
+						errorsMessage={errors.username?.message}
+						isError={auth.hasError}
+					/>
 
 					<InputPassword ref={register(validation.password)} />
-					{errors.password && (
-						<AuthErrorLabel>{errors.password.message}</AuthErrorLabel>
-					)}
-					{auth.hasError && (
-						<AuthErrorLabel>Check your email or password</AuthErrorLabel>
-					)}
-					<CheckBoxRemember control={control} />
-
+					<AuthErrors
+						errorsUserName={errors.password}
+						errorsMessage={errors.password?.message}
+						isError={auth.hasError}
+					/>
 					<ButtonSubmint />
 				</AuthForm>
 			</AuthWrapper>
-			<p>kate.yellow@gmail.com</p>
-			<p>67890</p>
 		</React.Fragment>
 	);
 };
