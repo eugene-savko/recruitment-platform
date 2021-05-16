@@ -2,14 +2,16 @@ import React, { useContext } from 'react';
 import { List, ListItem } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
-import { items } from './helpers/items';
+import { menuItemsList } from './helpers/items';
 import NavItem from './NavItem';
 import { SideBarListItemIcon, SideBarListItemText } from './components';
 import { authContext } from '../../../context/AuthLoggedContext';
 
 export const NavList: React.FunctionComponent = () => {
 	const history = useHistory();
-	const { logOut } = useContext(authContext);
+	const { auth, logOut } = useContext(authContext);
+	const role = auth.dataRole?.role as string;
+	const menuItems = menuItemsList[role];
 
 	const leavePage = () => {
 		history.push('/login');
@@ -17,7 +19,7 @@ export const NavList: React.FunctionComponent = () => {
 	};
 	return (
 		<List>
-			{items.map((item) => (
+			{menuItems.map((item) => (
 				<NavItem
 					key={item.title}
 					href={item.href}
