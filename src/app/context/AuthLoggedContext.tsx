@@ -18,6 +18,38 @@ export const authContext = createContext<IAuthLoggedContextState>(
 
 const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 	const [auth, setAuth] = useState<IAuthState>(initAuthContext.auth);
+	useEffect(() => {
+		const authenticateRefresh = async () => {
+			try {
+				setAuth({
+					loading: true,
+					dataLoginForm: auth.dataLoginForm,
+					dataRole: auth.dataRole,
+					hasError: false,
+				});
+
+				const data = await getAccess();
+
+				setAuth({
+					loading: false,
+					dataLoginForm: auth.dataLoginForm,
+					dataRole: data,
+					hasError: false,
+				});
+			} catch (error) {
+				setAuth({
+					loading: false,
+					dataLoginForm: null,
+					dataRole: null,
+					hasError: false,
+				});
+			}
+		};
+
+		if (!auth.dataRole) {
+			authenticateRefresh();
+		}
+	}, []);
 
 	const logOut = () => {
 		setAuth({
@@ -61,39 +93,6 @@ const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
 			});
 		}
 	};
-
-	useEffect(() => {
-		const authenticateRefresh = async () => {
-			try {
-				setAuth({
-					loading: true,
-					dataLoginForm: auth.dataLoginForm,
-					dataRole: auth.dataRole,
-					hasError: false,
-				});
-
-				const data = await getAccess();
-
-				setAuth({
-					loading: false,
-					dataLoginForm: auth.dataLoginForm,
-					dataRole: data,
-					hasError: false,
-				});
-			} catch (error) {
-				setAuth({
-					loading: false,
-					dataLoginForm: null,
-					dataRole: null,
-					hasError: false,
-				});
-			}
-		};
-
-		if (!auth.dataRole) {
-			authenticateRefresh();
-		}
-	}, []);
 
 	return (
 		<authContext.Provider value={{ auth, logIn, logOut }}>
