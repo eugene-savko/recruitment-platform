@@ -22,6 +22,16 @@ interface ITechFieldProps {
 	feedbackContent: Array<IFeedbackInfo>;
 }
 
+const handleMessage = (location: { pathname: string }, action: string) => {
+	if (action === 'POP') {
+		// eslint-disable-next-line no-console
+		console.log('Backing up...');
+	}
+	return location.pathname.startsWith('/app')
+		? true
+		: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
+};
+
 const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	feedbackContent,
 }) => {
@@ -44,15 +54,6 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 		};
 		// eslint-disable-next-line no-console
 		console.log(sendDataTech);
-	};
-	const handleMessage = (location: { pathname: string }, action: string) => {
-		if (action === 'POP') {
-			// eslint-disable-next-line no-console
-			console.log('Backing up...');
-		}
-		return location.pathname.startsWith('/app')
-			? true
-			: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
 	};
 
 	return (
