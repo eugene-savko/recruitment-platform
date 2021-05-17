@@ -12,6 +12,7 @@ const InputPassword = forwardRef<HTMLInputElement>((props, ref) => (
 		margin="normal"
 		inputRef={ref}
 		fullWidth
+		variant="outlined"
 	/>
 ));
 

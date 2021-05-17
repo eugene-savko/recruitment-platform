@@ -3,6 +3,7 @@ import IFormInput from './IFormInput';
 
 interface IAuthLoggedContextState {
 	auth: IAuthState;
-	setAuthData?: (data: IFormInput) => void;
+	logIn?: (data: IFormInput) => void;
+	logOut?: () => void;
 }
 export default IAuthLoggedContextState;
