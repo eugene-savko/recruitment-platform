@@ -44,10 +44,10 @@ public class UserController {
         return userService.getAuthenticatedUser(authentication);
     }
 
-    @GetMapping("/random")
-    public Page<UserDetailDto> getInternUsers(@PageableDefault Pageable pageable) {
-        return userService.getInternUsers(pageable);
-    }
+//    @GetMapping("/random")
+//    public Page<UserDetailDto> getInternUsers(@PageableDefault Pageable pageable) {
+//        return userService.getInternUsers(pageable);
+//    }
 
     @PostMapping("/filtered-users")
     @ResponseStatus(HttpStatus.OK)

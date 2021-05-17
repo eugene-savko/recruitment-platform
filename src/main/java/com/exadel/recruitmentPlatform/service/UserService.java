@@ -12,7 +12,7 @@ public interface UserService {
     UserDto save(UserDto dto);
     UserDto findById(Long id);
     UserDto getAuthenticatedUser(Authentication authentication);
-    Page<UserDetailDto> getInternUsers(Pageable pageable);
+//    Page<UserDetailDto> getInternUsers(Pageable pageable);
     Page<UserDto> getFilteredUsers(UserRequestDto userRequestDto);
 
 }

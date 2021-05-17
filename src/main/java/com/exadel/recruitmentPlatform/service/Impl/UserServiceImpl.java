@@ -81,10 +81,32 @@ public class UserServiceImpl implements UserService {
         return findById(user.getId());
     }
 
+//    @Override
+//    public Page<UserDetailDto> getInternUsers(Pageable pageable) {
+//        Page<InternshipRequest> internshipRequests = internshipRequestService.getInternshipRequestByInternUsers(pageable);
+//        List<UserDetailDto> userDetailDtos = new ArrayList();
+//        for (InternshipRequest internshipRequest : internshipRequests) {
+//            String specialityName = specialityRepository.findById(internshipRequest.getSpecialityId())
+//                    .orElseThrow(() -> new EntityNotFoundException("Speciality with id=" + internshipRequest.getSpecialityId() + " doesn't exist")).getName();
+//            String countryName = countryRepository.findById(internshipRequest.getCountryId())
+//                    .orElseThrow(() -> new EntityNotFoundException("Country with id=" + internshipRequest.getCountryId() + " doesn't exist")).getName();
+//            String statusName = internshipRequest.getStatus().name();
+//
+//            UserDetailDto userDetailDto = new UserDetailDto(internshipRequest.getUser().getFirstName(),
+//                    internshipRequest.getUser().getLastName(), specialityName, countryName,
+//                    internshipRequest.getId(), statusName);
+//            userDetailDtos.add(userDetailDto);
+//        }
+//        Pageable page = internshipRequests.getPageable();
+//        return new PageImpl<>(userDetailDtos, page, pageable.getPageSize());
+//    }
+
     @Override
-    public Page<UserDetailDto> getInternUsers(Pageable pageable) {
-        Page<InternshipRequest> internshipRequests = internshipRequestService.getInternshipRequestByInternUsers(pageable);
+    public Page<UserDto> getFilteredUsers(UserRequestDto userRequestDto) {
+        Page<InternshipRequest> internshipRequests = internshipRequestService
+                .getInternshipRequestByInternUsers(PageRequest.of(userRequestDto.getPage(), userRequestDto.getSize()));
         List<UserDetailDto> userDetailDtos = new ArrayList();
+
         for (InternshipRequest internshipRequest : internshipRequests) {
             String specialityName = specialityRepository.findById(internshipRequest.getSpecialityId())
                     .orElseThrow(() -> new EntityNotFoundException("Speciality with id=" + internshipRequest.getSpecialityId() + " doesn't exist")).getName();
@@ -99,10 +121,10 @@ public class UserServiceImpl implements UserService {
         }
         Pageable page = internshipRequests.getPageable();
         return new PageImpl<>(userDetailDtos, page, pageable.getPageSize());
-    }
 
-    @Override
-    public Page<UserDto> getFilteredUsers(UserRequestDto userRequestDto) {
+
+
+
         return userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPage(), userRequestDto.getSize()),
                  userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
                 userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%").map(userMapper::toDto);
