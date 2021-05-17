@@ -1,11 +1,13 @@
 import IListItemSelect from '../types/IListItemSelect';
 
 const listEnglishLevel: Array<IListItemSelect> = [
-	{ name: 'A1 Elementary', id: '1' },
-	{ name: 'A2 Pre-intermediate', id: '2' },
-	{ name: 'B1 Intermediate', id: '3' },
-	{ name: 'B2 Upper-intermediate', id: '4' },
-	{ name: 'C1 Advanced', id: '5' },
+	{ name: 'Beginner', id: 1 },
+	{ name: 'Elementary', id: 2 },
+	{ name: 'Pre_Intermediate', id: 3 },
+	{ name: 'Intermediate', id: 4 },
+	{ name: 'Upper_Intermediate', id: 5 },
+	{ name: 'Advanced', id: 6 },
+	{ name: 'Proficency', id: 7 },
 ];
 
 export default listEnglishLevel;

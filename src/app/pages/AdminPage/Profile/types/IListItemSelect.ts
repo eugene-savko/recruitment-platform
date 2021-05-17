@@ -1,6 +1,6 @@
 interface IListItemSelect {
 	name: string;
-	id: string;
+	id: number;
 }
 
 export default IListItemSelect;

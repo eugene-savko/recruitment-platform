@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, Prompt } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -15,16 +16,37 @@ import {
 } from '../components';
 
 // type
-import IFormFields from '../types/IFormFields';
+import { IFormFields, IFeedbackInfo } from '../types';
 
-const TechField: React.FunctionComponent = () => {
+interface ITechFieldProps {
+	feedbackContent: Array<IFeedbackInfo>;
+}
+
+const handleMessage = (location: { pathname: string }, action: string) => {
+	if (action === 'POP') {
+		// eslint-disable-next-line no-console
+		console.log('Backing up...');
+	}
+	return location.pathname.startsWith('/app')
+		? true
+		: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
+};
+
+const TechField: React.FunctionComponent<ITechFieldProps> = ({
+	feedbackContent,
+}) => {
+	const { feedback } = feedbackContent[0];
+	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackTech, setFeedbackTech] = useState<string>();
+	const [feedbackTech, setFeedbackTech] = useState(feedback);
 	const { handleSubmit } = useForm<IFormFields>();
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackTech(event.target.value);
+		setCheckOut(true);
+	};
 
 	const onSubmit = () => {
+		setCheckOut(false);
 		setIsShown(true);
 		setTimeout(() => setIsShown(false), 3000);
 		const sendDataTech = {
@@ -36,6 +58,7 @@ const TechField: React.FunctionComponent = () => {
 
 	return (
 		<React.Fragment>
+			<Prompt when={checkOut} message={handleMessage} />
 			<Container>
 				<Title>Tech field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
@@ -45,17 +68,19 @@ const TechField: React.FunctionComponent = () => {
 						name="feedbackTech"
 						rows={12}
 						multiline
-						value={feedbackTech}
+						value={feedbackTech || ''}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="outlined" color="primary">
-							Schedule
-						</ButtonMaterial>
+						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+							<ButtonMaterial variant="outlined" color="primary">
+								Schedule
+							</ButtonMaterial>
+						</Link>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
-							Send feedback
+							Save feedback
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
