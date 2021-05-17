@@ -9,7 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,5 +48,8 @@ public class User extends BaseEntity {
 
     @Column(name = "other_information")
     private String otherInformation;
+
+    @OneToMany(mappedBy = "user")
+    private List<InternshipRequest> internshipRequest;
 
 }

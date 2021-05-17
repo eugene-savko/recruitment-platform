@@ -2,11 +2,13 @@ package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.UserDetailDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
+import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.CountryRepository;
 import com.exadel.recruitmentPlatform.repository.SpecialityRepository;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
@@ -14,6 +16,7 @@ import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -34,7 +37,6 @@ public class UserServiceImpl implements UserService {
     private final InternshipRequestService internshipRequestService;
     private final SpecialityRepository specialityRepository;
     private final CountryRepository countryRepository;
-
 
     @Override
     public UserDto save(final UserDto userDto) {
@@ -97,6 +99,13 @@ public class UserServiceImpl implements UserService {
         }
         Pageable page = internshipRequests.getPageable();
         return new PageImpl<>(userDetailDtos, page, pageable.getPageSize());
+    }
+
+    @Override
+    public Page<UserDto> getFilteredUsers(UserRequestDto userRequestDto) {
+        return userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPage(), userRequestDto.getSize()),
+                 userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
+                userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%").map(userMapper::toDto);
     }
 
 }

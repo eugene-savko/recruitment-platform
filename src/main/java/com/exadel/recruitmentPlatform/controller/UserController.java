@@ -2,6 +2,7 @@ package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.UserDetailDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -46,6 +47,12 @@ public class UserController {
     @GetMapping("/random")
     public Page<UserDetailDto> getInternUsers(@PageableDefault Pageable pageable) {
         return userService.getInternUsers(pageable);
+    }
+
+    @PostMapping("/filtered-users")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<UserDto> getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
+        return userService.getFilteredUsers(userRequestDto);
     }
 
 }
