@@ -4,6 +4,7 @@ import com.exadel.recruitmentPlatform.service.Impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -29,7 +30,7 @@ public class    SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    public void setUserDetailsService(UserDetailsServiceImpl userDetailsService){
+    public void setUserDetailsService(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -52,21 +53,25 @@ public class    SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors()
                 .and()
-                    .authorizeRequests()
-                    .anyRequest()
-                    .authenticated()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/internship-request").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/internships").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/internships/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/timeInterval").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                    .formLogin()
-                    .successHandler((request, response, authentication) -> response.sendError(HttpServletResponse.SC_OK))
-                    .failureHandler(new SimpleUrlAuthenticationFailureHandler())
-                    .permitAll()
+                .formLogin()
+                .successHandler((request, response, authentication) -> response.sendError(HttpServletResponse.SC_OK))
+                .failureHandler(new SimpleUrlAuthenticationFailureHandler())
+                .permitAll()
                 .and()
-                    .logout()
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .permitAll()
+                .logout()
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .permitAll()
                 .and()
-                    .exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                .exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
     }
 
     @Bean
