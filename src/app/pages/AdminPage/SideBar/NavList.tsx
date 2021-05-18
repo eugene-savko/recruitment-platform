@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { List, ListItem } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
+import { authContext } from 'app/context/AuthLoggedContext';
 import { menuItemsList } from './helpers/items';
 import NavItem from './NavItem';
 import { SideBarListItemIcon, SideBarListItemText } from './components';
-import { authContext } from '../../../context/AuthLoggedContext';
 import { ISideBarItems } from './types';
 
 export const NavList: React.FunctionComponent = () => {

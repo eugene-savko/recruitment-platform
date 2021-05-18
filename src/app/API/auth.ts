@@ -10,9 +10,7 @@ export const fetchRequestLogin = async (
 		method: 'post',
 		url: login,
 		data: new URLSearchParams({ username, password }),
-		withCredentials: true,
 		headers: {
-			Accept: 'application/x-www-form-urlencoded',
 			'content-type': 'application/x-www-form-urlencoded',
 		},
 	});
