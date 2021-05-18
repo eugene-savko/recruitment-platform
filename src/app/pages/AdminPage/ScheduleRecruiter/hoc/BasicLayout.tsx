@@ -14,7 +14,6 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	...restProps
 }) => {
 	const [currentCandidate, setCurrentCandidate] = useState<ICurrentCandidate>();
-	// console.log(restProps);
 
 	useEffect(() => {
 		//! --------------------------------------------------------передача текущего кандидата

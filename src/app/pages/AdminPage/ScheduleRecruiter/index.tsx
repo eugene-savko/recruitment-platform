@@ -35,6 +35,7 @@ import { useChangeEditingState } from './hooks/useChangeEditingState';
 import { BooleanEditor } from './hoc/BooleanEditor';
 import AuthCircularProgress from '../../AuthPage/Auth/components/AuthCircularProgress';
 import IListRecruiters from './types/IListRecruiters';
+import { FlexibleSpace } from './hoc/FlexibleSpace';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const [loading, setLoading] = useState(true);
@@ -90,14 +91,15 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 
 				<Appointments />
 				<Resources data={resources} mainResourceName="members" />
-				<Toolbar />
+
+				<Toolbar flexibleSpaceComponent={FlexibleSpace} />
+				<DateNavigator />
+				<TodayButton />
 				<ViewSwitcher />
 
 				<IntegratedGrouping />
 				<IntegratedEditing />
 
-				<DateNavigator />
-				<TodayButton />
 				<AppointmentTooltip showCloseButton showOpenButton showDeleteButton />
 				<ConfirmationDialog />
 				<AppointmentForm
