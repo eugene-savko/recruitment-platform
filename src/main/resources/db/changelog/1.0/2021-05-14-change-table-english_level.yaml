@@ -1,10 +1,23 @@
 databaseChangeLog:
   - changeSet:
-      id: 2021-05-14-create-time-field-for-english_level-table
+      id: 2021-05-13-modify-table_interview-1
       author: vadim.stradze
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExist:
+                    schemaName: public
+                    tableName: english_level
       changes:
-        - sqlFile:
-            splitStatements: true
-            relativeToChangelogFile: true
-            path: ../2021-05-14-adding-create-update-fields-to-english_level-table.sql
-            stripComments: true
+        - addColumn:
+            tableName: english_level
+            columns:
+              - column:
+                  name: created
+                  type: timestamp(1) with time zone
+                  constraints:
+                    nullable: true
+              - column:
+                  name: updated
+                  type: timestamp(1) with time zone
+                  constraints:
+                    nullable: true

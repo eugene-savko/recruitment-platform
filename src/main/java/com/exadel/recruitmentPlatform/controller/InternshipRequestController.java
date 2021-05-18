@@ -35,7 +35,7 @@ public class InternshipRequestController {
     public ResponseEntity<InternshipRequestProfileDto> getInternshipRequestProfile (@PathVariable Long id) {
         return ResponseEntity.ok(internshipRequestService.getInternshipRequestProfile(id));
     }
-    @PutMapping(value = "/english")
+    @PutMapping(value = "/english-level")
     public ResponseEntity<InterviewDto> updateEnglishLevel(@RequestBody EnglishLevelDto englishLevelDto){
         return ResponseEntity.ok(interviewService.updateEnglishLevel(englishLevelDto.getId(),englishLevelDto.getEnglishLevel()));
     }
