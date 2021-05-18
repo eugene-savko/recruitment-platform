@@ -1,4 +1,5 @@
 import IRoute from 'app/types/IRoute';
+import IMapped from 'app/types/IMapped';
 import { ScheduleTechSpecialist } from './ScheduleTechSpecialist/index';
 import { DashBoard } from './DashBoard/DashBoard';
 import { Profile } from './Profile';
@@ -6,7 +7,6 @@ import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
-import IMapped from '../../types/IMapped';
 
 const dashboard = {
 	path: '/dashboard',
