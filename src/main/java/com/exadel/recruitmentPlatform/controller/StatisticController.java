@@ -30,7 +30,7 @@ public class StatisticController {
         return statisticService.getInternshipStatistic();
     }
 
-    @GetMapping("/byCountry")
+    @GetMapping("/сountry")
     public List<InternshipRequestStatisticCountryDto> getStatisticByCountry() {
         return statisticService.getInternshipRequestCountryStatistic();
     }
