@@ -19,7 +19,7 @@ public class StatisticController {
 
     private final StatisticService statisticService;
 
-    @GetMapping()
+    @GetMapping
     public List<InternshipRequestStatisticCommonDto> getCommonStat() {
         List<InternshipRequestStatisticCommonDto> commonInternshipStatistic = statisticService.getCommonStatistic();
         return commonInternshipStatistic;
