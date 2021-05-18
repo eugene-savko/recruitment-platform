@@ -1,32 +1,36 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IPrivateRouteAuthAdminPage from '../types/IPrivateRouteAuthAdminPage';
 import { authContext } from '../../../../context/AuthLoggedContext';
+import { AuthCircularProgress } from '../components';
 
 export const PrivateRouteAuthAdminPage: React.FunctionComponent<IPrivateRouteAuthAdminPage> = ({
 	children,
-	...rest
+	...restProps
 }) => {
 	const { auth } = useContext(authContext);
-	const { loading } = auth;
 
-	if (loading) {
+	if (auth.loading) {
 		return (
 			<Route
-				{...rest}
+				{...restProps}
 				render={() => {
-					return <p>Loading...</p>;
+					return (
+						<AuthCircularProgress>
+							<CircularProgress />
+						</AuthCircularProgress>
+					);
 				}}
 			/>
 		);
 	}
-
 	return (
 		<Route
-			{...rest}
+			{...restProps}
 			render={() => {
-				return auth.data ? children : <Redirect to="/sign-in" />;
+				return auth.dataRole ? children : <Redirect to="/login" />;
 			}}
 		/>
 	);
