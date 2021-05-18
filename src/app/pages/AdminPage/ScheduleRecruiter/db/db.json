@@ -1,6 +1,46 @@
 {
   "candidate": [
     {
+      "id": 21,
+      "firstName": "Julia",
+      "lastName": "Red",
+      "email": "julia.red@gmail.com",
+      "country": "Ukraine",
+      "city": "Kiev",
+      "phone": "+37529-689-45-89",
+      "otherInformation": "+37529-689-45-89",
+      "specialityId": 1,
+      "englishLevel": "B1",
+      "cv": "some link",
+      "internshipId": 1,
+      "interviews": [
+        {
+          "id": 1,
+          "feedback": "",
+          "englishLevel": null,
+          "startDateTime": 1622451600000,
+          "fromUser": {
+            "id": 1,
+            "firstName": "Alice",
+            "lastName": "Blue",
+            "role": "SPECIALIST"
+          }
+        },
+        {
+          "id": 2,
+          "feedback": "",
+          "englishLevel": null,
+          "startDateTime": 1621413000000,
+          "fromUser": {
+            "id": 24,
+            "firstName": "No recruiter",
+            "lastName": "Green",
+            "role": "RECRUITER"
+          }
+        }
+      ]
+    },
+    {
       "id": 1,
       "lastName": "Immanuel",
       "firstName": "Kant",
@@ -43,38 +83,6 @@
       "recruiterInterview": "Ann Reading"
     }
   ],
-  "databaseCandidates": [
-    {
-      "id": 1,
-      "periodTime": "from 10:00 to 12:00",
-      "nameUser": "Feater Reding"
-    },
-    {
-      "id": 2,
-      "periodTime": "from 12:00 to 14:00",
-      "nameUser": "Ann Blueing"
-    },
-    {
-      "id": 3,
-      "nameUser": "Kate Darking",
-      "periodTime": "from 14:00 to 16:00"
-    },
-    {
-      "id": 4,
-      "nameUser": "Karl Greening",
-      "periodTime": "from 10:00 to 12:00"
-    },
-    {
-      "id": 5,
-      "nameUser": "Joni Darings",
-      "periodTime": "from 14:00 to 16:00"
-    },
-    {
-      "id": 6,
-      "periodTime": "from 10:00 to 12:00",
-      "nameUser": "Fire Blueing"
-    }
-  ],
   "recruiters": [
     {
       "id": 1,
@@ -99,68 +107,60 @@
   ],
   "schedulerData": [
     {
-      "title": "Schopenhauer Arthur",
+      "title": "Julia Red",
       "allDay": false,
       "members": 1,
-      "endDate": 1620828000000,
-      "startDate": 1620819000000,
+      "endDate": 1621414800000,
+      "startDate": 1621413000000,
       "id": 1
     },
     {
-      "title": "Schopenhauer Arthur",
+      "title": "",
       "allDay": false,
       "members": 1,
-      "endDate": 1620730800000,
-      "startDate": 1620718200000,
+      "endDate": 1621416600000,
+      "startDate": 1621414800000,
       "id": 2
     },
     {
-      "title": "Schopenhauer Arthur",
+      "title": "",
       "allDay": false,
       "members": 1,
-      "endDate": 1620729000000,
-      "startDate": 1620727200000,
+      "endDate": 1621420200000,
+      "startDate": 1621418400000,
       "id": 3
     },
     {
-      "title": "Schopenhauer Arthur",
+      "title": "",
       "allDay": false,
-      "members": 1,
-      "endDate": 1620741600000,
-      "startDate": 1620736200000,
+      "members": 2,
+      "endDate": 1621416600000,
+      "startDate": 1621414800000,
       "id": 4
     },
     {
-      "title": "Schopenhauer Arthur",
+      "title": "",
       "allDay": false,
-      "members": 1,
-      "endDate": 1620901800000,
-      "startDate": 1620891000000,
+      "members": 3,
+      "endDate": 1621236600000,
+      "startDate": 1621234800000,
       "id": 5
     },
     {
-      "title": "Schopenhauer Arthur",
-      "allDay": false,
-      "members": 2,
-      "endDate": 1620644400000,
-      "startDate": 1620631800000,
-      "id": 7
-    },
-    {
-      "title": "Schopenhauer Arthur",
-      "allDay": false,
-      "members": 2,
-      "endDate": 1620646200000,
-      "startDate": 1620637200000,
-      "id": 8
-    },
-    {
-      "title": "Schopenhauer Arthur",
+      "title": "Julia Red",
       "allDay": false,
       "members": 1,
-      "endDate": 1620635400000,
-      "startDate": 1620633600000,
-      "id": 9
+      "endDate": 1621411200000,
+      "startDate": 1621409400000,
+      "id": 6
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621585800000,
+      "startDate": 1621584000000,
+      "id": 7
     }
   ]
 }

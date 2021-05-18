@@ -10,14 +10,28 @@ export const fetchCurrentCandidate = async (
 ): Promise<ICurrentCandidate> => {
 	try {
 		const { data } = await axios({
-			url: `http://localhost:4000/candidate/${id}`,
+			url: `https://recruitment-platform.herokuapp.com/internship-request/${id}`,
 			method: 'get',
+			withCredentials: true,
 		});
 		return data;
 	} catch (error) {
 		throw new Error('You did not receive a candidate');
 	}
 };
+// export const fetchCurrentCandidate = async (
+// 	id: number
+// ): Promise<ICurrentCandidate> => {
+// 	try {
+// 		const { data } = await axios({
+// 			url: `http://localhost:4000/candidate/${id}`,
+// 			method: 'get',
+// 		});
+// 		return data;
+// 	} catch (error) {
+// 		throw new Error('You did not receive a candidate');
+// 	}
+// };
 
 export const fetchListRecruiters = async (): Promise<
 	Array<IListRecruiters>
@@ -66,21 +80,58 @@ export const addedAppointment = async (
 	}
 };
 
-// todo putt
+// todo change patch to put
 export const patchCurrentCandidate = async (
 	puttedInfo: AppointmentModel,
 	id: number,
-	requiter: string
+	recruiter: string
 ): Promise<void> => {
-	const { startDate, endDate } = puttedInfo;
+	const { startDate } = puttedInfo;
 	try {
 		const { data } = await axios({
 			url: `http://localhost:4000/candidate/${id}`,
-			method: 'patch',
+			method: 'put',
 			data: {
-				recruiterInterview: requiter,
-				startDateRecruiter: moment(startDate).valueOf(),
-				endDateRecruiter: moment(endDate).valueOf(),
+				id: 21,
+				firstName: 'Julia',
+				lastName: 'Red',
+				email: 'julia.red@gmail.com',
+				country: 'Ukraine',
+				city: 'Kiev',
+				phone: '+37529-689-45-89',
+				otherInformation: '+37529-689-45-89',
+				specialityId: 1,
+				englishLevel: 'B1',
+				cv: 'some link',
+				internshipId: 1,
+				interviews: [
+					{
+						id: 1,
+						feedback: '',
+						englishLevel: null,
+						startDateTime: 1622451600000,
+						fromUser: {
+							id: 1,
+							firstName: 'Alice',
+							lastName: 'Blue',
+							role: 'SPECIALIST',
+						},
+					},
+					{
+						id: 2,
+						feedback: '',
+						englishLevel: null,
+						startDateTime: moment(startDate).valueOf(),
+						fromUser: {
+							id: 24,
+							firstName: recruiter,
+							lastName: 'Green',
+							role: 'RECRUITER',
+						},
+					},
+				],
+				// recruiterInterview: recruiter,
+				// startDateRecruiter: moment(startDate).valueOf(),
 			},
 			headers: { 'Content-Type': 'application/json' },
 		});

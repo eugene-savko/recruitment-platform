@@ -14,15 +14,16 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	...restProps
 }) => {
 	const [currentCandidate, setCurrentCandidate] = useState<ICurrentCandidate>();
+	// console.log(restProps);
+
 	useEffect(() => {
+		//! --------------------------------------------------------передача текущего кандидата
 		const getCurrentCandidate = async () => {
-			//! --------------------------------------------------------передача текущего кандидата
-			const gettedCurrentCandidate = await fetchCurrentCandidate(2);
+			const gettedCurrentCandidate = await fetchCurrentCandidate(21);
 			const { firstName, lastName } = gettedCurrentCandidate;
 			setCurrentCandidate(gettedCurrentCandidate);
 			return onFieldChange({ title: `${firstName} ${lastName}` });
 		};
-
 		getCurrentCandidate();
 	}, []);
 

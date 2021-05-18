@@ -68,16 +68,17 @@ export const useChangeEditingState = (
 
 				putAppointment(appointmentChanged[0]);
 
+				console.log(changed);
 				const currentRecruiter = listRecruters.filter(
 					(recruiter: IListRecruiters) =>
 						recruiter.id === appointmentChanged[0].members
 				);
 
-				//! --------------------------------------------------------передача текущего кандидата
 				patchCurrentCandidate(
 					appointmentChanged[0],
-					2,
+					21,
 					currentRecruiter[0].text
+					//! --------------------------------------------------------передача текущего кандидата
 				);
 			}
 

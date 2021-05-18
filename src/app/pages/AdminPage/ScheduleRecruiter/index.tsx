@@ -1,52 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
-	EditingState,
-	ViewState,
-	GroupingState,
-	IntegratedGrouping,
-	IntegratedEditing,
 	Resource,
-	AppointmentForm as AppointmentFormBase,
 	Grouping,
+	ViewState,
+	EditingState,
+	GroupingState,
+	IntegratedEditing,
+	IntegratedGrouping,
+	AppointmentForm as AppointmentFormBase,
 } from '@devexpress/dx-react-scheduler';
 import {
-	Scheduler,
 	DayView,
-	WeekView,
 	Toolbar,
-	ViewSwitcher,
+	WeekView,
 	MonthView,
-	Appointments,
-	AppointmentTooltip,
-	AppointmentForm,
-	DateNavigator,
-	TodayButton,
+	Scheduler,
 	Resources,
+	TodayButton,
+	ViewSwitcher,
+	Appointments,
 	GroupingPanel,
+	DateNavigator,
+	AppointmentForm,
+	AppointmentTooltip,
 	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { fetchListRecruiters } from 'app/API/scheduleRecruiter';
+import { CircularProgress } from '@material-ui/core';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
 import { useChangeEditingState } from './hooks/useChangeEditingState';
 import { BooleanEditor } from './hoc/BooleanEditor';
+import AuthCircularProgress from '../../AuthPage/Auth/components/AuthCircularProgress';
+import IListRecruiters from './types/IListRecruiters';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
-	const [useListRecruters, setUseListRecruiters] = useState([
-		{
-			text: 'No appointment',
-			id: 1,
-			color: 'indigo',
-		},
-	]);
+	const [loading, setLoading] = useState(true);
+	const [useListRecruters, setUseListRecruiters] = useState<IListRecruiters[]>(
+		[]
+	);
 	const { commitChanges, data } = useChangeEditingState(useListRecruters);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const listRecruiter = await fetchListRecruiters();
 			setUseListRecruiters(listRecruiter);
+			setLoading(false);
 		};
 		fetchData();
 	}, []);
@@ -67,6 +68,15 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	];
 
 	const grouping: Array<Grouping> = [{ resourceName: 'members' }];
+
+	if (loading) {
+		return (
+			<AuthCircularProgress>
+				<CircularProgress />
+			</AuthCircularProgress>
+		);
+	}
+
 	return (
 		<Paper>
 			<Scheduler data={data} height={850}>
