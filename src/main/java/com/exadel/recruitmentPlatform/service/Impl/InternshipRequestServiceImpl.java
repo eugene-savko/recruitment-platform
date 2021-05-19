@@ -2,7 +2,6 @@ package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
-import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestProfileMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
@@ -17,12 +16,9 @@ import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import com.exadel.recruitmentPlatform.service.InterviewService;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Service
@@ -69,10 +65,5 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         return internshipRequestProfileDto;
     }
 
-    public Page<InternshipRequest> getInternshipRequestByFilterParam(UserRequestDto userRequestDto) {
-        return internshipRequestRepository.findByFilterParam(PageRequest.of(userRequestDto.getPage(), userRequestDto.getSize()),
-                userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
-                userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%");
-    }
 }
 

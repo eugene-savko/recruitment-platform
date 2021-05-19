@@ -1,24 +1,26 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.dto.UserDetailDto;
+import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
+import com.exadel.recruitmentPlatform.dto.UserCandidateDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.UserRequestDto;
+//import com.exadel.recruitmentPlatform.dto.mapper.UserCandidateMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
+import com.exadel.recruitmentPlatform.entity.Speciality;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
-import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.CountryRepository;
 import com.exadel.recruitmentPlatform.repository.SpecialityRepository;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
+import com.exadel.recruitmentPlatform.service.CountryService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
+import com.exadel.recruitmentPlatform.service.SpecialityService;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -34,9 +37,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final InternshipRequestService internshipRequestService;
-    private final SpecialityRepository specialityRepository;
-    private final CountryRepository countryRepository;
+    private final SpecialityService specialityService;
+    private final CountryService countryService;
 
     @Override
     public UserDto save(final UserDto userDto) {
@@ -82,26 +84,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserDetailDto> getFilteredUsers(UserRequestDto userRequestDto) {
+    public PageableResponseDto getFilteredUsers(UserRequestDto userRequestDto) {
 
+        Page<User> users = userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPageNumber(), userRequestDto.getPageSize()),
+                userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
+                userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%");
 
-
-        Page<InternshipRequest> internshipRequests = internshipRequestService
-                .getInternshipRequestByFilterParam(userRequestDto);
-        List<UserDetailDto> userDetailDtos = new ArrayList();
-        for (InternshipRequest internshipRequest : internshipRequests) {
-            String specialityName = specialityRepository.findById(internshipRequest.getSpecialityId())
-                    .orElseThrow(() -> new EntityNotFoundException("Speciality with id=" + internshipRequest.getSpecialityId() + " doesn't exist")).getName();
-            String countryName = countryRepository.findById(internshipRequest.getCountryId())
-                    .orElseThrow(() -> new EntityNotFoundException("Country with id=" + internshipRequest.getCountryId() + " doesn't exist")).getName();
-            String statusName = internshipRequest.getStatus().name();
-
-            UserDetailDto userDetailDto = new UserDetailDto(internshipRequest.getUser().getFirstName(),
-                    internshipRequest.getUser().getLastName(), specialityName, countryName,
-                    internshipRequest.getId(), statusName);
-            userDetailDtos.add(userDetailDto);
+        List<UserCandidateDto> userCandidatesDto = new ArrayList<>();
+        for (User user : users) {
+            InternshipRequest internshipRequest = user.getInternshipRequest().get(0);
+            String specialityName = specialityService.getSpecialityById(internshipRequest.getSpecialityId()).getName();
+            String countryName = countryService.getCountry(internshipRequest.getCountryId()).getName();
+            UserCandidateDto userCandidateDto = new UserCandidateDto(user.getId(), user.getFirstName(), user.getLastName(),
+                    specialityName, countryName, internshipRequest.getStatus().name());
+            userCandidatesDto.add(userCandidateDto);
         }
-        return new PageImpl<>(userDetailDtos, internshipRequests.getPageable(), internshipRequests.getPageable().getPageSize());
+        return new PageableResponseDto(userCandidatesDto, users.getSize(), users.getTotalPages());
     }
 
 }

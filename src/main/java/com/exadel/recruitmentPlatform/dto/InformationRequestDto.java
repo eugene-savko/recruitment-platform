@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class InformationRequestDto extends BaseDto {
+public class InformationRequestDto {
 
     private List<InternshipRequestStatusDto> statuses;
     private List<SpecialityShortDto> specialities;

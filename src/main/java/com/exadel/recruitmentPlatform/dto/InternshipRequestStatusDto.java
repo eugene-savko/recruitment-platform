@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class InternshipRequestStatusDto extends BaseDto {
+public class InternshipRequestStatusDto {
 
     private String status;
     private String messageKey;

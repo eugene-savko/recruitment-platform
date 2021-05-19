@@ -1,13 +1,10 @@
 package com.exadel.recruitmentPlatform.controller;
 
-import com.exadel.recruitmentPlatform.dto.UserDetailDto;
+import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -46,7 +43,7 @@ public class UserController {
 
     @PostMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public Page<UserDetailDto> getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
+    public PageableResponseDto getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
         return userService.getFilteredUsers(userRequestDto);
     }
 

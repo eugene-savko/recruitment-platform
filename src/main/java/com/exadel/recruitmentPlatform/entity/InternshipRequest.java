@@ -47,5 +47,4 @@ public class InternshipRequest extends BaseEntity {
 
     @Column(name = "city_id")
     private Long cityId;
-
 }

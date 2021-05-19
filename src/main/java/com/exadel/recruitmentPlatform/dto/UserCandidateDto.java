@@ -7,22 +7,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDetailDto {
+public class UserCandidateDto {
 
+    private Long userId;
     private String firstName;
     private String lastName;
     private String specialityName;
     private String countryName;
-    private Long internshipRequestId;
     private String statusName;
 
-    public UserDetailDto(String firstName, String lastName, String specialityName, String countryName,
-                         Long internshipRequestId, String statusName) {
+    public UserCandidateDto(Long userId, String firstName, String lastName, String specialityName,
+                            String countryName, String statusName) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialityName = specialityName;
         this.countryName = countryName;
-        this.internshipRequestId = internshipRequestId;
         this.statusName = statusName;
     }
 

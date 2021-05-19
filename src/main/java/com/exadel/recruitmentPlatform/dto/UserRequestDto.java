@@ -18,6 +18,6 @@ public class UserRequestDto extends BaseDto {
     private String fullName;
     private List<Long> specialityIds;
     private List<InternshipRequestStatus> statuses;
-    private int size;
-    private int page;
+    private int pageSize;
+    private int pageNumber;
 }
