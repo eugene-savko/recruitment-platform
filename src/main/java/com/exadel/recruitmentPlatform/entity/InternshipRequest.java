@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Getter
@@ -26,7 +28,7 @@ public class InternshipRequest extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private InternshipRequestStatus status;
 
-    @Column(name = "speciality_id")
+    @Column(name = "speciality_id", insertable = false, updatable = false)
     private Long specialityId;
 
     @Column(name = "english_level")
@@ -42,9 +44,19 @@ public class InternshipRequest extends BaseEntity {
     @JoinColumn(name = "internship_id")
     private Long internshipId;
 
-    @Column(name = "country_id")
+    @Column(name = "country_id", insertable = false, updatable = false)
     private Long countryId;
 
     @Column(name = "city_id")
     private Long cityId;
+
+    @OneToOne
+    @JoinColumn(name = "country_id")
+    @EqualsAndHashCode.Exclude
+    private Country country;
+
+    @OneToOne
+    @JoinColumn(name = "speciality_id")
+    @EqualsAndHashCode.Exclude
+    private Speciality speciality;
 }

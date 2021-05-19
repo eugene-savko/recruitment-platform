@@ -15,10 +15,4 @@ public class PageableResponseDto {
     private int pageSize;
     private int pageNumber;
 
-    public PageableResponseDto(List<UserCandidateDto> userCandidatesDto, int pageSize, int pageNumber) {
-        this.userCandidatesDto = userCandidatesDto;
-        this.pageSize = pageSize;
-        this.pageNumber = pageNumber;
-    }
-
 }
