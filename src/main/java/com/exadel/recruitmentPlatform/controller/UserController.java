@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping ("/users")
+@RequestMapping ("/api/users")
 public class UserController {
 
     private final UserService userService;
@@ -44,14 +44,9 @@ public class UserController {
         return userService.getAuthenticatedUser(authentication);
     }
 
-//    @GetMapping("/random")
-//    public Page<UserDetailDto> getInternUsers(@PageableDefault Pageable pageable) {
-//        return userService.getInternUsers(pageable);
-//    }
-
-    @PostMapping("/filtered-users")
+    @PostMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public Page<UserDto> getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
+    public Page<UserDetailDto> getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
         return userService.getFilteredUsers(userRequestDto);
     }
 
