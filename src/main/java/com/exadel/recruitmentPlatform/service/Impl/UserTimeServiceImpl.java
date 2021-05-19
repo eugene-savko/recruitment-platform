@@ -6,6 +6,7 @@ import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.CalendarSlotMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserTimeMapper;
 import com.exadel.recruitmentPlatform.entity.SlotStatus;
+import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
@@ -34,13 +35,12 @@ public class UserTimeServiceImpl implements UserTimeService {
     private final InternshipRepository internshipRepository;
 
     @Override
-    public List<UserTime> splitIntervalIntoSlots(UserTimeDto dto) {
+    public List<UserTime> splitIntervalIntoSlots(TimeInterval timeInterval) {
         List<UserTime> userTimeSlots = new LinkedList<>();
 
-        for (LocalDateTime time = dto.getStartDateTime();
-             time.isBefore(dto.getEndDateTime());
-             time = time.plusMinutes(DURATION)){
-
+        for (LocalDateTime time = timeInterval.getStartTime();
+             time.isBefore(timeInterval.getEndTime());
+             time = time.plusMinutes(DURATION)) {
             userTimeSlots.add(new UserTime(time, SlotStatus.FREE));
         }
         return userTimeSlots;

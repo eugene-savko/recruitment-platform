@@ -54,6 +54,7 @@ public class InternshipController {
         return ResponseEntity.ok(internshipService.update(dto));
     }
 
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @GetMapping(value = "/ids-names")
     public List<InternshipShortDto> getIdsAndNamesOfInternships(){
         return internshipService.getIdsAndNamesOfInternships();

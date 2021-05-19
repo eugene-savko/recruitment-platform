@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-05-17-modify-data-time-interval
+      author: aliaksandrKryvulko
+      changes:
+        - sqlFile:
+            splitStatements: true
+            relativeToChangelogFile: true
+            path: ../2021-05-17-modify-table-time_interval.sql
+            stripComments: true
