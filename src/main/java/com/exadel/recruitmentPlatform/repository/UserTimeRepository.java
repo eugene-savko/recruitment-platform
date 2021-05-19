@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -28,7 +27,5 @@ public interface UserTimeRepository extends JpaRepository<UserTime, Long> {
             "(ut.user.role = :roleRecruiter or ut.user.role = :roleSpecialist) " +
             "and ut.user.id in :userIds")
     List<UserTime> findByUserRoleAndUserIds(UserRole roleRecruiter, UserRole roleSpecialist, List<Long> userIds);
-
-}
 
 }

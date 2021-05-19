@@ -1,7 +1,6 @@
 package com.exadel.recruitmentPlatform.service;
 
 import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
-import com.exadel.recruitmentPlatform.dto.UserTimeDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.entity.User;

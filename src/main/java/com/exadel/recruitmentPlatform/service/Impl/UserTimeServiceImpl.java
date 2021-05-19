@@ -1,7 +1,6 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
-import com.exadel.recruitmentPlatform.dto.UserTimeDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.CalendarSlotMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserTimeMapper;
@@ -10,7 +9,7 @@ import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
-import com.exadel.recruitmentPlatform.repository.InternshipRepository;
+import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
@@ -32,7 +31,7 @@ public class UserTimeServiceImpl implements UserTimeService {
     private final UserTimeRepository userTimeRepository;
     private final UserTimeMapper userTimeMapper;
     private final CalendarSlotMapper calendarSlotMapper;
-    private final InternshipRepository internshipRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<UserTime> splitIntervalIntoSlots(TimeInterval timeInterval) {
@@ -59,7 +58,7 @@ public class UserTimeServiceImpl implements UserTimeService {
                 .findByUserRoleAndUserIds(
                         UserRole.RECRUITER,
                         UserRole.SPECIALIST,
-                        internshipRepository.findUserIdsByInternshipId(internshipId)));
+                        userRepository.findUserIdsByInternshipId(internshipId)));
     }
 
 }

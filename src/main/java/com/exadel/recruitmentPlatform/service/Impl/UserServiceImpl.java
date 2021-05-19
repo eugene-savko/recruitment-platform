@@ -9,7 +9,6 @@ import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
-import com.exadel.recruitmentPlatform.repository.InternshipRepository;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
@@ -30,7 +29,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final UserCalendarMapper userCalendarMapper;
-    private final InternshipRepository internshipRepository;
 
 
     @Override
@@ -83,6 +81,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserCalendarDto> getUsers(Long internshipId) {
-        return userCalendarMapper.toDtos(internshipRepository.findUsersByInternshipId(internshipId));
+        return userCalendarMapper.toDtos(userRepository.findUsersByInternshipId(internshipId));
     }
 }
