@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/calendar")
+@RequestMapping("api/calendars")
 public class CalendarController {
 
     private final UserTimeService userTimeService;
 
-    @GetMapping(params = "internship")
-    public List<CalendarSlotDto> getCalendarSlots(@RequestParam("internship") Long internshipId) {
+    @GetMapping
+    public List<CalendarSlotDto> getCalendarSlots(@RequestParam("internshipId") Long internshipId) {
         return userTimeService.getCalendarSlots(internshipId);
     }
 }

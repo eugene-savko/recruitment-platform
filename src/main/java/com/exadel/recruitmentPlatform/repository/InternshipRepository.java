@@ -1,7 +1,6 @@
 package com.exadel.recruitmentPlatform.repository;
 
 import com.exadel.recruitmentPlatform.entity.Internship;
-import com.exadel.recruitmentPlatform.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

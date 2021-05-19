@@ -43,8 +43,8 @@ public class UserController {
         return userService.getAuthenticatedUser(authentication);
     }
 
-    @GetMapping(params = "internship")
-    public List<UserCalendarDto> getUsers(@RequestParam("internship") Long internshipId) {
+    @GetMapping(params = "internshipId")
+    public List<UserCalendarDto> getUsers(@RequestParam("internshipId") Long internshipId) {
         return userService.getUsers(internshipId);
     }
 

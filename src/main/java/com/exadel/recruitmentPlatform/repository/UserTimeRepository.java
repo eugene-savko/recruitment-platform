@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserTimeRepository extends JpaRepository<UserTime, Long> {
 
@@ -23,9 +24,7 @@ public interface UserTimeRepository extends JpaRepository<UserTime, Long> {
             nativeQuery = true)
     LocalDateTime getEndPriorityTime(@Param("userId") Long userId);
 
-    @Query(value = "select ut from UserTime ut where " +
-            "(ut.user.role = :roleRecruiter or ut.user.role = :roleSpecialist) " +
-            "and ut.user.id in :userIds")
-    List<UserTime> findByUserRoleAndUserIds(UserRole roleRecruiter, UserRole roleSpecialist, List<Long> userIds);
+    @Query(value = "select ut from UserTime ut join ut.user u where u.role in :userRoles and u.id in :userIds")
+    List<UserTime> findByUserRolesAndUserIds(Set<UserRole> userRoles, List<Long> userIds);
 
 }
