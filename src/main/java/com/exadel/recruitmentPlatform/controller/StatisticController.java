@@ -19,7 +19,7 @@ public class StatisticController {
 
     private final StatisticService statisticService;
 
-    @GetMapping()
+    @GetMapping
     public List<InternshipRequestStatisticCommonDto> getCommonStat() {
         List<InternshipRequestStatisticCommonDto> commonInternshipStatistic = statisticService.getCommonStatistic();
         return commonInternshipStatistic;
@@ -30,7 +30,7 @@ public class StatisticController {
         return statisticService.getInternshipStatistic();
     }
 
-    @GetMapping("/byCountry")
+    @GetMapping("/сountry")
     public List<InternshipRequestStatisticCountryDto> getStatisticByCountry() {
         return statisticService.getInternshipRequestCountryStatistic();
     }
