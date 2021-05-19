@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.dto;
 
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class InternshipRequestDto extends BaseDto {
 
     private InternshipRequestStatus status;
@@ -20,6 +22,6 @@ public class InternshipRequestDto extends BaseDto {
     private String city;
     private Long countryId;
     private Long cityId;
-    private UserTimeDto userTime;
+    private Long timeIntervalId;
 
 }

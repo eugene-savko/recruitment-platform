@@ -17,12 +17,9 @@ public class InternshipRequestProfileMapper implements BaseMapper<InternshipRequ
         internshipRequestDto.setLastName(internshipRequest.getUser().getLastName());
         internshipRequestDto.setEmail(internshipRequest.getUser().getEmail());
         internshipRequestDto.setPhone(internshipRequest.getUser().getPhone());
-        internshipRequestDto.setOtherInformation(internshipRequest.getUser().getPhone());
-        internshipRequestDto.setSpecialityId(internshipRequest.getSpecialityId());
+        internshipRequestDto.setOtherInformation(internshipRequest.getUser().getOtherInformation());
         internshipRequestDto.setEnglishLevel(internshipRequest.getEnglishLevel());
         internshipRequestDto.setCv(internshipRequest.getCv());
-        internshipRequestDto.setInternshipId(internshipRequest.getInternshipId());
-
         return internshipRequestDto;
     }
 }

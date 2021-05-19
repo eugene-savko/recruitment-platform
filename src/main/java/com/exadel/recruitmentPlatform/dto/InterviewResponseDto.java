@@ -23,4 +23,8 @@ public class InterviewResponseDto extends BaseDto {
 
     @NotNull
     private LocalDateTime startDateTime;
+
+    @NotNull
+    private LocalDateTime endDateTime;
+
 }
