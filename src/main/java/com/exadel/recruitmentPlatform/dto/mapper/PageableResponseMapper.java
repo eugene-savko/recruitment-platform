@@ -20,12 +20,15 @@ public class PageableResponseMapper implements ListMapper<List <User>, PageableR
             userCandidateDto.setUserId(user.getId());
             userCandidateDto.setFirstName(user.getFirstName());
             userCandidateDto.setLastName(user.getLastName());
-            userCandidateDto.setCountryName(user.getInternshipRequest().get(0).getCountry().getName());
-            userCandidateDto.setSpecialityName(user.getInternshipRequest().get(0).getSpeciality().getName());
-            userCandidateDto.setStatusName(user.getInternshipRequest().get(0).getStatus().name());
+            userCandidateDto.setCountryName(user.getInternshipRequest() != null ?
+                    user.getInternshipRequest().get(0).getCountry().getName() : null);
+            userCandidateDto.setSpecialityName(user.getInternshipRequest() != null ?
+                    user.getInternshipRequest().get(0).getSpeciality().getName() : null);
+            userCandidateDto.setStatusName(user.getInternshipRequest() != null ?
+                    user.getInternshipRequest().get(0).getStatus().name() : null);
             userCandidatesDto.add(userCandidateDto);
         }
-        pageableResponseDto.setUserCandidatesDto(userCandidatesDto);
+        pageableResponseDto.setUserCandidates(userCandidatesDto);
         pageableResponseDto.setPageSize(pageSize);
         pageableResponseDto.setPageNumber(pageNumber);
 
