@@ -36,4 +36,3 @@ public interface InternshipRequestRepository extends JpaRepository<InternshipReq
     List<InternshipRequestStatisticSpecialityDto> getInternshipStatisticBySpeciality();
 
 }
-

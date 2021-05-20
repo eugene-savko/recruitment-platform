@@ -9,9 +9,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class InformationRequestDto {
+public class PageableResponseDto {
 
-    private List<InternshipRequestStatusDto> statuses;
-    private List<SpecialityShortDto> specialities;
+    private List<UserCandidateDto> userCandidates;
+    private int pageSize;
+    private int pageNumber;
 
 }
