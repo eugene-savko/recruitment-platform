@@ -6,6 +6,7 @@ export const AboutPage: React.FunctionComponent = () => (
 	<React.Fragment>
 		{SectionsData.map((sectionData) => (
 			<Section
+				key={sectionData.title}
 				title={sectionData.title}
 				text={sectionData.text}
 				background={sectionData.background}

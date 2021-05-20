@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FilterContext } from 'app/contexts/FilterContext';
 
 import { INTERNSHIP_STATUS } from 'app/data/INTERNSHIPS_STATUS';
+
 import { LoadMoreInternship, TrainingListWrappper } from './components';
 
 import { TrainingItem } from './TrainingItem';
@@ -22,6 +23,7 @@ export const TrainingList: React.FunctionComponent = () => {
 			{trainingsList.map(({ name, countries, description, status, id }) => (
 				<TrainingItem
 					key={id}
+					id={id}
 					name={name}
 					destinations={countries}
 					info={description}
