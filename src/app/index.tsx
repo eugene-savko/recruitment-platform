@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 // Material ui
 import { CssBaseline } from '@material-ui/core';
@@ -11,28 +11,30 @@ import { Layout } from './components/Layout';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 import ROUTES from './routes';
-import {
-	FrontendLandingContext,
-	IFrontendLandingContext,
-} from './contexts/FrontendLandingContext';
+import { FrontendLandingContext } from './contexts/FrontendLandingContext';
 
 export const App: React.FunctionComponent = () => {
-	const [internshipId, setInternshipId] = useState(1);
+	const [internshipValue, setInternshipValue] = useState(1);
+	const memoizedInternshipValue = useMemo(
+		() => ({
+			internshipValue,
+			setInternshipValue,
+		}),
+		[internshipValue]
+	);
 	return (
 		<React.Fragment>
 			<CssBaseline />
 			<BrowserRouter>
 				<Layout>
-					<FrontendLandingContext.Provider
-						value={{ internshipId, setInternshipId }}
-					>
+					<FrontendLandingContext.Provider value={memoizedInternshipValue}>
 						<Switch>
-							{ROUTES?.map((ROUTE) => (
+							{ROUTES?.map((route) => (
 								<Route
-									key={ROUTE.path}
-									exact={ROUTE.exact}
-									path={ROUTE.path}
-									component={ROUTE.component}
+									key={route.path}
+									exact={route.exact}
+									path={route.path}
+									component={route.component}
 								/>
 							))}
 							<Route component={NotFoundPage} />

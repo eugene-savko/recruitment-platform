@@ -30,9 +30,11 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 	status,
 	id,
 }) => {
-	const { internshipId, setInternshipId } = useContext(FrontendLandingContext);
+	const { internshipValue, setInternshipValue } = useContext(
+		FrontendLandingContext
+	);
 	const handleDetailsClick = () => {
-		setInternshipId?.(id);
+		setInternshipValue?.(id);
 	};
 	return (
 		<TrainingItemWrapper>
