@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id:  2021-05-13-modify-table_interview
+      author:  vadim.stradze
+      preConditions:
+        - onFail: WARN
+        - columnExist:
+            schemaName: public
+            tableName: interview
+            columnName: english_level
+      changes:
+        - modifyDataType:
+            columnName: english_level
+            newDataType: BIGINT
+            schemaName: public
+            tableName: interview
+        - addForeignKeyConstraint:
+            baseColumnNames: english_level
+            baseTableName: interview
+            baseTableSchemaName: public
+            constraintName: fk_interview_english_level
+            referencedColumnNames: id
+            referencedTableName: english_level
+            referencedTableSchemaName: public
+  - changeSet:
+      id: 2021-05-13-modify-table_interview-1
+      author: vadim.stradze
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExist:
+            schemaName: public
+            tableName: english_level
+            columnName: english_level
+      changes:
+        - renameColumn:
+            newColumnName: name
+            oldColumnName: english_level
+            tableName: english_level

@@ -1,13 +1,11 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
+import com.exadel.recruitmentPlatform.dto.InterviewDto;
 import com.exadel.recruitmentPlatform.dto.InterviewResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InterviewMapper;
-import com.exadel.recruitmentPlatform.dto.InterviewDto;
-import com.exadel.recruitmentPlatform.entity.InternshipRequest;
-import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
-import com.exadel.recruitmentPlatform.entity.Interview;
-import com.exadel.recruitmentPlatform.entity.UserRole;
+import com.exadel.recruitmentPlatform.entity.*;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
+import com.exadel.recruitmentPlatform.repository.EnglishRepository;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.InterviewRepository;
 import com.exadel.recruitmentPlatform.service.InterviewService;
@@ -28,6 +26,7 @@ public class InterviewServiceImpl implements InterviewService {
     private final InterviewMapper interviewMapper;
 
     private final InternshipRequestRepository internshipRequestRepository;
+    private final EnglishRepository englishRepository;
 
     @Override
     public InterviewDto updateFeedback(Long id, String feedback) {
@@ -61,4 +60,14 @@ public class InterviewServiceImpl implements InterviewService {
         return interviewMapper.toResponseDtos(interviewRepository.findByToUserIdAndInternshipId(userId, internshipId));
     }
 
+    @Override
+    public InterviewDto updateEnglishLevel(Long id, String englishLevel) {
+        Interview interview = interviewRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Interview under id " + id + " doesn't exist"));
+        EnglishLevel level = Optional.ofNullable(englishRepository.getEnglishLevelByName(englishLevel))
+                .orElseThrow(() -> new EntityNotFoundException("EnglishLevel under id " + id + " not found"));
+        interview.setEnglishLevel(level.getId());
+        interviewRepository.save(interview);
+        InterviewDto interviewDto = interviewMapper.toDto(interview);
+        return interviewDto;
+    }
 }

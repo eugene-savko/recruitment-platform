@@ -17,7 +17,7 @@ public class InterviewDto extends BaseDto {
     @NotBlank
     private String feedback;
 
-    private String englishLevel;
+    private Long englishLevel;
 
     @NotNull
     private Long toUserId;

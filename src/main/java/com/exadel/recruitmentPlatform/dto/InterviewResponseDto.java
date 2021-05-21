@@ -15,7 +15,7 @@ public class InterviewResponseDto extends BaseDto {
 
     private String feedback;
 
-    private String englishLevel;
+    private Long englishLevel;
 
     private UserResponseDto fromUser;
 

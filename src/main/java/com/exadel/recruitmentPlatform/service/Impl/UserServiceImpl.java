@@ -1,19 +1,20 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
+import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.UserCalendarDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserRequestDto;
+import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserCalendarMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
-
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
-import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PageableResponseMapper pageableResponseMapper;
     private final UserCalendarMapper userCalendarMapper;
 
 
@@ -75,9 +77,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserDto> getInternUsers(Pageable pageable) {
-        return userRepository.findByRole(pageable, UserRole.INTERN).map(userMapper::toDto);
+    public PageableResponseDto getFilteredUsers(UserRequestDto userRequestDto) {
+        Page<User> users = userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPageNumber(), userRequestDto.getPageSize()),
+                userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
+                userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%");
+        return pageableResponseMapper.toDto(users.toList(), users.getSize(), users.getTotalPages());
     }
+
 
     @Override
     public List<UserCalendarDto> getUsers(Long internshipId) {
