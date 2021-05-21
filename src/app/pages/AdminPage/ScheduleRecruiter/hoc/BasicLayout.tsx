@@ -1,9 +1,10 @@
 // todo alert time
-import React, { useState } from 'react';
-
+import React, { useContext, useState } from 'react';
+import dateFormat from 'dateformat';
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { fetchCurrentCandidate } from 'app/API/scheduleRecruiter';
+import { authContext } from 'app/context/AuthLoggedContext';
 import { TitleLabel, PreferablyTime } from '../components';
 import { ICurrentCandidate } from '../types';
 
@@ -13,6 +14,13 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	...restProps
 }) => {
 	const [profileCandidate, setProfileCandidate] = useState<ICurrentCandidate>();
+	const preferredTime = `
+	from ${dateFormat(
+		profileCandidate?.startPriorityTime,
+		'isoTime'
+	)} to ${dateFormat(profileCandidate?.endPriorityTime, 'isoTime')}`;
+	const { auth } = useContext(authContext);
+	const role = auth.dataRole?.role as string;
 
 	if (appointmentData.title === '') {
 		const getCurrentCandidate = async () => {
@@ -20,9 +28,11 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 			const gettedCurrentCandidate = await fetchCurrentCandidate(21);
 			const { firstName, lastName } = gettedCurrentCandidate;
 			const fullNameCandidate = { title: `${firstName} ${lastName}` };
+
 			setProfileCandidate(gettedCurrentCandidate);
 			return onFieldChange(fullNameCandidate);
 		};
+
 		getCurrentCandidate();
 	}
 
@@ -33,8 +43,12 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 			onFieldChange={onFieldChange}
 			{...restProps}
 		>
-			<TitleLabel>Preferred time for an interview</TitleLabel>
-			<PreferablyTime>{profileCandidate?.perProfile}</PreferablyTime>
+			{role === 'RECRUITER' && (
+				<React.Fragment>
+					<TitleLabel>Preferred time for an interview</TitleLabel>
+					<PreferablyTime>{preferredTime}</PreferablyTime>
+				</React.Fragment>
+			)}
 		</AppointmentForm.BasicLayout>
 	);
 };

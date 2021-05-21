@@ -8,37 +8,41 @@
       "country": "Ukraine",
       "city": "Kiev",
       "phone": "+37529-689-45-89",
-      "otherInformation": "+37529-689-45-89",
-      "specialityId": 1,
+      "otherInformation": "Hello!",
+      "speciality": "Java",
       "englishLevel": "B1",
       "cv": "some link",
-      "internshipId": 1,
+      "internship": "Java & Javascript Internship",
       "interviews": [
         {
           "id": 1,
           "feedback": "",
           "englishLevel": null,
-          "startDateTime": 1622451600000,
           "fromUser": {
             "id": 1,
             "firstName": "Alice",
             "lastName": "Blue",
             "role": "SPECIALIST"
-          }
+          },
+          "startDateTime": 1622451600000,
+          "endDateTime": 1622453400000
         },
         {
           "id": 2,
           "feedback": "",
           "englishLevel": null,
-          "startDateTime": 1621411200000,
           "fromUser": {
             "id": 24,
-            "firstName": "Ann Reading",
+            "firstName": "Ivan Graying",
             "lastName": "Green",
             "role": "RECRUITER"
-          }
+          },
+          "startDateTime": 1621679400000,
+          "endDateTime": 1622460600000
         }
-      ]
+      ],
+      "startPriorityTime": 1622451600000,
+      "endPriorityTime": 1622460600000
     },
     {
       "id": 1,
@@ -106,53 +110,7 @@
     }
   ],
   "schedulerData": [
-    {
-      "title": "",
-      "allDay": false,
-      "members": 1,
-      "endDate": 1621675800000,
-      "startDate": 1621674000000,
-      "id": 1
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 2,
-      "endDate": 1621243800000,
-      "startDate": 1621242000000,
-      "id": 2
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 2,
-      "endDate": 1621328400000,
-      "startDate": 1621326600000,
-      "id": 3
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 1,
-      "endDate": 1621587600000,
-      "startDate": 1621585800000,
-      "id": 4
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 1,
-      "endDate": 1621499400000,
-      "startDate": 1621497600000,
-      "id": 6
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 2,
-      "endDate": 1621413000000,
-      "startDate": 1621411200000,
-      "id": 7
-    }
+
+   
   ]
 }

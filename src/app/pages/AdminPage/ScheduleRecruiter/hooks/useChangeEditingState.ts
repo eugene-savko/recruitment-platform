@@ -6,7 +6,6 @@ import {
 	fetchListAppointments,
 	addedAppointment,
 } from 'app/API/scheduleRecruiter';
-import moment from 'moment';
 import { IUseChangeEditingState } from '../types';
 import { patchCurrentCandidate } from '../../../../API/scheduleRecruiter';
 import IListRecruiters from '../types/IListRecruiters';
@@ -31,8 +30,8 @@ export const useChangeEditingState = (
 					title: '',
 					allDay: added.allDay,
 					members: added.members,
-					endDate: moment(added.endDate).valueOf(),
-					startDate: moment(added.startDate).valueOf(),
+					endDate: new Date(added.endDate).getTime(),
+					startDate: new Date(added.startDate).getTime(),
 				};
 
 				const addedAppointmentAndRefreshDadaAppointment = async () => {

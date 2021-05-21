@@ -57,7 +57,6 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
-	console.log(role);
 	const messages: AppointmentFormBase.LocalizationMessages = {
 		moreInformationLabel: '',
 		titleLabel: 'Empty time slot',
