@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 // style
 import getProfile from 'app/API/getProfile';
-import { postLoginData } from 'app/API/login';
 import { Link } from 'react-router-dom';
 import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
 
@@ -30,10 +29,6 @@ export const Profile: React.FunctionComponent = () => {
 	);
 	const [user, setUser] = useState<IUserInfo>(userDefault);
 	const [isFetching, setIsFetching] = useState(false);
-
-	useEffect(() => {
-		postLoginData();
-	}, []);
 
 	useEffect(() => {
 		const fetchData = async () => {

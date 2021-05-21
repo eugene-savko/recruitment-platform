@@ -1,5 +1,5 @@
 import { API } from './axios';
-import { UPDATE_FEEDBACK } from './urls';
+import { URL_UPDATE_FEEDBACK } from './urls';
 
 interface ISendDataTech {
 	id: number;
@@ -10,7 +10,7 @@ interface ISendDataTech {
 const updateFeedback = async (sendDataTech: ISendDataTech): Promise<void> => {
 	await API({
 		method: 'put',
-		url: UPDATE_FEEDBACK,
+		url: URL_UPDATE_FEEDBACK,
 		data: { sendDataTech },
 	});
 };
