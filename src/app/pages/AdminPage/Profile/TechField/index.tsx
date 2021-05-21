@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
 // pop-up
+import updateFeedback from 'app/API/updateFeedback';
 import PopUp from '../PopUp';
 
 // style
@@ -46,14 +47,23 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	};
 
 	const onSubmit = () => {
-		setCheckOut(false);
-		setIsShown(true);
-		setTimeout(() => setIsShown(false), 3000);
 		const sendDataTech = {
-			feedbackTech,
+			id: feedbackContent[0].id as number,
+			feedback: feedbackTech as string,
 		};
-		// eslint-disable-next-line no-console
-		console.log(sendDataTech);
+
+		const putUpdateFeedback = async () => {
+			try {
+				console.log(sendDataTech);
+				await updateFeedback(sendDataTech);
+				setCheckOut(false);
+				setIsShown(true);
+				setTimeout(() => setIsShown(false), 3000);
+			} catch (e) {
+				console.log('Error message - ', e.message);
+			}
+		};
+		putUpdateFeedback();
 	};
 
 	return (

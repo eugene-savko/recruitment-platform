@@ -59,7 +59,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							title="Primary skill"
-							secondary={info.specialityId}
+							secondary={info.speciality}
 						/>
 					</ListItem>
 
@@ -69,7 +69,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							title="Internship"
-							secondary={info.internshipId}
+							secondary={info.internship}
 						/>
 					</ListItem>
 

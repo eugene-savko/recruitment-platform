@@ -8,7 +8,7 @@ const userDefault: IUserInfo = {
 	englishLevel: '',
 	firstName: '',
 	id: 0,
-	internshipId: 0,
+	internship: '',
 	interviews: [
 		{
 			englishLevel: null,
@@ -38,7 +38,7 @@ const userDefault: IUserInfo = {
 	lastName: '',
 	otherInformation: '',
 	phone: '',
-	specialityId: 0,
+	speciality: '',
 };
 
 export default userDefault;

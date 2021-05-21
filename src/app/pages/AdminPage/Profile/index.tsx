@@ -39,7 +39,7 @@ export const Profile: React.FunctionComponent = () => {
 		const fetchData = async () => {
 			const data = await getProfile(21);
 			setUser(data);
-			// console.log(data);
+			console.log(data);
 			const { interviews } = data;
 			setFeedbackInfo(interviews);
 			setIsFetching(true);
