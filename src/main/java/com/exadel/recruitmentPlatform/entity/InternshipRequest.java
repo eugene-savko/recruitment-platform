@@ -28,7 +28,7 @@ public class InternshipRequest extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private InternshipRequestStatus status;
 
-    @Column(name = "speciality_id", insertable = false, updatable = false)
+    @Column(name = "speciality_id")
     private Long specialityId;
 
     @Column(name = "english_level")
@@ -44,19 +44,19 @@ public class InternshipRequest extends BaseEntity {
     @JoinColumn(name = "internship_id")
     private Long internshipId;
 
-    @Column(name = "country_id", insertable = false, updatable = false)
+    @Column(name = "country_id")
     private Long countryId;
 
     @Column(name = "city_id")
     private Long cityId;
 
     @OneToOne
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", insertable = false, updatable = false)
     @EqualsAndHashCode.Exclude
     private Country country;
 
     @OneToOne
-    @JoinColumn(name = "speciality_id")
+    @JoinColumn(name = "speciality_id",  insertable = false, updatable = false)
     @EqualsAndHashCode.Exclude
     private Speciality speciality;
 }
