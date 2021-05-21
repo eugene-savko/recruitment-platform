@@ -22,7 +22,7 @@ export const fetchRequestLogin = async (
 export const getAccess = async (): Promise<IDataRole> => {
 	const { data } = await axios({
 		method: 'get',
-		url: 'https://recruitment-platform.herokuapp.com/users/current',
+		url: 'https://recruitment-platform.herokuapp.com/api/users/current',
 		withCredentials: true,
 	});
 	return data;

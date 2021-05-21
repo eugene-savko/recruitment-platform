@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
 	Resource,
@@ -29,6 +29,7 @@ import {
 
 import { fetchListRecruiters } from 'app/API/scheduleRecruiter';
 import { CircularProgress } from '@material-ui/core';
+import { authContext } from 'app/context/AuthLoggedContext';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
 import { useChangeEditingState } from './hooks/useChangeEditingState';
@@ -42,7 +43,6 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const [useListRecruters, setUseListRecruiters] = useState<IListRecruiters[]>(
 		[]
 	);
-	const { commitChanges, data } = useChangeEditingState(useListRecruters);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -53,9 +53,14 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 		fetchData();
 	}, []);
 
+	const { commitChanges, data } = useChangeEditingState(useListRecruters);
+
+	const { auth } = useContext(authContext);
+	const role = auth.dataRole?.role as string;
+	console.log(role);
 	const messages: AppointmentFormBase.LocalizationMessages = {
 		moreInformationLabel: '',
-		titleLabel: 'Name of candidate',
+		titleLabel: 'Empty time slot',
 		detailsLabel: 'Name of candidate',
 	};
 
@@ -103,6 +108,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<AppointmentTooltip showCloseButton showOpenButton showDeleteButton />
 				<ConfirmationDialog />
 				<AppointmentForm
+					readOnly={role === 'SPECIALIST'}
 					basicLayoutComponent={BasicLayout}
 					textEditorComponent={TextEditor}
 					booleanEditorComponent={BooleanEditor}

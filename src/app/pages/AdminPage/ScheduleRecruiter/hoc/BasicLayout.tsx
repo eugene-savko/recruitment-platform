@@ -1,6 +1,5 @@
-// todo создавать пустой title
 // todo alert time
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
@@ -13,27 +12,29 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	appointmentData,
 	...restProps
 }) => {
-	const [currentCandidate, setCurrentCandidate] = useState<ICurrentCandidate>();
+	const [profileCandidate, setProfileCandidate] = useState<ICurrentCandidate>();
 
-	useEffect(() => {
-		//! --------------------------------------------------------передача текущего кандидата
+	if (appointmentData.title === '') {
 		const getCurrentCandidate = async () => {
+			// 	//! --------------------------------------------------------передача текущего кандидата
 			const gettedCurrentCandidate = await fetchCurrentCandidate(21);
 			const { firstName, lastName } = gettedCurrentCandidate;
-			setCurrentCandidate(gettedCurrentCandidate);
-			return onFieldChange({ title: `${firstName} ${lastName}` });
+			const fullNameCandidate = { title: `${firstName} ${lastName}` };
+			setProfileCandidate(gettedCurrentCandidate);
+			return onFieldChange(fullNameCandidate);
 		};
 		getCurrentCandidate();
-	}, []);
+	}
 
 	return (
 		<AppointmentForm.BasicLayout
+			readOnly
 			appointmentData={appointmentData}
 			onFieldChange={onFieldChange}
 			{...restProps}
 		>
 			<TitleLabel>Preferred time for an interview</TitleLabel>
-			<PreferablyTime>{currentCandidate?.periodTime}</PreferablyTime>
+			<PreferablyTime>{profileCandidate?.perProfile}</PreferablyTime>
 		</AppointmentForm.BasicLayout>
 	);
 };

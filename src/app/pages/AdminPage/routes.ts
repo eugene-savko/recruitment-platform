@@ -6,7 +6,9 @@ import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
+
 import IMapped from '../../types/IMapped';
+import { CourseDetailsEditor } from './CourseDetailsEditor/CourseDetailsEditor';
 
 const dashboard = {
 	path: '/dashboard',
@@ -43,6 +45,11 @@ const editorCourse = {
 	exact: false,
 	component: CourseEditor,
 };
+const editorDetailsCourse = {
+	path: '/course-details-editor',
+	exact: false,
+	component: CourseDetailsEditor,
+};
 
 const homePage = {
 	path: '/*',
@@ -57,6 +64,7 @@ export const routesAdmin: Array<IRoute> = [
 	scheduleRecruiter,
 	schedulerTechSpecialist,
 	editorCourse,
+	editorDetailsCourse,
 	homePage,
 ];
 

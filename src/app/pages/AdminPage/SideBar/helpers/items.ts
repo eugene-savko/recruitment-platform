@@ -4,6 +4,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
+import ColorizeIcon from '@material-ui/icons/Colorize';
 import ISideBarItems from '../types/ISideBarItems';
 import IMapped from '../../../../types/IMapped';
 
@@ -36,17 +37,13 @@ const scheduleTechSpecialist: ISideBarItems = {
 const courseEditor: ISideBarItems = {
 	href: '/course-editor',
 	icon: EditIcon,
-	title: 'Course Editor',
+	title: 'Course editor',
 };
-
-export const items: ISideBarItems[] = [
-	dashboard,
-	tableCandidate,
-	profile,
-	scheduleRecruiter,
-	scheduleTechSpecialist,
-	courseEditor,
-];
+const courseDetailsEditor: ISideBarItems = {
+	href: '/course-details-editor',
+	icon: ColorizeIcon,
+	title: 'Course details editor',
+};
 
 export const menuItemsAdmin: ISideBarItems[] = [
 	dashboard,
@@ -55,6 +52,7 @@ export const menuItemsAdmin: ISideBarItems[] = [
 	scheduleRecruiter,
 	scheduleTechSpecialist,
 	courseEditor,
+	courseDetailsEditor,
 ];
 export const menuItemsRecruiter: ISideBarItems[] = [
 	dashboard,

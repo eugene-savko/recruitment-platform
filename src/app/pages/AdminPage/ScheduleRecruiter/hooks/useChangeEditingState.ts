@@ -1,8 +1,5 @@
-// todo кнопуку выхода на profile
-
 import { useState, useCallback, useEffect } from 'react';
 import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
-
 import {
 	deleteAppointment,
 	putAppointment,
@@ -31,7 +28,7 @@ export const useChangeEditingState = (
 		({ added, changed, deleted }: ChangeSet) => {
 			if (added) {
 				const addedData = {
-					title: added.title,
+					title: '',
 					allDay: added.allDay,
 					members: added.members,
 					endDate: moment(added.endDate).valueOf(),
@@ -60,24 +57,22 @@ export const useChangeEditingState = (
 				});
 				setData(dataChanged);
 
-				const appointmentChanged = dataChanged.filter((appointment) => {
+				const [appointmentChanged] = dataChanged.filter((appointment) => {
 					return appointment.id !== undefined
 						? changed[appointment.id]
 						: appointment;
 				});
 
-				putAppointment(appointmentChanged[0]);
+				putAppointment(appointmentChanged);
 
-				console.log(changed);
-				const currentRecruiter = listRecruters.filter(
+				const [currentRecruiter] = listRecruters.filter(
 					(recruiter: IListRecruiters) =>
-						recruiter.id === appointmentChanged[0].members
+						recruiter.id === appointmentChanged.members
 				);
-
 				patchCurrentCandidate(
-					appointmentChanged[0],
+					appointmentChanged,
 					21,
-					currentRecruiter[0].text
+					currentRecruiter.text
 					//! --------------------------------------------------------передача текущего кандидата
 				);
 			}

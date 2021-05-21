@@ -30,10 +30,10 @@
           "id": 2,
           "feedback": "",
           "englishLevel": null,
-          "startDateTime": 1621413000000,
+          "startDateTime": 1621326600000,
           "fromUser": {
             "id": 24,
-            "firstName": "No recruiter",
+            "firstName": "Ann Reading",
             "lastName": "Green",
             "role": "RECRUITER"
           }
@@ -107,59 +107,51 @@
   ],
   "schedulerData": [
     {
-      "title": "Julia Red",
+      "title": "",
       "allDay": false,
       "members": 1,
-      "endDate": 1621414800000,
-      "startDate": 1621413000000,
+      "endDate": 1621675800000,
+      "startDate": 1621674000000,
       "id": 1
     },
     {
-      "title": "",
+      "title": "Julia Red",
       "allDay": false,
-      "members": 1,
-      "endDate": 1621416600000,
-      "startDate": 1621414800000,
+      "members": 2,
+      "endDate": 1621243800000,
+      "startDate": 1621242000000,
       "id": 2
     },
     {
-      "title": "",
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621328400000,
+      "startDate": 1621326600000,
+      "id": 3
+    },
+    {
+      "title": "Julia Red",
       "allDay": false,
       "members": 1,
-      "endDate": 1621420200000,
-      "startDate": 1621418400000,
-      "id": 3
+      "endDate": 1621587600000,
+      "startDate": 1621585800000,
+      "id": 4
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621499400000,
+      "startDate": 1621497600000,
+      "id": 6
     },
     {
       "title": "",
       "allDay": false,
       "members": 2,
-      "endDate": 1621416600000,
-      "startDate": 1621414800000,
-      "id": 4
-    },
-    {
-      "title": "",
-      "allDay": false,
-      "members": 3,
-      "endDate": 1621236600000,
-      "startDate": 1621234800000,
-      "id": 5
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 1,
-      "endDate": 1621411200000,
-      "startDate": 1621409400000,
-      "id": 6
-    },
-    {
-      "title": "Julia Red",
-      "allDay": false,
-      "members": 1,
-      "endDate": 1621585800000,
-      "startDate": 1621584000000,
+      "endDate": 1621413000000,
+      "startDate": 1621411200000,
       "id": 7
     }
   ]
