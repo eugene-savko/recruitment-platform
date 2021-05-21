@@ -19,8 +19,9 @@ public class Interview extends BaseEntity{
     private String feedback;
 
     //TODO this is a temporary solution, in the future we need store english_level in table mark
+    //TODO: 14.05.2021  @OneToOne
     @Column(name = "english_level")
-    private String englishLevel;
+    private Long englishLevel;
 
     @ManyToOne
     @JoinColumn(name = "to_user_id")
