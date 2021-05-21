@@ -1,10 +1,24 @@
-import IListItemSelect from '../types/IListItemSelect';
-
-const listTimeForCall: Array<IListItemSelect> = [
-	{ name: 'During the day', id: '1' },
-	{ name: 'from 9.00 am to 12.00 am', id: '2' },
-	{ name: 'from 12.00 am to 4.00 pm', id: '3' },
-	{ name: 'from 4.00 pm to 8.00 pm', id: '4' },
+const TimeStampArr = [
+	{
+		id: 1,
+		startTime: 1609491600000,
+		endTime: 1609531200000,
+	},
+	{
+		id: 2,
+		startTime: 1609491600000,
+		endTime: 1609502400000,
+	},
+	{
+		id: 3,
+		startTime: 1609506000000,
+		endTime: 1609516800000,
+	},
+	{
+		id: 4,
+		startTime: 1609520400000,
+		endTime: 1609531200000,
+	},
 ];
 
-export { listTimeForCall };
+export { TimeStampArr };
