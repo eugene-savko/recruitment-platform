@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
+import { AdminPanelContextProvider } from './context/AdminPanelContext';
 
 export const App: React.FunctionComponent = () => {
 	return (
@@ -13,7 +14,9 @@ export const App: React.FunctionComponent = () => {
 				<Switch>
 					<Route path="/login" component={AuthPage} />
 					<PrivateRouteAuthAdminPage path="/">
-						<AdminPage />
+						<AdminPanelContextProvider>
+							<AdminPage />
+						</AdminPanelContextProvider>
 					</PrivateRouteAuthAdminPage>
 				</Switch>
 			</BrowserRouter>

@@ -9,7 +9,7 @@ interface IBodyRow {
 	primary_skill: string;
 	country: string;
 	status: string;
-	go_to_button: string;
+	profile: string;
 }
 
 const TableColumns: Column<IBodyRow>[] = [
@@ -39,8 +39,9 @@ const TableColumns: Column<IBodyRow>[] = [
 	},
 	{
 		Header: 'Profile',
-		accessor: 'go_to_button',
-		Cell: ({ cell }) => <TableCellButton text={cell.row.values.go_to_button} />,
+		accessor: 'profile',
+		disableSortBy: true,
+		Cell: ({ cell }) => <TableCellButton text={cell.row.values.profile} />,
 	},
 ];
 export default TableColumns;

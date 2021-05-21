@@ -18,7 +18,7 @@ export const TableForm: React.FunctionComponent<ITableForm> = ({
 			<FormButton autoFocus onClick={close}>
 				Back
 			</FormButton>
-			<FormButton type="submit" autoFocus>
+			<FormButton type="submit" autoFocus onClick={close}>
 				Search
 			</FormButton>
 		</Form>

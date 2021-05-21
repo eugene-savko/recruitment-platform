@@ -2,10 +2,10 @@ import ReactDOM from 'react-dom';
 import React, { useEffect } from 'react';
 import { Backdrop, ModalWrapper } from './components';
 
-export interface IModalFilterProps {
+export interface ITableFilterProps {
 	isShown: boolean;
 }
-export const ModalFilter: React.FunctionComponent<IModalFilterProps> = ({
+export const TableFilter: React.FunctionComponent<ITableFilterProps> = ({
 	children,
 	isShown,
 }) => {

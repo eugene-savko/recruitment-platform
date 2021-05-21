@@ -1,14 +1,14 @@
-import axios from 'axios';
 import IDataRole from '../pages/AuthPage/Auth/types/IDataRole';
-import { currentCandidate, login } from './urls';
+import { API } from './axios';
+import { URL_CURRENT_CANDIDATE, URL_LOGIN } from './urls';
 
 export const fetchRequestLogin = async (
 	username: string,
 	password: string
 ): Promise<number> => {
-	const { status } = await axios({
+	const { status } = await API({
 		method: 'post',
-		url: login,
+		url: URL_LOGIN,
 		data: new URLSearchParams({ username, password }),
 		headers: {
 			'content-type': 'application/x-www-form-urlencoded',
@@ -18,9 +18,9 @@ export const fetchRequestLogin = async (
 };
 
 export const getAccess = async (): Promise<IDataRole> => {
-	const { data } = await axios({
+	const { data } = await API({
 		method: 'get',
-		url: currentCandidate,
+		url: URL_CURRENT_CANDIDATE,
 		withCredentials: true,
 	});
 	return data;

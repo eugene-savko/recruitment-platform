@@ -15,15 +15,13 @@ export const SelectField: React.FunctionComponent<ISelectField> = ({
 	name,
 }) => {
 	const renderSelect = useCallback(({ onChange, value, ref }) => {
-		const getOptionLabel = useCallback(
-			(option: IFilterOption) => option.name,
-			[]
-		);
+		const getOptionLabel = useCallback((option: IFilterOption) => {
+			return option.name;
+		}, []);
 
-		const getOptionValue = useCallback(
-			(option: IFilterOption) => option.name,
-			[]
-		);
+		const getOptionValue = useCallback((option: IFilterOption) => {
+			return option.name;
+		}, []);
 		const handleSelectChange = useCallback((val: Array<IFilterOption>) => {
 			onChange(val);
 		}, []);
@@ -40,6 +38,7 @@ export const SelectField: React.FunctionComponent<ISelectField> = ({
 					getOptionLabel={getOptionLabel}
 					getOptionValue={getOptionValue}
 					onChange={handleSelectChange}
+					placeholder="All Options"
 				/>
 			</SelectFieldWrapper>
 		);
