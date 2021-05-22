@@ -1,33 +1,40 @@
-import Backdrop from './Backdrop';
-import Form from './Form';
-import ContainerTable from './ContainerTable';
-import FormInput from './FormInput';
-import PaperTable from './PaperTable';
-import Table from './Table';
-import TableCell from './TableCell';
-import TableHeaderRow from './TableHeaderRow';
-import TablePaginationList from './TablePaginationList';
-import TablePaginationSelect from './TablePaginationSelect';
-import TableRow from './TableRow';
-import WrapperCandidateTable from './WrapperCandidateTable';
-import FormSelect from './FormSelect';
-import ModalWrapper from './ModalWrapper';
-import ModalFilterButton from './ModalFilterButton';
-import TableFormTitle from './TableFormTitle';
-import InternshipFilterSelect from './InternshipFilterSelect';
-import Label from './Label';
-import FormLabel from './FormLabel';
-import TablePaginationItem from './TablePaginationItem';
-import TablePaginationButton from './TablePaginationButton';
-import ProfileLink from './ProfileLink';
-import FormButton from './FormButton';
-import HeaderButton from './HeaderButton';
-import SelectFieldWrapper from './SelectFieldWrapper';
-import ColumnProfileButton from './ColumnProfileButton';
-import NumberPageInput from './NumberPageInput';
-import NumberTablePage from './NumberTablePage';
+import {
+	Backdrop,
+	Form,
+	FormButton,
+	FormInput,
+	FormLabel,
+	FormSelect,
+	FormTitle,
+	ModalFilterButton,
+	ModalWrapper,
+	SelectFieldWrapper,
+} from './TableFilter';
+
+import {
+	ContainerTable,
+	InternshipFilterSelect,
+	PaperTable,
+	Table,
+	TableCell,
+	TableHeaderRow,
+	TableRow,
+	WrapperCandidateTable,
+} from './Table';
+
+import { ColumnProfileButton, HeaderButton, ProfileLink } from './TableColumns';
+import {
+	NumberPageInput,
+	NumberPageTextField,
+	TablePaginationButton,
+	TablePaginationItem,
+	TablePaginationList,
+	TablePaginationSelect,
+	TablePaginationSelectLabel,
+} from './TablePagination';
 
 export {
+	TablePaginationSelectLabel,
 	Table,
 	TableRow,
 	TableCell,
@@ -43,9 +50,8 @@ export {
 	ModalFilterButton,
 	FormSelect,
 	ContainerTable,
-	TableFormTitle,
+	FormTitle,
 	InternshipFilterSelect,
-	Label,
 	FormLabel,
 	TablePaginationItem,
 	TablePaginationButton,
@@ -54,6 +60,6 @@ export {
 	HeaderButton,
 	SelectFieldWrapper,
 	NumberPageInput,
-	NumberTablePage,
+	NumberPageTextField,
 	ColumnProfileButton,
 };

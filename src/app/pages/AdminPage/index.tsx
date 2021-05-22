@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Header } from './Header';
 import { Sidebar } from './SideBar';
@@ -8,10 +8,16 @@ import {
 	AdminPageRoot,
 } from './components';
 
-import routesAdmin from './routes';
+import { routes } from './routes';
+
+import { authContext } from '../../context/AuthLoggedContext';
 
 export const AdminPage: React.FunctionComponent = () => {
 	const [isSideBarOpen, setSideBarOpen] = useState(false);
+	const { auth } = useContext(authContext);
+	const role = auth.dataRole?.role as string;
+	const routesRole = routes[`${role}`];
+
 	return (
 		<React.Fragment>
 			<AdminPageRoot>
@@ -25,7 +31,7 @@ export const AdminPage: React.FunctionComponent = () => {
 						<Switch>
 							<Redirect exact from="/" to="/dashboard" />
 
-							{routesAdmin.map((route) => (
+							{routesRole.map((route) => (
 								<Route
 									key={route.path}
 									exact={route.exact}

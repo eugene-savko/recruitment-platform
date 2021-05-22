@@ -12,6 +12,7 @@ const InputEmail = forwardRef<HTMLInputElement>((props, ref) => (
 		margin="normal"
 		inputRef={ref}
 		fullWidth
+		variant="outlined"
 	/>
 ));
 
