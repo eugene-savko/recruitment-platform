@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
-// pop-up
+// API
 import updateFeedback from 'app/API/updateFeedback';
+
+// pop-up
 import PopUp from '../PopUp';
 
 // style

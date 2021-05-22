@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 // style
 import getProfile from 'app/API/getProfile';
-<<<<<<< HEAD
-=======
-
->>>>>>> frontend
 import { Link } from 'react-router-dom';
 import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
 

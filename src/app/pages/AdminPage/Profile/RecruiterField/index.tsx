@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
+// API
+import updateFeedback from 'app/API/updateFeedback';
+
 // pop-up
 import PopUp from '../PopUp';
 
@@ -50,16 +53,25 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	};
 
 	const onSubmit = (data: IFormFields) => {
-		setCheckOut(false);
-		setIsShown(true);
-		setTimeout(() => setIsShown(false), 3000);
 		const { levelEnglishRecruiter } = data;
 		const sendDataRecruiter = {
-			feedbackRecruiter,
-			levelEnglishRecruiter,
+			id: feedbackContent[1].id as number,
+			feedback: feedbackRecruiter as string,
+			englishLevel: levelEnglishRecruiter as string,
 		};
-		// eslint-disable-next-line no-console
-		console.log(sendDataRecruiter);
+
+		const putUpdateFeedback = async () => {
+			try {
+				console.log(setFeedbackRecruiter);
+				await updateFeedback(sendDataRecruiter);
+				setCheckOut(false);
+				setIsShown(true);
+				setTimeout(() => setIsShown(false), 3000);
+			} catch (e) {
+				console.log('Error message - ', e.message);
+			}
+		};
+		putUpdateFeedback();
 	};
 
 	return (
