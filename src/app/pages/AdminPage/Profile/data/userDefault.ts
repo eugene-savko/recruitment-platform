@@ -20,7 +20,7 @@ const userDefault: IUserInfo = {
 				role: '',
 			},
 			id: 0,
-			startDateTime: 0,
+			startDateTime: null,
 		},
 		{
 			englishLevel: null,
@@ -32,7 +32,7 @@ const userDefault: IUserInfo = {
 				role: '',
 			},
 			id: 0,
-			startDateTime: 0,
+			startDateTime: null,
 		},
 	],
 	lastName: '',

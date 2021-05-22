@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 // style
 import getProfile from 'app/API/getProfile';
 import { Link } from 'react-router-dom';
+import { authContext } from 'app/context/AuthLoggedContext';
 import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
 
 // components
@@ -27,16 +28,36 @@ export const Profile: React.FunctionComponent = () => {
 	const [feedbackInfo, setFeedbackInfo] = useState<Array<IFeedbackInfo>>(
 		feedbackDeafult
 	);
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState<IFeedbackInfo>(
+		feedbackDeafult[0]
+	);
+	const [feedbackTech, setFeedbackTech] = useState<IFeedbackInfo>(
+		feedbackDeafult[1]
+	);
 	const [user, setUser] = useState<IUserInfo>(userDefault);
 	const [isFetching, setIsFetching] = useState(false);
 
+	const { auth } = useContext(authContext);
+	const role = auth.dataRole?.role as string;
+	console.log(role);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			const data = await getProfile(21);
+			const data = await getProfile(40);
 			setUser(data);
+			// eslint-disable-next-line no-console
 			console.log(data);
 			const { interviews } = data;
-			setFeedbackInfo(interviews);
+			console.log(interviews.length);
+			if (interviews.length === 0) {
+				setFeedbackInfo(feedbackDeafult);
+			} else if (interviews.length === 1) {
+				setFeedbackRecruiter(interviews[0]);
+				setFeedbackTech(feedbackDeafult[0]);
+			} else {
+				setFeedbackRecruiter(interviews[0]);
+				setFeedbackTech(interviews[1]);
+			}
 			setIsFetching(true);
 		};
 		setTimeout(() => {
@@ -60,9 +81,9 @@ export const Profile: React.FunctionComponent = () => {
 					<AdminsFields>
 						<RecruiterField
 							englishLevel={listEnglishLevel}
-							feedbackContent={feedbackInfo}
+							feedbackContent={feedbackRecruiter}
 						/>
-						<TechField feedbackContent={feedbackInfo} />
+						<TechField role={role} feedbackContent={feedbackTech} />
 					</AdminsFields>
 				</ProfileContainer>
 			)}

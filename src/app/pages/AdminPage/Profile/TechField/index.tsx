@@ -22,7 +22,8 @@ import {
 import { IFormFields, IFeedbackInfo } from '../types';
 
 interface ITechFieldProps {
-	feedbackContent: Array<IFeedbackInfo>;
+	feedbackContent: IFeedbackInfo;
+	role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -37,12 +38,28 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 
 const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	feedbackContent,
+	role,
 }) => {
-	const { feedback } = feedbackContent[0];
+	// const [areaDisabled, setAreaDisabled] = useState(false);
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackTech, setFeedbackTech] = useState(feedback);
+	const [feedbackTech, setFeedbackTech] = useState('');
 	const { handleSubmit } = useForm<IFormFields>();
+	if (feedbackContent === undefined) {
+		setFeedbackTech('');
+	} else {
+		const { feedback } = feedbackContent;
+		console.log(feedback);
+		// setFeedbackTech(feedback);
+	}
+
+	// if (role === 'SPECIALIST') {
+	console.log('specialist', role);
+	// 	setAreaDisabled(false);
+	// } else if (role === 'ADMIN' || role === 'RECRUITER') {
+	// 	setAreaDisabled(true);
+	// }
+
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackTech(event.target.value);
 		setCheckOut(true);
@@ -50,18 +67,20 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 
 	const onSubmit = () => {
 		const sendDataTech = {
-			id: feedbackContent[0].id as number,
+			id: feedbackContent.id as number,
 			feedback: feedbackTech as string,
 		};
 
 		const putUpdateFeedback = async () => {
 			try {
+				// eslint-disable-next-line no-console
 				console.log(sendDataTech);
 				await updateFeedback(sendDataTech);
 				setCheckOut(false);
 				setIsShown(true);
 				setTimeout(() => setIsShown(false), 3000);
 			} catch (e) {
+				// eslint-disable-next-line no-console
 				console.log('Error message - ', e.message);
 			}
 		};
@@ -75,6 +94,7 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 				<Title>Tech field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
 					<FeedbackField
+						// disabled={areaDisabled}
 						label="Feedback"
 						id="feedback-tech"
 						name="feedbackTech"

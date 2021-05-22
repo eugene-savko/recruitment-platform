@@ -24,7 +24,7 @@ import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
-	feedbackContent: Array<IFeedbackInfo>;
+	feedbackContent: IFeedbackInfo;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -41,11 +41,16 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
 }) => {
-	const { feedback } = feedbackContent[1];
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState('');
 	const { register, handleSubmit } = useForm<IFormFields>();
+	if (feedbackContent === undefined) {
+		setFeedbackRecruiter('');
+	} else {
+		const { feedback } = feedbackContent;
+		console.log(feedback);
+	}
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackRecruiter(event.target.value);
@@ -55,19 +60,21 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	const onSubmit = (data: IFormFields) => {
 		const { levelEnglishRecruiter } = data;
 		const sendDataRecruiter = {
-			id: feedbackContent[1].id as number,
+			id: feedbackContent.id as number,
 			feedback: feedbackRecruiter as string,
 			englishLevel: levelEnglishRecruiter as string,
 		};
 
 		const putUpdateFeedback = async () => {
 			try {
-				console.log(setFeedbackRecruiter);
+				// eslint-disable-next-line no-console
+				console.log(sendDataRecruiter);
 				await updateFeedback(sendDataRecruiter);
 				setCheckOut(false);
 				setIsShown(true);
 				setTimeout(() => setIsShown(false), 3000);
 			} catch (e) {
+				// eslint-disable-next-line no-console
 				console.log('Error message - ', e.message);
 			}
 		};

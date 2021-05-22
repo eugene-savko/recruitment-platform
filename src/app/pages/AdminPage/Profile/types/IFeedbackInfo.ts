@@ -8,7 +8,7 @@ interface IFeedbackInfo {
 		lastName?: string;
 		role?: string;
 	};
-	startDateTime: number;
+	startDateTime: number | null;
 }
 
 export default IFeedbackInfo;
