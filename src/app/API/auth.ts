@@ -1,18 +1,16 @@
-import axios from 'axios';
 import IDataRole from '../pages/AuthPage/Auth/types/IDataRole';
+import { API } from './axios';
+import { URL_CURRENT_CANDIDATE, URL_LOGIN } from './urls';
 
 export const fetchRequestLogin = async (
 	username: string,
 	password: string
 ): Promise<number> => {
-	const { status } = await axios({
-		method: 'POST',
-		url: 'https://recruitment-platform.herokuapp.com/login',
+	const { status } = await API({
+		method: 'post',
+		url: URL_LOGIN,
 		data: new URLSearchParams({ username, password }),
-		withCredentials: true,
 		headers: {
-			Cookie: 'Thu, 20 May 2021 18:24:57 GMT',
-			Accept: 'application/x-www-form-urlencoded',
 			'content-type': 'application/x-www-form-urlencoded',
 		},
 	});
@@ -20,9 +18,9 @@ export const fetchRequestLogin = async (
 };
 
 export const getAccess = async (): Promise<IDataRole> => {
-	const { data } = await axios({
+	const { data } = await API({
 		method: 'get',
-		url: 'https://recruitment-platform.herokuapp.com/api/users/current',
+		url: URL_CURRENT_CANDIDATE,
 		withCredentials: true,
 	});
 	return data;

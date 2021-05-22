@@ -1,4 +1,5 @@
 import React from 'react';
+import dateFormat from 'dateformat';
 
 // styles
 import {
@@ -13,13 +14,25 @@ import { ContainerInterviewInfo } from './components';
 import { AccountBoxSharpIcon, EventIcon } from '../components/IconsMaterial';
 
 // types
-import IInterviewInfo from '../types/IInterviewInfo';
+import IFeedbackInfo from '../types/IFeedbackInfo';
 
 interface IInfoProps {
-	info: IInterviewInfo;
+	info: Array<IFeedbackInfo>;
 }
 
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
+	const timeInterviewRecruter = new Date(info[0].startDateTime);
+	const formatTimeInterviewRecruter = dateFormat(
+		timeInterviewRecruter,
+		'dd/mm/yy - HH:MM'
+	);
+	const timeInterviewTech = new Date(info[1].startDateTime);
+	const formatTimeInterviewTech = dateFormat(
+		timeInterviewTech,
+		'dd/mm/yy - HH:MM'
+	);
+	const fullNameRecruiter = `${info[0].fromUser.firstName} ${info[0].fromUser.lastName}`;
+	const fullNameTech = `${info[1].fromUser.firstName} ${info[1].fromUser.lastName}`;
 	return (
 		<React.Fragment>
 			<ContainerInterviewInfo>
@@ -30,7 +43,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="Name recruiter:"
-							secondary={info.nameRecruiter}
+							secondary={fullNameRecruiter}
 						/>
 					</ListItem>
 
@@ -40,7 +53,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={info.dataInterviewRecruiter}
+							secondary={formatTimeInterviewRecruter}
 						/>
 					</ListItem>
 
@@ -48,10 +61,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						<ListItemIconCustom>
 							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom
-							primary="Name Tech:"
-							secondary={info.nameTech}
-						/>
+						<ListItemTextCustom primary="Name Tech:" secondary={fullNameTech} />
 					</ListItem>
 
 					<ListItem>
@@ -60,7 +70,7 @@ const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						</ListItemIconCustom>
 						<ListItemTextCustom
 							primary="data interview:"
-							secondary={info.dataInterviewTech}
+							secondary={formatTimeInterviewTech}
 						/>
 					</ListItem>
 				</List>

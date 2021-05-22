@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 // style
-import PopUpWindow from './PopUpWindow';
-import Content from './Content';
+import { PopUpWindow, Content } from './components';
 
 interface IModalProps {
 	isShow: boolean;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ArrowDown from '../../assets/select-arrow-down 4.png';
+import ArrowDown from 'app/assets/img/Profile/select-arrow-down 4.png';
 
 const Select = styled.select`
 	display: block;
@@ -20,7 +20,6 @@ const Select = styled.select`
 	outline: none;
 	appearance: none;
 	cursor: pointer;
-	/* box-sizing: border-box; */
 	transition: ease-in-out 0.2s;
 	background: url(${ArrowDown}) 95% no-repeat;
 	&:hover {

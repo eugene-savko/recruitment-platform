@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 // components
-import CloseCross from '../../CloseCross';
+import CloseCross from './CloseCross';
 
+// style
 import {
 	Wrapper,
 	Header,
@@ -64,7 +65,6 @@ const MoreInfoModal: React.FunctionComponent<IModalProps> = ({
 			</Wrapper>
 		</React.Fragment>
 	);
-
 	return isShow ? ReactDOM.createPortal(modal, document.body) : null;
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, Prompt } from 'react-router-dom';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -15,26 +16,41 @@ import {
 } from '../components';
 import { Select } from './components';
 
-import IListItemSelect from '../types/IListItemSelect';
-
 // type
-import IFormFields from '../types/IFormFields';
+import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
+	feedbackContent: Array<IFeedbackInfo>;
 }
+
+const handleMessage = (location: { pathname: string }, action: string) => {
+	if (action === 'POP') {
+		// eslint-disable-next-line no-console
+		console.log('Backing up...');
+	}
+	return location.pathname.startsWith('/app')
+		? true
+		: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
+};
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
+	feedbackContent,
 }) => {
+	const { feedback } = feedbackContent[1];
+	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState<string>();
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
 	const { register, handleSubmit } = useForm<IFormFields>();
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackRecruiter(event.target.value);
+		setCheckOut(true);
+	};
 
 	const onSubmit = (data: IFormFields) => {
+		setCheckOut(false);
 		setIsShown(true);
 		setTimeout(() => setIsShown(false), 3000);
 		const { levelEnglishRecruiter } = data;
@@ -48,6 +64,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 
 	return (
 		<React.Fragment>
+			<Prompt when={checkOut} message={handleMessage} />
 			<Container>
 				<Title>Recruiter field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
@@ -57,15 +74,17 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						name="feedbackRecruiter"
 						rows={12}
 						multiline
-						value={feedbackRecruiter}
+						value={feedbackRecruiter || ''}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<ButtonMaterial variant="outlined" color="primary">
-							Schedule
-						</ButtonMaterial>
+						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+							<ButtonMaterial variant="outlined" color="primary">
+								Schedule
+							</ButtonMaterial>
+						</Link>
 						<Select
 							id="english-after-interview"
 							name="levelEnglishRecruiter"
@@ -78,7 +97,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 							))}
 						</Select>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
-							Send feedback
+							Save feedback
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>

@@ -6,7 +6,7 @@ const FeedbackField = styled(TextField)`
 		height: 100%;
 	}
 	flex-grow: 1;
-	margin: 0px 0px 10px 10px;
+	margin: 0 0 10px 10px;
 `;
 
 export default FeedbackField;

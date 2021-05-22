@@ -5,17 +5,17 @@ import {
 	ArrowForwardIos as ArrowForwardIosIcon,
 } from '@material-ui/icons';
 
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
+import { ROW_PER_PAGE } from 'app/data';
 import {
-	Label,
 	NumberPageInput,
-	NumberTablePage,
+	NumberPageTextField,
 	TablePaginationButton,
 	TablePaginationItem,
 	TablePaginationList,
 	TablePaginationSelect,
+	TablePaginationSelectLabel,
 } from './components';
-import { ROW_PER_PAGE } from './data';
 import { IFilterOption } from './types';
 
 interface ITablePagination {
@@ -30,6 +30,7 @@ interface ITablePagination {
 	pageSize: number;
 	setPageSize: (pageSize: number) => void;
 }
+
 export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 	nextPage,
 	previousPage,
@@ -42,9 +43,12 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 	pageSize,
 	setPageSize,
 }) => {
-	const numberPageInputProps = useMemo(() => {
-		return { max: pageOptions.length, min: 0 };
-	}, [pageOptions]);
+	const numberPageInputProps = {
+		placeholder: `${pageIndex + 1}`,
+		max: pageOptions.length,
+		min: 1,
+		maxLength: 2,
+	};
 
 	const handleRowPerPage = useCallback((opt: IFilterOption) => {
 		const { name } = opt;
@@ -69,7 +73,9 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 	return (
 		<TablePaginationList>
 			<TablePaginationItem>
-				<Label htmlFor="table-pagination__select">Row per page</Label>
+				<TablePaginationSelectLabel htmlFor="table-pagination__select">
+					Row per page
+				</TablePaginationSelectLabel>
 				<TablePaginationSelect
 					name="table-select"
 					classNamePrefix="select"
@@ -83,14 +89,14 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 				/>
 			</TablePaginationItem>
 			<TablePaginationItem>
-				<NumberTablePage>
+				<NumberPageTextField>
 					<strong>Page:</strong> {pageIndex + 1} of {pageOptions.length}
-				</NumberTablePage>
+				</NumberPageTextField>
 			</TablePaginationItem>
 			<TablePaginationItem>
 				<NumberPageInput
 					type="number"
-					defaultValue={pageIndex + 1}
+					value={pageIndex + 1}
 					onChange={handleNumberPage}
 					inputProps={numberPageInputProps}
 					disableUnderline

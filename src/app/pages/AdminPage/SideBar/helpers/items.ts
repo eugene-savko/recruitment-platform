@@ -5,8 +5,8 @@ import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import ColorizeIcon from '@material-ui/icons/Colorize';
+import IMapped from 'app/types/IMapped';
 import ISideBarItems from '../types/ISideBarItems';
-import IMapped from '../../../../types/IMapped';
 
 const dashboard: ISideBarItems = {
 	href: '/dashboard',

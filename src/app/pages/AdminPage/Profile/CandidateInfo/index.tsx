@@ -27,15 +27,17 @@ import {
 } from '../components/IconsMaterial';
 
 // types
-import IUserInfo from '../types/IUserInfo';
+import { IUserInfo } from '../types';
 
 interface IInfoProps {
 	info: IUserInfo;
 }
 
 const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
-	const [isShown, setIsShown] = useState<boolean>(false);
+	const [isShown, setIsShown] = useState(false);
 	const toggle = () => setIsShown(!isShown);
+	const { firstName, lastName } = info;
+	const fullName = `${firstName} ${lastName}`;
 
 	return (
 		<React.Fragment>
@@ -45,68 +47,88 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						<ListItemIconCustom>
 							<AccountBoxSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.firstName} />
+						<ListItemTextCustom
+							title="Full name candidate"
+							secondary={fullName}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<ComputerSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.specialityId} />
+						<ListItemTextCustom
+							title="Primary skill"
+							secondary={info.specialityId}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<BusinessCenterSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.internshipId} />
+						<ListItemTextCustom
+							title="Internship"
+							secondary={info.internshipId}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<PhoneAndroidSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.phone} />
+						<ListItemTextCustom title="Phone number" secondary={info.phone} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<RoomSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.country} />
+						<ListItemTextCustom
+							title="Location country"
+							secondary={info.country}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<LocationCitySharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.city} />
+						<ListItemTextCustom title="Location.city" secondary={info.city} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<EmailSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.email} />
+						<ListItemTextCustom title="Email" secondary={info.email} />
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<TranslateSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.englishLevel} />
+						<ListItemTextCustom
+							title="English level"
+							secondary={info.englishLevel}
+						/>
 					</ListItem>
 
 					<ListItem>
 						<ListItemIconCustom>
 							<DescriptionSharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom secondary={info.cv} />
+						<ListItemTextCustom title="Link CV" secondary={info.cv} />
 					</ListItem>
 				</List>
 
-				<ButtonMaterial variant="outlined" color="primary" onClick={toggle}>
-					OtherInformation
+				<ButtonMaterial
+					variant="outlined"
+					color="primary"
+					onClick={toggle}
+					title="More info about candidate"
+				>
+					More info
 				</ButtonMaterial>
 			</ContainerInfo>
 			<MoreInfoModal
