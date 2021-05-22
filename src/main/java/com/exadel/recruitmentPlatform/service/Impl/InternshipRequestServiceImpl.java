@@ -1,11 +1,15 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestFilterDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestProfileMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
+import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
@@ -14,6 +18,8 @@ import com.exadel.recruitmentPlatform.repository.TimeIntervalRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -35,6 +41,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     private final UserTimeService userTimeService;
     private final UserTimeRepository userTimeRepository;
     private final TimeIntervalRepository timeIntervalRepository;
+    private final PageableResponseMapper pageableResponseMapper;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
@@ -75,6 +82,16 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         internshipRequestProfileDto.setEndPriorityTime(
                 userTimeRepository.getEndPriorityTime(internshipRequest.getUser().getId()));
         return internshipRequestProfileDto;
+    }
+
+    @Override
+    public PageableResponseDto getFilteredInternshipRequest(InternshipRequestFilterDto internshipRequestFilterDto) {
+        Page<InternshipRequest> internshipRequests = internshipRequestRepository
+                .findByFilterParam(PageRequest.of(internshipRequestFilterDto.getPageNumber(), internshipRequestFilterDto.getPageSize()),
+                internshipRequestFilterDto.getInternshipId(), internshipRequestFilterDto.getSpecialityIds(),
+                internshipRequestFilterDto.getStatuses(), "%" + internshipRequestFilterDto.getFullName() + "%");
+        return pageableResponseMapper.toDto(internshipRequests.toList(), internshipRequests.getSize(),
+                internshipRequests.getTotalPages(), internshipRequests.getTotalPages());
     }
 
 

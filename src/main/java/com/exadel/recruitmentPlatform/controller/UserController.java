@@ -1,8 +1,6 @@
 package com.exadel.recruitmentPlatform.controller;
 
-import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,12 +37,6 @@ public class UserController {
     @GetMapping("/current")
     public UserDto getAuthenticatedUser(Authentication authentication) {
         return userService.getAuthenticatedUser(authentication);
-    }
-
-    @PostMapping("/search")
-    @ResponseStatus(HttpStatus.OK)
-    public PageableResponseDto getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
-        return userService.getFilteredUsers(userRequestDto);
     }
 
 }
