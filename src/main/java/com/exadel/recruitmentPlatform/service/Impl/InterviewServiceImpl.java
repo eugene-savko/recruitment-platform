@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +43,15 @@ public class InterviewServiceImpl implements InterviewService {
 
         interview.setFeedback(feedback);
 
-        if (interview.getFromUser().getRole() == UserRole.RECRUITER) {
-            internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_PASSED);
+        if (interview.getFromUser().getRole() == UserRole.RECRUITER || interview.getFromUser().getRole() == UserRole.ADMIN) {
+            if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW){
+                throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
+            }
+            internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK);
         } else if (interview.getFromUser().getRole() == UserRole.SPECIALIST) {
+            if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW){
+                throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
+            }
             internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED);
         }
 

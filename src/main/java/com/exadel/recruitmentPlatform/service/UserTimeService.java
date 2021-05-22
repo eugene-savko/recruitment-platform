@@ -1,5 +1,7 @@
 package com.exadel.recruitmentPlatform.service;
 
+import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
+import com.exadel.recruitmentPlatform.dto.InterviewAssignmentDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.entity.User;
@@ -12,5 +14,7 @@ public interface UserTimeService {
     List<UserTime> splitIntervalIntoSlots(TimeInterval timeInterval);
 
     List<UserTimeResponseDto> saveUserIntervals(User user, List<UserTime> userTimes);
+
+    CalendarSlotDto update(InterviewAssignmentDto interviewAssignmentDto);
 
 }

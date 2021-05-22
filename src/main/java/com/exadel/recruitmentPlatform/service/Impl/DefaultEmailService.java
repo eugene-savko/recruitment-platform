@@ -1,6 +1,8 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
+import com.exadel.recruitmentPlatform.entity.InternshipRequest;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.service.EmailService;
 import com.exadel.recruitmentPlatform.service.InternshipService;
 import com.exadel.recruitmentPlatform.service.SpecialityService;
@@ -19,12 +21,17 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
 @Service
 public class DefaultEmailService implements EmailService {
+
+    public static final String SENDING_APPLICATION_TEMPLATE = "Exadel.html";
+    public static final String ASSIGNMENT_INTERVIEW_TEMPLATE = "AssignmentInterview.html";
 
     @Autowired
     private JavaMailSender emailSender;
@@ -61,7 +68,7 @@ public class DefaultEmailService implements EmailService {
     }
 
     @Override
-    public void sendEmail(String emailTo, Map<String, Object> model) {
+    public void sendEmail(String emailTo, Map<String, Object> model, String templateName) {
         if (!emailEnabled) {
             log.warn("Email sending feature disabled.");
             return;
@@ -69,7 +76,7 @@ public class DefaultEmailService implements EmailService {
         MimeMessage message = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            Template template = configuration.getTemplate("Exadel.html");
+            Template template = configuration.getTemplate(templateName);
             String htmlBody = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
             helper.setFrom(exadelEmailAddress);
             helper.setTo(emailTo);
@@ -88,6 +95,19 @@ public class DefaultEmailService implements EmailService {
         model.put("LastName", dto.getUserDto().getLastName());
         model.put("Speciality", specialityService.getSpecialityById(dto.getSpecialityId()).getName());
         model.put("Internship", internshipService.get(dto.getInternshipId()).getName());
+
+        return model;
+    }
+
+    @Override
+    public Map<String, Object> placeholderAssignmentInterview(InternshipRequest internshipRequest, LocalDateTime dateTime, UserRole userRole) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("FirstName", internshipRequest.getUser().getFirstName());
+        model.put("LastName", internshipRequest.getUser().getLastName());
+        model.put("Speciality", specialityService.getSpecialityById(internshipRequest.getSpecialityId()).getName());
+        model.put("Internship", internshipService.get(internshipRequest.getInternshipId()).getName());
+        model.put("Role", userRole.getMessageKey());
+        model.put("Date", dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
 
         return model;
     }
