@@ -28,7 +28,6 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { fetchListRecruiters } from 'app/API/scheduleRecruiter';
-import { CircularProgress } from '@material-ui/core';
 import { authContext } from 'app/context/AuthLoggedContext';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
@@ -37,6 +36,8 @@ import { BooleanEditor } from './hoc/BooleanEditor';
 import AuthCircularProgress from '../../AuthPage/Auth/components/AuthCircularProgress';
 import IListRecruiters from './types/IListRecruiters';
 import { FlexibleSpace } from './hoc/FlexibleSpace';
+import Preloader from '../components/Preloader';
+import { AppointmentExpared } from './hoc/AppointmentExpared';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const [loading, setLoading] = useState(true);
@@ -54,7 +55,6 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	}, []);
 
 	const { commitChanges, data } = useChangeEditingState(useListRecruters);
-
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
 	const messages: AppointmentFormBase.LocalizationMessages = {
@@ -77,7 +77,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	if (loading) {
 		return (
 			<AuthCircularProgress>
-				<CircularProgress />
+				<Preloader />
 			</AuthCircularProgress>
 		);
 	}
@@ -93,7 +93,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<WeekView excludedDays={[0]} startDayHour={10} endDayHour={18} />
 				<MonthView />
 
-				<Appointments />
+				<Appointments appointmentComponent={AppointmentExpared} />
 				<Resources data={resources} mainResourceName="members" />
 
 				<Toolbar flexibleSpaceComponent={FlexibleSpace} />

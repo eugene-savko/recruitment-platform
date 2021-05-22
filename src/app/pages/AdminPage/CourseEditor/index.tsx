@@ -6,7 +6,7 @@ import { CourseEditorWrapperSelect } from './components';
 import { CourseEditorPaper } from './components/CourseEditorPaper';
 import { SelectCountry } from './SelectCountry';
 import { SelectCourse } from './SelectCourse';
-import { InlineDatePickerDemo } from './Calendar';
+import { InlineDatePicker } from './Calendar';
 import { SelectMultiRecruiter } from './SelectMultiRecruiter';
 
 export const CourseEditor: React.FC = () => {
@@ -26,7 +26,7 @@ export const CourseEditor: React.FC = () => {
 
 				<Box display="flex">
 					<Box mr={2}>
-						<InlineDatePickerDemo />
+						<InlineDatePicker />
 					</Box>
 					<Box flexGrow={1}>
 						<TextField

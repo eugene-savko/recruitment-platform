@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import { DATA_TABLE, FILTER_SELECTS, GLOBAL_FILTER_SELECT } from 'app/data/';
 // requests
 import { fetchInternships } from 'app/API/intenships';
-import { fetchFilterSelectOptions } from 'app/API/fetchFilterSelectOptions';
 // react table
 import {
 	useTable,
@@ -66,9 +65,6 @@ export const CandidateTable: React.FunctionComponent = () => {
 			ids: IdType<string | Extract<keyof IBodyRow, string>>[],
 			query: IFilterOption
 		) => {
-			console.log(ids);
-			console.log(query);
-
 			return rows;
 		},
 		[candidates]

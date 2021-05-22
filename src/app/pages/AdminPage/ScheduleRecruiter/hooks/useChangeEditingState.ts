@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
 import {
 	deleteAppointment,
@@ -6,6 +6,7 @@ import {
 	fetchListAppointments,
 	addedAppointment,
 } from 'app/API/scheduleRecruiter';
+import { AdminPanelContext } from 'app/context/AdminPanelContext';
 import { IUseChangeEditingState } from '../types';
 import { patchCurrentCandidate } from '../../../../API/scheduleRecruiter';
 import IListRecruiters from '../types/IListRecruiters';
@@ -14,6 +15,7 @@ export const useChangeEditingState = (
 	listRecruters: Array<IListRecruiters>
 ): IUseChangeEditingState => {
 	const [data, setData] = useState<Array<AppointmentModel>>([]);
+	const { userId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -70,9 +72,8 @@ export const useChangeEditingState = (
 				);
 				patchCurrentCandidate(
 					appointmentChanged,
-					21,
+					userId,
 					currentRecruiter.text
-					//! --------------------------------------------------------передача текущего кандидата
 				);
 			}
 

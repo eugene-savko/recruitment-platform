@@ -11,7 +11,7 @@ export const AdminPanelContext = createContext<IAdminPanelContext>({
 export const AdminPanelContextProvider: React.FunctionComponent<React.ReactNode> = ({
 	children,
 }) => {
-	const [userId, setUserId] = useState(0);
+	const [userId, setUserId] = useState(21);
 	return (
 		<AdminPanelContext.Provider value={{ userId, setUserId }}>
 			{children}

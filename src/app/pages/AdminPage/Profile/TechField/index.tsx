@@ -49,6 +49,7 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 		setCheckOut(false);
 		setIsShown(true);
 		setTimeout(() => setIsShown(false), 3000);
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const sendDataTech = {
 			feedbackTech,
 		};

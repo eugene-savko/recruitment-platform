@@ -3,15 +3,16 @@ import axios from 'axios';
 import { ICurrentCandidate } from 'app/pages/AdminPage/ScheduleRecruiter/types';
 import IListRecruiters from '../pages/AdminPage/ScheduleRecruiter/types/IListRecruiters';
 import IAddedAppointment from '../pages/AdminPage/ScheduleRecruiter/types/IAddedAppointment';
+import { API } from './axios';
+import { URL_INTERNSHIP_REQUEST } from './urls';
 
 export const fetchCurrentCandidate = async (
 	id: number
 ): Promise<ICurrentCandidate> => {
 	try {
-		const { data } = await axios({
-			url: `https://recruitment-platform.herokuapp.com/internship-request/${id}`,
+		const { data } = await API({
+			url: `${URL_INTERNSHIP_REQUEST}${id}`,
 			method: 'get',
-			withCredentials: true,
 		});
 		return data;
 	} catch (error) {

@@ -33,11 +33,11 @@
           "englishLevel": null,
           "fromUser": {
             "id": 24,
-            "firstName": "Ivan Graying",
+            "firstName": "Ann Reading",
             "lastName": "Green",
             "role": "RECRUITER"
           },
-          "startDateTime": 1621679400000,
+          "startDateTime": 1621839600000,
           "endDateTime": 1622460600000
         }
       ],
@@ -110,7 +110,85 @@
     }
   ],
   "schedulerData": [
-
-   
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621413000000,
+      "startDate": 1621411200000,
+      "id": 1
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621414800000,
+      "startDate": 1621413000000,
+      "id": 2
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621240200000,
+      "startDate": 1621238400000,
+      "id": 3
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621242000000,
+      "startDate": 1621240200000,
+      "id": 4
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621672200000,
+      "startDate": 1621670400000,
+      "id": 5
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621841400000,
+      "startDate": 1621839600000,
+      "id": 6
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621841400000,
+      "startDate": 1621839600000,
+      "id": 7
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621933200000,
+      "startDate": 1621931400000,
+      "id": 8
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621936800000,
+      "startDate": 1621935000000,
+      "id": 9
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621585800000,
+      "startDate": 1621584000000,
+      "id": 10
+    }
   ]
 }
