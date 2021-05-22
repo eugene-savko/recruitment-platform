@@ -17,9 +17,9 @@ public class CalendarSlotMapper implements BaseMapper<UserTime, CalendarSlotDto>
     public CalendarSlotDto toDto(UserTime userTime) {
         CalendarSlotDto calendarSlotDto = new CalendarSlotDto();
         calendarSlotDto.setId(userTime.getId());
-        calendarSlotDto.setCandidate(userTime.getInterview() == null ? "" :
-                userTime.getInterview().getToUser().getFirstName() + " " + userTime.getInterview().getToUser().getLastName());
-        calendarSlotDto.setRecruiterId(userTime.getUser().getId());
+        calendarSlotDto.setFirstName(userTime.getInterview() == null ? "" : userTime.getInterview().getToUser().getFirstName());
+        calendarSlotDto.setLastName(userTime.getInterview() == null ? "" : userTime.getInterview().getToUser().getLastName());
+        calendarSlotDto.setMembers(userTime.getUser().getId());
         calendarSlotDto.setStartDate(userTime.getStartDateTime());
         calendarSlotDto.setEndDate(userTime.getStartDateTime().plusMinutes(UserTimeServiceImpl.DURATION));
 

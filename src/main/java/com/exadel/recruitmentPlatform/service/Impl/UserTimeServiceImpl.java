@@ -17,10 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,14 +53,10 @@ public class UserTimeServiceImpl implements UserTimeService {
     }
 
     @Override
-    public List<CalendarSlotDto> getCalendarSlots(Long internshipId) {
-
-        Set<UserRole> userRoles = Set.of(UserRole.RECRUITER, UserRole.SPECIALIST);
+    public List<CalendarSlotDto> getCalendarSlots(UserRole userRole, Long internshipId) {
 
         return calendarSlotMapper.toDtos(userTimeRepository
-                .findByUserRolesAndUserIds(
-                        userRoles,
-                        userRepository.findUserIdsByInternshipId(internshipId)));
+                .findByUserIdIn(userRepository.findUserIdsByRoleAndInternshipsId(userRole, internshipId)));
     }
 
 }

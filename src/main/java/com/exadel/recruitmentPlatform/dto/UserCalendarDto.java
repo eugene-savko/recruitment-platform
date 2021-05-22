@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserCalendarDto extends BaseDto {
 
-    @JsonProperty("text")
-    private String name;
+    private String firstName;
+
+    private String lastName;
 }

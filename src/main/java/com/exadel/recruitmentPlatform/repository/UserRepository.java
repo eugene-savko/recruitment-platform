@@ -1,6 +1,5 @@
 package com.exadel.recruitmentPlatform.repository;
 
-import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -29,9 +28,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findByFilterParam(Pageable pageable, Long internshipId, List<Long> specialityIds,
                                  List<InternshipRequestStatus> statuses, String fullName);
 
-    @Query(value = "select u from Internship i join i.users u where i.id = :internshipId")
-    List<User> findUsersByInternshipId(Long internshipId);
+    List<User> findByRoleAndInternships_Id(UserRole userRole, Long internshipId);
 
-    @Query(value = "select u.id from Internship i join i.users u where i.id = :internshipId")
-    List<Long> findUserIdsByInternshipId(Long internshipId);
+    @Query(value = "select u.id from User u join u.internships i where u.role = :userRole and i.id = :internshipId")
+    List<Long> findUserIdsByRoleAndInternshipsId(UserRole userRole, Long internshipId);
 }

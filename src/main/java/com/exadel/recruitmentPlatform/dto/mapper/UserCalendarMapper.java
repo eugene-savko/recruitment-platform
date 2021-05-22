@@ -14,7 +14,8 @@ public class UserCalendarMapper implements BaseMapper<User, UserCalendarDto> {
     public UserCalendarDto toDto(User user) {
         UserCalendarDto userCalendarDto = new UserCalendarDto();
         userCalendarDto.setId(user.getId());
-        userCalendarDto.setName(user.getFirstName() + " " + user.getLastName());
+        userCalendarDto.setFirstName(user.getFirstName());
+        userCalendarDto.setLastName(user.getLastName());
         return userCalendarDto;
     }
 

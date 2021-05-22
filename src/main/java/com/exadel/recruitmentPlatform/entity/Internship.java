@@ -91,4 +91,14 @@ public class Internship extends BaseEntity {
         this.skills.add(skill);
         skill.getInternships().add(this);
     }
+
+    public void addUser(User user){
+        this.users.add(user);
+        user.getInternships().add(this);
+    }
+
+    public void addUsers(List<User> users){
+        this.users.addAll(users);
+        users.forEach(user -> user.getInternships().add(this));
+    }
 }

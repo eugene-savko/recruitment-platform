@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CalendarSlotDto extends BaseDto{
 
-    @JsonProperty("title")
-    private String candidate;
+    private String firstName;
 
-    @JsonProperty("members")
-    private Long recruiterId;
+    private String lastName;
+
+    private Long members;
 
     private LocalDateTime endDate;
 
