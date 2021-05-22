@@ -1,11 +1,11 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -18,9 +18,12 @@ public class CalendarSlotDto extends BaseDto{
 
     private String lastName;
 
+    @NotNull
     private Long members;
 
+    @NotNull
     private LocalDateTime endDate;
 
+    @NotNull
     private LocalDateTime startDate;
 }

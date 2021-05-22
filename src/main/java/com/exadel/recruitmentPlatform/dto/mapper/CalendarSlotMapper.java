@@ -26,6 +26,15 @@ public class CalendarSlotMapper implements BaseMapper<UserTime, CalendarSlotDto>
         return calendarSlotDto;
     }
 
+    @Override
+    public UserTime toEntity(CalendarSlotDto calendarSlotDto){
+        UserTime userTime = new UserTime();
+        userTime.setId(calendarSlotDto.getId());
+        userTime.setStartDateTime(calendarSlotDto.getStartDate());
+
+        return userTime;
+    }
+
     public List<CalendarSlotDto> toDtos(List<UserTime> userTimes){
         return userTimes.stream().map(this::toDto).collect(Collectors.toList());
     }

@@ -9,6 +9,7 @@ import com.exadel.recruitmentPlatform.entity.*;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.InterviewRepository;
+import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.EmailService;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
@@ -36,6 +37,7 @@ public class UserTimeServiceImpl implements UserTimeService {
     private final InterviewRepository interviewRepository;
     private final CalendarSlotMapper calendarSlotMapper;
     private final EmailService emailService;
+    private final UserRepository userRepository;
 
     @Override
     public List<UserTime> splitIntervalIntoSlots(TimeInterval timeInterval) {
@@ -111,5 +113,30 @@ public class UserTimeServiceImpl implements UserTimeService {
 
         return calendarSlotMapper.toDto(userTime);
 
+    }
+
+    @Override
+    public CalendarSlotDto save(CalendarSlotDto calendarSlotDto) {
+        UserTime userTime = calendarSlotMapper.toEntity(calendarSlotDto);
+
+        User user = userRepository.findById(calendarSlotDto.getMembers())
+                .orElseThrow(() -> new EntityNotFoundException("User with id=" + calendarSlotDto.getMembers() + " doesn't exist"));
+
+        userTime.setUser(user);
+        userTime.setStatus(SlotStatus.FREE);
+
+        if (userTime.getStartDateTime().isBefore(LocalDateTime.now())){
+            throw new ValidationException("Wrong date time interval, it is in the past");
+        }
+
+        if (!calendarSlotDto.getEndDate().toLocalDate().equals(userTime.getStartDateTime().toLocalDate())){
+            throw new ValidationException("Wrong date time interval, the interval must be kept in one day");
+        } else if(!calendarSlotDto.getEndDate().toLocalTime().truncatedTo(ChronoUnit.SECONDS)
+                .equals(userTime.getStartDateTime().plusMinutes(DURATION).toLocalTime().truncatedTo(ChronoUnit.SECONDS))){
+            throw new ValidationException("Wrong date time interval, interval's duration must be 30 minutes");
+        }
+
+        userTimeRepository.save(userTime);
+        return calendarSlotMapper.toDto(userTime);
     }
 }

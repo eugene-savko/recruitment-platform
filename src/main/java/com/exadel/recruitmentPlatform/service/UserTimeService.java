@@ -17,4 +17,6 @@ public interface UserTimeService {
 
     CalendarSlotDto update(InterviewAssignmentDto interviewAssignmentDto);
 
+    CalendarSlotDto save(CalendarSlotDto calendarSlotDto);
+
 }
