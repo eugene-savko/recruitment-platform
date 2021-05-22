@@ -85,4 +85,20 @@ public class Internship extends BaseEntity {
         this.skills.add(skill);
         skill.getInternships().add(this);
     }
+
+    @ManyToMany
+    @JoinTable(name = "internship_city",
+            joinColumns = @JoinColumn(name = "internship_id"),
+            inverseJoinColumns = @JoinColumn(name = "city_id"))
+    private List<City> cities=new LinkedList<>();
+
+    public void addCities (List <City> cities){
+        this.cities.addAll(cities);
+        cities.forEach(city -> city.getInternships().add(this));
+    }
+
+    public void addCity (City city){
+        this.cities.add(city);
+        city.getInternships().add(this);
+    }
 }

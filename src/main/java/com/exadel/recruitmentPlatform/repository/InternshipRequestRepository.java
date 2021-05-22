@@ -1,12 +1,8 @@
 package com.exadel.recruitmentPlatform.repository;
 
-import com.exadel.recruitmentPlatform.dto.InternshipRequestStatisticCommonDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestStatisticCountryDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestStatisticDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestStatisticSpecialityDto;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
+import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,4 +31,8 @@ public interface InternshipRequestRepository extends JpaRepository<InternshipReq
             "group by sp.name, ir.status", nativeQuery = true)
     List<InternshipRequestStatisticSpecialityDto> getInternshipStatisticBySpeciality();
 
+
+    Integer countAllByInternshipId(Long internshipId);
+
+    Integer countAllByStatusAndInternshipId(InternshipRequestStatus status, Long internshipId);
 }

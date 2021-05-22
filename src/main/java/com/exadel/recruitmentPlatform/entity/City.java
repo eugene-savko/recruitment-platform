@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Entity
@@ -18,4 +20,7 @@ import javax.persistence.Table;
 public class City extends BaseEntity {
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "cities")
+    private List<Internship> internships;
 }
