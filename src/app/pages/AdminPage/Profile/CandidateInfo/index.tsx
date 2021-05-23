@@ -94,7 +94,7 @@ const CandidateInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 						<ListItemIconCustom>
 							<LocationCitySharpIcon />
 						</ListItemIconCustom>
-						<ListItemTextCustom title="Location.city" secondary={info.city} />
+						<ListItemTextCustom title="Location city" secondary={info.city} />
 					</ListItem>
 
 					<ListItem>

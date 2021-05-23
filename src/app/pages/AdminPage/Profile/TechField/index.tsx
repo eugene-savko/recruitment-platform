@@ -111,7 +111,11 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 					/>
 					<ContainerBth>
 						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
-							<ButtonMaterial variant="outlined" color="primary">
+							<ButtonMaterial
+								variant="outlined"
+								color="primary"
+								title="Schedule Tech"
+							>
 								Schedule
 							</ButtonMaterial>
 						</Link>

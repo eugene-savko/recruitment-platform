@@ -112,7 +112,11 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					/>
 					<ContainerBth>
 						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
-							<ButtonMaterial variant="outlined" color="primary">
+							<ButtonMaterial
+								variant="outlined"
+								color="primary"
+								title="Schedule Recruiter"
+							>
 								Schedule
 							</ButtonMaterial>
 						</Link>
@@ -129,6 +133,10 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						</Select>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Save feedback
+						</ButtonMaterial>
+
+						<ButtonMaterial variant="outlined" color="primary">
+							interview passed
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
