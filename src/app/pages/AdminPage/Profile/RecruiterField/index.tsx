@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
@@ -25,6 +25,7 @@ import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
 	feedbackContent: IFeedbackInfo;
+	role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -40,17 +41,25 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
+	role,
 }) => {
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState('');
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState<
+		string | undefined
+	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
-	if (feedbackContent === undefined) {
-		setFeedbackRecruiter('');
-	} else {
-		const { feedback } = feedbackContent;
-		console.log(feedback);
-	}
+	console.log('COM RecruiterField. Role - ', role);
+
+	useEffect(() => {
+		if (feedbackContent === undefined) {
+			setFeedbackRecruiter('');
+		} else {
+			const { feedback } = feedbackContent;
+			console.log('COM RecruiterField. Recruiter feedback - ', feedback);
+			setFeedbackRecruiter(feedback);
+		}
+	}, [feedbackContent]);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackRecruiter(event.target.value);
@@ -59,23 +68,26 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 
 	const onSubmit = (data: IFormFields) => {
 		const { levelEnglishRecruiter } = data;
+		console.log(levelEnglishRecruiter);
 		const sendDataRecruiter = {
 			id: feedbackContent.id as number,
 			feedback: feedbackRecruiter as string,
-			englishLevel: levelEnglishRecruiter as string,
+			// englishLevel: levelEnglishRecruiter as string,
 		};
 
 		const putUpdateFeedback = async () => {
 			try {
-				// eslint-disable-next-line no-console
-				console.log(sendDataRecruiter);
+				console.log(
+					'COM RecruiterField. sendDataRecruiter -',
+					sendDataRecruiter
+				);
 				await updateFeedback(sendDataRecruiter);
 				setCheckOut(false);
 				setIsShown(true);
 				setTimeout(() => setIsShown(false), 3000);
 			} catch (e) {
 				// eslint-disable-next-line no-console
-				console.log('Error message - ', e.message);
+				console.log('COM RecruiterField.Error message - ', e.message);
 			}
 		};
 		putUpdateFeedback();
@@ -93,7 +105,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						name="feedbackRecruiter"
 						rows={12}
 						multiline
-						value={feedbackRecruiter || ''}
+						value={feedbackRecruiter}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"

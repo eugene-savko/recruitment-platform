@@ -4,9 +4,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import getProfile from 'app/API/getProfile';
 import { Link } from 'react-router-dom';
 import { authContext } from 'app/context/AuthLoggedContext';
-import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
+import { MainFields, ProfileContainer, SidebarInfo } from './components';
 
 // components
+import AdminField from './AdminField';
 import ArrowBack from './ArrowBack';
 import RecruiterField from './RecruiterField';
 import TechField from './TechField';
@@ -39,24 +40,25 @@ export const Profile: React.FunctionComponent = () => {
 
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
-	console.log(role);
+	console.log('start profile role - ', role);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const data = await getProfile(40);
 			setUser(data);
-			// eslint-disable-next-line no-console
-			console.log(data);
+			console.log('Data from server - ', data);
 			const { interviews } = data;
-			console.log(interviews.length);
+
 			if (interviews.length === 0) {
 				setFeedbackInfo(feedbackDeafult);
 			} else if (interviews.length === 1) {
 				setFeedbackRecruiter(interviews[0]);
 				setFeedbackTech(feedbackDeafult[0]);
+				setFeedbackInfo([interviews[0], feedbackDeafult[0]]);
 			} else {
 				setFeedbackRecruiter(interviews[0]);
 				setFeedbackTech(interviews[1]);
+				setFeedbackInfo(interviews);
 			}
 			setIsFetching(true);
 		};
@@ -78,13 +80,15 @@ export const Profile: React.FunctionComponent = () => {
 						<CandidateInfo info={user} />
 						<InterviewInfo info={feedbackInfo} />
 					</SidebarInfo>
-					<AdminsFields>
+					<MainFields>
 						<RecruiterField
+							role={role}
 							englishLevel={listEnglishLevel}
 							feedbackContent={feedbackRecruiter}
 						/>
 						<TechField role={role} feedbackContent={feedbackTech} />
-					</AdminsFields>
+						<AdminField />
+					</MainFields>
 				</ProfileContainer>
 			)}
 		</React.Fragment>

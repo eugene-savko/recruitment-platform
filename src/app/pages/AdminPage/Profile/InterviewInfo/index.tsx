@@ -20,28 +20,17 @@ interface IInfoProps {
 	info: Array<IFeedbackInfo>;
 }
 
+const chekDate = (time: number | null) =>
+	typeof time === 'number'
+		? dateFormat(new Date(time), 'dd/mm/yy - HH:MM')
+		: '';
+
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
 	const timeInterviewRecruter = info[0].startDateTime;
-	console.log(typeof timeInterviewRecruter === 'number', timeInterviewRecruter);
-	let formatTimeInterviewRecruter = '';
-	if (typeof timeInterviewRecruter === 'number') {
-		formatTimeInterviewRecruter = dateFormat(
-			new Date(timeInterviewRecruter),
-			'dd/mm/yy - HH:MM'
-		);
-	}
+	const formatTimeInterviewRecruter = chekDate(timeInterviewRecruter);
 
-	const timeInterviewTech = info[1].startDateTime || null;
-	console.log(typeof timeInterviewTech === 'number', timeInterviewTech);
-	let formatTimeInterviewTech = '';
-	if (typeof timeInterviewTech === 'number') {
-		formatTimeInterviewTech = dateFormat(
-			new Date(timeInterviewTech),
-			'dd/mm/yy - HH:MM'
-		);
-	} else {
-		formatTimeInterviewTech = '';
-	}
+	const timeInterviewTech = info[1].startDateTime;
+	const formatTimeInterviewTech = chekDate(timeInterviewTech);
 
 	const fullNameRecruiter = `${info[0].fromUser.firstName} ${info[0].fromUser.lastName}`;
 	const fullNameTech = `${info[1].fromUser.firstName} ${info[1].fromUser.lastName}`;

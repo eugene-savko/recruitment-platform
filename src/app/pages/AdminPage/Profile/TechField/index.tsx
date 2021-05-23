@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
@@ -43,21 +43,26 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	// const [areaDisabled, setAreaDisabled] = useState(false);
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackTech, setFeedbackTech] = useState('');
+	const [feedbackTech, setFeedbackTech] = useState<string | undefined>('');
 	const { handleSubmit } = useForm<IFormFields>();
-	if (feedbackContent === undefined) {
-		setFeedbackTech('');
-	} else {
-		const { feedback } = feedbackContent;
-		console.log(feedback);
-		// setFeedbackTech(feedback);
-	}
+	console.log('COM TechField. Role - ', role);
 
-	// if (role === 'SPECIALIST') {
-	console.log('specialist', role);
-	// 	setAreaDisabled(false);
+	useEffect(() => {
+		if (feedbackContent === undefined) {
+			setFeedbackTech(' ');
+		} else {
+			const { feedback } = feedbackContent;
+			console.log('COM TechField. Tech feedback - ', feedback);
+			setFeedbackTech(feedback);
+		}
+	}, [feedbackContent]);
+
+	// if (role === 'RECRUITER') {
+	// setAreaDisabled(true);
 	// } else if (role === 'ADMIN' || role === 'RECRUITER') {
 	// 	setAreaDisabled(true);
+	// } else {
+	// setAreaDisabled(false);
 	// }
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,8 +78,7 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 
 		const putUpdateFeedback = async () => {
 			try {
-				// eslint-disable-next-line no-console
-				console.log(sendDataTech);
+				console.log('COM TechField. sendDataTech - ', sendDataTech);
 				await updateFeedback(sendDataTech);
 				setCheckOut(false);
 				setIsShown(true);
@@ -100,7 +104,7 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 						name="feedbackTech"
 						rows={12}
 						multiline
-						value={feedbackTech || ''}
+						value={feedbackTech}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AdminsFields = styled.div`
+const MainFields = styled.div`
 	display: flex;
 	flex-shrink: 80%;
 	flex-basis: 80%;
@@ -10,4 +10,4 @@ const AdminsFields = styled.div`
 	margin: 10px;
 `;
 
-export default AdminsFields;
+export default MainFields;
