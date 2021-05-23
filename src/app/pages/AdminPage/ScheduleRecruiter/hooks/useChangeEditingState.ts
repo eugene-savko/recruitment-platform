@@ -5,11 +5,10 @@ import {
 	putAppointment,
 	fetchListAppointments,
 	addedAppointment,
+	patchCurrentCandidate,
 } from 'app/API/scheduleRecruiter';
 import { AdminPanelContext } from 'app/context/AdminPanelContext';
-import { IUseChangeEditingState } from '../types';
-import { patchCurrentCandidate } from '../../../../API/scheduleRecruiter';
-import IListRecruiters from '../types/IListRecruiters';
+import { IUseChangeEditingState, IListRecruiters } from '../types';
 
 export const useChangeEditingState = (
 	listRecruters: Array<IListRecruiters>
