@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { DATA_TABLE, FILTER_SELECTS, GLOBAL_FILTER_SELECT } from 'app/data/';
 // requests
 import { fetchInternships } from 'app/API/intenships';
-import { fetchFilterSelectOptions } from 'app/API/fetchFilterSelectOptions';
+
 // react table
 import {
 	useTable,
