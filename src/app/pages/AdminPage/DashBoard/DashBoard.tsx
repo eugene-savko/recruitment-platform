@@ -1,39 +1,9 @@
 import React from 'react';
+import parse from 'html-react-parser';
 
-export const DashBoard: React.FunctionComponent = () => (
-	<div>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-		necessitatibus, quae totam ipsa dolores culpa in. Assumenda ex nobis odit
-		maxime. Ullam recusandae natus illum dolor, tenetur, nostrum totam
-		repellendus laudantium maxime omnis quibusdam facere assumenda odio ut
-		impedit rerum commodi! Officia culpa harum autem nobis corrupti architecto
-		temporibus nostrum non, nam magni ea obcaecati corporis repellat, quae illo
-		explicabo eligendi, laboriosam nihil ipsa amet beatae exercitationem animi!
-		Fugiat id, magni cum corporis maxime vel exercitationem laudantium aliquam
-		delectus nemo, alias pariatur optio aut. Est modi nihil ad similique magni
-		nesciunt corporis voluptate cupiditate quo aperiam. Non repellat rerum at
-		earum culpa, repellendus ratione sed libero voluptas exercitationem
-		perspiciatis temporibus illum architecto fugit saepe! Quia nisi repudiandae
-		neque tempora aliquam quidem, ducimus pariatur perspiciatis iusto quasi
-		dolores veritatis tempore asperiores fugit aut repellat minima impedit. Nam
-		inventore, quidem illo, harum debitis dolorum aliquam pariatur consectetur
-		velit architecto cum. Dignissimos excepturi ipsa quia facilis voluptatum
-		numquam officiis natus repellat molestias quaerat, blanditiis assumenda
-		debitis voluptates error deleniti aperiam eos unde. Aspernatur dicta
-		perspiciatis nesciunt hic soluta. Provident enim sit, exercitationem
-		aspernatur aliquid temporibus, minus non saepe ratione numquam accusamus
-		neque eligendi veniam. Ea veniam placeat, iste voluptatibus perferendis
-		sapiente facere libero? Ex at assumenda, consequuntur quasi dolorem placeat,
-		iusto accusamus vitae, architecto recusandae nihil magnam reprehenderit
-		deleniti deserunt officiis! Excepturi quae dolorem quisquam deleniti. Rerum
-		nesciunt quia animi corporis exercitationem sint, consequuntur, explicabo
-		perspiciatis, neque vitae in ab. Veniam culpa iure quam doloremque,
-		repellendus voluptatem. Cupiditate labore, molestias doloremque itaque
-		dolores ullam possimus voluptate ducimus, deserunt ea dolore at. Optio
-		dolore sunt labore fugiat iusto eum, ea eveniet nihil eius, quia
-		exercitationem ipsum iste ad. Minus voluptatem ex ducimus aliquam,
-		aspernatur repellendus ut quibusdam blanditiis vitae omnis ipsum eius
-		exercitationem illum aliquid laborum sunt facere quaerat nam reprehenderit
-		dolores ab iste.
-	</div>
-);
+export const DashBoard: React.FunctionComponent = () => {
+	const page =
+		'<p style="text-align:start;"></p> <p style="margin-left:0px;"><br>Belarus:  Brest, Gomel, Grodno, Minsk, Vitebsk</p> <p style="margin-left:0px;">Poland:  Bialystok, Szczecin, Warsaw</p> <p style="margin-left:0px;">Russia:  Chelyabinsk, Yekaterinburg</p> <p style="margin-left:0px;">Georgia:  Tbilisi</p> <p style="margin-left:0px;">Ukraine:  Kharkiv, Lviv, Odessa, Vinnytsia</p> <p style="margin-left:0px;">Lithuania:  Vilnius</p> <p style="margin-left:0px;">Uzbekistan:  Tashkent</p> <p style="text-align:start;"></p> <p style="margin-left:0px;"></p> <p style="margin-left:0px;">We are currently looking for a Middle DevOps Engineer (AWS) to join our team!</p> <p style="margin-left:0px;">Work at Exadel – Who We Are:<br>Since 1998, Exadel has been engineering its own software products and custom software for clients of all sizes. Headquartered in Walnut Creek, California, Exadel currently has 1000+ employees in development centers across America, Europe, and Asia. Our people drive Exadel’s success, and they are at the core of our values, so Exadel is a people-first cultured company.</p> <p style="margin-left:0px;">About Our Customer:<br>The customer provides products for mobile app solutions, effortless payment, paratransit, business travel, and advertising that reaches captive audiences of millions and traces its history of success back to 1992. They are creating a comprehensive mobility platform for operators to efficiently manage their vehicles and drivers, for regulators to be informed and establish guidelines, for service providers to deliver sustainable, future-proof solutions, and for riders to have an effortless transit experience.</p> <p style="margin-left:0px;">About the Project:<br>The project is a taxi ordering service. The user can hail a taxi and monitor its arrival, pay for a ride, and see their own trip history. The system contains the following components:</p> <ul> <li style="margin-left:55px;">ride server (all data processing)</li> <li style="margin-left:55px;">payment server (PCI DSS-compliant) which performs a transaction with the passenger’s digital wallet and payment gateways</li> <li style="margin-left:55px;">mobile application (hail taxi, geocoding, map, payments)</li> <li style="margin-left:55px;">taxi terminal (3rd party)</li> </ul> <p style="margin-left:0px;">Project Team:<br>When you join our team, you’ll be immersed in a culture where teammates always help each other achieve better results. We believe that together we are greater and that we can find brilliant solutions by sharing ideas.</p> <p style="margin-left:0px;">Requirements:</p> <ul> <li style="margin-left:55px;">More than 2 years of IT Experience</li> <li style="margin-left:55px;">Solid knowledge of AWS</li> <li style="margin-left:55px;">Hands-on experience with MySQL, K8s, Ruby apps, Java apps</li> <li style="margin-left:55px;">Experience with Jenkins pipeline, RDS, AWS Lambda, DynamoDB, AWS SQS etc.</li> <li style="margin-left:55px;">Experience implementing solutions that meet today’s information security requirements</li> <li style="margin-left:55px;">СI/CD</li> <li style="margin-left:55px;">Excellent communication and presentation skills</li> </ul> <p style="margin-left:0px;">English level:<br>Intermediate</p> <p style="margin-left:0px;">Responsibilities:</p> <ul></ul> <li style="margin-left:55px;">Maintaining in-depth knowledge of the AWS cloud platform, providing detailed advice regarding its application and executing specialized tasks</li> <li style="margin-left:55px;">Platform monitoring 24/7</li> <li style="margin-left:55px;">AWS cloud management (MySQL, K8s, Ruby apps, Java apps, Jenkins pipeline, RDS, AWS Lambda, DynamoDB, AWS SQS etc.)</li> <li style="margin-left:55px;">Implementing CI/CD for Java/Ruby apps</li> <li style="margin-left:55px;">Migrate existing Ruby/Java apps to containers</li> </ul> <p style="margin-left:0px;">Advantages of Working with Exadel:</p> <ul> <li style="margin-left:55px;">You can build your expertise with our Sales Support team, who provide assistance with existing and potential projects</li> <li style="margin-left:55px;">You can join any Exadel Community or create your own to communicate with like-minded colleagues</li> <li style="margin-left:55px;">You can participate in continuing education as a mentor or speaker</li> <li style="margin-left:55px;">You can take part in internal and external meetups as a speaker or listener. We support you in broadening your horizons and encourage knowledge sharing for all of our employees.</li> <li style="margin-left:55px;">You can learn English with the support of native speakers</li> <li style="margin-left:55px;">You can take part in cultural, sporting, charity, and entertainment events</li> <li style="margin-left:55px;">Working at Exadel means always upgrading your skills and proficiency, so we provide plenty of opportunities for professional development. If you’re looking for a challenge that will lead you to the next level of your career, you’ve found the right place.</li> <li style="margin-left:55px;">We work hard to ensure honest and open relations between employees and leadership, so our offices are friendly environments.&nbsp;</li> </ul>';
+
+	return <div>{parse(page)}</div>;
+};

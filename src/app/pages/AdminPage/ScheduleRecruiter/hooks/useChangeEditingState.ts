@@ -8,6 +8,7 @@ import {
 	patchCurrentCandidate,
 } from 'app/API/scheduleRecruiter';
 import { AdminPanelContext } from 'app/context/AdminPanelContext';
+import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
 import { IUseChangeEditingState, IListRecruiters } from '../types';
 
 export const useChangeEditingState = (
@@ -15,14 +16,16 @@ export const useChangeEditingState = (
 ): IUseChangeEditingState => {
 	const [data, setData] = useState<Array<AppointmentModel>>([]);
 	const { userId } = useContext(AdminPanelContext);
+	const { switchedRole } = useContext(SwitcherRolesContext);
+	//! -----------------------------------------------------------pass role
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const listAppointments = await fetchListAppointments();
+			const listAppointments = await fetchListAppointments(switchedRole, 1);
 			setData(listAppointments);
 		};
 		fetchData();
-	}, []);
+	}, [switchedRole]);
 
 	const commitChanges = useCallback(
 		({ added, changed, deleted }: ChangeSet) => {
@@ -36,7 +39,11 @@ export const useChangeEditingState = (
 				};
 
 				const addedAppointmentAndRefreshDadaAppointment = async () => {
-					const addedAppointmentFromServer = await addedAppointment(addedData);
+					const addedAppointmentFromServer = await addedAppointment(
+						addedData,
+						switchedRole,
+						1
+					);
 					const dataAdded = [...data, { ...addedAppointmentFromServer }];
 					setData(dataAdded);
 				};
@@ -63,7 +70,7 @@ export const useChangeEditingState = (
 						: appointment;
 				});
 
-				putAppointment(appointmentChanged);
+				putAppointment(switchedRole, 1, appointmentChanged);
 
 				const [currentRecruiter] = listRecruters.filter(
 					(recruiter: IListRecruiters) =>

@@ -27,7 +27,7 @@ import {
 	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { fetchListRecruiters } from 'app/API/scheduleRecruiter';
+import { fetchListInterviewers } from 'app/API/scheduleRecruiter';
 import { authContext } from 'app/context/AuthLoggedContext';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
@@ -38,21 +38,14 @@ import IListRecruiters from './types/IListRecruiters';
 import { FlexibleSpace } from './hoc/FlexibleSpace';
 import Preloader from '../components/Preloader';
 import { AppointmentExpared } from './hoc/AppointmentExpared';
+import { SwitcherRolesContext } from '../../../context/SwitcherRolesContext';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const [loading, setLoading] = useState(true);
+	const { switchedRole } = useContext(SwitcherRolesContext);
 	const [useListRecruters, setUseListRecruiters] = useState<IListRecruiters[]>(
 		[]
 	);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const listRecruiter = await fetchListRecruiters();
-			setUseListRecruiters(listRecruiter);
-			setLoading(false);
-		};
-		fetchData();
-	}, []);
 
 	const { commitChanges, data } = useChangeEditingState(useListRecruters);
 	const { auth } = useContext(authContext);
@@ -73,6 +66,16 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	];
 
 	const grouping: Array<Grouping> = [{ resourceName: 'members' }];
+	//! -----------------------------------------------------------pass role
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const listRecruiter = await fetchListInterviewers(switchedRole);
+			setUseListRecruiters(listRecruiter);
+			setLoading(false);
+		};
+		fetchData();
+	}, [switchedRole]);
 
 	if (loading) {
 		return (

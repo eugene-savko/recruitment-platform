@@ -20,40 +20,43 @@ export const fetchCurrentCandidate = async (
 	}
 };
 
-export const fetchListRecruiters = async (): Promise<
-	Array<IListRecruiters>
-> => {
+export const fetchListInterviewers = async (
+	role: string
+): Promise<Array<IListRecruiters>> => {
 	try {
 		const { data } = await axios({
-			url: 'http://localhost:4000/recruiters',
+			url: `http://localhost:4000/${role}`,
 			method: 'get',
 		});
 		return data;
 	} catch (error) {
-		throw new Error('You did not receive list of recruiter');
+		throw new Error('You did not receive list of interviewers');
 	}
 };
 
-export const fetchListAppointments = async (): Promise<
-	Array<AppointmentModel>
-> => {
+export const fetchListAppointments = async (
+	role: string,
+	internshipid: number
+): Promise<Array<AppointmentModel>> => {
 	try {
 		const { data } = await axios({
-			url: 'http://localhost:4000/schedulerData',
+			url: `http://localhost:4000/scheduler${role}${internshipid}`,
 			method: 'get',
 		});
 		return data;
 	} catch (error) {
-		throw new Error('You did not receive list of recruiter');
+		throw new Error('You did not receive list of appointments');
 	}
 };
 
 export const addedAppointment = async (
-	addedData: IAddedAppointment
+	addedData: IAddedAppointment,
+	role: string,
+	internshipid: number
 ): Promise<IAddedAppointment> => {
 	try {
 		const { data } = await axios({
-			url: 'http://localhost:4000/schedulerData',
+			url: `http://localhost:4000/scheduler${role}${internshipid}`,
 			method: 'post',
 			data: {
 				...addedData,
@@ -130,11 +133,13 @@ export const patchCurrentCandidate = async (
 };
 
 export const putAppointment = async (
+	role: string,
+	internshipid: number,
 	dataToServerChange: AppointmentModel
 ): Promise<AppointmentModel> => {
 	try {
 		const { data } = await axios({
-			url: `http://localhost:4000/schedulerData/${dataToServerChange.id}`,
+			url: `http://localhost:4000/scheduler${role}${internshipid}/${dataToServerChange.id}`,
 			method: 'put',
 			data: {
 				...dataToServerChange,
@@ -146,7 +151,6 @@ export const putAppointment = async (
 		throw new Error('You do not change appointment');
 	}
 };
-// todo преписать на пустую строку
 export const deleteAppointment = async (
 	appointment: AppointmentModel
 ): Promise<void> => {

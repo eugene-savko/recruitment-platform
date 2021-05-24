@@ -33,11 +33,11 @@
           "englishLevel": null,
           "fromUser": {
             "id": 24,
-            "firstName": "Ivan Graying",
+            "firstName": "Ann Reading",
             "lastName": "Green",
             "role": "RECRUITER"
           },
-          "startDateTime": 1622104200000,
+          "startDateTime": 1621931400000,
           "endDateTime": 1622460600000
         }
       ],
@@ -87,7 +87,7 @@
       "recruiterInterview": "Ann Reading"
     }
   ],
-  "recruiters": [
+  "RECRUITERS": [
     {
       "id": 1,
       "text": "Ivan Graying",
@@ -109,7 +109,29 @@
       "color": "blue"
     }
   ],
-  "schedulerData": [
+  "SPECIALISTS": [
+    {
+      "id": 1,
+      "text": "Capitan America",
+      "color": "indigo"
+    },
+    {
+      "id": 2,
+      "color": "teal",
+      "text": "Doctor Strange"
+    },
+    {
+      "id": 3,
+      "color": "purple",
+      "text": "Black Widow"
+    },
+    {
+      "id": 4,
+      "text": "Iron Man",
+      "color": "blue"
+    }
+  ],
+  "schedulerRECRUITERS1": [
     {
       "title": "Julia Red",
       "allDay": false,
@@ -183,7 +205,7 @@
       "id": 10
     },
     {
-      "title": "",
+      "title": "Julia Red",
       "allDay": false,
       "members": 1,
       "endDate": 1622192400000,
@@ -237,6 +259,72 @@
       "endDate": 1622106000000,
       "startDate": 1622104200000,
       "id": 27
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1622277000000,
+      "startDate": 1622275200000,
+      "id": 28
+    }
+  ],
+  "schedulerSPECIALISTS1": [
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621413000000,
+      "startDate": 1621411200000,
+      "id": 1
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1622188800000,
+      "startDate": 1622187000000,
+      "id": 2
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1622280600000,
+      "startDate": 1622278800000,
+      "id": 3
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1622275200000,
+      "startDate": 1622273400000,
+      "id": 4
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1622277000000,
+      "startDate": 1622275200000,
+      "id": 5
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621843200000,
+      "startDate": 1621841400000,
+      "id": 6
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 2,
+      "endDate": 1621933200000,
+      "startDate": 1621931400000,
+      "id": 7
     }
   ]
 }

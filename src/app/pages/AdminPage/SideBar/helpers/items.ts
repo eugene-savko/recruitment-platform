@@ -65,6 +65,7 @@ export const menuItemsTechSpecialist: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	profile,
+	scheduleRecruiter,
 	scheduleTechSpecialist,
 ];
 

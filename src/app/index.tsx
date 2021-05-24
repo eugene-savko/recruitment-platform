@@ -5,6 +5,7 @@ import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
 import { AdminPanelContextProvider } from './context/AdminPanelContext';
+import { SwitcherRolesProvider } from './context/SwitcherRolesContext';
 
 export const App: React.FunctionComponent = () => {
 	return (
@@ -15,7 +16,9 @@ export const App: React.FunctionComponent = () => {
 					<Route path="/login" component={AuthPage} />
 					<PrivateRouteAuthAdminPage path="/">
 						<AdminPanelContextProvider>
-							<AdminPage />
+							<SwitcherRolesProvider>
+								<AdminPage />
+							</SwitcherRolesProvider>
 						</AdminPanelContextProvider>
 					</PrivateRouteAuthAdminPage>
 				</Switch>

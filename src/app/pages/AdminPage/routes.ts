@@ -81,6 +81,7 @@ export const routesTechSpecialist: Array<IRoute> = [
 	dashboard,
 	tableCandidates,
 	profile,
+	scheduleRecruiter,
 	schedulerTechSpecialist,
 	homePage,
 ];
