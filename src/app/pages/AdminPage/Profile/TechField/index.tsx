@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
+import { authContext } from 'app/context/AuthLoggedContext';
 
 // API
 import updateFeedback from 'app/API/updateFeedback';
@@ -22,8 +23,8 @@ import {
 import { IFormFields, IFeedbackInfo } from '../types';
 
 interface ITechFieldProps {
-	feedbackContent: IFeedbackInfo;
-	role: string;
+	feedbackContent: Array<IFeedbackInfo>;
+	// role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -36,33 +37,38 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 		: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
 };
 
+const checkRole = () => {
+	const { auth } = useContext(authContext);
+	return auth.dataRole?.role as string;
+};
+
 const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	feedbackContent,
-	role,
+	// role,
 }) => {
-	// const [areaDisabled, setAreaDisabled] = useState(false);
+	const [areaDisabled, setAreaDisabled] = useState(false);
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackTech, setFeedbackTech] = useState<string | undefined>('');
 	const { handleSubmit } = useForm<IFormFields>();
-	console.log('COM TechField. Role - ', role);
+	const role = checkRole();
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
 			setFeedbackTech(' ');
 		} else {
-			const { feedback } = feedbackContent;
-			console.log('COM TechField. Tech feedback - ', feedback);
+			const { feedback } =
+				feedbackContent[0].fromUser.role === 'SPECIALIST'
+					? feedbackContent[0]
+					: feedbackContent[1];
 			setFeedbackTech(feedback);
 		}
-	}, [feedbackContent]);
+	}, []);
 
-	// if (role === 'RECRUITER') {
-	// setAreaDisabled(true);
-	// } else if (role === 'ADMIN' || role === 'RECRUITER') {
+	// console.log('COM TechField. Role - ', role);
+
+	// if (role === 'ADMIN') {
 	// 	setAreaDisabled(true);
-	// } else {
-	// setAreaDisabled(false);
 	// }
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,13 +78,15 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 
 	const onSubmit = () => {
 		const sendDataTech = {
-			id: feedbackContent.id as number,
+			id:
+				feedbackContent[0].fromUser.role === 'SPECIALIST'
+					? feedbackContent[0].id
+					: (feedbackContent[1].id as number),
 			feedback: feedbackTech as string,
 		};
 
 		const putUpdateFeedback = async () => {
 			try {
-				console.log('COM TechField. sendDataTech - ', sendDataTech);
 				await updateFeedback(sendDataTech);
 				setCheckOut(false);
 				setIsShown(true);
@@ -98,7 +106,7 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 				<Title>Tech field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
 					<FeedbackField
-						// disabled={areaDisabled}
+						disabled={areaDisabled}
 						label="Feedback"
 						id="feedback-tech"
 						name="feedbackTech"

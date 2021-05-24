@@ -24,8 +24,8 @@ import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
-	feedbackContent: IFeedbackInfo;
-	role: string;
+	feedbackContent: Array<IFeedbackInfo>;
+	// role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -41,25 +41,28 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
-	role,
+	// role,
 }) => {
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
+
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState<
 		string | undefined
 	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
-	console.log('COM RecruiterField. Role - ', role);
+	// console.log('COM RecruiterField. Role - ', role);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
 			setFeedbackRecruiter('');
 		} else {
-			const { feedback } = feedbackContent;
-			console.log('COM RecruiterField. Recruiter feedback - ', feedback);
+			const { feedback } =
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0]
+					: feedbackContent[1];
 			setFeedbackRecruiter(feedback);
 		}
-	}, [feedbackContent]);
+	}, []);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackRecruiter(event.target.value);
@@ -68,19 +71,17 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 
 	const onSubmit = (data: IFormFields) => {
 		const { levelEnglishRecruiter } = data;
-		console.log(levelEnglishRecruiter);
 		const sendDataRecruiter = {
-			id: feedbackContent.id as number,
+			id:
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0].id
+					: (feedbackContent[1].id as number),
 			feedback: feedbackRecruiter as string,
 			// englishLevel: levelEnglishRecruiter as string,
 		};
 
 		const putUpdateFeedback = async () => {
 			try {
-				console.log(
-					'COM RecruiterField. sendDataRecruiter -',
-					sendDataRecruiter
-				);
 				await updateFeedback(sendDataRecruiter);
 				setCheckOut(false);
 				setIsShown(true);

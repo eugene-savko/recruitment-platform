@@ -1,5 +1,5 @@
 interface IFeedbackInfo {
-	id?: number;
+	id: number;
 	feedback?: string;
 	englishLevel?: null | string;
 	fromUser: {

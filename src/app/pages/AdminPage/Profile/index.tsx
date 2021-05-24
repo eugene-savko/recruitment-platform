@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+// api
+import getProfile from 'app/API/getProfile';
+
+// context
+import { AdminPanelContext } from 'app/context/AdminPanelContext';
 
 // style
-import getProfile from 'app/API/getProfile';
-import { Link } from 'react-router-dom';
-import { authContext } from 'app/context/AuthLoggedContext';
 import { MainFields, ProfileContainer, SidebarInfo } from './components';
 
 // components
@@ -29,35 +33,21 @@ export const Profile: React.FunctionComponent = () => {
 	const [feedbackInfo, setFeedbackInfo] = useState<Array<IFeedbackInfo>>(
 		feedbackDeafult
 	);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState<IFeedbackInfo>(
-		feedbackDeafult[0]
-	);
-	const [feedbackTech, setFeedbackTech] = useState<IFeedbackInfo>(
-		feedbackDeafult[1]
-	);
 	const [user, setUser] = useState<IUserInfo>(userDefault);
 	const [isFetching, setIsFetching] = useState(false);
-
-	const { auth } = useContext(authContext);
-	const role = auth.dataRole?.role as string;
-	console.log('start profile role - ', role);
+	const { userId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
+		// console.log(userId);
 		const fetchData = async () => {
-			const data = await getProfile(40);
+			const data = await getProfile(userId);
 			setUser(data);
-			console.log('Data from server - ', data);
 			const { interviews } = data;
-
 			if (interviews.length === 0) {
 				setFeedbackInfo(feedbackDeafult);
 			} else if (interviews.length === 1) {
-				setFeedbackRecruiter(interviews[0]);
-				setFeedbackTech(feedbackDeafult[0]);
 				setFeedbackInfo([interviews[0], feedbackDeafult[0]]);
 			} else {
-				setFeedbackRecruiter(interviews[0]);
-				setFeedbackTech(interviews[1]);
 				setFeedbackInfo(interviews);
 			}
 			setIsFetching(true);
@@ -82,11 +72,13 @@ export const Profile: React.FunctionComponent = () => {
 					</SidebarInfo>
 					<MainFields>
 						<RecruiterField
-							role={role}
 							englishLevel={listEnglishLevel}
-							feedbackContent={feedbackRecruiter}
+							feedbackContent={feedbackInfo}
 						/>
-						<TechField role={role} feedbackContent={feedbackTech} />
+						<TechField
+							// role={role}
+							feedbackContent={feedbackInfo}
+						/>
 						<AdminField />
 					</MainFields>
 				</ProfileContainer>
