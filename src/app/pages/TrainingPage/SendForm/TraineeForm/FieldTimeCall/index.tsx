@@ -3,40 +3,41 @@ import React, { useState, useEffect } from 'react';
 import { fetchTimeStamp } from 'app/API/timeInterval';
 import { TimeStampArr } from '../../data/listTimeForCall';
 
-import { IFieldTimeCall, ITimeStamp } from '../../types';
+import { IFieldTimeCall, ITimeCall } from '../../types';
 import { InputTimeCall, SelectWrapper, Select } from '../components';
 import LabelTimeCall from '../components/LabelTimeCall';
 
 export const FieldTimeCall: React.FunctionComponent<IFieldTimeCall> = ({
 	register,
 }) => {
-	const [timeCall, setTimeCall] = useState<Array<ITimeStamp>>([]);
+	const [timeCall, setTimeCall] = useState<Array<ITimeCall>>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
+			let data;
+
 			try {
-				const data = await fetchTimeStamp();
-				setTimeCall(data);
+				data = await fetchTimeStamp();
 			} catch (e) {
 				// insurance
-				setTimeCall(TimeStampArr);
+				data = TimeStampArr;
 			}
+			const mappedData = data.map(({ id, startTime, endTime }) => {
+				const startDate = new Date(startTime);
+				const endDate = new Date(endTime);
+
+				return {
+					id,
+					time: `${
+						startDate.getHours() + startDate.getTimezoneOffset() / 60
+					}.00 - ${endDate.getHours() + endDate.getTimezoneOffset() / 60}.00`,
+				};
+			});
+			setTimeCall(mappedData);
 		};
 
 		fetchData();
 	}, []);
-
-	const arrayTimeStamp = timeCall.map(({ id, startTime, endTime }) => {
-		const startDate = new Date(startTime);
-		const endDate = new Date(endTime);
-
-		return {
-			id,
-			time: `${
-				startDate.getHours() + startDate.getTimezoneOffset() / 60
-			}.00 - ${endDate.getHours() + endDate.getTimezoneOffset() / 60}.00`,
-		};
-	});
 
 	return (
 		<InputTimeCall>
@@ -49,7 +50,7 @@ export const FieldTimeCall: React.FunctionComponent<IFieldTimeCall> = ({
 					name="timeForCall"
 					ref={register({ required: true })}
 				>
-					{arrayTimeStamp?.map(({ id, time }) => (
+					{timeCall?.map(({ id, time }) => (
 						<option value={id} key={id}>
 							{time}
 						</option>

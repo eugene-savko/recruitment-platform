@@ -7,10 +7,12 @@ import IFileLoader from './IFileLoader';
 import IAgreements from './IAgreements';
 import IFieldTimeCall from './IFieldTimeCall';
 import IModal from './IModal';
+import ITimeCall from './ITimeCall';
 
 export type {
 	IListItemSelect,
 	ITimeStamp,
+	ITimeCall,
 	ITraineeForm,
 	IFormFields,
 	IFileLoader,
