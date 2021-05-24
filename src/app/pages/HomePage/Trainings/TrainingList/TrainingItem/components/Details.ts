@@ -10,6 +10,9 @@ const Details = styled(Button)`
 	background: #0082ca;
 	border-radius: 18px;
 	color: #fff;
+	&:hover {
+		color: #0082ca;
+	}
 `;
 
 export default Details;

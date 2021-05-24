@@ -16,6 +16,9 @@ const SearchButton = styled(IconButton)`
 		width: 32px;
 		height: 32px;
 	}
+	&:hover {
+		color: #0082ca;
+	}
 `;
 
 export default SearchButton;

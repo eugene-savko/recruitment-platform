@@ -1,13 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { IFieldTimeCall } from '../../types';
+import { fetchTimeStamp } from 'app/API/timeInterval';
+import { TimeStampArr } from '../../data/listTimeForCall';
+
+import { IFieldTimeCall, ITimeCall } from '../../types';
 import { InputTimeCall, SelectWrapper, Select } from '../components';
 import LabelTimeCall from '../components/LabelTimeCall';
 
 export const FieldTimeCall: React.FunctionComponent<IFieldTimeCall> = ({
 	register,
-	timeForCall,
 }) => {
+	const [timeCall, setTimeCall] = useState<Array<ITimeCall>>([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			let data;
+
+			try {
+				data = await fetchTimeStamp();
+			} catch (e) {
+				// insurance
+				data = TimeStampArr;
+			}
+			const mappedData = data.map(({ id, startTime, endTime }) => {
+				const startDate = new Date(startTime);
+				const endDate = new Date(endTime);
+
+				return {
+					id,
+					time: `${
+						startDate.getHours() + startDate.getTimezoneOffset() / 60
+					}.00 - ${endDate.getHours() + endDate.getTimezoneOffset() / 60}.00`,
+				};
+			});
+			setTimeCall(mappedData);
+		};
+
+		fetchData();
+	}, []);
+
 	return (
 		<InputTimeCall>
 			<LabelTimeCall htmlFor="timeForCall">
@@ -19,9 +50,9 @@ export const FieldTimeCall: React.FunctionComponent<IFieldTimeCall> = ({
 					name="timeForCall"
 					ref={register({ required: true })}
 				>
-					{timeForCall?.map(({ name, id }) => (
-						<option value={name} key={id}>
-							{name}
+					{timeCall?.map(({ id, time }) => (
+						<option value={id} key={id}>
+							{time}
 						</option>
 					))}
 				</Select>

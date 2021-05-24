@@ -14,7 +14,6 @@ import { FieldTimeCall } from './TraineeForm/FieldTimeCall';
 // data
 import { listEnglishLevel } from './data/listEnglishLevel';
 import { listPrimarySkill } from './data/listPrimarySkill';
-import { listTimeForCall } from './data/listTimeForCall';
 import { Modal } from './Modal';
 
 export const SendForm: React.FunctionComponent = () => {
@@ -55,7 +54,7 @@ export const SendForm: React.FunctionComponent = () => {
 			cv:
 				'https://drive.google.com/file/d/1nUKSLwq5zh_GhVKQg6o1FalLrG2Bwuvc/view?usp=sharing',
 			internshipId: '1',
-			timeForCall,
+			timeIntervalId: timeForCall,
 			country,
 			city,
 			userDto: {
@@ -113,7 +112,7 @@ export const SendForm: React.FunctionComponent = () => {
 					city={stateCity}
 				/>
 				<Note size={12}>* Fields marked with * are required.</Note>
-				<FieldTimeCall register={register} timeForCall={listTimeForCall} />
+				<FieldTimeCall register={register} />
 				<FileLoader
 					register={register}
 					errors={errors}
