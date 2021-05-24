@@ -17,7 +17,7 @@ public class PageableResponseMapper implements ListMapper<List <InternshipReques
         List<InternshipResponseFilterDto> internshipResponseFilterDtos = new ArrayList<>();
         for (InternshipRequest internshipRequest : internshipRequests) {
             InternshipResponseFilterDto internshipResponseFilterDto = new InternshipResponseFilterDto();
-            internshipResponseFilterDto.setUserId(internshipRequest.getId());
+            internshipResponseFilterDto.setInternshipId(internshipRequest.getId());
             internshipResponseFilterDto.setFirstName(internshipRequest.getUser().getFirstName());
             internshipResponseFilterDto.setLastName(internshipRequest.getUser().getLastName());
             internshipResponseFilterDto.setCountryName(internshipRequest.getCountry().getName());
