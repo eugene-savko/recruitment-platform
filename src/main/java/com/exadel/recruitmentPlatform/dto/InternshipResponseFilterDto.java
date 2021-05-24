@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class InternshipResponseFilterDto {
 
-    private Long internshipId;
+    private Long userId;
     private String firstName;
     private String lastName;
     private String specialityName;
