@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Editor as TinyMCEEditor } from 'tinymce';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { TextField } from '@material-ui/core';
 import {
 	Form,
@@ -13,7 +13,7 @@ import {
 } from './сomponents';
 
 export const CourseEditor: React.FunctionComponent = () => {
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit, control } = useForm();
 	const onSubmit = useCallback((data) => {
 		console.log(data);
 	}, []);
@@ -40,28 +40,29 @@ export const CourseEditor: React.FunctionComponent = () => {
 			<h2>Course editor</h2>
 			<Form onSubmit={handleSubmit(onSubmit)} noValidate>
 				<FormLabel>Internships</FormLabel>
-				<FormSelect
-					{...register('select1')}
+				<Controller
+					defaultValue
 					isMulti
-					variant="outlined"
+					as={FormSelect}
+					control={control}
+					name="Name"
 					getOptionValue={(option: any) => option.value}
 					getOptionLabel={(option: any) => option.value}
 					options={options1}
-					classNamePrefix="select"
-					placeholder="All Options"
 				/>
 				<FormLabel>Skills</FormLabel>
-				<FormSelect
-					{...register('select2')}
+				<Controller
+					defaultValue
 					isMulti
-					variant="outlined"
+					as={FormSelect}
+					control={control}
+					name="Next"
 					getOptionValue={(option: any) => option.value}
 					getOptionLabel={(option: any) => option.value}
 					options={options2}
-					classNamePrefix="select"
-					placeholder="All Options"
 				/>
 				<TextField
+					inputRef={register}
 					margin="normal"
 					id="datetime-local"
 					label="Next date of course"
