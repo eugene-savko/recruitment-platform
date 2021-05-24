@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 interface IAdminPanelContext {
 	userId: number;
@@ -11,9 +11,12 @@ export const AdminPanelContext = createContext<IAdminPanelContext>({
 export const AdminPanelContextProvider: React.FunctionComponent<React.ReactNode> = ({
 	children,
 }) => {
-	const [userId, setUserId] = useState(0);
+	const [userId, setUserId] = useState(21);
+	const adminPanelContextValue = useMemo(() => ({ userId, setUserId }), [
+		userId,
+	]);
 	return (
-		<AdminPanelContext.Provider value={{ userId, setUserId }}>
+		<AdminPanelContext.Provider value={adminPanelContextValue}>
 			{children}
 		</AdminPanelContext.Provider>
 	);
