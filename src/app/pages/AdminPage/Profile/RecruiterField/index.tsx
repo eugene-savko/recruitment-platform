@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
 // API
 import updateFeedback from 'app/API/updateFeedback';
 import setStatusCandidate from 'app/API/setStatusCandidate';
+
+// context
+import { AdminPanelContext } from 'app/context/AdminPanelContext';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -49,6 +52,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 		string | undefined
 	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
+	const { userId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
@@ -94,10 +98,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 
 	const changeStatus = async () => {
 		const status = {
-			id:
-				feedbackContent[0].fromUser.role === 'RECRUITER'
-					? feedbackContent[0].id
-					: (feedbackContent[1].id as number),
+			id: userId as number,
 			status: 'RECRUITER_INTERVIEW_PASSED' as string,
 		};
 		try {
