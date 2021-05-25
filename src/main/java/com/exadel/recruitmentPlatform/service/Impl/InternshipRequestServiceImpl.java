@@ -77,4 +77,5 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         return internshipRequestProfileDto;
     }
 
+
 }

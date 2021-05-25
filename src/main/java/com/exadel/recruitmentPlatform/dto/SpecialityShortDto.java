@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SkillShortDto extends BaseDto {
+public class SpecialityShortDto extends BaseDto {
 
     @NotBlank
     @Size(min = 1, max = 50)

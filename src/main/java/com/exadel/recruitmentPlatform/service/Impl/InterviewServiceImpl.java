@@ -1,8 +1,8 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
+import com.exadel.recruitmentPlatform.dto.InterviewDto;
 import com.exadel.recruitmentPlatform.dto.InterviewResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InterviewMapper;
-import com.exadel.recruitmentPlatform.dto.InterviewDto;
 import com.exadel.recruitmentPlatform.entity.*;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.EnglishRepository;
@@ -62,21 +62,12 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Override
     public InterviewDto updateEnglishLevel(Long id, String englishLevel) {
-        Interview interview = interviewRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Interview under id "+id+" doesn't exist"));
+        Interview interview = interviewRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Interview under id " + id + " doesn't exist"));
         EnglishLevel level = Optional.ofNullable(englishRepository.getEnglishLevelByName(englishLevel))
-                .orElseThrow(()-> new EntityNotFoundException("нет такого"));// TODO: 13.05.2021 How to fix this method
+                .orElseThrow(() -> new EntityNotFoundException("EnglishLevel under id " + id + " not found"));
         interview.setEnglishLevel(level.getId());
         interviewRepository.save(interview);
         InterviewDto interviewDto = interviewMapper.toDto(interview);
         return interviewDto;
     }
-    /*private User update(final UserDto userDto) {
-        User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new EntityNotFoundException("User with id=" + userDto.getId() + " doesn't exist"));
-        update(userDto, user);
-        return userRepository.save(user);
-    }*/
-
-
-
 }

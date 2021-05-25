@@ -31,6 +31,4 @@ public class InterviewDto extends BaseDto {
     @NotNull
     private Long internshipId;
 
-    private String englishLevelName;
-
 }
