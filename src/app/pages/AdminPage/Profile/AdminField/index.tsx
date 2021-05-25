@@ -12,22 +12,10 @@ import { ButtonMaterial, ContainerAdmin } from '../components';
 const AdminField: React.FunctionComponent = () => {
 	const { userId } = useContext(AdminPanelContext);
 
-	const setStatusAssept = async () => {
+	const setStatusAssept = async (param: string) => {
 		const status = {
 			id: userId as number,
-			status: 'ACCEPTED' as string,
-		};
-		try {
-			await setStatusCandidate(status);
-		} catch (e) {
-			// eslint-disable-next-line no-console
-			console.log('COM RecruiterField.Error message - ', e.message);
-		}
-	};
-	const setStatusReject = async () => {
-		const status = {
-			id: userId as number,
-			status: 'REJECTED' as string,
+			status: `${param}` as string,
 		};
 		try {
 			await setStatusCandidate(status);
@@ -44,7 +32,7 @@ const AdminField: React.FunctionComponent = () => {
 					variant="outlined"
 					color="primary"
 					title="Accept an internship candidate"
-					onClick={setStatusAssept}
+					onClick={() => setStatusAssept('ACCEPTED')}
 				>
 					Accept
 				</ButtonMaterial>
@@ -52,7 +40,7 @@ const AdminField: React.FunctionComponent = () => {
 					variant="outlined"
 					color="primary"
 					title="Reject a candidate"
-					onClick={setStatusReject}
+					onClick={() => setStatusAssept('REJECTED')}
 				>
 					reject
 				</ButtonMaterial>
