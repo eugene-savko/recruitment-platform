@@ -6,24 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CalendarSlotDto extends BaseDto{
-
-    private String firstName;
-
-    private String lastName;
+public class InterviewAssignmentDto extends BaseDto{
 
     @NotNull
-    private Long recruiterId;
-
-    @NotNull
-    private LocalDateTime endDate;
-
-    @NotNull
-    private LocalDateTime startDate;
+    private Long internshipRequestId;
 }
