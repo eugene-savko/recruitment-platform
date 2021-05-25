@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
-import { authContext } from 'app/context/AuthLoggedContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
 
 // API
 import updateFeedback from 'app/API/updateFeedback';

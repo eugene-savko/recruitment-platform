@@ -5,10 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 import { IFormInput } from 'app/pages/AuthPage/Auth/types';
 
-import { authContext } from 'app/context/AuthLoggedContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { Grid } from '@material-ui/core';
+import { AdminRoutePath } from 'app/pages/AdminPage/routes';
 import { validation } from './helpers/validation';
 import { AuthWrapper, AuthForm, AuthImg } from './components';
 import ButtonSubmint from './ButtonSubmint';
@@ -32,7 +33,7 @@ export const Auth: React.FunctionComponent = () => {
 
 	const getInputsForm = async (dataLogin: IFormInput) => {
 		logIn?.(dataLogin);
-		history.replace('/');
+		history.replace(AdminRoutePath.DASHBOARD);
 	};
 
 	return (

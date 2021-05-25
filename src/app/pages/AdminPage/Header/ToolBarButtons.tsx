@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { Box, Hidden, IconButton } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { authContext } from '../../../context/AuthLoggedContext';
+import { AppRoutePath } from 'app/route-paths';
+import { authContext } from '../../../contexts/AuthLoggedContext';
 
 export const ToolBarButtons: React.FunctionComponent = () => {
 	const history = useHistory();
 	const { logOut } = useContext(authContext);
 	const leavePage = () => {
-		history.push('/login');
+		history.push(AppRoutePath.LOGIN);
 		logOut?.();
 	};
 
