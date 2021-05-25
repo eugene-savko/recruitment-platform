@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -11,7 +11,6 @@ export const RadionButtonRole: React.FC = () => {
 	const [value, setValue] = React.useState(switchedRole);
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
-	console.log(role);
 
 	// useEffect(() => {
 	// 	setSwitchedRole?.(role === 'SPECIALIST' ? 'SPECIALISTS' : 'RECRUITERS');

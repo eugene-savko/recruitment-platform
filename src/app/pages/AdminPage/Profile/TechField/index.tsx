@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 import { authContext } from 'app/context/AuthLoggedContext';
-
+import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
 // API
 import updateFeedback from 'app/API/updateFeedback';
 
@@ -52,6 +52,8 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	const [feedbackTech, setFeedbackTech] = useState<string | undefined>('');
 	const { handleSubmit } = useForm<IFormFields>();
 	const role = checkRole();
+
+	const { setSwitchedRole } = useContext(SwitcherRolesContext);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
@@ -123,6 +125,9 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 								variant="outlined"
 								color="primary"
 								title="Schedule Tech"
+								onClick={() => {
+									setSwitchedRole?.('SPECIALIST');
+								}}
 							>
 								Schedule
 							</ButtonMaterial>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import { Link, Prompt } from 'react-router-dom';
 import updateFeedback from 'app/API/updateFeedback';
 
 // pop-up
+import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
 import PopUp from '../PopUp';
 
 // style
@@ -51,6 +52,14 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
 	// console.log('COM RecruiterField. Role - ', role);
+	// const { setSwitchedRole } = useContext(SwitcherRolesContext);
+
+	// const sendRole = () => {
+	// 	console.log('send role');
+	// 	setSwitchedRole?.('RECRUITER');
+	// };
+
+	const { setSwitchedRole } = useContext(SwitcherRolesContext);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
@@ -114,6 +123,9 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					<ContainerBth>
 						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
 							<ButtonMaterial
+								onClick={() => {
+									setSwitchedRole?.('RECRUITER');
+								}}
 								variant="outlined"
 								color="primary"
 								title="Schedule Recruiter"

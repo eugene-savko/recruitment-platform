@@ -18,7 +18,6 @@ export const useChangeEditingState = (
 	const { userId } = useContext(AdminPanelContext);
 	const { switchedRole } = useContext(SwitcherRolesContext);
 	//! -----------------------------------------------------------pass role
-
 	useEffect(() => {
 		const fetchData = async () => {
 			const listAppointments = await fetchListAppointments(switchedRole, 1);
