@@ -74,7 +74,7 @@ public class DefaultEmailService implements EmailService {
         MimeMessage message = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            Template template = configuration.getTemplate(emailType.getMessageKey());
+            Template template = configuration.getTemplate(emailType.getTemplateName());
             String htmlBody = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
             helper.setFrom(exadelEmailAddress);
             helper.setTo(emailTo);

@@ -9,7 +9,6 @@ public enum InternshipRequestStatus {
     RECRUITER_INTERVIEW("recruiter.interview"),
     RECRUITER_INTERVIEW_FEEDBACK("recruiter.interview.feedback"),
     TECHNICAL_SPECIALIST_INTERVIEW("technical.specialist.interview"),
-    RECRUITER_INTERVIEW_FEEDBACK("recruiter.interview.feedback"),
     RECRUITER_INTERVIEW_PASSED("recruiter.interview.passed"),
     TECHNICAL_SPECIALIST_INTERVIEW_PASSED("technical.specialist.interview.passed"),
     REFUSED("refused"),

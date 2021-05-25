@@ -8,9 +8,9 @@ public enum EmailType {
     SENDING_APPLICATION_TEMPLATE("Exadel.html"),
     ASSIGNMENT_INTERVIEW_TEMPLATE("AssignmentInterview.html");
 
-    private String messageKey;
+    private String templateName;
 
-    EmailType(String message) {
-        this.messageKey = message;
+    EmailType(String templateName) {
+        this.templateName = templateName;
     }
 }
