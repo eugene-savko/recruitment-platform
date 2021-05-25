@@ -26,7 +26,7 @@ public class InternshipRequestController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<InternshipRequestDto> save(@Valid @RequestBody InternshipRequestDto internshipRequestDto) {
         InternshipRequestDto requestDto = internshipRequestService.save(internshipRequestDto);
-        emailService.sendEmail(requestDto.getUserDto().getEmail(), emailService.placeholder(requestDto), EmailType.SENDING_APPLICATION_TEMPLATE.getMessageKey());
+        emailService.sendEmail(requestDto.getUserDto().getEmail(), emailService.placeholder(requestDto), EmailType.SENDING_APPLICATION_TEMPLATE);
         return ResponseEntity.ok(requestDto);
     }
 

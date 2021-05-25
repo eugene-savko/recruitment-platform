@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
+import com.exadel.recruitmentPlatform.entity.EmailType;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.service.EmailService;
@@ -65,7 +66,7 @@ public class DefaultEmailService implements EmailService {
     }
 
     @Override
-    public void sendEmail(String emailTo, Map<String, Object> model, String templateName) {
+    public void sendEmail(String emailTo, Map<String, Object> model, EmailType emailType) {
         if (!emailEnabled) {
             log.warn("Email sending feature disabled.");
             return;
@@ -73,7 +74,7 @@ public class DefaultEmailService implements EmailService {
         MimeMessage message = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            Template template = configuration.getTemplate(templateName);
+            Template template = configuration.getTemplate(emailType.getMessageKey());
             String htmlBody = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
             helper.setFrom(exadelEmailAddress);
             helper.setTo(emailTo);
