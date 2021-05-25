@@ -3,6 +3,7 @@ package com.exadel.recruitmentPlatform.dto.mapper;
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseFilterDto;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 public class PageableResponseMapper implements ListMapper<List <InternshipRequest>, PageableResponseDto>{
 
     @Override
-    public PageableResponseDto toDto(List<InternshipRequest> internshipRequests, int pageSize, int pageNumber, int totalPageNumber) {
+    public PageableResponseDto toDto(List<InternshipRequest> internshipRequests, Page pageable) {
         PageableResponseDto pageableResponseDto = new PageableResponseDto();
         List<InternshipResponseFilterDto> internshipResponseFilterDtos = new ArrayList<>();
         for (InternshipRequest internshipRequest : internshipRequests) {
@@ -26,9 +27,9 @@ public class PageableResponseMapper implements ListMapper<List <InternshipReques
             internshipResponseFilterDtos.add(internshipResponseFilterDto);
         }
         pageableResponseDto.setInternshipRequests(internshipResponseFilterDtos);
-        pageableResponseDto.setPageSize(pageSize);
-        pageableResponseDto.setPageNumber(pageNumber);
-        pageableResponseDto.setTotalPageNumber(totalPageNumber);
+        pageableResponseDto.setPageSize(pageable.getSize());
+        pageableResponseDto.setPageNumber(pageable.getPageable().getPageNumber());
+        pageableResponseDto.setTotalPageNumber(pageable.getTotalPages());
 
         return pageableResponseDto;
     }

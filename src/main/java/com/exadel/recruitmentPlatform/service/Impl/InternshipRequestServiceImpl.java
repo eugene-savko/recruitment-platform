@@ -1,7 +1,7 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestFilterDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
@@ -9,7 +9,6 @@ import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestProfileMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
-import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
@@ -85,13 +84,12 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     }
 
     @Override
-    public PageableResponseDto getFilteredInternshipRequest(InternshipRequestFilterDto internshipRequestFilterDto) {
+    public PageableResponseDto getInternshipRequests(InternshipRequestSearchDto internshipRequestSearchDto) {
         Page<InternshipRequest> internshipRequests = internshipRequestRepository
-                .findByFilterParam(PageRequest.of(internshipRequestFilterDto.getPageNumber(), internshipRequestFilterDto.getPageSize()),
-                internshipRequestFilterDto.getInternshipId(), internshipRequestFilterDto.getSpecialityIds(),
-                internshipRequestFilterDto.getStatuses(), "%" + internshipRequestFilterDto.getFullName() + "%");
-        return pageableResponseMapper.toDto(internshipRequests.toList(), internshipRequests.getSize(),
-                internshipRequests.getTotalPages(), internshipRequests.getTotalPages());
+                .findByFilterParam(PageRequest.of(internshipRequestSearchDto.getPageNumber(), internshipRequestSearchDto.getPageSize()),
+                internshipRequestSearchDto.getInternshipId(), internshipRequestSearchDto.getSpecialityIds(),
+                internshipRequestSearchDto.getStatuses(), "%" + internshipRequestSearchDto.getFullName() + "%");
+        return pageableResponseMapper.toDto(internshipRequests.toList(), internshipRequests);
     }
 
 

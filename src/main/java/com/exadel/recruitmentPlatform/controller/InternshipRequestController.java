@@ -3,7 +3,7 @@ package com.exadel.recruitmentPlatform.controller;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestFilterDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.service.EmailService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import com.exadel.recruitmentPlatform.service.InterviewService;
@@ -38,8 +38,8 @@ public class InternshipRequestController {
 
     @PostMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    public PageableResponseDto getFilteredUsers(@Valid @RequestBody InternshipRequestFilterDto internshipRequestFilterDto) {
-        return internshipRequestService.getFilteredInternshipRequest(internshipRequestFilterDto);
+    public PageableResponseDto getInternshipRequests(@Valid @RequestBody InternshipRequestSearchDto internshipRequestSearchDto) {
+        return internshipRequestService.getInternshipRequests(internshipRequestSearchDto);
     }
 }
 
