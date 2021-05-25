@@ -1,11 +1,11 @@
 const SectionsData = [
 	{
-		title: 'Don’t see a course that fits you?',
-		text: `Send us your CV anyway! We’re always starting new projects and we’d love to work with you. We’ll keep your CV on file and get in touch as soon as we have a good match for you!`,
+		title: 'Frequently Asked Questions',
+		text: `Applying for jobs can be confusing and difficult. At Exadel, we strive to be as open and transparent with our current and future employees as possible, and that starts in the hiring process. The following are some questions that candidates frequently ask us, as well as our answers, so you know exactly what to expect.`,
 		background: `https://exadel.com/wp-content/uploads/2021/02/vacancy-1.jpg`,
 		backgroundAside: false,
-		linkText: 'Send your CV right now',
-		linkUrl: '/about',
+		linkText: 'Read FAQ',
+		linkUrl: '/questions',
 	},
 	{
 		title: 'Equal Employment Opportunity (EEO)',
@@ -22,12 +22,10 @@ const SectionsData = [
 		backgroundAside: false,
 	},
 	{
-		title: 'Frequently Asked Questions',
-		text: `Applying for jobs can be confusing and difficult. At Exadel, we strive to be as open and transparent with our current and future employees as possible, and that starts in the hiring process. The following are some questions that candidates frequently ask us, as well as our answers, so you know exactly what to expect.`,
+		title: 'Don’t see a course that fits you?',
+		text: `Send us your CV anyway! We’re always starting new projects and we’d love to work with you. We’ll keep your CV on file and get in touch as soon as we have a good match for you!`,
 		background: `https://exadel.com/wp-content/uploads/2020/11/faq-2.jpg`,
 		backgroundAside: true,
-		linkText: 'Read FAQ',
-		linkUrl: '/about',
 	},
 ];
 

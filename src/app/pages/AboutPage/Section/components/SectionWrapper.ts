@@ -27,4 +27,7 @@ export const SectionWrapper = styled.section<SectionWrapperProps>`
 		background-position: left;
 		align-items: flex-end;
 	}
+	&:first-of-type {
+		margin-top: 94px;
+	}
 `;
