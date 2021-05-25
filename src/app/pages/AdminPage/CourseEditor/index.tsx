@@ -14,10 +14,8 @@ import {
 
 export const CourseEditor: React.FunctionComponent = () => {
 	const { register, handleSubmit, control } = useForm();
-	const onSubmit = useCallback((data) => {
-		console.log(data);
-	}, []);
 	const editorRef = useRef<TinyMCEEditor | null>(null);
+	const [editData, setEditData] = useState({});
 	const [editText, setEditText] = useState({ text: '' });
 	const log = () => {
 		if (editorRef.current) {
@@ -25,15 +23,23 @@ export const CourseEditor: React.FunctionComponent = () => {
 			setEditText({ text: editorRef.current?.getContent() });
 		}
 	};
+	const onSubmit = useCallback(
+		(data) => {
+			const newData = { ...data, editor: editText };
+			log();
+			setEditData(newData);
+		},
+		[editText]
+	);
 	const options1 = [
-		{ value: 'chocolate', id: 'Chocolate' },
-		{ value: 'strawberry', id: 'Strawberry' },
-		{ value: 'vanilla', id: 'Vanilla' },
+		{ value: 'chocolate' },
+		{ value: 'strawberry' },
+		{ value: 'vanilla' },
 	];
 	const options2 = [
-		{ value: 'chocolate', id: 'Chocolate' },
-		{ value: 'strawberry', id: 'Strawberry' },
-		{ value: 'vanilla', id: 'Vanilla' },
+		{ value: 'chocolate' },
+		{ value: 'strawberry' },
+		{ value: 'vanilla' },
 	];
 	return (
 		<React.Fragment>
@@ -63,6 +69,7 @@ export const CourseEditor: React.FunctionComponent = () => {
 				/>
 				<TextField
 					inputRef={register}
+					name="Data"
 					margin="normal"
 					id="datetime-local"
 					label="Next date of course"
@@ -76,15 +83,12 @@ export const CourseEditor: React.FunctionComponent = () => {
 					<FormLabel>New Course</FormLabel>
 					<FormInput placeholder="New Course" disableUnderline />
 				</div>
-				<FormButton type="submit">Create</FormButton>
-			</Form>
-			<div>
 				<Editor
 					apiKey="2napic12bkocy7nyqobkph0zdknurnfuu6u9a8di7mc7mp3q"
 					onInit={(evt, editor) => {
 						editorRef.current = editor;
 					}}
-					initialValue="<p>This is the initial content of the editor.</p>"
+					initialValue="<p>This is the initial content of the editor. Hello.</p>"
 					init={{
 						width: 600,
 						height: 300,
@@ -103,10 +107,10 @@ export const CourseEditor: React.FunctionComponent = () => {
 							'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
 					}}
 				/>
-				<button type="button" onClick={log}>
-					Log editor content
-				</button>
-			</div>
+
+				<FormButton type="submit">Create</FormButton>
+			</Form>
+			<div />
 		</React.Fragment>
 	);
 };
