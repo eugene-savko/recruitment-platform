@@ -14,7 +14,6 @@ public interface UserService {
     UserDto save(UserDto dto);
     UserDto findById(Long id);
     UserDto getAuthenticatedUser(Authentication authentication);
-    PageableResponseDto getFilteredUsers(UserRequestDto userRequestDto);
     List<UserShortDto> getIdsAndNamesOfUsers(UserRole userRole, Long internshipId);
 
 }

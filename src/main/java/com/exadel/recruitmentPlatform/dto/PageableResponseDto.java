@@ -11,8 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 public class PageableResponseDto {
 
-    private List<UserCandidateDto> userCandidates;
+    private List<InternshipResponseFilterDto> internshipRequests;
     private int pageSize;
     private int pageNumber;
+    private int totalPageNumber;
 
 }
