@@ -2,6 +2,7 @@ package com.exadel.recruitmentPlatform.dto.mapper;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
+import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -39,5 +40,9 @@ public class InternshipRequestMapper implements BaseMapper<InternshipRequest, In
         internshipRequestDto.setCountryId(entity.getCountryId());
         internshipRequestDto.setCityId(entity.getCityId());
         return internshipRequestDto;
+    }
+
+    public void update(InternshipRequest entity, InternshipRequestStatus status) {
+        entity.setStatus(status);
     }
 }
