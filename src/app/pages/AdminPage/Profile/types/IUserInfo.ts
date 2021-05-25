@@ -8,12 +8,12 @@ interface IUserInfo {
 	readonly englishLevel?: string;
 	firstName?: string;
 	readonly id?: number;
-	readonly internshipId?: number;
+	readonly internship?: string;
 	interviews: Array<IFeedbackInfo>;
 	lastName?: string;
 	readonly otherInformation?: string;
 	readonly phone?: string;
-	readonly specialityId?: number;
+	readonly speciality?: string;
 }
 
 export default IUserInfo;

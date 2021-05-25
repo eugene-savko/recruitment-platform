@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+// api
+import getProfile from 'app/API/getProfile';
+
+import { AdminPanelContext } from 'app/context/AdminPanelContext';
+import { MainFields, ProfileContainer, SidebarInfo } from './components';
+
+// context
 
 // style
-import getProfile from 'app/API/getProfile';
-import { Link } from 'react-router-dom';
-import { AdminsFields, ProfileContainer, SidebarInfo } from './components';
 
 // components
+import AdminField from './AdminField';
 import ArrowBack from './ArrowBack';
 import RecruiterField from './RecruiterField';
 import TechField from './TechField';
@@ -29,13 +36,21 @@ export const Profile: React.FunctionComponent = () => {
 	);
 	const [user, setUser] = useState<IUserInfo>(userDefault);
 	const [isFetching, setIsFetching] = useState(false);
+	const { userId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
+		// console.log(userId);
 		const fetchData = async () => {
-			const data = await getProfile(21);
+			const data = await getProfile(userId);
 			setUser(data);
 			const { interviews } = data;
-			setFeedbackInfo(interviews);
+			if (interviews.length === 0) {
+				setFeedbackInfo(feedbackDeafult);
+			} else if (interviews.length === 1) {
+				setFeedbackInfo([interviews[0], feedbackDeafult[0]]);
+			} else {
+				setFeedbackInfo(interviews);
+			}
 			setIsFetching(true);
 		};
 		setTimeout(() => {
@@ -56,13 +71,17 @@ export const Profile: React.FunctionComponent = () => {
 						<CandidateInfo info={user} />
 						<InterviewInfo info={feedbackInfo} />
 					</SidebarInfo>
-					<AdminsFields>
+					<MainFields>
 						<RecruiterField
 							englishLevel={listEnglishLevel}
 							feedbackContent={feedbackInfo}
 						/>
-						<TechField feedbackContent={feedbackInfo} />
-					</AdminsFields>
+						<TechField
+							// role={role}
+							feedbackContent={feedbackInfo}
+						/>
+						<AdminField />
+					</MainFields>
 				</ProfileContainer>
 			)}
 		</React.Fragment>

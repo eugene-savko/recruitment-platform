@@ -7,6 +7,9 @@ const ListItemTextCustom = styled(ListItemText)`
 		color: #6b77a8;
 	}
 	> p {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		font-size: 1rem;
 		color: #6b77a8;
 	}

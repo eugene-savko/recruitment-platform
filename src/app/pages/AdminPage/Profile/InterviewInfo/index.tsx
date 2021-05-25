@@ -20,17 +20,18 @@ interface IInfoProps {
 	info: Array<IFeedbackInfo>;
 }
 
+const chekDate = (time: number | null) =>
+	typeof time === 'number'
+		? dateFormat(new Date(time), 'dd/mm/yy - HH:MM')
+		: '';
+
 const InterviewInfo: React.FunctionComponent<IInfoProps> = ({ info }) => {
-	const timeInterviewRecruter = new Date(info[0].startDateTime);
-	const formatTimeInterviewRecruter = dateFormat(
-		timeInterviewRecruter,
-		'dd/mm/yy - HH:MM'
-	);
-	const timeInterviewTech = new Date(info[1].startDateTime);
-	const formatTimeInterviewTech = dateFormat(
-		timeInterviewTech,
-		'dd/mm/yy - HH:MM'
-	);
+	const timeInterviewRecruter = info[0].startDateTime;
+	const formatTimeInterviewRecruter = chekDate(timeInterviewRecruter);
+
+	const timeInterviewTech = info[1].startDateTime;
+	const formatTimeInterviewTech = chekDate(timeInterviewTech);
+
 	const fullNameRecruiter = `${info[0].fromUser.firstName} ${info[0].fromUser.lastName}`;
 	const fullNameTech = `${info[1].fromUser.firstName} ${info[1].fromUser.lastName}`;
 	return (
