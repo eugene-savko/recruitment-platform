@@ -21,4 +21,6 @@ public class FeedbackDto {
     @Size(min = 1, max = 1500)
     private String feedback;
 
+    private String englishLevel;
+
 }

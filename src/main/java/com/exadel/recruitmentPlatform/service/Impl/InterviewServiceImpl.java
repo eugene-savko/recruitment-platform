@@ -30,7 +30,7 @@ public class InterviewServiceImpl implements InterviewService {
     private final EnglishRepository englishRepository;
 
     @Override
-    public InterviewDto updateFeedback(Long id, String feedback) {
+    public InterviewDto updateFeedback(Long id, String feedback, String englishLevel) {
 
         Interview interview = interviewRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException
@@ -47,6 +47,9 @@ public class InterviewServiceImpl implements InterviewService {
             } else if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK) {
                 internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK);
             }
+            EnglishLevel level = Optional.ofNullable(englishRepository.getEnglishLevelByName(englishLevel))
+                    .orElseThrow(() -> new EntityNotFoundException("EnglishLevel under id " + id + " not found"));
+            interview.setEnglishLevel(level.getId());
         } else if (interview.getFromUser().getRole() == UserRole.SPECIALIST) {
             if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED){
                 throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
