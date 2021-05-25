@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,13 +41,21 @@ public class InterviewServiceImpl implements InterviewService {
                 .orElseThrow(() -> new EntityNotFoundException("Doesn't find InternshipRequest for interview parameters: " +
                         "InternshipId= " + interview.getInternshipId() + ", ToUser " + interview.getToUser()));
 
-        interview.setFeedback(feedback);
-
-        if (interview.getFromUser().getRole() == UserRole.RECRUITER) {
-            internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_PASSED);
+        if (interview.getFromUser().getRole() == UserRole.RECRUITER || interview.getFromUser().getRole() == UserRole.ADMIN) {
+            if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK){
+                throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
+            } else if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK) {
+                internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK);
+            }
         } else if (interview.getFromUser().getRole() == UserRole.SPECIALIST) {
-            internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED);
+            if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED){
+                throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
+            } else if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED) {
+                internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED);
+            }
         }
+
+        interview.setFeedback(feedback);
 
         interviewRepository.save(interview);
 

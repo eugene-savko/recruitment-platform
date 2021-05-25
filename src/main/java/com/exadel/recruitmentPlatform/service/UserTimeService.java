@@ -1,6 +1,8 @@
 package com.exadel.recruitmentPlatform.service;
 
 import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
+import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
+import com.exadel.recruitmentPlatform.dto.InterviewAssignmentDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.entity.User;
@@ -17,4 +19,8 @@ public interface UserTimeService {
 
     //TODO get calendar slots not for all time, but for certain time interval (week or month)
     List<CalendarSlotDto> getCalendarSlots(UserRole userRole, Long internshipId);
+    CalendarSlotDto update(InterviewAssignmentDto interviewAssignmentDto);
+
+    CalendarSlotDto save(CalendarSlotDto calendarSlotDto);
+
 }
