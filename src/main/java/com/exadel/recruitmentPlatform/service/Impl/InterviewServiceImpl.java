@@ -41,19 +41,21 @@ public class InterviewServiceImpl implements InterviewService {
                 .orElseThrow(() -> new EntityNotFoundException("Doesn't find InternshipRequest for interview parameters: " +
                         "InternshipId= " + interview.getInternshipId() + ", ToUser " + interview.getToUser()));
 
-        interview.setFeedback(feedback);
-
         if (interview.getFromUser().getRole() == UserRole.RECRUITER || interview.getFromUser().getRole() == UserRole.ADMIN) {
-            if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW){
+            if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK){
                 throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
+            } else if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK) {
+                internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK);
             }
-            internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK);
         } else if (interview.getFromUser().getRole() == UserRole.SPECIALIST) {
-            if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW){
+            if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED){
                 throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
+            } else if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED) {
+                internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED);
             }
-            internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED);
         }
+
+        interview.setFeedback(feedback);
 
         interviewRepository.save(interview);
 
