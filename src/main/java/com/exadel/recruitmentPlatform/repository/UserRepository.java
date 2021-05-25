@@ -1,6 +1,5 @@
 package com.exadel.recruitmentPlatform.repository;
 
-import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -28,5 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             " and (:fullName is null or concat(u.firstName, ' ', u.lastName) like :fullName) ")
     Page<User> findByFilterParam(Pageable pageable, Long internshipId, List<Long> specialityIds,
                                  List<InternshipRequestStatus> statuses, String fullName);
+
+    List<User> findByRoleAndInternships_Id(UserRole userRole, Long internshipId);
 
 }

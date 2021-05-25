@@ -3,20 +3,17 @@ package com.exadel.recruitmentPlatform.controller;
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.UserRequestDto;
+import com.exadel.recruitmentPlatform.dto.UserShortDto;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -45,6 +42,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public PageableResponseDto getFilteredUsers(@Valid @RequestBody UserRequestDto userRequestDto) {
         return userService.getFilteredUsers(userRequestDto);
+    }
+
+
+    @GetMapping(value = "/ids-names")
+    public List<UserShortDto> getIdsAndNamesOfUser(@RequestParam("userRole") UserRole userRole, @RequestParam("internshipId") Long internshipId) {
+        return userService.getIdsAndNamesOfUsers(userRole, internshipId);
     }
 
 }
