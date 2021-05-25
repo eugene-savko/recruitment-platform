@@ -87,7 +87,7 @@
       "recruiterInterview": "Ann Reading"
     }
   ],
-  "RECRUITERS": [
+  "RECRUITER": [
     {
       "id": 1,
       "text": "Ivan Graying",
@@ -109,7 +109,7 @@
       "color": "blue"
     }
   ],
-  "SPECIALISTS": [
+  "SPECIALIST": [
     {
       "id": 1,
       "text": "Capitan America",
@@ -131,7 +131,7 @@
       "color": "blue"
     }
   ],
-  "schedulerRECRUITERS1": [
+  "schedulerRECRUITER1": [
     {
       "title": "Julia Red",
       "allDay": false,
@@ -269,7 +269,7 @@
       "id": 28
     }
   ],
-  "schedulerSPECIALISTS1": [
+  "schedulerSPECIALIST1": [
     {
       "title": "",
       "allDay": false,

@@ -37,14 +37,14 @@ export const RadionButtonRole: React.FC = () => {
 			>
 				<FormControlLabel
 					style={{ marginRight: '10px' }}
-					value="RECRUITERS"
+					value="RECRUITER"
 					control={<Radio color="primary" />}
 					label="Recruiters"
 					labelPlacement="start"
 				/>
 				<FormControlLabel
 					color="primary"
-					value="SPECIALISTS"
+					value="SPECIALIST"
 					control={<Radio color="primary" />}
 					label="Specialists"
 					labelPlacement="end"
