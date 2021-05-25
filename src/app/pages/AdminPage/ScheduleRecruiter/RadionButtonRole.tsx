@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,9 +12,9 @@ export const RadionButtonRole: React.FC = () => {
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
 
-	// useEffect(() => {
-	// 	setSwitchedRole?.(role === 'SPECIALIST' ? 'SPECIALISTS' : 'RECRUITERS');
-	// }, []);
+	useEffect(() => {
+		setSwitchedRole?.(role === 'SPECIALIST' ? 'SPECIALIST' : 'RECRUITER');
+	}, []);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setValue((event.target as HTMLInputElement).value);

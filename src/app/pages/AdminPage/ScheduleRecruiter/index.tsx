@@ -99,7 +99,11 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<Appointments appointmentComponent={AppointmentExpared} />
 				<Resources data={resources} mainResourceName="members" />
 
-				<Toolbar flexibleSpaceComponent={FlexibleSpace} />
+				{role === 'SPECIALIST' ? (
+					<Toolbar />
+				) : (
+					<Toolbar flexibleSpaceComponent={FlexibleSpace} />
+				)}
 				<DateNavigator />
 				<TodayButton />
 				<ViewSwitcher />

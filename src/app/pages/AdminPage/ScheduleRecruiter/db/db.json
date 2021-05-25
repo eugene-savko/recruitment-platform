@@ -267,6 +267,14 @@
       "endDate": 1622277000000,
       "startDate": 1622275200000,
       "id": 28
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621940400000,
+      "startDate": 1621938600000,
+      "id": 29
     }
   ],
   "schedulerSPECIALIST1": [
