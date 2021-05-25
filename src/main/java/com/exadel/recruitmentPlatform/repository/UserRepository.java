@@ -30,6 +30,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByRoleAndInternships_Id(UserRole userRole, Long internshipId);
 
-    @Query(value = "select u.id from User u join u.internships i where u.role = :userRole and i.id = :internshipId")
-    List<Long> findUserIdsByRoleAndInternshipsId(UserRole userRole, Long internshipId);
 }

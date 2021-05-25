@@ -1,11 +1,11 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
-import com.exadel.recruitmentPlatform.dto.UserCalendarDto;
+import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
-import com.exadel.recruitmentPlatform.dto.mapper.UserCalendarMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.UserShortMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PageableResponseMapper pageableResponseMapper;
-    private final UserCalendarMapper userCalendarMapper;
+    private final UserShortMapper userShortMapper;
 
 
     @Override
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserCalendarDto> getUserCalendars(UserRole userRole, Long internshipId) {
-        return userCalendarMapper.toDtos(userRepository.findByRoleAndInternships_Id(userRole, internshipId));
+    public List<UserShortDto> getIdsAndNamesOfUsers(UserRole userRole, Long internshipId) {
+        return userShortMapper.toDtos(userRepository.findByRoleAndInternships_Id(userRole, internshipId));
     }
 }

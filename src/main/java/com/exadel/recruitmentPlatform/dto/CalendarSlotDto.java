@@ -1,6 +1,5 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ public class CalendarSlotDto extends BaseDto{
 
     private String lastName;
 
-    private Long members;
+    private Long recruiterId;
 
     private LocalDateTime endDate;
 

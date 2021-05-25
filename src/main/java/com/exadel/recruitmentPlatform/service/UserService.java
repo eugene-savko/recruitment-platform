@@ -1,7 +1,7 @@
 package com.exadel.recruitmentPlatform.service;
 
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
-import com.exadel.recruitmentPlatform.dto.UserCalendarDto;
+import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
 import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -15,6 +15,6 @@ public interface UserService {
     UserDto findById(Long id);
     UserDto getAuthenticatedUser(Authentication authentication);
     PageableResponseDto getFilteredUsers(UserRequestDto userRequestDto);
-    List<UserCalendarDto> getUserCalendars(UserRole userRole, Long internshipId);
+    List<UserShortDto> getIdsAndNamesOfUsers(UserRole userRole, Long internshipId);
 
 }

@@ -56,7 +56,7 @@ public class UserTimeServiceImpl implements UserTimeService {
     public List<CalendarSlotDto> getCalendarSlots(UserRole userRole, Long internshipId) {
 
         return calendarSlotMapper.toDtos(userTimeRepository
-                .findByUserIdIn(userRepository.findUserIdsByRoleAndInternshipsId(userRole, internshipId)));
+                .findByUserIn(userRepository.findByRoleAndInternships_Id(userRole, internshipId)));
     }
 
 }
