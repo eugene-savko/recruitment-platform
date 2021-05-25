@@ -1,22 +1,23 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
+import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.UserShortMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
+import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PageableResponseMapper pageableResponseMapper;
+    private final UserShortMapper userShortMapper;
+
 
     @Override
     public UserDto save(final UserDto userDto) {
@@ -72,11 +75,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageableResponseDto getFilteredUsers(UserRequestDto userRequestDto) {
-        Page<User> users = userRepository.findByFilterParam(PageRequest.of(userRequestDto.getPageNumber(), userRequestDto.getPageSize()),
-                userRequestDto.getInternshipId(), userRequestDto.getSpecialityIds(),
-                userRequestDto.getStatuses(), "%" + userRequestDto.getFullName() + "%");
-        return pageableResponseMapper.toDto(users.toList(), users.getSize(), users.getTotalPages());
+    public List<UserShortDto> getIdsAndNamesOfUsers(UserRole userRole, Long internshipId) {
+        return userShortMapper.toDtos(userRepository.findByRoleAndInternships_Id(userRole, internshipId));
     }
-
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDto extends BaseDto {
+public class InternshipRequestSearchDto extends BaseDto {
 
     private Long internshipId;
     private String fullName;
