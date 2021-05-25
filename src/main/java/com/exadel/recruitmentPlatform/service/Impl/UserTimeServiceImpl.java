@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
+import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
 import com.exadel.recruitmentPlatform.dto.InterviewAssignmentDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.CalendarSlotMapper;
@@ -9,6 +10,12 @@ import com.exadel.recruitmentPlatform.entity.*;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.InterviewRepository;
+import com.exadel.recruitmentPlatform.repository.UserRepository;
+import com.exadel.recruitmentPlatform.entity.SlotStatus;
+import com.exadel.recruitmentPlatform.entity.TimeInterval;
+import com.exadel.recruitmentPlatform.entity.User;
+import com.exadel.recruitmentPlatform.entity.UserRole;
+import com.exadel.recruitmentPlatform.entity.UserTime;
 import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.EmailService;
@@ -33,6 +40,8 @@ public class UserTimeServiceImpl implements UserTimeService {
 
     private final UserTimeRepository userTimeRepository;
     private final UserTimeMapper userTimeMapper;
+    private final CalendarSlotMapper calendarSlotMapper;
+    private final UserRepository userRepository;
     private final InternshipRequestRepository internshipRequestRepository;
     private final InterviewRepository interviewRepository;
     private final CalendarSlotMapper calendarSlotMapper;
@@ -57,6 +66,14 @@ public class UserTimeServiceImpl implements UserTimeService {
         return userTimeRepository.saveAll(userTimes)
                 .stream().map(userTimeMapper::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<CalendarSlotDto> getCalendarSlots(UserRole userRole, Long internshipId) {
+
+        return calendarSlotMapper.toDtos(userTimeRepository
+                .findByUserIn(userRepository.findByRoleAndInternships_Id(userRole, internshipId)));
+    }
+
 
     @Override
     public CalendarSlotDto update(InterviewAssignmentDto interviewAssignmentDto) {

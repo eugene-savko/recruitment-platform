@@ -2,6 +2,8 @@ package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.entity.EmailType;
 import com.exadel.recruitmentPlatform.service.EmailService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
@@ -15,7 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/internship-request")
+@RequestMapping("/api/internship-request")
 public class InternshipRequestController {
 
     private final InternshipRequestService internshipRequestService;
@@ -33,6 +35,12 @@ public class InternshipRequestController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<InternshipRequestProfileDto> getInternshipRequestProfile(@PathVariable Long id) {
         return ResponseEntity.ok(internshipRequestService.getInternshipRequestProfile(id));
+    }
+
+    @PostMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    public PageableResponseDto getInternshipRequests(@Valid @RequestBody InternshipRequestSearchDto internshipRequestSearchDto) {
+        return internshipRequestService.getInternshipRequests(internshipRequestSearchDto);
     }
 }
 

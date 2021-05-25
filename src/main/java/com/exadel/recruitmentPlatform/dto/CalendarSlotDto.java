@@ -19,7 +19,7 @@ public class CalendarSlotDto extends BaseDto{
     private String lastName;
 
     @NotNull
-    private Long members;
+    private Long recruiterId;
 
     @NotNull
     private LocalDateTime endDate;

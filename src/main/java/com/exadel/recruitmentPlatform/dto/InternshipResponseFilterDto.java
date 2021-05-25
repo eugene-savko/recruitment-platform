@@ -1,20 +1,19 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import com.exadel.recruitmentPlatform.entity.UserRole;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDto extends BaseDto {
+public class InternshipResponseFilterDto {
 
+    private Long userId;
     private String firstName;
-
     private String lastName;
+    private String specialityName;
+    private String countryName;
+    private String statusName;
 
-    private UserRole role;
 }

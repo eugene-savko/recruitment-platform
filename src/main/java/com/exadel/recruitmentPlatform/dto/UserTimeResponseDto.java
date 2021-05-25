@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,15 +15,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserTimeResponseDto extends BaseDto {
 
-    @NotNull
     private LocalDateTime startDateTime;
 
-    @NotNull
     private SlotStatus status;
 
-    @NotBlank
     private String statusMessageKey;
 
-    @NotNull
     private User user;
 }
