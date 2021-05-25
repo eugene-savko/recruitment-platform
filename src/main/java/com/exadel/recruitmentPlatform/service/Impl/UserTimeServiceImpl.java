@@ -1,7 +1,6 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
-import com.exadel.recruitmentPlatform.dto.CalendarSlotDto;
 import com.exadel.recruitmentPlatform.dto.InterviewAssignmentDto;
 import com.exadel.recruitmentPlatform.dto.UserTimeResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.CalendarSlotMapper;
@@ -16,7 +15,6 @@ import com.exadel.recruitmentPlatform.entity.TimeInterval;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.entity.UserTime;
-import com.exadel.recruitmentPlatform.repository.UserRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
 import com.exadel.recruitmentPlatform.service.EmailService;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
@@ -44,9 +42,7 @@ public class UserTimeServiceImpl implements UserTimeService {
     private final UserRepository userRepository;
     private final InternshipRequestRepository internshipRequestRepository;
     private final InterviewRepository interviewRepository;
-    private final CalendarSlotMapper calendarSlotMapper;
     private final EmailService emailService;
-    private final UserRepository userRepository;
 
     @Override
     public List<UserTime> splitIntervalIntoSlots(TimeInterval timeInterval) {
@@ -136,8 +132,8 @@ public class UserTimeServiceImpl implements UserTimeService {
     public CalendarSlotDto save(CalendarSlotDto calendarSlotDto) {
         UserTime userTime = calendarSlotMapper.toEntity(calendarSlotDto);
 
-        User user = userRepository.findById(calendarSlotDto.getMembers())
-                .orElseThrow(() -> new EntityNotFoundException("User with id=" + calendarSlotDto.getMembers() + " doesn't exist"));
+        User user = userRepository.findById(calendarSlotDto.getRecruiterId())
+                .orElseThrow(() -> new EntityNotFoundException("User with id=" + calendarSlotDto.getRecruiterId() + " doesn't exist"));
 
         userTime.setUser(user);
         userTime.setStatus(SlotStatus.FREE);
