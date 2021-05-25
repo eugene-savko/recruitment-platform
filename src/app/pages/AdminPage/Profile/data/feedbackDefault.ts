@@ -11,7 +11,7 @@ const feedbackDeafult: Array<IFeedbackInfo> = [
 			lastName: '',
 			role: '',
 		},
-		startDateTime: 0,
+		startDateTime: null,
 	},
 	{
 		id: 0,
@@ -23,7 +23,7 @@ const feedbackDeafult: Array<IFeedbackInfo> = [
 			lastName: '',
 			role: '',
 		},
-		startDateTime: 0,
+		startDateTime: null,
 	},
 ];
 

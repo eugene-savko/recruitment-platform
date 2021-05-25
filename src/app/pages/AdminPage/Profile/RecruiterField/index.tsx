@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
+
+// API
+import updateFeedback from 'app/API/updateFeedback';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -22,6 +25,7 @@ import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
 	feedbackContent: Array<IFeedbackInfo>;
+	// role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -37,12 +41,28 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
+	// role,
 }) => {
-	const { feedback } = feedbackContent[1];
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-	const [feedbackRecruiter, setFeedbackRecruiter] = useState(feedback);
+
+	const [feedbackRecruiter, setFeedbackRecruiter] = useState<
+		string | undefined
+	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
+	// console.log('COM RecruiterField. Role - ', role);
+
+	useEffect(() => {
+		if (feedbackContent === undefined) {
+			setFeedbackRecruiter('');
+		} else {
+			const { feedback } =
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0]
+					: feedbackContent[1];
+			setFeedbackRecruiter(feedback);
+		}
+	}, []);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackRecruiter(event.target.value);
@@ -50,16 +70,28 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	};
 
 	const onSubmit = (data: IFormFields) => {
-		setCheckOut(false);
-		setIsShown(true);
-		setTimeout(() => setIsShown(false), 3000);
 		const { levelEnglishRecruiter } = data;
 		const sendDataRecruiter = {
-			feedbackRecruiter,
-			levelEnglishRecruiter,
+			id:
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0].id
+					: (feedbackContent[1].id as number),
+			feedback: feedbackRecruiter as string,
+			// englishLevel: levelEnglishRecruiter as string,
 		};
-		// eslint-disable-next-line no-console
-		console.log(sendDataRecruiter);
+
+		const putUpdateFeedback = async () => {
+			try {
+				await updateFeedback(sendDataRecruiter);
+				setCheckOut(false);
+				setIsShown(true);
+				setTimeout(() => setIsShown(false), 3000);
+			} catch (e) {
+				// eslint-disable-next-line no-console
+				console.log('COM RecruiterField.Error message - ', e.message);
+			}
+		};
+		putUpdateFeedback();
 	};
 
 	return (
@@ -74,14 +106,18 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						name="feedbackRecruiter"
 						rows={12}
 						multiline
-						value={feedbackRecruiter || ''}
+						value={feedbackRecruiter}
 						onChange={handleChange}
 						placeholder="Leave you feedback..."
 						variant="outlined"
 					/>
 					<ContainerBth>
 						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
-							<ButtonMaterial variant="outlined" color="primary">
+							<ButtonMaterial
+								variant="outlined"
+								color="primary"
+								title="Schedule Recruiter"
+							>
 								Schedule
 							</ButtonMaterial>
 						</Link>
@@ -98,6 +134,10 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						</Select>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Save feedback
+						</ButtonMaterial>
+
+						<ButtonMaterial variant="outlined" color="primary">
+							interview passed
 						</ButtonMaterial>
 					</ContainerBth>
 				</FeedbackForm>
