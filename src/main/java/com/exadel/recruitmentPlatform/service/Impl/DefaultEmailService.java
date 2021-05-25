@@ -30,9 +30,6 @@ import java.util.Map;
 @Service
 public class DefaultEmailService implements EmailService {
 
-    public static final String SENDING_APPLICATION_TEMPLATE = "Exadel.html";
-    public static final String ASSIGNMENT_INTERVIEW_TEMPLATE = "AssignmentInterview.html";
-
     @Autowired
     private JavaMailSender emailSender;
     @Autowired

@@ -109,7 +109,7 @@ public class UserTimeServiceImpl implements UserTimeService {
         userTimeRepository.save(userTime);
 
         emailService.sendEmail(candidate.getEmail(),
-                emailService.placeholderAssignmentInterview(internshipRequest, userTime.getStartDateTime(), userTime.getUser().getRole()), DefaultEmailService.ASSIGNMENT_INTERVIEW_TEMPLATE);
+                emailService.placeholderAssignmentInterview(internshipRequest, userTime.getStartDateTime(), userTime.getUser().getRole()), EmailType.ASSIGNMENT_INTERVIEW_TEMPLATE.getMessageKey());
 
         return calendarSlotMapper.toDto(userTime);
 

@@ -2,8 +2,8 @@ package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.entity.EmailType;
 import com.exadel.recruitmentPlatform.service.EmailService;
-import com.exadel.recruitmentPlatform.service.Impl.DefaultEmailService;
 import com.exadel.recruitmentPlatform.service.InternshipRequestService;
 import com.exadel.recruitmentPlatform.service.InterviewService;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class InternshipRequestController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<InternshipRequestDto> save(@Valid @RequestBody InternshipRequestDto internshipRequestDto) {
         InternshipRequestDto requestDto = internshipRequestService.save(internshipRequestDto);
-        emailService.sendEmail(requestDto.getUserDto().getEmail(), emailService.placeholder(requestDto), DefaultEmailService.SENDING_APPLICATION_TEMPLATE);
+        emailService.sendEmail(requestDto.getUserDto().getEmail(), emailService.placeholder(requestDto), EmailType.SENDING_APPLICATION_TEMPLATE.getMessageKey());
         return ResponseEntity.ok(requestDto);
     }
 

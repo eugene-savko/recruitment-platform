@@ -7,7 +7,7 @@ public enum UserRole {
 
     INTERN("intern"),
     RECRUITER("recruiter"),
-    SPECIALIST("technical specialist"),
+    SPECIALIST("technical"),
     ADMIN("admin");
 
     private String messageKey;
