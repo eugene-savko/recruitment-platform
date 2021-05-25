@@ -4,6 +4,7 @@ import { Link, Prompt } from 'react-router-dom';
 
 // API
 import updateFeedback from 'app/API/updateFeedback';
+import setStatusCandidate from 'app/API/setStatusCandidate';
 
 // pop-up
 import PopUp from '../PopUp';
@@ -25,7 +26,6 @@ import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 interface IRecruiterFieldProps {
 	englishLevel: Array<IListItemSelect>;
 	feedbackContent: Array<IFeedbackInfo>;
-	// role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -41,7 +41,6 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	englishLevel,
 	feedbackContent,
-	// role,
 }) => {
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
@@ -50,7 +49,6 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 		string | undefined
 	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
-	// console.log('COM RecruiterField. Role - ', role);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
@@ -92,6 +90,22 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 			}
 		};
 		putUpdateFeedback();
+	};
+
+	const changeStatus = async () => {
+		const status = {
+			id:
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0].id
+					: (feedbackContent[1].id as number),
+			status: 'RECRUITER_INTERVIEW_PASSED' as string,
+		};
+		try {
+			await setStatusCandidate(status);
+		} catch (e) {
+			// eslint-disable-next-line no-console
+			console.log('COM RecruiterField.Error message - ', e.message);
+		}
 	};
 
 	return (
@@ -136,7 +150,11 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 							Save feedback
 						</ButtonMaterial>
 
-						<ButtonMaterial variant="outlined" color="primary">
+						<ButtonMaterial
+							variant="outlined"
+							color="primary"
+							onClick={changeStatus}
+						>
 							interview passed
 						</ButtonMaterial>
 					</ContainerBth>
