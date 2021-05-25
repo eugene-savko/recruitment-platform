@@ -1,7 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Editor as TinyMCEEditor } from 'tinymce';
 import { Controller, useForm } from 'react-hook-form';
 import { TextField } from '@material-ui/core';
 import {
@@ -13,68 +11,141 @@ import {
 } from './сomponents';
 
 export const CourseEditor: React.FunctionComponent = () => {
-	const { register, handleSubmit, control } = useForm();
-	const editorRef = useRef<TinyMCEEditor | null>(null);
-	const [editData, setEditData] = useState({});
-	const [editText, setEditText] = useState({ text: '' });
-	const log = () => {
-		if (editorRef.current) {
-			console.log(editorRef.current?.getContent());
-			setEditText({ text: editorRef.current?.getContent() });
-		}
-	};
+	const { register, handleSubmit, control, reset } = useForm();
+	const [editText, setEditText] = useState('');
 	const onSubmit = useCallback(
 		(data) => {
 			const newData = { ...data, editor: editText };
-			log();
-			setEditData(newData);
+			console.log(newData);
+			reset();
 		},
 		[editText]
 	);
-	const options1 = [
-		{ value: 'chocolate' },
-		{ value: 'strawberry' },
-		{ value: 'vanilla' },
+
+	const country = [
+		'Belarus',
+		'Poland',
+		'United States',
+		'Russia',
+		'Georgia',
+		'Ukraine',
+		'Lithuania',
+		'Uzbekistan',
 	];
-	const options2 = [
-		{ value: 'chocolate' },
-		{ value: 'strawberry' },
-		{ value: 'vanilla' },
+
+	const city = [
+		'Brest',
+		'Gomel',
+		'Grodno',
+		'Minsk',
+		'Vitebsk',
+		'Tbilisi',
+		'Bialystok',
+		'Poznan',
+		'Szczecin',
+		'Warsaw',
+		'Kharkiv',
+		'Kiev',
+		'Lviv',
+		'Odessa',
+		'Vinnytsia',
+		'Boulder',
+		'Klaipeda',
+		'Vilnius',
+		'Chelyabinsk',
+		'Yekaterinburg',
+		'Tashkent',
 	];
+
+	const recruiter = [
+		'Oliver Hansen',
+		'Van Henry',
+		'April Tucker',
+		'Ralph Hubbard',
+		'Omar Alexander',
+		'Carlos Abbott',
+		'Miriam Wagner',
+		'Bradley Wilkerson',
+		'Virginia Andrews',
+		'Kelly Snyder',
+	];
+
 	return (
 		<React.Fragment>
 			<h2>Course editor</h2>
 			<Form onSubmit={handleSubmit(onSubmit)} noValidate>
-				<FormLabel>Internships</FormLabel>
+				<FormLabel>Country</FormLabel>
 				<Controller
+					placeholder="Select country"
 					defaultValue
 					isMulti
 					as={FormSelect}
 					control={control}
-					name="Name"
-					getOptionValue={(option: any) => option.value}
-					getOptionLabel={(option: any) => option.value}
-					options={options1}
+					name="country"
+					getOptionValue={(option: any) => option}
+					getOptionLabel={(option: any) => option}
+					options={country}
 				/>
-				<FormLabel>Skills</FormLabel>
+				<FormLabel>City</FormLabel>
 				<Controller
+					placeholder="Select city"
 					defaultValue
 					isMulti
 					as={FormSelect}
 					control={control}
-					name="Next"
-					getOptionValue={(option: any) => option.value}
-					getOptionLabel={(option: any) => option.value}
-					options={options2}
+					name="city"
+					getOptionValue={(option: any) => option}
+					getOptionLabel={(option: any) => option}
+					options={city}
 				/>
+
+				<FormLabel>Recruiter</FormLabel>
+				<Controller
+					placeholder="Select recruiter"
+					defaultValue
+					isMulti
+					as={FormSelect}
+					control={control}
+					name="recruiter"
+					getOptionValue={(option: any) => option}
+					getOptionLabel={(option: any) => option}
+					options={recruiter}
+				/>
+
 				<TextField
 					inputRef={register}
-					name="Data"
+					name="startDate"
 					margin="normal"
 					id="datetime-local"
-					label="Next date of course"
+					label="Start of internship"
 					type="datetime-local"
-					defaultValue="2017-05-24T10:30"
+					defaultValue="сюда прелетят данные для редактирования даты курса"
+					InputLabelProps={{
+						shrink: true,
+					}}
+				/>
+
+				<TextField
+					inputRef={register}
+					name="endDate"
+					margin="normal"
+					id="datetime-local"
+					label="End of internship"
+					type="datetime-local"
+					defaultValue="сюда прелетят данные для редактирования даты курса"
+					InputLabelProps={{
+						shrink: true,
+					}}
+				/>
+
+				<TextField
+					inputRef={register}
+					name="deadline"
+					margin="normal"
+					id="datetime-local"
+					label="End of trainee recruitment"
+					type="datetime-local"
+					defaultValue="сюда прелетят данные для редактирования даты курса"
 					InputLabelProps={{
 						shrink: true,
 					}}
@@ -84,11 +155,10 @@ export const CourseEditor: React.FunctionComponent = () => {
 					<FormInput placeholder="New Course" disableUnderline />
 				</div>
 				<Editor
+					value={editText}
+					onEditorChange={setEditText}
 					apiKey="2napic12bkocy7nyqobkph0zdknurnfuu6u9a8di7mc7mp3q"
-					onInit={(evt, editor) => {
-						editorRef.current = editor;
-					}}
-					initialValue="<p>This is the initial content of the editor. Hello.</p>"
+					initialValue='<p><span style="background-color: #2dc26b;">сюда прелетят данные для редактирования даты курса</span></p>'
 					init={{
 						width: 600,
 						height: 300,
