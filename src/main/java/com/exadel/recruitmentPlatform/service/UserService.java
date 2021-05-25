@@ -1,9 +1,7 @@
 package com.exadel.recruitmentPlatform.service;
 
-import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.dto.UserRequestDto;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import org.springframework.security.core.Authentication;
 

@@ -7,6 +7,7 @@ public enum InternshipRequestStatus {
 
     UNDER_CONSIDERATION("under.consideration"),
     RECRUITER_INTERVIEW("recruiter.interview"),
+    RECRUITER_INTERVIEW_FEEDBACK("recruiter.interview.feedback"),
     TECHNICAL_SPECIALIST_INTERVIEW("technical.specialist.interview"),
     RECRUITER_INTERVIEW_FEEDBACK("recruiter.interview.feedback"),
     RECRUITER_INTERVIEW_PASSED("recruiter.interview.passed"),

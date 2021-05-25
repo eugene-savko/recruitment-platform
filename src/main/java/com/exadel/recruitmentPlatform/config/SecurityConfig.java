@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/internship-request").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/internship-request").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/internships").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/internships/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/timeInterval").permitAll()

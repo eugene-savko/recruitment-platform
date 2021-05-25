@@ -15,13 +15,20 @@ import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.TimeIntervalRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
-import com.exadel.recruitmentPlatform.service.*;
+import com.exadel.recruitmentPlatform.service.CityService;
+import com.exadel.recruitmentPlatform.service.CountryService;
+import com.exadel.recruitmentPlatform.service.InternshipRequestService;
+import com.exadel.recruitmentPlatform.service.InternshipService;
+import com.exadel.recruitmentPlatform.service.InterviewService;
+import com.exadel.recruitmentPlatform.service.SpecialityService;
+import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @Service
@@ -92,5 +99,19 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         return pageableResponseMapper.toDto(internshipRequests.toList(), internshipRequests);
     }
 
+    @Override
+    public void updateStatus(Long id, InternshipRequestStatus status) throws ValidationException {
+        InternshipRequest internshipRequest = internshipRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Internship request with id=" + id + " doesn't exist"));
+        if (status.getMessageKey().equals("rejected") || (status.getMessageKey().equals("recruiter.interview.passed") & internshipRequest.getStatus().getMessageKey().equals("recruiter.interview.feedback"))
+                || (status.getMessageKey().equals("accepted") & internshipRequest.getStatus().getMessageKey().equals("technical.specialist.interview.passed"))) {
+            internshipRequestMapper.update(internshipRequest, status);
+            internshipRequestRepository.save(internshipRequest);
+        } else if (!(status.getMessageKey().equals("recruiter.interview.passed") & internshipRequest.getStatus().getMessageKey().equals("recruiter.interview.feedback"))
+        || !(status.getMessageKey().equals("accepted") & internshipRequest.getStatus().getMessageKey().equals("technical.specialist.interview.passed"))){
+            throw new ValidationException("You can't accept this internship request right now");
+        }
+    }
 
 }
+
