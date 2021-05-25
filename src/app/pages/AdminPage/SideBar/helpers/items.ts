@@ -1,5 +1,4 @@
 import EditIcon from '@material-ui/icons/Edit';
-import DateRangeIcon from '@material-ui/icons/DateRange';
 import TodayIcon from '@material-ui/icons/Today';
 import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -26,14 +25,9 @@ const profile: ISideBarItems = {
 const scheduleRecruiter: ISideBarItems = {
 	href: '/schedule-recruiter',
 	icon: TodayIcon,
-	title: 'Schedule recruiter',
+	title: 'Schedule',
 };
 
-const scheduleTechSpecialist: ISideBarItems = {
-	href: '/schedule-techspecialist',
-	icon: DateRangeIcon,
-	title: 'Schedule techspecialist',
-};
 const courseEditor: ISideBarItems = {
 	href: '/course-editor',
 	icon: EditIcon,
@@ -50,7 +44,6 @@ export const menuItemsAdmin: ISideBarItems[] = [
 	tableCandidate,
 	profile,
 	scheduleRecruiter,
-	scheduleTechSpecialist,
 	courseEditor,
 	courseDetailsEditor,
 ];
@@ -59,14 +52,12 @@ export const menuItemsRecruiter: ISideBarItems[] = [
 	tableCandidate,
 	profile,
 	scheduleRecruiter,
-	scheduleTechSpecialist,
 ];
 export const menuItemsTechSpecialist: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	profile,
 	scheduleRecruiter,
-	scheduleTechSpecialist,
 ];
 
 export const menuItemsList: IMapped<ISideBarItems[]> = {

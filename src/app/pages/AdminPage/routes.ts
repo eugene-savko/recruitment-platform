@@ -1,6 +1,5 @@
 import IRoute from 'app/types/IRoute';
 import IMapped from 'app/types/IMapped';
-import { ScheduleTechSpecialist } from './ScheduleTechSpecialist/index';
 import { DashBoard } from './DashBoard/DashBoard';
 import { Profile } from './Profile';
 import { ScheduleRecruiter } from './ScheduleRecruiter/index';
@@ -34,12 +33,6 @@ const scheduleRecruiter = {
 	component: ScheduleRecruiter,
 };
 
-const schedulerTechSpecialist = {
-	path: '/schedule-techspecialist',
-	exact: false,
-	component: ScheduleTechSpecialist,
-};
-
 const editorCourse = {
 	path: '/course-editor',
 	exact: false,
@@ -62,7 +55,6 @@ export const routesAdmin: Array<IRoute> = [
 	tableCandidates,
 	profile,
 	scheduleRecruiter,
-	schedulerTechSpecialist,
 	editorCourse,
 	editorDetailsCourse,
 	homePage,
@@ -73,7 +65,6 @@ export const routesRecruiter: Array<IRoute> = [
 	tableCandidates,
 	profile,
 	scheduleRecruiter,
-	schedulerTechSpecialist,
 	homePage,
 ];
 
@@ -82,7 +73,6 @@ export const routesTechSpecialist: Array<IRoute> = [
 	tableCandidates,
 	profile,
 	scheduleRecruiter,
-	schedulerTechSpecialist,
 	homePage,
 ];
 
