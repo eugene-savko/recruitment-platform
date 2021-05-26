@@ -5,7 +5,7 @@ import {
 	putAppointment,
 	fetchListAppointments,
 	addedAppointment,
-	patchCurrentCandidate,
+	// patchCurrentCandidate,
 } from 'app/API/scheduleRecruiter';
 import { AdminPanelContext } from 'app/context/AdminPanelContext';
 import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
@@ -17,10 +17,16 @@ export const useChangeEditingState = (
 	const [data, setData] = useState<Array<AppointmentModel>>([]);
 	const { userId } = useContext(AdminPanelContext);
 	const { switchedRole } = useContext(SwitcherRolesContext);
+	const { internshipId } = useContext(AdminPanelContext);
 	//! -----------------------------------------------------------pass role
 	useEffect(() => {
 		const fetchData = async () => {
-			const listAppointments = await fetchListAppointments(switchedRole, 1);
+			const listAppointments = await fetchListAppointments(
+				switchedRole,
+				internshipId
+			);
+
+			// console.log(listAppointments);
 			setData(listAppointments);
 		};
 		fetchData();
@@ -30,20 +36,15 @@ export const useChangeEditingState = (
 		({ added, changed, deleted }: ChangeSet) => {
 			if (added) {
 				const addedData = {
-					title: '',
-					allDay: added.allDay,
-					members: added.members,
-					endDate: new Date(added.endDate).getTime(),
+					recruiterId: added.members,
 					startDate: new Date(added.startDate).getTime(),
+					endDate: new Date(added.endDate).getTime(),
 				};
-
 				const addedAppointmentAndRefreshDadaAppointment = async () => {
-					const addedAppointmentFromServer = await addedAppointment(
-						addedData,
-						switchedRole,
-						1
-					);
+					const addedAppointmentFromServer = await addedAppointment(addedData);
+
 					const dataAdded = [...data, { ...addedAppointmentFromServer }];
+
 					setData(dataAdded);
 				};
 				addedAppointmentAndRefreshDadaAppointment();
@@ -61,7 +62,7 @@ export const useChangeEditingState = (
 					}
 					return appointment;
 				});
-				setData(dataChanged);
+				// setData(dataChanged);
 
 				const [appointmentChanged] = dataChanged.filter((appointment) => {
 					return appointment.id !== undefined
@@ -69,17 +70,18 @@ export const useChangeEditingState = (
 						: appointment;
 				});
 
-				putAppointment(switchedRole, 1, appointmentChanged);
+				putAppointment(userId, appointmentChanged);
+				// putAppointment(switchedRole, 1, appointmentChanged);
 
-				const [currentRecruiter] = listRecruters.filter(
-					(recruiter: IListRecruiters) =>
-						recruiter.id === appointmentChanged.members
-				);
-				patchCurrentCandidate(
-					appointmentChanged,
-					userId,
-					currentRecruiter.text
-				);
+				// const [currentRecruiter] = listRecruters.filter(
+				// 	(recruiter: IListRecruiters) =>
+				// 		recruiter.id === appointmentChanged.members
+				// );
+				// patchCurrentCandidate(
+				// 	appointmentChanged,
+				// 	userId,
+				// 	currentRecruiter.text
+				// );
 			}
 
 			if (deleted !== undefined) {

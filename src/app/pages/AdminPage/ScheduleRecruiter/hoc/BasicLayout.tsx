@@ -26,7 +26,7 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 		'isoTime'
 	)} to ${dateFormat(profileCandidate?.endPriorityTime, 'isoTime')}`;
 
-	if (appointmentData.title === '' && userId) {
+	if (appointmentData.title === ' ' && userId) {
 		const getCurrentCandidate = async () => {
 			const gettedCurrentCandidate = await fetchCurrentCandidate(userId);
 			const { firstName, lastName } = gettedCurrentCandidate;
@@ -39,7 +39,7 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 		getCurrentCandidate();
 	}
 
-	if (appointmentData.title === '' && loading) {
+	if (appointmentData.title === ' ' && loading) {
 		return (
 			<AuthCircularProgress>
 				<Preloader />

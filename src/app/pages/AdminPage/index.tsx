@@ -11,6 +11,7 @@ import {
 import { routes } from './routes';
 
 import { authContext } from '../../context/AuthLoggedContext';
+import { ErrorPupUp } from './ScheduleRecruiter/ErrorPupUp';
 
 export const AdminPage: React.FunctionComponent = () => {
 	const [isSideBarOpen, setSideBarOpen] = useState(false);
@@ -42,6 +43,7 @@ export const AdminPage: React.FunctionComponent = () => {
 						</Switch>
 					</AdminPageContent>
 				</AdminPageContentWrapper>
+				<ErrorPupUp />
 			</AdminPageRoot>
 		</React.Fragment>
 	);

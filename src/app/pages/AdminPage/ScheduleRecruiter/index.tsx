@@ -29,6 +29,7 @@ import {
 
 import { fetchListInterviewers } from 'app/API/scheduleRecruiter';
 import { authContext } from 'app/context/AuthLoggedContext';
+import { AdminPanelContext } from 'app/context/AdminPanelContext';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
 import { useChangeEditingState } from './hooks/useChangeEditingState';
@@ -67,10 +68,15 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 
 	const grouping: Array<Grouping> = [{ resourceName: 'members' }];
 	//! -----------------------------------------------------------pass role
+	const { internshipId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const listRecruiter = await fetchListInterviewers(switchedRole);
+			const listRecruiter = await fetchListInterviewers(
+				switchedRole,
+				internshipId
+			);
+
 			setUseListRecruiters(listRecruiter);
 			setLoading(false);
 		};
