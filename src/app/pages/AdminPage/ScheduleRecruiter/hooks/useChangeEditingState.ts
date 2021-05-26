@@ -5,8 +5,9 @@ import {
 	fetchListAppointments,
 	addedAppointment,
 } from 'app/API/scheduleRecruiter';
-import { AdminPanelContext } from 'app/context/AdminPanelContext';
-import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
+
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
+import { SwitcherRolesContext } from 'app/contexts/SwitcherRolesContext';
 import { IUseChangeEditingState } from '../types';
 
 export const useChangeEditingState = (): IUseChangeEditingState => {

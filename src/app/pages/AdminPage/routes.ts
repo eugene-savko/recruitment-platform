@@ -6,35 +6,46 @@ import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
-
 import { CourseDetailsEditor } from './CourseDetailsEditor/CourseDetailsEditor';
 
+const ADMIN_ROUTE_ROOT_PATH = '/admin';
+
+export const AdminRoutePath = {
+	ROOT: ADMIN_ROUTE_ROOT_PATH,
+	DASHBOARD: `${ADMIN_ROUTE_ROOT_PATH}/dashboard`,
+	TABLE: `${ADMIN_ROUTE_ROOT_PATH}/table`,
+	PROFILE: `${ADMIN_ROUTE_ROOT_PATH}/profile`,
+	SCHEDULE_RECRUITER: `${ADMIN_ROUTE_ROOT_PATH}/schedule-recruiter`,
+	SCHEDULE_TECHSPECIALIST: `${ADMIN_ROUTE_ROOT_PATH}/schedule-techspecialist`,
+	COURSE_EDITOR: `${ADMIN_ROUTE_ROOT_PATH}/course-editor`,
+};
+
 const dashboard = {
-	path: '/dashboard',
+	path: AdminRoutePath.DASHBOARD,
 	exact: false,
 	component: DashBoard,
 };
 
 const tableCandidates = {
-	path: '/table',
+	path: AdminRoutePath.TABLE,
 	exact: false,
 	component: CandidateTable,
 };
 
 const profile = {
-	path: '/profile',
+	path: AdminRoutePath.PROFILE,
 	exact: false,
 	component: Profile,
 };
 
 const scheduleRecruiter = {
-	path: '/schedule-recruiter',
+	path: AdminRoutePath.SCHEDULE_RECRUITER,
 	exact: false,
 	component: ScheduleRecruiter,
 };
 
 const editorCourse = {
-	path: '/course-editor',
+	path: AdminRoutePath.COURSE_EDITOR,
 	exact: false,
 	component: CourseEditor,
 };

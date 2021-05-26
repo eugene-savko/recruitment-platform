@@ -11,7 +11,7 @@ interface IInputField {
 export const InputField = forwardRef((props: IInputField, ref) => {
 	return (
 		<div>
-			<FormLabel>Full Name</FormLabel>
+			<FormLabel>{props.placeholder}</FormLabel>
 			<FormInput
 				{...props}
 				inputRef={ref}

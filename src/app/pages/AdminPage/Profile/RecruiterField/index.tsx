@@ -4,9 +4,12 @@ import { Link, Prompt } from 'react-router-dom';
 
 // API
 import updateFeedback from 'app/API/updateFeedback';
+import setStatusCandidate from 'app/API/setStatusCandidate';
+
+// context
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
 
 // pop-up
-import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
 import PopUp from '../PopUp';
 
 // style
@@ -17,16 +20,17 @@ import {
 	Title,
 	ButtonMaterial,
 	FeedbackField,
+	TextFieldEnglishLevel,
 } from '../components';
 import { Select } from './components';
 
 // type
 import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
+import { SwitcherRolesContext } from '../../../../contexts/SwitcherRolesContext';
 
 interface IRecruiterFieldProps {
-	englishLevel: Array<IListItemSelect>;
+	englishLevelProps: Array<IListItemSelect>;
 	feedbackContent: Array<IFeedbackInfo>;
-	// role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -40,36 +44,43 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 };
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
-	englishLevel,
+	englishLevelProps,
 	feedbackContent,
-	// role,
 }) => {
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-
+	const [levelEnglish, setLevelEnglish] = useState<string | undefined>('');
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState<
 		string | undefined
 	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
-	// console.log('COM RecruiterField. Role - ', role);
-	// const { setSwitchedRole } = useContext(SwitcherRolesContext);
-
-	// const sendRole = () => {
-	// 	console.log('send role');
-	// 	setSwitchedRole?.('RECRUITER');
-	// };
-
+	const { userId } = useContext(AdminPanelContext);
 	const { setSwitchedRole } = useContext(SwitcherRolesContext);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
 			setFeedbackRecruiter('');
+			setLevelEnglish('');
 		} else {
 			const { feedback } =
 				feedbackContent[0].fromUser.role === 'RECRUITER'
 					? feedbackContent[0]
 					: feedbackContent[1];
 			setFeedbackRecruiter(feedback);
+			const { englishLevel } =
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0]
+					: feedbackContent[1];
+
+			if (englishLevel === null) {
+				setLevelEnglish(' ');
+			} else {
+				const levelIndex = 8 - Number(englishLevel);
+				const levelName = englishLevelProps[levelIndex]
+					? englishLevelProps[levelIndex].name
+					: '';
+				setLevelEnglish(levelName);
+			}
 		}
 	}, []);
 
@@ -86,8 +97,10 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					? feedbackContent[0].id
 					: (feedbackContent[1].id as number),
 			feedback: feedbackRecruiter as string,
-			// englishLevel: levelEnglishRecruiter as string,
+			englishLevel: levelEnglishRecruiter as string,
 		};
+
+		setLevelEnglish(levelEnglishRecruiter);
 
 		const putUpdateFeedback = async () => {
 			try {
@@ -97,10 +110,26 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 				setTimeout(() => setIsShown(false), 3000);
 			} catch (e) {
 				// eslint-disable-next-line no-console
-				console.log('COM RecruiterField.Error message - ', e.message);
+				console.log(
+					'COM RecruiterField.Error message - ',
+					e.response.request.response
+				);
 			}
 		};
 		putUpdateFeedback();
+	};
+
+	const changeStatus = async () => {
+		const status = {
+			internshipRequestId: userId as number,
+			internshipRequestStatus: 'RECRUITER_INTERVIEW_PASSED' as string,
+		};
+		try {
+			await setStatusCandidate(status);
+		} catch (e) {
+			// eslint-disable-next-line no-console
+			console.log('COM RecruiterField.Error message - ', e.message);
+		}
 	};
 
 	return (
@@ -138,17 +167,30 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 							name="levelEnglishRecruiter"
 							ref={register}
 						>
-							{englishLevel?.map((item) => (
+							{englishLevelProps?.map((item) => (
 								<option value={item.name} key={item.id}>
 									{item.name}
 								</option>
 							))}
 						</Select>
+						<TextFieldEnglishLevel
+							label="English-level"
+							variant="outlined"
+							color="primary"
+							value={levelEnglish}
+							InputProps={{
+								readOnly: true,
+							}}
+						/>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Save feedback
 						</ButtonMaterial>
 
-						<ButtonMaterial variant="outlined" color="primary">
+						<ButtonMaterial
+							variant="outlined"
+							color="primary"
+							onClick={changeStatus}
+						>
 							interview passed
 						</ButtonMaterial>
 					</ContainerBth>

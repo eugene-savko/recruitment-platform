@@ -27,8 +27,9 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { fetchListInterviewers } from 'app/API/scheduleRecruiter';
-import { authContext } from 'app/context/AuthLoggedContext';
-import { AdminPanelContext } from 'app/context/AdminPanelContext';
+import { SwitcherRolesContext } from 'app/contexts/SwitcherRolesContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
 import { TextEditor } from './hoc/TextEditor';
 import { BasicLayout } from './hoc/BasicLayout';
 import { useChangeEditingState } from './hooks/useChangeEditingState';
@@ -38,7 +39,6 @@ import IListRecruiters from './types/IListRecruiters';
 import { FlexibleSpace } from './hoc/FlexibleSpace';
 import Preloader from '../components/Preloader';
 import { AppointmentExpared } from './hoc/AppointmentExpared';
-import { SwitcherRolesContext } from '../../../context/SwitcherRolesContext';
 
 export const ScheduleRecruiter: React.FunctionComponent = () => {
 	const [loading, setLoading] = useState(true);

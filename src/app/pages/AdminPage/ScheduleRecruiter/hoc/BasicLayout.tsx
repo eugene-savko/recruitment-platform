@@ -3,12 +3,12 @@ import dateFormat from 'dateformat';
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { fetchCurrentCandidate } from 'app/API/scheduleRecruiter';
-import { authContext } from 'app/context/AuthLoggedContext';
 import { AuthCircularProgress } from 'app/pages/AuthPage/Auth/components';
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
+import Preloader from 'app/pages/AdminPage/components/Preloader';
 import { TitleLabel, PreferablyTime } from '../components';
 import { ICurrentCandidate } from '../types';
-import { AdminPanelContext } from '../../../../context/AdminPanelContext';
-import Preloader from '../../components/Preloader';
 
 export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> = ({
 	onFieldChange,
@@ -39,7 +39,6 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 				setProfileCandidate(gettedCurrentCandidate);
 				setLoading(false);
 				onFieldChange(fullNameCandidate);
-				// return onFieldChange(fullNameCandidate);
 			};
 
 			getCurrentCandidate();

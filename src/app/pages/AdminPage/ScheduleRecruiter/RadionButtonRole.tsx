@@ -3,8 +3,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
-import { authContext } from 'app/context/AuthLoggedContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
+import { SwitcherRolesContext } from 'app/contexts/SwitcherRolesContext';
 
 export const RadionButtonRole: React.FC = () => {
 	const { switchedRole, setSwitchedRole } = useContext(SwitcherRolesContext);

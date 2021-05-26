@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
-import { authContext } from 'app/context/AuthLoggedContext';
-import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
 // API
 import updateFeedback from 'app/API/updateFeedback';
 
 // pop-up
+import { SwitcherRolesContext } from 'app/contexts/SwitcherRolesContext';
 import PopUp from '../PopUp';
 
 // style
@@ -24,7 +23,6 @@ import { IFormFields, IFeedbackInfo } from '../types';
 
 interface ITechFieldProps {
 	feedbackContent: Array<IFeedbackInfo>;
-	// role: string;
 }
 
 const handleMessage = (location: { pathname: string }, action: string) => {
@@ -37,21 +35,14 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 		: `Please save your review or it will be lost. \nAre you sure you want to go to ${location.pathname}?`;
 };
 
-const checkRole = () => {
-	const { auth } = useContext(authContext);
-	return auth.dataRole?.role as string;
-};
-
 const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	feedbackContent,
 	// role,
 }) => {
-	const [areaDisabled, setAreaDisabled] = useState(false);
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackTech, setFeedbackTech] = useState<string | undefined>('');
 	const { handleSubmit } = useForm<IFormFields>();
-	const role = checkRole();
 
 	const { setSwitchedRole } = useContext(SwitcherRolesContext);
 
@@ -66,12 +57,6 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 			setFeedbackTech(feedback);
 		}
 	}, []);
-
-	// console.log('COM TechField. Role - ', role);
-
-	// if (role === 'ADMIN') {
-	// 	setAreaDisabled(true);
-	// }
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setFeedbackTech(event.target.value);
@@ -108,7 +93,6 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 				<Title>Tech field</Title>
 				<FeedbackForm onSubmit={handleSubmit(onSubmit)}>
 					<FeedbackField
-						disabled={areaDisabled}
 						label="Feedback"
 						id="feedback-tech"
 						name="feedbackTech"

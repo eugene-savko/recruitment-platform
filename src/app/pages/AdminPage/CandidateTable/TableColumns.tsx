@@ -1,48 +1,47 @@
 import React from 'react';
-import { Column } from 'react-table';
+import { ITableUser } from 'app/API/getAllUsers';
+import { CellProps, Column } from 'react-table';
 import { TableCellButton } from './TableCellButton';
 import { TableHeaderButton } from './TableHeaderButton';
 
-interface IBodyRow {
-	id: number;
-	full_name: string;
-	primary_skill: string;
-	country: string;
-	status: string;
-	profile: string;
-}
-
-const TableColumns: Column<IBodyRow>[] = [
+const TableColumns: Column<ITableUser>[] = [
 	{
 		Header: (): JSX.Element => {
 			return <TableHeaderButton text="Full Name" />;
 		},
-		accessor: 'full_name',
+		accessor: 'fullName',
 	},
 	{
 		Header: (): JSX.Element => {
 			return <TableHeaderButton text="Primary Skill" />;
 		},
-		accessor: 'primary_skill',
+		accessor: 'specialityName',
 	},
 	{
 		Header: (): JSX.Element => {
 			return <TableHeaderButton text="Country" />;
 		},
-		accessor: 'country',
+		accessor: 'countryName',
 	},
 	{
 		Header: (): JSX.Element => {
 			return <TableHeaderButton text="Status" />;
 		},
-		accessor: 'status',
+		accessor: 'statusName',
 	},
 	{
 		Header: 'Profile',
 		accessor: 'profile',
 		disableSortBy: true,
-		Cell: ({ cell }) => <TableCellButton text={cell.row.values.profile} />,
+		Cell: ({
+			cell,
+		}: React.PropsWithChildren<
+			CellProps<ITableUser, string | undefined>
+		>): JSX.Element => {
+			const { userId } = cell.row.original;
+			return <TableCellButton text="View" id={userId} />;
+		},
 	},
 ];
 export default TableColumns;
-export type { IBodyRow };
+export type { ITableUser };

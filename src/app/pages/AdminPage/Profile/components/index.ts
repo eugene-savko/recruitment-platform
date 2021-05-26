@@ -12,6 +12,7 @@ import FeedbackForm from './FeedbackForm';
 import Title from './Title';
 import MainFields from './MainFields';
 import ContainerAdmin from './ContainerAdmin';
+import TextFieldEnglishLevel from './TextFieldEnglishLevel';
 
 export {
 	List,
@@ -28,4 +29,5 @@ export {
 	Title,
 	MainFields,
 	ContainerAdmin,
+	TextFieldEnglishLevel,
 };

@@ -119,6 +119,8 @@ export const putAppointment = async (
 	appointmentChanged: AppointmentModel
 ): Promise<AppointmentModel | void> => {
 	try {
+		console.log(userId);
+		console.log(appointmentChanged);
 		const { data } = await axios({
 			url: `https://recruitment-platform.herokuapp.com/api/calendars`,
 			method: 'put',

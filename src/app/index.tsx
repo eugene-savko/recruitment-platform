@@ -1,11 +1,22 @@
 import React from 'react';
+
+// Material ui
 import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+// Pages
+import { Layout } from './components/Layout';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
-import { AdminPanelContextProvider } from './context/AdminPanelContext';
-import { SwitcherRolesProvider } from './context/SwitcherRolesContext';
+
+import { AdminPanelContextProvider } from './contexts/AdminPanelContext';
+import { AppRoutePath } from './route-paths';
+import { AdminRoutePath } from './pages/AdminPage/routes';
+import { FrontendLandingContextProvider } from './contexts/FrontendLandingContext';
+import ROUTES from './routes';
+import { SwitcherRolesProvider } from './contexts/SwitcherRolesContext';
 
 export const App: React.FunctionComponent = () => {
 	return (
@@ -13,14 +24,36 @@ export const App: React.FunctionComponent = () => {
 			<CssBaseline />
 			<BrowserRouter>
 				<Switch>
-					<Route path="/login" component={AuthPage} />
-					<PrivateRouteAuthAdminPage path="/">
+					<Route path={AppRoutePath.LOGIN} component={AuthPage} exact />
+					<PrivateRouteAuthAdminPage path={AdminRoutePath.ROOT}>
 						<AdminPanelContextProvider>
 							<SwitcherRolesProvider>
 								<AdminPage />
 							</SwitcherRolesProvider>
 						</AdminPanelContextProvider>
 					</PrivateRouteAuthAdminPage>
+					<FrontendLandingContextProvider>
+						{ROUTES?.map(({ path, exact, component: RouteComponent }) => (
+							<Route
+								key={path}
+								exact={exact}
+								path={path}
+								render={(props) => (
+									<Layout>
+										<RouteComponent {...props} />
+									</Layout>
+								)}
+							/>
+						))}
+					</FrontendLandingContextProvider>
+					<Route
+						path="*"
+						render={() => (
+							<Layout>
+								<NotFoundPage />
+							</Layout>
+						)}
+					/>
 				</Switch>
 			</BrowserRouter>
 		</React.Fragment>

@@ -15,12 +15,10 @@ export const TableForm: React.FunctionComponent<ITableForm> = ({
 	return (
 		<Form onSubmit={onSubmit} noValidate>
 			{children}
-			<FormButton autoFocus onClick={close}>
+			<FormButton type="button" autoFocus onClick={close}>
 				Back
 			</FormButton>
-			<FormButton type="submit" autoFocus onClick={close}>
-				Search
-			</FormButton>
+			<FormButton type="submit">Search</FormButton>
 		</Form>
 	);
 };
