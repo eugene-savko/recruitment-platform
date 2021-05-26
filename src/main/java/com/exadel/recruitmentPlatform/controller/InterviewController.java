@@ -19,14 +19,14 @@ public class InterviewController {
 
     private final InterviewServiceImpl interviewService;
 
-    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN", "ROLE_RECRUITER"})
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InterviewDto> save(@Valid @RequestBody FeedbackDto feedback) {
-        return ResponseEntity.ok(interviewService.updateFeedback(feedback.getId(), feedback.getFeedback()));
+        return ResponseEntity.ok(interviewService.updateFeedback(feedback.getId(), feedback.getFeedback(), feedback.getEnglishLevel()));
     }
 
-    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
+    @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN", "ROLE_RECRUITER"})
     @PutMapping(value = "/english-level")
     public ResponseEntity<InterviewDto> updateEnglishLevel(@RequestBody EnglishLevelDto englishLevelDto) {
         return ResponseEntity.ok(interviewService.updateEnglishLevel(englishLevelDto.getId(), englishLevelDto.getEnglishLevel()));

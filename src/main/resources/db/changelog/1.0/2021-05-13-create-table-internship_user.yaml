@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-05-13-create-table-internship_user
+      author: ZheltokMariya
+      preConditions:
+        - onFail: MARK_RAN
+        - columnExist:
+            schemaName: public
+            tableName: internship
+            columnName: id
+        - columnExist:
+            schemaName: public
+            tableName: user
+            columnName: id
+        - not:
+          tableExist:
+            schemaName: public
+            tableName: internship_user
+      changes:
+        - createTable:
+            tableName: internship_user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: internship_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_internship_internship_user
+                    references: internship(id)
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_user_internship_user
+                    references: user(id)
+                    nullable: false
+
+  - changeSet:
+      id: 2021-05-13-adding-create-update-fields
+      author: ZheltokMariya
+      preConditions:
+        - onFail: MARK_RAN
+        - tableExist:
+            schemaName: public
+            tableName: internship_user
+        - not:
+          columnExist:
+            schemaName: public
+            tableName: internship_user
+            columnName: updated
+        - not:
+          columnExist:
+            schemaName: public
+            tableName: internship_user
+            columnName: created
+      changes:
+        - addColumn:
+            tableName: internship_user
+            columns:
+              - column:
+                  name: updated
+                  type: timestamp(1) with time zone
+              - column:
+                  name: created
+                  type: timestamp(1) with time zone

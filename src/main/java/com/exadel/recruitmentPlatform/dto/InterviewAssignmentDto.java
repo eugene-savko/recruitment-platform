@@ -1,20 +1,18 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import com.exadel.recruitmentPlatform.entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDto extends BaseDto {
+public class InterviewAssignmentDto extends BaseDto{
 
-    private String firstName;
-
-    private String lastName;
-
-    private UserRole role;
+    @NotNull
+    private Long internshipRequestId;
 }

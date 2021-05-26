@@ -1,11 +1,15 @@
 package com.exadel.recruitmentPlatform.repository;
 
+import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserTime;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
+import java.util.List;
 
 public interface UserTimeRepository extends JpaRepository<UserTime, Long> {
 
@@ -20,4 +24,7 @@ public interface UserTimeRepository extends JpaRepository<UserTime, Long> {
             nativeQuery = true)
     LocalDateTime getEndPriorityTime(@Param("userId") Long userId);
 
+    List<UserTime> findByUserIn(List<User> users);
+
+    List<UserTime> findByUserId(Long userId);
 }

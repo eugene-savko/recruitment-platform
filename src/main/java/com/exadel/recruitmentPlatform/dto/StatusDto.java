@@ -1,6 +1,6 @@
 package com.exadel.recruitmentPlatform.dto;
 
-import com.exadel.recruitmentPlatform.entity.UserRole;
+import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +10,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDto extends BaseDto {
+public class StatusDto extends BaseDto {
 
-    private String firstName;
+    private Long internshipRequestId;
+    private InternshipRequestStatus internshipRequestStatus;
 
-    private String lastName;
-
-    private UserRole role;
 }

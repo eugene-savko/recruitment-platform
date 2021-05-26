@@ -2,8 +2,12 @@ package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
+import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
+import com.exadel.recruitmentPlatform.dto.StatusDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestProfileMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.InternshipRequestStatus;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -12,11 +16,20 @@ import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRequestRepository;
 import com.exadel.recruitmentPlatform.repository.TimeIntervalRepository;
 import com.exadel.recruitmentPlatform.repository.UserTimeRepository;
-import com.exadel.recruitmentPlatform.service.*;
+import com.exadel.recruitmentPlatform.service.CityService;
+import com.exadel.recruitmentPlatform.service.CountryService;
+import com.exadel.recruitmentPlatform.service.InternshipRequestService;
+import com.exadel.recruitmentPlatform.service.InternshipService;
+import com.exadel.recruitmentPlatform.service.InterviewService;
+import com.exadel.recruitmentPlatform.service.SpecialityService;
+import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.xml.bind.ValidationException;
 import java.util.List;
 
 @Service
@@ -35,6 +48,7 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     private final UserTimeService userTimeService;
     private final UserTimeRepository userTimeRepository;
     private final TimeIntervalRepository timeIntervalRepository;
+    private final PageableResponseMapper pageableResponseMapper;
 
     @Override
     public InternshipRequestDto save(InternshipRequestDto internshipRequestDto) {
@@ -77,5 +91,30 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
         return internshipRequestProfileDto;
     }
 
+    @Override
+    public PageableResponseDto getInternshipRequests(InternshipRequestSearchDto internshipRequestSearchDto) {
+        Page<InternshipRequest> internshipRequests = internshipRequestRepository
+                .findByFilterParam(PageRequest.of(internshipRequestSearchDto.getPageNumber(), internshipRequestSearchDto.getPageSize()),
+                internshipRequestSearchDto.getInternshipId(), internshipRequestSearchDto.getSpecialityIds(),
+                internshipRequestSearchDto.getStatuses(), "%" + internshipRequestSearchDto.getFullName() + "%");
+        return pageableResponseMapper.toDto(internshipRequests.toList(), internshipRequests);
+    }
+
+    @Override
+    public void updateStatus(StatusDto statusDto) throws ValidationException {
+        InternshipRequest internshipRequest = internshipRequestRepository.findById(statusDto.getInternshipRequestId())
+                .orElseThrow(() -> new EntityNotFoundException("Internship request with id=" + statusDto.getInternshipRequestId() + " doesn't exist"));
+        if (statusDto.getInternshipRequestStatus()==InternshipRequestStatus.REJECTED
+                || (statusDto.getInternshipRequestStatus()==InternshipRequestStatus.RECRUITER_INTERVIEW_PASSED
+                & internshipRequest.getStatus()==InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK)
+                || (statusDto.getInternshipRequestStatus()==InternshipRequestStatus.ACCEPTED
+                & internshipRequest.getStatus()==InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED)) {
+            internshipRequestMapper.update(internshipRequest, statusDto.getInternshipRequestStatus());
+            internshipRequestRepository.save(internshipRequest);
+        } else {
+            throw new ValidationException("You cannot take this action right now");
+        }
+    }
 
 }
+
