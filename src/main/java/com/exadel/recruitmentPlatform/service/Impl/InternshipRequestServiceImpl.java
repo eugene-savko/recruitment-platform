@@ -104,9 +104,9 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
             internshipRequestMapper.update(internshipRequest, statusDto.getInternshipRequestStatus());
             internshipRequestRepository.save(internshipRequest);
             if (internshipRequest.getStatus() == InternshipRequestStatus.REJECTED) {
-                emailService.sendEmail(internshipRequest.getUser().getEmail(), emailService.placeholderAccepted(internshipRequest), EmailType.DENI_TEMPLATE);
+                emailService.sendEmail(internshipRequest.getUser().getEmail(), emailService.placeholderAcceptedOrRejected(internshipRequest), EmailType.DENI_TEMPLATE);
             } else if (internshipRequest.getStatus() == InternshipRequestStatus.ACCEPTED) {
-                emailService.sendEmail(internshipRequest.getUser().getEmail(), emailService.placeholderAccepted(internshipRequest), EmailType.ACCEPTED_FOR_INTERNSHIP_TEMPLATE);
+                emailService.sendEmail(internshipRequest.getUser().getEmail(), emailService.placeholderAcceptedOrRejected(internshipRequest), EmailType.ACCEPTED_FOR_INTERNSHIP_TEMPLATE);
             }
 
         } else {

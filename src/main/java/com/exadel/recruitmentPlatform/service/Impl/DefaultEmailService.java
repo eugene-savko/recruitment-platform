@@ -112,7 +112,7 @@ public class DefaultEmailService implements EmailService {
     }
 
     @Override
-    public Map<String, Object> placeholderAccepted(InternshipRequest internshipRequest) {
+    public Map<String, Object> placeholderAcceptedOrRejected(InternshipRequest internshipRequest) {
         InternshipResponseDto dto = internshipService.get(internshipRequest.getInternshipId());
         Map<String, Object> model = new HashMap<>();
         model.put("FirstName", internshipRequest.getUser().getFirstName());

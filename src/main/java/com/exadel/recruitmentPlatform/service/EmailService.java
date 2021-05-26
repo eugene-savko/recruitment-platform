@@ -17,5 +17,5 @@ public interface EmailService {
 
     Map<String, Object> placeholderAssignmentInterview(InternshipRequest internshipRequest, LocalDateTime dateTime, UserRole userRole);
 
-    Map<String, Object> placeholderAccepted(InternshipRequest internshipRequest);
+    Map<String, Object> placeholderAcceptedOrRejected(InternshipRequest internshipRequest);
 }
