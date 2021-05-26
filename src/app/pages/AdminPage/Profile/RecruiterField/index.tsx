@@ -73,32 +73,11 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 			if (englishLevel === null) {
 				setLevelEnglish(' ');
 			} else {
-				switch (Number(englishLevel)) {
-					case 1:
-						setLevelEnglish(englishLevelProps[7].name);
-						break;
-					case 2:
-						setLevelEnglish(englishLevelProps[6].name);
-						break;
-					case 3:
-						setLevelEnglish(englishLevelProps[5].name);
-						break;
-					case 4:
-						setLevelEnglish(englishLevelProps[4].name);
-						break;
-					case 5:
-						setLevelEnglish(englishLevelProps[3].name);
-						break;
-					case 6:
-						setLevelEnglish(englishLevelProps[2].name);
-						break;
-					case 7:
-						setLevelEnglish(englishLevelProps[1].name);
-						break;
-					default:
-						setLevelEnglish('');
-						break;
-				}
+				const levelIndex = 8 - Number(englishLevel);
+				const levelName = englishLevelProps[levelIndex]
+					? englishLevelProps[levelIndex].name
+					: '';
+				setLevelEnglish(levelName);
 			}
 		}
 	}, []);
