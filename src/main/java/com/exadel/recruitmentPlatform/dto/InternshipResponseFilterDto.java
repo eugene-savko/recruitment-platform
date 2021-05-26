@@ -10,6 +10,7 @@ import lombok.Setter;
 public class InternshipResponseFilterDto {
 
     private Long userId;
+    private Long internshipRequestId;
     private String firstName;
     private String lastName;
     private String specialityName;
