@@ -7,7 +7,7 @@ import updateFeedback from 'app/API/updateFeedback';
 import setStatusCandidate from 'app/API/setStatusCandidate';
 
 // context
-import { AdminPanelContext } from 'app/context/AdminPanelContext';
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
 
 // pop-up
 import PopUp from '../PopUp';

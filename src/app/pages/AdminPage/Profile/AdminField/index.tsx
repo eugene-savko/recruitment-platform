@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import setStatusCandidate from 'app/API/setStatusCandidate';
 
 // context
-import { AdminPanelContext } from 'app/context/AdminPanelContext';
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
 
 // style
 import { ButtonMaterial, ContainerAdmin } from '../components';
