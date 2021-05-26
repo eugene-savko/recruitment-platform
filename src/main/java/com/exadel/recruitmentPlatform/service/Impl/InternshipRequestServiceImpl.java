@@ -1,9 +1,10 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
+import com.exadel.recruitmentPlatform.dto.StatusDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestProfileMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
@@ -100,16 +101,18 @@ public class InternshipRequestServiceImpl implements InternshipRequestService {
     }
 
     @Override
-    public void updateStatus(Long id, InternshipRequestStatus status) throws ValidationException {
-        InternshipRequest internshipRequest = internshipRequestRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Internship request with id=" + id + " doesn't exist"));
-        if (status.getMessageKey().equals("rejected") || (status.getMessageKey().equals("recruiter.interview.passed") & internshipRequest.getStatus().getMessageKey().equals("recruiter.interview.feedback"))
-                || (status.getMessageKey().equals("accepted") & internshipRequest.getStatus().getMessageKey().equals("technical.specialist.interview.passed"))) {
-            internshipRequestMapper.update(internshipRequest, status);
+    public void updateStatus(StatusDto statusDto) throws ValidationException {
+        InternshipRequest internshipRequest = internshipRequestRepository.findById(statusDto.getInternshipRequestId())
+                .orElseThrow(() -> new EntityNotFoundException("Internship request with id=" + statusDto.getInternshipRequestId() + " doesn't exist"));
+        if (statusDto.getInternshipRequestStatus()==InternshipRequestStatus.REJECTED
+                || (statusDto.getInternshipRequestStatus()==InternshipRequestStatus.RECRUITER_INTERVIEW_PASSED
+                & internshipRequest.getStatus()==InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK)
+                || (statusDto.getInternshipRequestStatus()==InternshipRequestStatus.ACCEPTED
+                & internshipRequest.getStatus()==InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED)) {
+            internshipRequestMapper.update(internshipRequest, statusDto.getInternshipRequestStatus());
             internshipRequestRepository.save(internshipRequest);
-        } else if (!(status.getMessageKey().equals("recruiter.interview.passed") & internshipRequest.getStatus().getMessageKey().equals("recruiter.interview.feedback"))
-        || !(status.getMessageKey().equals("accepted") & internshipRequest.getStatus().getMessageKey().equals("technical.specialist.interview.passed"))){
-            throw new ValidationException("You can't accept this internship request right now");
+        } else {
+            throw new ValidationException("You cannot take this action right now");
         }
     }
 
