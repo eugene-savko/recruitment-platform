@@ -107,12 +107,12 @@ export const TraineeForm: React.FunctionComponent<ITraineeForm> = ({
 
 				<InputItem>
 					<Select
-						name="primarySkill"
+						name="pSkill"
 						ref={register({ required: true })}
 						placeholder="English level"
 					>
 						{primarySkill?.map((item) => (
-							<option value={item.name} key={item.id}>
+							<option value={item.id} key={item.id}>
 								{item.name}
 							</option>
 						))}

@@ -5,9 +5,8 @@ import { Search as SearchIcon } from '@material-ui/icons';
 import { FilterContext } from 'app/contexts/FilterContext';
 
 import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
-import { fetchSpecialities } from 'app/API/specialities';
-import { fetchInternships } from 'app/API/interships';
-import SPECIALIZATION_ITEMS_DATA from 'app/data/SPECIALIZATION_ITEMS_DATA';
+import { fetchSpecialities } from 'app/API/getSpecialitiesWithAny';
+import { fetchInternshipsData } from 'app/API/getInternshipsData';
 
 import {
 	DropdownList,
@@ -25,7 +24,7 @@ import FilterDropdownWrapper from './components/FilterMenuWrapper';
 import ControledForm from './components/FormControled';
 
 const initialState: IFilterState = {
-	specialization: 'Any Speciallization',
+	specialization: 'Any Speciality',
 	destination: 'All Countries',
 };
 
@@ -85,10 +84,9 @@ export const Filter: React.FunctionComponent = () => {
 		const fetchData = async () => {
 			try {
 				const specialities = await fetchSpecialities();
-				console.log(specialities);
 				setSpecializationItems(specialities);
 			} catch (e) {
-				setSpecializationItems(SPECIALIZATION_ITEMS_DATA);
+				throw new Error(e.message);
 			}
 		};
 		fetchData();
@@ -96,8 +94,7 @@ export const Filter: React.FunctionComponent = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				console.log(getId);
-				const data = await fetchInternships(getId);
+				const data = await fetchInternshipsData(getId);
 				setTrainings?.(data);
 			} catch (e) {
 				setTrainings?.(INTERNSHIPS_DATA);

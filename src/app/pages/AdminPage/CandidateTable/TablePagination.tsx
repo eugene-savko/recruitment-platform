@@ -8,7 +8,6 @@ import {
 import React, { useCallback } from 'react';
 import { ROW_PER_PAGE } from 'app/data';
 import {
-	NumberPageInput,
 	NumberPageTextField,
 	TablePaginationButton,
 	TablePaginationItem,
@@ -16,60 +15,63 @@ import {
 	TablePaginationSelect,
 	TablePaginationSelectLabel,
 } from './components';
-import { IFilterOption } from './types';
+import { IRowPerPageOption } from './types';
+import { IInternshipTableData, IPaginationData } from './index';
 
 interface ITablePagination {
-	nextPage: () => void;
-	previousPage: () => void;
-	canNextPage: boolean;
-	canPreviousPage: boolean;
-	pageCount: number;
-	gotoPage: (updater: number | ((pageIndex: number) => number)) => void;
-	pageOptions: number[];
-	pageIndex: number;
-	pageSize: number;
-	setPageSize: (pageSize: number) => void;
+	pageOptions: number | undefined;
+	paginationData: IPaginationData;
+	setPaginationData: React.Dispatch<React.SetStateAction<IPaginationData>>;
+	setTableData: React.Dispatch<React.SetStateAction<IInternshipTableData>>;
 }
 
 export const TablePagination: React.FunctionComponent<ITablePagination> = ({
-	nextPage,
-	previousPage,
-	canNextPage,
-	canPreviousPage,
-	pageCount,
-	gotoPage,
-	pageOptions,
-	pageIndex,
-	pageSize,
-	setPageSize,
+	paginationData,
+	setTableData,
 }) => {
-	const numberPageInputProps = {
-		placeholder: `${pageIndex + 1}`,
-		max: pageOptions.length,
-		min: 1,
-		maxLength: 2,
-	};
+	const { pageSize, pageNumber, totalPageNumber } = paginationData;
 
-	const handleRowPerPage = useCallback((opt: IFilterOption) => {
+	const handleRowPerPage = useCallback((opt: IRowPerPageOption) => {
 		const { name } = opt;
-		setPageSize(Number(name));
+		setTableData((prev) => ({
+			...prev,
+			pageSize: Number(name),
+			pageNumber: 0,
+		}));
 	}, []);
 	const getOptionLabel = useCallback(
-		(option: IFilterOption) => option.name,
+		(option: IRowPerPageOption) => option.name,
 		[]
 	);
 	const getOptionValue = useCallback(
-		(option: IFilterOption) => option.name,
+		(option: IRowPerPageOption) => option.name,
 		[]
 	);
-	// 1
-	const handleNumberPage = useCallback(
-		(e) => {
-			const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
-			gotoPage(pageNumber);
-		},
-		[gotoPage]
-	);
+	const goToFirstPage = () => {
+		setTableData((prev) => ({
+			...prev,
+			pageNumber: 0,
+		}));
+	};
+	const goToLastPage = () => {
+		setTableData((prev) => ({
+			...prev,
+			pageNumber: totalPageNumber - 1,
+		}));
+	};
+	const nextPage = () => {
+		setTableData((prev) => ({
+			...prev,
+			pageNumber:
+				pageNumber < totalPageNumber - 1 ? pageNumber + 1 : pageNumber,
+		}));
+	};
+	const previousPage = () => {
+		setTableData((prev) => ({
+			...prev,
+			pageNumber: pageNumber && pageNumber - 1,
+		}));
+	};
 	return (
 		<TablePaginationList>
 			<TablePaginationItem>
@@ -90,23 +92,15 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 			</TablePaginationItem>
 			<TablePaginationItem>
 				<NumberPageTextField>
-					<strong>Page:</strong> {pageIndex + 1} of {pageOptions.length}
+					<strong>Page:</strong> {pageNumber + 1} of {totalPageNumber}
 				</NumberPageTextField>
 			</TablePaginationItem>
-			<TablePaginationItem>
-				<NumberPageInput
-					type="number"
-					value={pageIndex + 1}
-					onChange={handleNumberPage}
-					inputProps={numberPageInputProps}
-					disableUnderline
-				/>
-			</TablePaginationItem>
+
 			<TablePaginationItem>
 				<TablePaginationButton
 					type="button"
-					onClick={() => gotoPage(0)}
-					disabled={!canPreviousPage}
+					onClick={goToFirstPage}
+					disabled={pageNumber === 0}
 				>
 					<FirstPageIcon />
 				</TablePaginationButton>
@@ -115,7 +109,7 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 				<TablePaginationButton
 					type="button"
 					onClick={previousPage}
-					disabled={!canPreviousPage}
+					disabled={pageNumber === 0}
 				>
 					<ArrowBackIosIcon />
 				</TablePaginationButton>
@@ -124,7 +118,7 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 				<TablePaginationButton
 					type="button"
 					onClick={nextPage}
-					disabled={!canNextPage}
+					disabled={pageNumber === totalPageNumber - 1}
 				>
 					<ArrowForwardIosIcon />
 				</TablePaginationButton>
@@ -132,8 +126,8 @@ export const TablePagination: React.FunctionComponent<ITablePagination> = ({
 			<TablePaginationItem>
 				<TablePaginationButton
 					type="button"
-					onClick={() => gotoPage(pageCount - 1)}
-					disabled={!canNextPage}
+					onClick={goToLastPage}
+					disabled={pageNumber === totalPageNumber - 1}
 				>
 					<LastPageIcon />
 				</TablePaginationButton>

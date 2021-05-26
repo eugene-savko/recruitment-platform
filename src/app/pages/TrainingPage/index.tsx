@@ -31,24 +31,24 @@ export const TrainingPage: React.FunctionComponent = () => {
 				skills to the limit, expand your abilities and work with one of the
 				largest privately owned organizations in the United States.
 			</Paragraph>
+			<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 			<Paragraph>
-				<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 				We are looking for a self-motivated and experienced Lead .NET Developer
 				to join our team! You will have the chance to push your development
 				skills to the limit, expand your abilities and work with one of the
 				largest privately owned organizations in the United States.
 			</Paragraph>
-			<Paragraph>
-				<SubTitle>Work at Exadel – Who We Are:</SubTitle>
-				<List>
-					<ListItem>Produce code using .NET languages</ListItem>
-					<ListItem>Produce code using .NET languages</ListItem>
-					<ListItem>Produce code using .NET languages</ListItem>
-					<ListItem>Produce code using .NET languages</ListItem>
-					<ListItem>Produce code using .NET languages</ListItem>
-					<ListItem>Produce code using .NET languages</ListItem>
-				</List>
-			</Paragraph>
+			<SubTitle>Work at Exadel – Who We Are:</SubTitle>
+
+			<List>
+				<ListItem>Produce code using .NET languages</ListItem>
+				<ListItem>Produce code using .NET languages</ListItem>
+				<ListItem>Produce code using .NET languages</ListItem>
+				<ListItem>Produce code using .NET languages</ListItem>
+				<ListItem>Produce code using .NET languages</ListItem>
+				<ListItem>Produce code using .NET languages</ListItem>
+			</List>
+
 			<Paragraph>
 				We are looking for a self-motivated and experienced Lead .NET Developer
 				to join our team! You will have the chance to push your development
@@ -68,9 +68,8 @@ export const TrainingPage: React.FunctionComponent = () => {
 			>
 				<SendForm />
 			</CSSTransition>
-
+			<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 			<Paragraph>
-				<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 				We are looking for a self-motivated and experienced Lead .NET Developer
 				to join our team! You will have the chance to push your development
 				skills to the limit, expand your abilities and work with one of the

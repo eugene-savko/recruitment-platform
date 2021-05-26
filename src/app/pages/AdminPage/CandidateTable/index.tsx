@@ -5,29 +5,30 @@ import { FilterList as FilterListIcon } from '@material-ui/icons/';
 // react-hook-form
 import { useForm } from 'react-hook-form';
 // data
-import { DATA_TABLE, FILTER_SELECTS, GLOBAL_FILTER_SELECT } from 'app/data/';
+import { FILTER_SELECTS, GLOBAL_FILTER_SELECT } from 'app/data/';
 // requests
-import { fetchInternships } from 'app/API/intenships';
-import { fetchFilterSelectOptions } from 'app/API/fetchFilterSelectOptions';
+import { getListInternships } from 'app/API/getListInternships';
+import { getFilterOptions } from 'app/API/getFilterOptions';
 // react table
 import {
 	useTable,
 	useFilters,
 	usePagination,
 	useGlobalFilter,
-	Row,
-	IdType,
 	useSortBy,
 } from 'react-table';
 // components
-import TableColumns, { IBodyRow } from './TableColumns';
+import { getAllUsers, ITableUser } from 'app/API/getAllUsers';
+import { TRAINEE_STATUSES } from 'app/data/dictionaries/TRAINEE_STATUSES';
+
+import TableColumns from './TableColumns';
 import { InputField } from './InputField';
 import { TableFilter } from './TableFilter';
 import { SelectField } from './SelectField';
 import { TableForm } from './TableForm';
 import { TablePagination } from './TablePagination';
 // types
-import { IFilterOption } from './types';
+import { IStatusOption, ISpecialityOption, IInternshipOption } from './types';
 // styled components
 import {
 	Table,
@@ -43,120 +44,183 @@ import {
 
 // interfaces
 interface IFilterOptions {
-	trainee_status: Array<IFilterOption>;
-	primary_skills: Array<IFilterOption>;
+	statuses: Array<IStatusOption>;
+	specialities: Array<ISpecialityOption>;
 }
-interface IInternshipTableData {
-	internshipId: number | null;
-	userId?: number;
-	fullName?: string | null;
-	specialityIds?: Array<Record<string, number | null>>;
-	statusNames?: Array<Record<string, string | null>>;
+export interface IPaginationData {
+	pageSize: number;
+	pageNumber: number;
+	totalPageNumber: number;
+}
+export interface IInternshipTableData {
+	internshipId: number | string;
+	specialityIds?: Array<number> | null;
+	statuses?: Array<number> | null;
+	fullName?: string;
 	pageNumber?: number;
-	pageSize?: number;
+	pageSize: number;
+	totalPageNumber?: number;
 }
 
 export const CandidateTable: React.FunctionComponent = () => {
-	// Use Table
-	const [candidates] = useState(DATA_TABLE);
-	// Global Filter Function(experimental)
-	const GlobalFilterFunction = useCallback(
-		(
-			rows: Row<IBodyRow>[],
-			ids: IdType<string | Extract<keyof IBodyRow, string>>[],
-			query: IFilterOption
-		) => {
-			console.log(ids);
-			console.log(query);
-
-			return rows;
+	// initial Data
+	const initialDataTable = [
+		{
+			userId: 1,
+			fullName: '',
+			specialityName: '',
+			countryName: '',
+			statusName: '',
+			profile: '',
 		},
-		[candidates]
+	];
+	const initialState = {
+		internshipId: '',
+		specialityIds: null,
+		statuses: null,
+		fullName: '',
+		pageNumber: 0,
+		pageSize: 10,
+	};
+	// Use Table
+	const [candidates, setCandidates] = useState<Array<ITableUser>>(
+		initialDataTable
 	);
+
 	const {
 		getTableProps,
 		getTableBodyProps,
 		headerGroups,
-		page,
-		setPageSize,
-		nextPage,
-		previousPage,
-		canNextPage,
-		canPreviousPage,
-		pageCount,
-		gotoPage,
-		pageOptions,
 		prepareRow,
-		setGlobalFilter,
-		state,
+		page,
+		pageOptions,
 	} = useTable(
 		{
 			columns: TableColumns,
 			data: candidates,
-			globalFilter: GlobalFilterFunction,
+			manualPagination: true,
 		},
 		useFilters,
 		useGlobalFilter,
 		useSortBy,
 		usePagination
 	);
-	const { pageIndex, pageSize } = state;
 
 	// Use Form
 	const { register, handleSubmit, control } = useForm();
 
 	// temporary data;
-	const { primary_skills, trainee_status } = FILTER_SELECTS;
+	const { specialities, statuses } = FILTER_SELECTS;
 
-	const initialState = {
-		internshipId: null,
-		fullName: null,
-		pageNumber: 1,
-		pageSize: 10,
-	};
 	// states
 	const [open, setOpen] = useState(false);
-	const [internships, setInternships] = useState<Array<IFilterOption>>([]);
+	const [internships, setInternships] = useState<Array<IInternshipOption>>([]);
 	const [tableData, setTableData] = useState<IInternshipTableData>(
 		initialState
 	);
 	const [options, setOptions] = useState<IFilterOptions>({
-		trainee_status,
-		primary_skills,
+		statuses,
+		specialities,
 	});
-	// effects
+	const [paginationData, setPaginationData] = useState({
+		pageSize: 10,
+		pageNumber: 0,
+		totalPageNumber: 0,
+	});
+
 	useEffect(() => {
-		const fetchData = async () => {
+		const fetchInternships = async () => {
 			try {
-				const data = await fetchInternships();
+				const data = await getListInternships();
 				setInternships(data);
 			} catch (e) {
+				console.log(e.messsage);
 				setInternships(GLOBAL_FILTER_SELECT);
 			}
 		};
-		fetchData();
+		fetchInternships();
 	}, []);
+
+	useEffect(() => {
+		const fetchTableData = async () => {
+			try {
+				// setOptions
+				const { internshipId } = tableData;
+				const opt = await getFilterOptions(internshipId);
+				const newOpt = {
+					...opt,
+					statuses: opt.statuses.map((elem, i) => ({
+						...elem,
+						id: i,
+						status: `${TRAINEE_STATUSES[`${elem.status}`]}`,
+					})),
+				};
+				setOptions(newOpt);
+
+				// set Candidates
+				const {
+					internshipRequests,
+					pageNumber,
+					// eslint-disable-next-line no-shadow
+					pageSize,
+					totalPageNumber,
+				} = await getAllUsers(tableData);
+
+				const users = internshipRequests.map((elem) => ({
+					...elem,
+					fullName: `${elem.firstName} ${elem.lastName}`,
+					statusName: `${TRAINEE_STATUSES[`${elem.statusName}`]}`,
+				}));
+				setPaginationData((prev) => ({
+					...prev,
+					totalPageNumber,
+					pageNumber,
+					pageSize,
+				}));
+				setCandidates(users);
+			} catch (e) {
+				console.log(e.message);
+			}
+		};
+		fetchTableData();
+	}, [tableData]);
 	// events
+	const handleClose = useCallback(() => {
+		setOpen(false);
+	}, []);
+	// submit Form
 	const onSubmit = useCallback(
 		(data) => {
 			setTableData((prev) => ({
 				...prev,
-				fullName: data['Full Name'] ? data['Full Name'] : null,
-				statusNames: data['Trainee Status'],
-				specialityIds: data['Primary Skill'],
+				fullName: data.fullName ? data.fullName : '',
+				statuses:
+					data.statuses === 'statuses'
+						? null
+						: data.statuses.map((elem: { status: string }) =>
+								Object.keys(TRAINEE_STATUSES).find(
+									(k) => TRAINEE_STATUSES[k] === elem.status
+								)
+						  ),
+				specialityIds:
+					data.specialityIds === 'specialityIds'
+						? null
+						: data.specialityIds.map((elem: { id: number }) => elem.id),
+				pageNumber: paginationData.pageNumber,
+				pageSize: paginationData.pageSize,
 			}));
-			setGlobalFilter(data);
+			handleClose();
 		},
 		[tableData]
 	);
 
 	const getOptionLabel = useCallback(
-		(option: IFilterOption) => option.name,
+		(option: IInternshipOption) => option.name,
 		[]
 	);
 
 	const getOptionValue = useCallback(
-		(option: IFilterOption) => option.name,
+		(option: IInternshipOption) => option.name,
 		[]
 	);
 
@@ -164,75 +228,15 @@ export const CandidateTable: React.FunctionComponent = () => {
 		setOpen(!open);
 	}, []);
 
-	const handleClose = useCallback(() => {
-		setOpen(false);
-	}, []);
-
-	const handleGlobalFilterSelectChange = useCallback((data: IFilterOption) => {
-		setTableData((prev) => ({
-			...prev,
-			internship: Number(data.id),
-		}));
-		// temporary
-		switch (data.id) {
-			case 1:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter(
-						(elem) => elem.id === 1 || elem.id === 2
-					),
-				}));
-				break;
-			case 2:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter(
-						(elem) => elem.id === 2 || elem.id === 3
-					),
-				}));
-				break;
-			case 3:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter((elem) => elem.id === 1),
-				}));
-				break;
-			case 4:
-				setOptions((prev) => ({
-					...prev,
-					skills: primary_skills.filter((elem) => elem.id === 3),
-				}));
-				break;
-			case 5:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter((elem) => elem.id === 1),
-				}));
-				break;
-			case 6:
-			case 7:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter((elem) => elem.id === 4),
-				}));
-				break;
-			case 8:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter((elem) => elem.id === 5),
-				}));
-				break;
-			case 9:
-				setOptions((prev) => ({
-					...prev,
-					primary_skills: primary_skills.filter((elem) => elem.id === 6),
-				}));
-				break;
-			default:
-				return;
-		}
-		setGlobalFilter(data);
-	}, []);
+	const handleGlobalFilterSelectChange = useCallback(
+		(data: IInternshipOption) => {
+			setTableData({
+				...initialState,
+				internshipId: Number(data.id),
+			});
+		},
+		[]
+	);
 	return (
 		<WrapperCandidateTable container>
 			<PaperTable>
@@ -242,6 +246,7 @@ export const CandidateTable: React.FunctionComponent = () => {
 					getOptionLabel={getOptionLabel}
 					getOptionValue={getOptionValue}
 					onChange={handleGlobalFilterSelectChange}
+					maxMenuHeight={157}
 					isFocused={false}
 					placeholder="Сhoose an internship"
 				/>
@@ -254,19 +259,21 @@ export const CandidateTable: React.FunctionComponent = () => {
 						<InputField
 							ref={register}
 							id="fullName"
-							name="Full Name"
+							name="fullName"
 							type="text"
 							placeholder="Full Name"
 						/>
 						<SelectField
 							control={control}
-							name="Primary Skill"
-							data={options.primary_skills}
+							name="specialityIds"
+							label="Primary Skills"
+							data={options.specialities}
 						/>
 						<SelectField
 							control={control}
-							name="Trainee Status"
-							data={options.trainee_status}
+							name="statuses"
+							label="Trainee Status"
+							data={options.statuses}
 						/>
 					</TableForm>
 				</TableFilter>
@@ -302,16 +309,10 @@ export const CandidateTable: React.FunctionComponent = () => {
 					</TableBody>
 				</Table>
 				<TablePagination
-					nextPage={nextPage}
-					previousPage={previousPage}
-					canNextPage={canNextPage}
-					canPreviousPage={canPreviousPage}
-					pageCount={pageCount}
-					gotoPage={gotoPage}
-					pageOptions={pageOptions}
-					pageIndex={pageIndex}
-					pageSize={pageSize}
-					setPageSize={setPageSize}
+					pageOptions={pageOptions.length}
+					paginationData={paginationData}
+					setPaginationData={setPaginationData}
+					setTableData={setTableData}
 				/>
 			</PaperTable>
 		</WrapperCandidateTable>

@@ -5,7 +5,7 @@ import { FilterContext } from 'app/contexts/FilterContext';
 
 // Smart component
 
-import { fetchInternships } from 'app/API/interships';
+import { fetchInternshipsData } from 'app/API/getInternshipsData';
 import { INTERNSHIPS_DATA } from 'app/data/INTERNSHIPS_DATA';
 
 import { Filter } from './Filter';
@@ -21,7 +21,7 @@ export const Trainings: React.FunctionComponent = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const data = await fetchInternships();
+				const data = await fetchInternshipsData();
 				setTrainings?.(data);
 			} catch (e) {
 				setTrainings?.(INTERNSHIPS_DATA);

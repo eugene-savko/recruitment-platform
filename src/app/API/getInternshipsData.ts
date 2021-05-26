@@ -2,7 +2,7 @@ import { ITrainingItem } from 'app/pages/HomePage/Trainings/types';
 import { API } from './axios';
 import { URL_INTERNSHIPS, URL_INTERNSHIPS_SPECIALITIES } from './urls';
 
-export const fetchInternships = async (
+export const fetchInternshipsData = async (
 	id?: number
 ): Promise<Array<ITrainingItem>> => {
 	const url = id

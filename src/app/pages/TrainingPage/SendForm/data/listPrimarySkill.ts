@@ -1,10 +1,11 @@
 import IListItemSelect from '../types/IListItemSelect';
 
 const listPrimarySkill: Array<IListItemSelect> = [
-	{ name: 'JS', id: '1' },
-	{ name: 'JAVA', id: '2' },
-	{ name: 'HTML', id: '3' },
-	{ name: 'CSS', id: '4' },
+	{ id: 1, name: 'Java' },
+	{ id: 2, name: 'Javascript' },
+	{ id: 3, name: 'C++' },
+	{ id: 4, name: 'Go' },
+	{ id: 5, name: 'Python' },
 ];
 
 export { listPrimarySkill };
