@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -20,5 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findByRole(Pageable pageable, UserRole role);
 
     List<User> findByRoleAndInternships_Id(UserRole userRole, Long internshipId);
+
+    List<User> findByRoleIn(Set<UserRole> roles);
+
+    List<User> findByIdIn(Set<Long> ids);
 
 }

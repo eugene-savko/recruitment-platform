@@ -17,7 +17,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class InternshipResponseDto extends BaseDto {
+public class InternshipOnAdminPageResponseDto extends BaseDto {
+
     @NotBlank
     @Size(min = 1, max = 50)
     private String name;
@@ -26,14 +27,8 @@ public class InternshipResponseDto extends BaseDto {
     @Size(min = 1, max = 1500)
     private String description;
 
-    @NotNull    //format "2021-12-30"
+    @NotNull
     private LocalDate deadline;
-
-    @NotNull    //format "2021-12-30"
-    private LocalDate startDate;
-
-    @NotNull    //format "2021-12-30"
-    private LocalDate endDate;
 
     @NotNull
     private InternshipStatus status;
@@ -50,7 +45,8 @@ public class InternshipResponseDto extends BaseDto {
     @NotBlank
     private List<CityDto> cities;
 
-    @NotBlank
-    private List<SkillDto> skills;
+    private int applications;
+
+    private int acceptedCandidates;
 
 }

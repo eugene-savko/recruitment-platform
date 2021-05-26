@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -50,5 +51,6 @@ public class User extends BaseEntity {
     private List<InternshipRequest> internshipRequest;
 
     @ManyToMany(mappedBy = "users")
-    private List<Internship> internships;
+    private List<Internship> internships = new LinkedList<>();
+
 }

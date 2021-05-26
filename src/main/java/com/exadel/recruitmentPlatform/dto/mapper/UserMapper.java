@@ -5,6 +5,9 @@ import com.exadel.recruitmentPlatform.dto.UserResponseDto;
 import com.exadel.recruitmentPlatform.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class UserMapper implements BaseMapper<User, UserDto> {
 
@@ -58,4 +61,9 @@ public class UserMapper implements BaseMapper<User, UserDto> {
         userDto.setRole(user.getRole());
         return userDto;
     }
+
+    public List<UserResponseDto> toDtos(List<User> users) {
+        return users.stream().map(this::toResponseDto).collect(Collectors.toList());
+    }
+
 }

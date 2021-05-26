@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.UserDto;
+import com.exadel.recruitmentPlatform.dto.UserResponseDto;
 import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.entity.UserRole;
 import com.exadel.recruitmentPlatform.service.UserService;
@@ -39,6 +40,11 @@ public class UserController {
     @GetMapping(value = "/ids-names")
     public List<UserShortDto> getIdsAndNamesOfUser(@RequestParam("userRole") UserRole userRole, @RequestParam("internshipId") Long internshipId) {
         return userService.getIdsAndNamesOfUsers(userRole, internshipId);
+    }
+
+    @GetMapping(value = "/specialists")
+    public List<UserResponseDto> getSpecialistUsers() {
+        return userService.getSpecialistUsers();
     }
 
 }

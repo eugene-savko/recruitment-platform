@@ -37,7 +37,7 @@ public class Internship extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private InternshipStatus status;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany
     @JoinTable(name = "internship_speciality",
             joinColumns = @JoinColumn(name = "internship_id"),
             inverseJoinColumns = @JoinColumn(name = "speciality_id"))
@@ -71,7 +71,24 @@ public class Internship extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users = new LinkedList<>();
 
-    public void addCountries (List <Country> countries){
+    @ManyToMany
+    @JoinTable(name = "internship_city",
+            joinColumns = @JoinColumn(name = "internship_id"),
+            inverseJoinColumns = @JoinColumn(name = "city_id"))
+    private List<City> cities = new LinkedList<>();
+
+
+    public void addCities(List<City> cities) {
+        this.cities.addAll(cities);
+        cities.forEach(city -> city.getInternships().add(this));
+    }
+
+    public void addCity(City city) {
+        this.cities.add(city);
+        city.getInternships().add(this);
+    }
+
+    public void addCountries(List<Country> countries) {
         this.countries.addAll(countries);
         countries.forEach(country -> country.getInternships().add(this));
     }
