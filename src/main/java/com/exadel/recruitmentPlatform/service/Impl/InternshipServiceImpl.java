@@ -3,10 +3,8 @@ package com.exadel.recruitmentPlatform.service.Impl;
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
-import com.exadel.recruitmentPlatform.dto.InternshipStatisticResponseDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipMapper;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipShortMapper;
-import com.exadel.recruitmentPlatform.dto.mapper.InternshipStatisticMapper;
 import com.exadel.recruitmentPlatform.entity.*;
 import com.exadel.recruitmentPlatform.exception.EntityNotFoundException;
 import com.exadel.recruitmentPlatform.repository.InternshipRepository;
@@ -38,9 +36,6 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Autowired
     private InternshipShortMapper internshipShortMapper;
-
-    @Autowired
-    private InternshipStatisticMapper internshipStatisticMapper;
 
     @Autowired
     private SpecialityService specialityService;
@@ -110,15 +105,6 @@ public class InternshipServiceImpl implements InternshipService {
         updateInternship(dto, internship);
         Internship savedInternship = internshipRepository.save(internship);
         return internshipMapper.toDto(savedInternship);
-    }
-
-    @Override
-    public List<InternshipStatisticResponseDto> getInternshipsStatistic() {
-        return internshipStatisticResponseDto(internshipRepository.findAll());
-    }
-
-    public List<InternshipStatisticResponseDto> internshipStatisticResponseDto(List<Internship> internships) {
-        return internships.stream().map(internshipStatisticMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
