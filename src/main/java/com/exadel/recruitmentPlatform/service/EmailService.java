@@ -16,4 +16,6 @@ public interface EmailService {
     Map<String, Object> placeholder(InternshipRequestDto dto);
 
     Map<String, Object> placeholderAssignmentInterview(InternshipRequest internshipRequest, LocalDateTime dateTime, UserRole userRole);
+
+    Map<String, Object> placeholderAccepted(InternshipRequest internshipRequest);
 }

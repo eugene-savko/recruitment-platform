@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
+import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.entity.EmailType;
 import com.exadel.recruitmentPlatform.entity.InternshipRequest;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -109,5 +110,18 @@ public class DefaultEmailService implements EmailService {
 
         return model;
     }
+
+    @Override
+    public Map<String, Object> placeholderAccepted(InternshipRequest internshipRequest) {
+        InternshipResponseDto dto = internshipService.get(internshipRequest.getInternshipId());
+        Map<String, Object> model = new HashMap<>();
+        model.put("FirstName", internshipRequest.getUser().getFirstName());
+        model.put("LastName", internshipRequest.getUser().getLastName());
+        model.put("Internship", dto.getName());
+        model.put("StartDate", dto.getStartDate());
+        model.put("EndDate", dto.getEndDate());
+        return model;
+    }
+
 
 }
