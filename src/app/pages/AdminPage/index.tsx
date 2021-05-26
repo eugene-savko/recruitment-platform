@@ -8,9 +8,9 @@ import {
 	AdminPageRoot,
 } from './components';
 
-import { routes } from './routes';
+import { AdminRoutePath, routes } from './routes';
 
-import { authContext } from '../../context/AuthLoggedContext';
+import { authContext } from '../../contexts/AuthLoggedContext';
 
 export const AdminPage: React.FunctionComponent = () => {
 	const [isSideBarOpen, setSideBarOpen] = useState(false);
@@ -29,7 +29,11 @@ export const AdminPage: React.FunctionComponent = () => {
 				<AdminPageContentWrapper>
 					<AdminPageContent>
 						<Switch>
-							<Redirect exact from="/" to="/dashboard" />
+							<Redirect
+								exact
+								from={AdminRoutePath.ROOT}
+								to={AdminRoutePath.DASHBOARD}
+							/>
 
 							{routesRole.map((route) => (
 								<Route

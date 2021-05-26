@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useContext } from 'react';
 import { Avatar, Typography } from '@material-ui/core';
-import { authContext } from 'app/context/AuthLoggedContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { SideBarAvatarWrapper } from './components';
 

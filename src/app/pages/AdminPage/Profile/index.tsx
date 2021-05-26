@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import getProfile from 'app/API/getProfile';
 
 // context
-import { AdminPanelContext } from 'app/context/AdminPanelContext';
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
 
 // style
 import { MainFields, ProfileContainer, SidebarInfo } from './components';

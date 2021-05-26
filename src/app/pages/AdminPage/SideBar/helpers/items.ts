@@ -6,35 +6,36 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import IMapped from 'app/types/IMapped';
 import ISideBarItems from '../types/ISideBarItems';
+import { AdminRoutePath } from '../../routes';
 
 const dashboard: ISideBarItems = {
-	href: '/dashboard',
+	href: AdminRoutePath.DASHBOARD,
 	icon: DashboardIcon,
 	title: 'DashBoard',
 };
 const tableCandidate: ISideBarItems = {
-	href: '/table',
+	href: AdminRoutePath.TABLE,
 	icon: PersonIcon,
 	title: 'AdminTable',
 };
 const profile: ISideBarItems = {
-	href: '/profile',
+	href: AdminRoutePath.PROFILE,
 	icon: PeopleIcon,
 	title: 'Profile',
 };
 const scheduleRecruiter: ISideBarItems = {
-	href: '/schedule-recruiter',
+	href: AdminRoutePath.SCHEDULE_RECRUITER,
 	icon: TodayIcon,
 	title: 'Schedule recruiter',
 };
 
 const scheduleTechSpecialist: ISideBarItems = {
-	href: '/schedule-techspecialist',
+	href: AdminRoutePath.SCHEDULE_TECHSPECIALIST,
 	icon: DateRangeIcon,
 	title: 'Schedule techspecialist',
 };
 const courseEditor: ISideBarItems = {
-	href: '/course-editor',
+	href: AdminRoutePath.COURSE_EDITOR,
 	icon: EditIcon,
 	title: 'Course Editor',
 };

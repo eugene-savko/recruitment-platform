@@ -1,41 +1,41 @@
 {
-  "workbench.iconTheme": "material-icon-theme",
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "editor.insertSpaces": false,
-  "editor.tabSize": 2,
-  "editor.formatOnPaste": false,
-  "[javascript]": {
-  "editor.formatOnSave": true,
-  },
-  "eslint.alwaysShowStatus": true,
-  "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-  },
-  "files.eol": "\n",
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "[javascriptreact]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-    }
-  },
-  "editor.formatOnSave": true,
-  "[typescript]": {
-    "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-    }
-  },
-  "[typescriptreact]": {
-    "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-    }
-  },
-  "typescript.tsdk": "node_modules/typescript/lib"
+	"workbench.iconTheme": "material-icon-theme",
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"editor.formatOnPaste": false,
+	"[javascript]": {
+		"editor.formatOnSave": true,
+	},
+	"eslint.alwaysShowStatus": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"files.eol": "\n",
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"[javascriptreact]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+	},
+	"editor.formatOnSave": true,
+	"[typescript]": {
+		"editor.formatOnSave": false,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+	},
+	"[typescriptreact]": {
+		"editor.formatOnSave": false,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+	},
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
