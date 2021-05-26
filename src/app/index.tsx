@@ -10,15 +10,13 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
-import { AdminRoutePath } from './pages/AdminPage/routes';
 
-// Context Providers
-import { FrontendLandingContextProvider } from './contexts/FrontendLandingContext';
 import { AdminPanelContextProvider } from './contexts/AdminPanelContext';
-
-// Routing
-import ROUTES from './routes';
 import { AppRoutePath } from './route-paths';
+import { AdminRoutePath } from './pages/AdminPage/routes';
+import { FrontendLandingContextProvider } from './contexts/FrontendLandingContext';
+import ROUTES from './routes';
+import { SwitcherRolesProvider } from './contexts/SwitcherRolesContext';
 
 export const App: React.FunctionComponent = () => {
 	return (
@@ -29,7 +27,9 @@ export const App: React.FunctionComponent = () => {
 					<Route path={AppRoutePath.LOGIN} component={AuthPage} exact />
 					<PrivateRouteAuthAdminPage path={AdminRoutePath.ROOT}>
 						<AdminPanelContextProvider>
-							<AdminPage />
+							<SwitcherRolesProvider>
+								<AdminPage />
+							</SwitcherRolesProvider>
 						</AdminPanelContextProvider>
 					</PrivateRouteAuthAdminPage>
 					<FrontendLandingContextProvider>

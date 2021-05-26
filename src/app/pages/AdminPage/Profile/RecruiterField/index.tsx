@@ -26,6 +26,7 @@ import { Select } from './components';
 
 // type
 import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
+import { SwitcherRolesContext } from '../../../../contexts/SwitcherRolesContext';
 
 interface IRecruiterFieldProps {
 	englishLevelProps: Array<IListItemSelect>;
@@ -54,6 +55,7 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	>('');
 	const { register, handleSubmit } = useForm<IFormFields>();
 	const { userId } = useContext(AdminPanelContext);
+	const { setSwitchedRole } = useContext(SwitcherRolesContext);
 
 	useEffect(() => {
 		if (feedbackContent === undefined) {
@@ -150,6 +152,9 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					<ContainerBth>
 						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
 							<ButtonMaterial
+								onClick={() => {
+									setSwitchedRole?.('RECRUITER');
+								}}
 								variant="outlined"
 								color="primary"
 								title="Schedule Recruiter"

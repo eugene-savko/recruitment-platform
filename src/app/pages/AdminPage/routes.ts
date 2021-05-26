@@ -1,14 +1,15 @@
 import IRoute from 'app/types/IRoute';
 import IMapped from 'app/types/IMapped';
-import { ScheduleTechSpecialist } from './ScheduleTechSpecialist/index';
 import { DashBoard } from './DashBoard/DashBoard';
 import { Profile } from './Profile';
 import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
+import { CourseDetailsEditor } from './CourseDetailsEditor/CourseDetailsEditor';
 
 const ADMIN_ROUTE_ROOT_PATH = '/admin';
+
 export const AdminRoutePath = {
 	ROOT: ADMIN_ROUTE_ROOT_PATH,
 	DASHBOARD: `${ADMIN_ROUTE_ROOT_PATH}/dashboard`,
@@ -43,16 +44,15 @@ const scheduleRecruiter = {
 	component: ScheduleRecruiter,
 };
 
-const schedulerTechSpecialist = {
-	path: AdminRoutePath.SCHEDULE_TECHSPECIALIST,
-	exact: false,
-	component: ScheduleTechSpecialist,
-};
-
 const editorCourse = {
 	path: AdminRoutePath.COURSE_EDITOR,
 	exact: false,
 	component: CourseEditor,
+};
+const editorDetailsCourse = {
+	path: '/course-details-editor',
+	exact: false,
+	component: CourseDetailsEditor,
 };
 
 const homePage = {
@@ -66,8 +66,8 @@ export const routesAdmin: Array<IRoute> = [
 	tableCandidates,
 	profile,
 	scheduleRecruiter,
-	schedulerTechSpecialist,
 	editorCourse,
+	editorDetailsCourse,
 	homePage,
 ];
 
@@ -76,7 +76,6 @@ export const routesRecruiter: Array<IRoute> = [
 	tableCandidates,
 	profile,
 	scheduleRecruiter,
-	schedulerTechSpecialist,
 	homePage,
 ];
 
@@ -84,7 +83,7 @@ export const routesTechSpecialist: Array<IRoute> = [
 	dashboard,
 	tableCandidates,
 	profile,
-	schedulerTechSpecialist,
+	scheduleRecruiter,
 	homePage,
 ];
 

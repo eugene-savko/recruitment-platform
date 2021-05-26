@@ -1,42 +1,71 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
-import { schedulerData } from '../db/schedulerData';
+import {
+	putAppointment,
+	fetchListAppointments,
+	addedAppointment,
+} from 'app/API/scheduleRecruiter';
+
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
+import { SwitcherRolesContext } from 'app/contexts/SwitcherRolesContext';
 import { IUseChangeEditingState } from '../types';
 
 export const useChangeEditingState = (): IUseChangeEditingState => {
-	// eslint-disable-next-line prefer-const
-	let [data, setData] = useState<Array<AppointmentModel>>(schedulerData);
+	const [data, setData] = useState<Array<AppointmentModel>>([]);
+	const { userId } = useContext(AdminPanelContext);
+	const { switchedRole } = useContext(SwitcherRolesContext);
+	const { internshipId } = useContext(AdminPanelContext);
+	useEffect(() => {
+		const fetchData = async () => {
+			const listAppointments = await fetchListAppointments(
+				switchedRole,
+				internshipId
+			);
+
+			setData(listAppointments);
+		};
+		fetchData();
+	}, [switchedRole]);
 
 	const commitChanges = useCallback(
-		({ added, changed, deleted }: ChangeSet) => {
+		({ added, changed }: ChangeSet) => {
 			if (added) {
-				const idNum: number = data[data.length - 1].id as number;
-				const startingAddedId = data.length > 0 ? idNum + 1 : 0;
-				data = [
-					...data,
-					{
-						id: startingAddedId,
-						endDate: added.endDate,
-						startDate: added.startDate,
-						...added,
-					},
-				];
-				setData(data);
+				const addedData = {
+					recruiterId: added.members,
+					startDate: new Date(added.startDate).getTime(),
+					endDate: new Date(added.endDate).getTime(),
+				};
+				const addedAppointmentAndRefreshDadaAppointment = async () => {
+					const addedAppointmentFromServer = await addedAppointment(addedData);
+
+					const dataAdded = [...data, { ...addedAppointmentFromServer }];
+
+					setData(dataAdded);
+				};
+				addedAppointmentAndRefreshDadaAppointment();
 			}
+
 			if (changed) {
-				data = data.map((appointment: AppointmentModel) => {
+				const dataChanged: AppointmentModel[] = data.map((appointment) => {
 					if (appointment.id !== undefined) {
 						return changed[appointment.id]
-							? { ...appointment, ...changed[appointment.id] }
+							? {
+									...appointment,
+									...changed[appointment.id],
+							  }
 							: appointment;
 					}
-					return null;
+					return appointment;
 				});
-				setData(data);
-			}
-			if (deleted !== undefined) {
-				data = data.filter((appointment) => appointment.id !== deleted);
-				setData(data);
+				setData(dataChanged);
+
+				const [appointmentChanged] = dataChanged.filter((appointment) => {
+					return appointment.id !== undefined
+						? changed[appointment.id]
+						: appointment;
+				});
+
+				putAppointment(userId, appointmentChanged);
 			}
 		},
 		[data, setData]

@@ -1,9 +1,9 @@
 import EditIcon from '@material-ui/icons/Edit';
-import DateRangeIcon from '@material-ui/icons/DateRange';
 import TodayIcon from '@material-ui/icons/Today';
 import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
+import ColorizeIcon from '@material-ui/icons/Colorize';
 import IMapped from 'app/types/IMapped';
 import ISideBarItems from '../types/ISideBarItems';
 import { AdminRoutePath } from '../../routes';
@@ -26,49 +26,39 @@ const profile: ISideBarItems = {
 const scheduleRecruiter: ISideBarItems = {
 	href: AdminRoutePath.SCHEDULE_RECRUITER,
 	icon: TodayIcon,
-	title: 'Schedule recruiter',
+	title: 'Schedule',
 };
 
-const scheduleTechSpecialist: ISideBarItems = {
-	href: AdminRoutePath.SCHEDULE_TECHSPECIALIST,
-	icon: DateRangeIcon,
-	title: 'Schedule techspecialist',
-};
 const courseEditor: ISideBarItems = {
 	href: AdminRoutePath.COURSE_EDITOR,
 	icon: EditIcon,
-	title: 'Course Editor',
+	title: 'Course editor',
 };
-
-export const items: ISideBarItems[] = [
-	dashboard,
-	tableCandidate,
-	profile,
-	scheduleRecruiter,
-	scheduleTechSpecialist,
-	courseEditor,
-];
+const courseDetailsEditor: ISideBarItems = {
+	href: '/course-details-editor',
+	icon: ColorizeIcon,
+	title: 'Course details editor',
+};
 
 export const menuItemsAdmin: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	profile,
 	scheduleRecruiter,
-	scheduleTechSpecialist,
 	courseEditor,
+	courseDetailsEditor,
 ];
 export const menuItemsRecruiter: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	profile,
 	scheduleRecruiter,
-	scheduleTechSpecialist,
 ];
 export const menuItemsTechSpecialist: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	profile,
-	scheduleTechSpecialist,
+	scheduleRecruiter,
 ];
 
 export const menuItemsList: IMapped<ISideBarItems[]> = {

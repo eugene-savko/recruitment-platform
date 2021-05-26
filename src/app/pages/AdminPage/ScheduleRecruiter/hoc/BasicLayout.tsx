@@ -1,39 +1,57 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
+import dateFormat from 'dateformat';
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { MenuItem, FormControl, Select } from '@material-ui/core';
-import { databaseCandidates } from '../db/databaseCandidates';
-import { TitleLable, PreferablyTime } from '../components';
+import { fetchCurrentCandidate } from 'app/API/scheduleRecruiter';
+import { AuthCircularProgress } from 'app/pages/AuthPage/Auth/components';
+import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
+import { authContext } from 'app/contexts/AuthLoggedContext';
+import Preloader from 'app/pages/AdminPage/components/Preloader';
+import { TitleLabel, PreferablyTime } from '../components';
+import { ICurrentCandidate } from '../types';
 
-import IDatabaseCandidates from '../types/IDatabaseCandidates';
+export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> = ({
+	onFieldChange,
+	appointmentData,
+	...restProps
+}) => {
+	const { userId } = useContext(AdminPanelContext);
+	const { auth } = useContext(authContext);
+	const role = auth.dataRole?.role as string;
+	const [profileCandidate, setProfileCandidate] = useState<ICurrentCandidate>();
+	const [loading, setLoading] = useState(false);
 
-export const BasicLayout:
-	| React.ComponentType<AppointmentForm.BasicLayoutProps>
-	| undefined = ({ onFieldChange, appointmentData, ...restProps }) => {
-	const [state, setState] = useState<IDatabaseCandidates>({
-		nameUser: 'Karl Greening',
-		id: 4,
-		periodTime: 'from 08:00 to 12:00',
-	});
-	const [userName, setUserName] = useState('');
+	const preferredTimeStart = profileCandidate?.startPriorityTime;
+	const prefferredTimeEnd = profileCandidate?.endPriorityTime;
 
-	const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-		setUserName(e.target.value as string);
-		databaseCandidates.forEach((candidate) => {
-			if (candidate.id === e.target.value) setState(candidate);
-		});
-	};
+	const preferredTime = `from ${dateFormat(
+		preferredTimeStart,
+		'shortTime',
+		true
+	)} to ${dateFormat(prefferredTimeEnd, 'shortTime', true)}`;
 
 	useEffect(() => {
-		onFieldChange({ title: state.nameUser });
-	}, [state]);
+		if (appointmentData.title === ' ' && userId) {
+			const getCurrentCandidate = async () => {
+				const gettedCurrentCandidate = await fetchCurrentCandidate(userId);
+				const { firstName, lastName } = gettedCurrentCandidate;
+				const fullNameCandidate = { title: `${firstName} ${lastName}` };
+				setProfileCandidate(gettedCurrentCandidate);
+				setLoading(false);
+				onFieldChange(fullNameCandidate);
+			};
 
-	useEffect(() => {
-		return appointmentData.title !== undefined
-			? onFieldChange({ title: appointmentData.title })
-			: onFieldChange({ title: state.nameUser });
-	}, []);
+			getCurrentCandidate();
+		}
+	}, [appointmentData, userId]);
+
+	if (appointmentData.title === ' ' && loading) {
+		return (
+			<AuthCircularProgress>
+				<Preloader />
+			</AuthCircularProgress>
+		);
+	}
 
 	return (
 		<AppointmentForm.BasicLayout
@@ -41,28 +59,16 @@ export const BasicLayout:
 			onFieldChange={onFieldChange}
 			{...restProps}
 		>
-			<TitleLable>Choose a candidate</TitleLable>
-
-			<FormControl variant="outlined" fullWidth>
-				<Select
-					value={userName}
-					onChange={handleChange}
-					displayEmpty
-					inputProps={{ 'aria-label': 'Without label' }}
-				>
-					<MenuItem value="" disabled>
-						Choose another a candidate
-					</MenuItem>
-					{databaseCandidates.map(({ id, nameUser }: IDatabaseCandidates) => (
-						<MenuItem key={id} value={id}>
-							{nameUser}
-						</MenuItem>
-					))}
-				</Select>
-			</FormControl>
-
-			<TitleLable>Preferred time for an interview</TitleLable>
-			<PreferablyTime>{state.periodTime}</PreferablyTime>
+			{role !== 'SPECIALIST' && (
+				<React.Fragment>
+					<TitleLabel>Preferred time for an interview</TitleLabel>
+					<PreferablyTime>
+						{appointmentData.title
+							? preferredTime
+							: 'No preferred time assigned'}
+					</PreferablyTime>
+				</React.Fragment>
+			)}
 		</AppointmentForm.BasicLayout>
 	);
 };

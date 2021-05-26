@@ -1,4 +1,5 @@
-import { TitleLable } from './TitleLable';
+import { TitleLabel } from './TitleLabel';
 import { PreferablyTime } from './PreferablyTime';
+import { ScheduleButtonLeave } from './ScheduleButtonLeave';
 
-export { TitleLable, PreferablyTime };
+export { TitleLabel, PreferablyTime, ScheduleButtonLeave };
