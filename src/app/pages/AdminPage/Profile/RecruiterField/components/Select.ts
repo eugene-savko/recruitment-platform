@@ -8,10 +8,11 @@ const Select = styled.select`
 	max-width: 80%;
 	min-width: 160px;
 	padding-left: 14px;
-	margin: 16px auto;
+	margin: 6px auto;
+	text-transform: uppercase;
 	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: 13px;
+	font-weight: 700;
 	line-height: 1.75;
 	color: #6b778c;
 	background-color: #ffffff;

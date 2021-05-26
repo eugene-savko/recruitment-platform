@@ -8,7 +8,7 @@ interface ISendStatus {
 
 const setStatusCandidate = async (status: ISendStatus): Promise<void> => {
 	await API({
-		method: 'put',
+		method: 'get',
 		url: URL_UPDATE_STATUS_CANDIDATE,
 		data: status,
 		headers: { 'Content-Type': 'application/json' },

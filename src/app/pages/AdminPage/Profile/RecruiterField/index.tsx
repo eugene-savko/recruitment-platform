@@ -20,6 +20,7 @@ import {
 	Title,
 	ButtonMaterial,
 	FeedbackField,
+	TextFieldEnglishLevel,
 } from '../components';
 import { Select } from './components';
 
@@ -27,7 +28,7 @@ import { Select } from './components';
 import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
 
 interface IRecruiterFieldProps {
-	englishLevel: Array<IListItemSelect>;
+	englishLevelProps: Array<IListItemSelect>;
 	feedbackContent: Array<IFeedbackInfo>;
 }
 
@@ -42,12 +43,12 @@ const handleMessage = (location: { pathname: string }, action: string) => {
 };
 
 const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
-	englishLevel,
+	englishLevelProps,
 	feedbackContent,
 }) => {
 	const [checkOut, setCheckOut] = useState(false);
 	const [isShown, setIsShown] = useState(false);
-
+	const [levelEnglish, setLevelEnglish] = useState<string | undefined>('');
 	const [feedbackRecruiter, setFeedbackRecruiter] = useState<
 		string | undefined
 	>('');
@@ -57,12 +58,48 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	useEffect(() => {
 		if (feedbackContent === undefined) {
 			setFeedbackRecruiter('');
+			setLevelEnglish('');
 		} else {
 			const { feedback } =
 				feedbackContent[0].fromUser.role === 'RECRUITER'
 					? feedbackContent[0]
 					: feedbackContent[1];
 			setFeedbackRecruiter(feedback);
+			const { englishLevel } =
+				feedbackContent[0].fromUser.role === 'RECRUITER'
+					? feedbackContent[0]
+					: feedbackContent[1];
+
+			if (englishLevel === null) {
+				setLevelEnglish('');
+			} else {
+				switch (Number(englishLevel)) {
+					case 1:
+						setLevelEnglish(englishLevelProps[6].name);
+						break;
+					case 2:
+						setLevelEnglish(englishLevelProps[5].name);
+						break;
+					case 3:
+						setLevelEnglish(englishLevelProps[4].name);
+						break;
+					case 4:
+						setLevelEnglish(englishLevelProps[3].name);
+						break;
+					case 5:
+						setLevelEnglish(englishLevelProps[2].name);
+						break;
+					case 6:
+						setLevelEnglish(englishLevelProps[1].name);
+						break;
+					case 7:
+						setLevelEnglish(englishLevelProps[0].name);
+						break;
+					default:
+						setLevelEnglish('');
+						break;
+				}
+			}
 		}
 	}, []);
 
@@ -79,8 +116,10 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					? feedbackContent[0].id
 					: (feedbackContent[1].id as number),
 			feedback: feedbackRecruiter as string,
-			// englishLevel: levelEnglishRecruiter as string,
+			englishLevel: levelEnglishRecruiter as string,
 		};
+
+		setLevelEnglish(levelEnglishRecruiter);
 
 		const putUpdateFeedback = async () => {
 			try {
@@ -141,12 +180,21 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 							name="levelEnglishRecruiter"
 							ref={register}
 						>
-							{englishLevel?.map((item) => (
+							{englishLevelProps?.map((item) => (
 								<option value={item.name} key={item.id}>
 									{item.name}
 								</option>
 							))}
 						</Select>
+						<TextFieldEnglishLevel
+							label="English-level"
+							variant="outlined"
+							color="primary"
+							value={levelEnglish}
+							InputProps={{
+								readOnly: true,
+							}}
+						/>
 						<ButtonMaterial variant="outlined" color="primary" type="submit">
 							Save feedback
 						</ButtonMaterial>

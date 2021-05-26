@@ -1,4 +1,4 @@
-const URL_INTERNSHIP_REQUEST = 'internship-request';
+const URL_INTERNSHIP_REQUEST = '/api/internship-request';
 const URL_UPDATE_FEEDBACK = '/api/interview';
 const URL_INTERNSHIPS = 'api/internships/ids-names/';
 const URL_INFORMATION = 'api/information/';

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 const ButtonMaterial = styled(Button)`
 	display: block;
-	margin: 10px auto;
+	margin: 6px auto;
 	background-color: #ffffff;
 	color: #6b778c;
 	height: 42px;

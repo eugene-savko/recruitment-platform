@@ -38,11 +38,11 @@ export const Profile: React.FunctionComponent = () => {
 	const { userId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
-		// console.log(userId);
 		const fetchData = async () => {
 			const data = await getProfile(userId);
 			setUser(data);
 			const { interviews } = data;
+			console.log(data);
 			if (interviews.length === 0) {
 				setFeedbackInfo(feedbackDeafult);
 			} else if (interviews.length === 1) {
@@ -72,13 +72,10 @@ export const Profile: React.FunctionComponent = () => {
 					</SidebarInfo>
 					<MainFields>
 						<RecruiterField
-							englishLevel={listEnglishLevel}
+							englishLevelProps={listEnglishLevel}
 							feedbackContent={feedbackInfo}
 						/>
-						<TechField
-							// role={role}
-							feedbackContent={feedbackInfo}
-						/>
+						<TechField feedbackContent={feedbackInfo} />
 						<AdminField />
 					</MainFields>
 				</ProfileContainer>
