@@ -2,13 +2,13 @@ import { API } from './axios';
 import { URL_UPDATE_STATUS_CANDIDATE } from './urls';
 
 interface ISendStatus {
-	id: number;
-	status: string;
+	internshipRequestId: number;
+	internshipRequestStatus: string;
 }
 
 const setStatusCandidate = async (status: ISendStatus): Promise<void> => {
 	await API({
-		method: 'get',
+		method: 'put',
 		url: URL_UPDATE_STATUS_CANDIDATE,
 		data: status,
 		headers: { 'Content-Type': 'application/json' },

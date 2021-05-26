@@ -14,8 +14,8 @@ const AdminField: React.FunctionComponent = () => {
 
 	const setStatusAssept = async (param: string) => {
 		const status = {
-			id: userId as number,
-			status: `${param}` as string,
+			internshipRequestId: userId as number,
+			internshipRequestStatus: `${param}` as string,
 		};
 		try {
 			await setStatusCandidate(status);

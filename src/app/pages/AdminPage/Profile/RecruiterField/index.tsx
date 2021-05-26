@@ -71,29 +71,29 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 					: feedbackContent[1];
 
 			if (englishLevel === null) {
-				setLevelEnglish('');
+				setLevelEnglish(' ');
 			} else {
 				switch (Number(englishLevel)) {
 					case 1:
-						setLevelEnglish(englishLevelProps[6].name);
+						setLevelEnglish(englishLevelProps[7].name);
 						break;
 					case 2:
-						setLevelEnglish(englishLevelProps[5].name);
+						setLevelEnglish(englishLevelProps[6].name);
 						break;
 					case 3:
-						setLevelEnglish(englishLevelProps[4].name);
+						setLevelEnglish(englishLevelProps[5].name);
 						break;
 					case 4:
-						setLevelEnglish(englishLevelProps[3].name);
+						setLevelEnglish(englishLevelProps[4].name);
 						break;
 					case 5:
-						setLevelEnglish(englishLevelProps[2].name);
+						setLevelEnglish(englishLevelProps[3].name);
 						break;
 					case 6:
-						setLevelEnglish(englishLevelProps[1].name);
+						setLevelEnglish(englishLevelProps[2].name);
 						break;
 					case 7:
-						setLevelEnglish(englishLevelProps[0].name);
+						setLevelEnglish(englishLevelProps[1].name);
 						break;
 					default:
 						setLevelEnglish('');
@@ -129,7 +129,10 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 				setTimeout(() => setIsShown(false), 3000);
 			} catch (e) {
 				// eslint-disable-next-line no-console
-				console.log('COM RecruiterField.Error message - ', e.message);
+				console.log(
+					'COM RecruiterField.Error message - ',
+					e.response.request.response
+				);
 			}
 		};
 		putUpdateFeedback();
@@ -137,8 +140,8 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 
 	const changeStatus = async () => {
 		const status = {
-			id: userId as number,
-			status: 'RECRUITER_INTERVIEW_PASSED' as string,
+			internshipRequestId: userId as number,
+			internshipRequestStatus: 'RECRUITER_INTERVIEW_PASSED' as string,
 		};
 		try {
 			await setStatusCandidate(status);
