@@ -61,8 +61,4 @@ public class InternshipController {
         return internshipService.getIdsAndNamesOfInternships();
     }
 
-    @GetMapping(value = "/admin-page")
-    public List<InternshipOnAdminPageResponseDto> getInternshipsOnAdminPage(){
-        return internshipService.getInternshipsOnAdminPage();
-    }
 }
