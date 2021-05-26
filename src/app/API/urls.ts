@@ -1,5 +1,4 @@
 const URL_UPDATE_STATUS_CANDIDATE = 'api/internship-request/update-status';
-
 const URL_INTERNSHIP_REQUEST = 'api/internship-request';
 const URL_UPDATE_FEEDBACK = 'api/interview';
 const URL_INFORMATION = 'information/';
