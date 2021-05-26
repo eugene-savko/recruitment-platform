@@ -3,8 +3,6 @@ package com.exadel.recruitmentPlatform.service;
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
-import com.exadel.recruitmentPlatform.dto.InternshipStatisticResponseDto;
-import com.exadel.recruitmentPlatform.entity.Internship;
 
 import java.util.List;
 
@@ -23,7 +21,5 @@ public interface InternshipService {
     List<InternshipShortDto> getIdsAndNamesOfInternships();
 
     InternshipResponseDto update(InternshipDto dto);
-
-    List<InternshipStatisticResponseDto> getInternshipsStatistic();
 
 }
