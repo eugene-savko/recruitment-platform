@@ -40,18 +40,17 @@ public class InterviewServiceImpl implements InterviewService {
                 .findByUserIdAndInternshipId(interview.getToUser().getId(), interview.getInternshipId()))
                 .orElseThrow(() -> new EntityNotFoundException("Doesn't find InternshipRequest for interview parameters: " +
                         "InternshipId= " + interview.getInternshipId() + ", ToUser " + interview.getToUser()));
-
+        EnglishLevel level = Optional.ofNullable(englishRepository.getEnglishLevelByName(englishLevel))
+                .orElseThrow(() -> new EntityNotFoundException("EnglishLevel under id " + id + " not found"));
         if (interview.getFromUser().getRole() == UserRole.RECRUITER || interview.getFromUser().getRole() == UserRole.ADMIN) {
-            if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK){
+            if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK) {
                 throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
             } else if (internshipRequest.getStatus() != InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK) {
                 internshipRequest.setStatus(InternshipRequestStatus.RECRUITER_INTERVIEW_FEEDBACK);
             }
-            EnglishLevel level = Optional.ofNullable(englishRepository.getEnglishLevelByName(englishLevel))
-                    .orElseThrow(() -> new EntityNotFoundException("EnglishLevel under id " + id + " not found"));
             interview.setEnglishLevel(level.getId());
         } else if (interview.getFromUser().getRole() == UserRole.SPECIALIST) {
-            if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED){
+            if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW && internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED) {
                 throw new ValidationException("Wrong internship request status " + internshipRequest.getStatus());
             } else if (internshipRequest.getStatus() != InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED) {
                 internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW_PASSED);
@@ -63,8 +62,9 @@ public class InterviewServiceImpl implements InterviewService {
         interviewRepository.save(interview);
 
         internshipRequestRepository.save(internshipRequest);
-
-        return interviewMapper.toDto(interview);
+        InterviewDto interviewDto = interviewMapper.toDto(interview);
+        interviewDto.setEnglishLevelName(level.getName());
+        return interviewDto;
     }
 
     @Override
