@@ -1,3 +1,4 @@
+const URL_UPDATE_STATUS_CANDIDATE = 'api/internship-request/update-status';
 const URL_INTERNSHIP_REQUEST = 'api/internship-request';
 const URL_UPDATE_FEEDBACK = 'api/interview';
 const URL_INFORMATION = 'information/';
@@ -17,6 +18,7 @@ export {
 	URL_INFORMATION,
 	URL_UPDATE_FEEDBACK,
 	URL_INTERNSHIP_REQUEST,
+	URL_UPDATE_STATUS_CANDIDATE,
 	URL_SPECIALITIES,
 	URL_INTERNSHIPS_SPECIALITIES,
 	URL_TIME_INTERVAL,

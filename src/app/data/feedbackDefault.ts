@@ -1,6 +1,6 @@
-import { IFeedbackInfo } from '../types';
+import { IFeedbackInfo } from 'app/pages/AdminPage/Profile/types';
 
-const feedbackDeafult: Array<IFeedbackInfo> = [
+const feedbackDeafault: Array<IFeedbackInfo> = [
 	{
 		id: 0,
 		feedback: '',
@@ -27,4 +27,4 @@ const feedbackDeafult: Array<IFeedbackInfo> = [
 	},
 ];
 
-export default feedbackDeafult;
+export default feedbackDeafault;

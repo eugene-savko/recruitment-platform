@@ -1,4 +1,4 @@
-import IUserInfo from '../types/IUserInfo';
+import { IUserInfo } from 'app/pages/AdminPage/Profile/types';
 
 const userDefault: IUserInfo = {
 	city: '',

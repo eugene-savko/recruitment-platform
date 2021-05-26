@@ -5,7 +5,7 @@ const Wrapper = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 3;
+	z-index: 1210;
 	width: inherit;
 	outline: 0;
 
