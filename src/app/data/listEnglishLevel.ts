@@ -1,4 +1,4 @@
-import IListItemSelect from '../types/IListItemSelect';
+import { IListItemSelect } from 'app/pages/AdminPage/Profile/types';
 
 const listEnglishLevel: Array<IListItemSelect> = [
 	{ name: 'Select level', id: 8 },
