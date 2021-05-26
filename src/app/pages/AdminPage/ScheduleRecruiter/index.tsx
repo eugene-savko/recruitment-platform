@@ -24,7 +24,6 @@ import {
 	DateNavigator,
 	AppointmentForm,
 	AppointmentTooltip,
-	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import { fetchListInterviewers } from 'app/API/scheduleRecruiter';
@@ -48,7 +47,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 		[]
 	);
 
-	const { commitChanges, data } = useChangeEditingState(useListRecruters);
+	const { commitChanges, data } = useChangeEditingState();
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
 	const messages: AppointmentFormBase.LocalizationMessages = {
@@ -67,7 +66,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 	];
 
 	const grouping: Array<Grouping> = [{ resourceName: 'members' }];
-	//! -----------------------------------------------------------pass role
+
 	const { internshipId } = useContext(AdminPanelContext);
 
 	useEffect(() => {
@@ -117,8 +116,7 @@ export const ScheduleRecruiter: React.FunctionComponent = () => {
 				<IntegratedGrouping />
 				<IntegratedEditing />
 
-				<AppointmentTooltip showCloseButton showOpenButton showDeleteButton />
-				<ConfirmationDialog />
+				<AppointmentTooltip showCloseButton showOpenButton />
 				<AppointmentForm
 					readOnly={role === 'SPECIALIST'}
 					basicLayoutComponent={BasicLayout}

@@ -21,7 +21,6 @@ export const App: React.FunctionComponent = () => {
 							</SwitcherRolesProvider>
 						</AdminPanelContextProvider>
 					</PrivateRouteAuthAdminPage>
-					{/* <Route path="/landing" render={() => <div>Landing</div>} /> */}
 				</Switch>
 			</BrowserRouter>
 		</React.Fragment>

@@ -1,24 +1,19 @@
 import { useState, useCallback, useEffect, useContext } from 'react';
 import { AppointmentModel, ChangeSet } from '@devexpress/dx-react-scheduler';
 import {
-	deleteAppointment,
 	putAppointment,
 	fetchListAppointments,
 	addedAppointment,
-	// patchCurrentCandidate,
 } from 'app/API/scheduleRecruiter';
 import { AdminPanelContext } from 'app/context/AdminPanelContext';
 import { SwitcherRolesContext } from 'app/context/SwitcherRolesContext';
-import { IUseChangeEditingState, IListRecruiters } from '../types';
+import { IUseChangeEditingState } from '../types';
 
-export const useChangeEditingState = (
-	listRecruters: Array<IListRecruiters>
-): IUseChangeEditingState => {
+export const useChangeEditingState = (): IUseChangeEditingState => {
 	const [data, setData] = useState<Array<AppointmentModel>>([]);
 	const { userId } = useContext(AdminPanelContext);
 	const { switchedRole } = useContext(SwitcherRolesContext);
 	const { internshipId } = useContext(AdminPanelContext);
-	//! -----------------------------------------------------------pass role
 	useEffect(() => {
 		const fetchData = async () => {
 			const listAppointments = await fetchListAppointments(
@@ -26,14 +21,13 @@ export const useChangeEditingState = (
 				internshipId
 			);
 
-			// console.log(listAppointments);
 			setData(listAppointments);
 		};
 		fetchData();
 	}, [switchedRole]);
 
 	const commitChanges = useCallback(
-		({ added, changed, deleted }: ChangeSet) => {
+		({ added, changed }: ChangeSet) => {
 			if (added) {
 				const addedData = {
 					recruiterId: added.members,
@@ -62,7 +56,7 @@ export const useChangeEditingState = (
 					}
 					return appointment;
 				});
-				// setData(dataChanged);
+				setData(dataChanged);
 
 				const [appointmentChanged] = dataChanged.filter((appointment) => {
 					return appointment.id !== undefined
@@ -71,30 +65,6 @@ export const useChangeEditingState = (
 				});
 
 				putAppointment(userId, appointmentChanged);
-				// putAppointment(switchedRole, 1, appointmentChanged);
-
-				// const [currentRecruiter] = listRecruters.filter(
-				// 	(recruiter: IListRecruiters) =>
-				// 		recruiter.id === appointmentChanged.members
-				// );
-				// patchCurrentCandidate(
-				// 	appointmentChanged,
-				// 	userId,
-				// 	currentRecruiter.text
-				// );
-			}
-
-			if (deleted !== undefined) {
-				const dataDeleted = data.filter(
-					(appointment) => appointment.id !== deleted
-				);
-
-				data.forEach((appointment) => {
-					if (appointment.id === deleted) {
-						deleteAppointment(appointment);
-					}
-				});
-				setData(dataDeleted);
 			}
 		},
 		[data, setData]

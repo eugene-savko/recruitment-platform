@@ -1,5 +1,4 @@
-// todo alert time
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import dateFormat from 'dateformat';
 import { AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
 
@@ -20,24 +19,32 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
 	const [profileCandidate, setProfileCandidate] = useState<ICurrentCandidate>();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
+
+	const preferredTimeStart = profileCandidate?.startPriorityTime;
+	const prefferredTimeEnd = profileCandidate?.endPriorityTime;
+
 	const preferredTime = `from ${dateFormat(
-		profileCandidate?.startPriorityTime,
-		'isoTime'
-	)} to ${dateFormat(profileCandidate?.endPriorityTime, 'isoTime')}`;
+		preferredTimeStart,
+		'shortTime',
+		true
+	)} to ${dateFormat(prefferredTimeEnd, 'shortTime', true)}`;
 
-	if (appointmentData.title === ' ' && userId) {
-		const getCurrentCandidate = async () => {
-			const gettedCurrentCandidate = await fetchCurrentCandidate(userId);
-			const { firstName, lastName } = gettedCurrentCandidate;
-			const fullNameCandidate = { title: `${firstName} ${lastName}` };
-			setProfileCandidate(gettedCurrentCandidate);
-			setLoading(false);
-			return onFieldChange(fullNameCandidate);
-		};
+	useEffect(() => {
+		if (appointmentData.title === ' ' && userId) {
+			const getCurrentCandidate = async () => {
+				const gettedCurrentCandidate = await fetchCurrentCandidate(userId);
+				const { firstName, lastName } = gettedCurrentCandidate;
+				const fullNameCandidate = { title: `${firstName} ${lastName}` };
+				setProfileCandidate(gettedCurrentCandidate);
+				setLoading(false);
+				onFieldChange(fullNameCandidate);
+				// return onFieldChange(fullNameCandidate);
+			};
 
-		getCurrentCandidate();
-	}
+			getCurrentCandidate();
+		}
+	}, [appointmentData, userId]);
 
 	if (appointmentData.title === ' ' && loading) {
 		return (
