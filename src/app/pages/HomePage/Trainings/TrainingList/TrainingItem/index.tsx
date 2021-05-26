@@ -49,7 +49,7 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 				<StatusLabel status={status}>{status}</StatusLabel>
 			</MainInfo>
 			<DescrtiptionInternship>{info}</DescrtiptionInternship>
-			<DetailsLink to={AppRoutePath.TRAINING}>
+			<DetailsLink to={status !== 'Over' ? AppRoutePath.TRAINING : '#'}>
 				<Details
 					onClick={() => {
 						setInternshipValue?.(id);
