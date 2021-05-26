@@ -1,8 +1,8 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
 import com.exadel.recruitmentPlatform.dto.InternshipRequestDto;
-import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.dto.InternshipRequestProfileDto;
+import com.exadel.recruitmentPlatform.dto.InternshipRequestSearchDto;
 import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
 import com.exadel.recruitmentPlatform.dto.StatusDto;
 import com.exadel.recruitmentPlatform.dto.mapper.InternshipRequestMapper;
@@ -24,7 +24,6 @@ import com.exadel.recruitmentPlatform.service.InterviewService;
 import com.exadel.recruitmentPlatform.service.SpecialityService;
 import com.exadel.recruitmentPlatform.service.UserTimeService;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

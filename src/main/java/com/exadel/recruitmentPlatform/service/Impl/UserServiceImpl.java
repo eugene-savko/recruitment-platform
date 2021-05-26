@@ -1,11 +1,9 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
-import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
-import com.exadel.recruitmentPlatform.dto.mapper.UserShortMapper;
+import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.UserShortMapper;
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -27,7 +25,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final PageableResponseMapper pageableResponseMapper;
     private final UserShortMapper userShortMapper;
 
 
