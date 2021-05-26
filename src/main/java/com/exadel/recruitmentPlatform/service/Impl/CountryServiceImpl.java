@@ -9,9 +9,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -29,15 +31,15 @@ public class CountryServiceImpl implements CountryService {
         return country;
     }
 
+    @Override
+    public List<Country> save(Set<String> countries) {
+        return countries.stream().map(this::save).collect(Collectors.toList());
+    }
+
     private Country create(String countryName) {
         Country country = countryMapper.toEntity(new CountryDto(countryName));
         Country saved = countryRepository.save(country);
         return saved;
-    }
-
-    @Override
-    public List<Country> getCountries(Set<Long> ids) {
-        return countryRepository.findByIdIn(ids);
     }
 
     @Override
@@ -49,4 +51,5 @@ public class CountryServiceImpl implements CountryService {
     public Long getCountryId(String name) {
         return countryRepository.findByName(name).getId();
     }
+
 }

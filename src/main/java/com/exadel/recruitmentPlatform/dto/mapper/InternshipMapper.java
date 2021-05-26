@@ -2,6 +2,7 @@ package com.exadel.recruitmentPlatform.dto.mapper;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
+import com.exadel.recruitmentPlatform.entity.City;
 import com.exadel.recruitmentPlatform.entity.Internship;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ public class InternshipMapper implements Mapper<Internship, InternshipDto, Inter
     private final SpecialityMapper specialityMapper;
     private final SkillMapper skillMapper;
     private final CountryMapper countryMapper;
+    private final CityMapper cityMapper;
 
     @Override
     public Internship toEntity(InternshipDto dto) {
@@ -41,6 +43,7 @@ public class InternshipMapper implements Mapper<Internship, InternshipDto, Inter
         internshipDto.setSpecialities(specialityMapper.toDtos(internship.getSpecialities()));
         internshipDto.setCountries(countryMapper.toDtos(internship.getCountries()));
         internshipDto.setSkills(skillMapper.toDtos(internship.getSkills()));
+        internshipDto.setCities(cityMapper.toDtos(internship.getCities()));
         return internshipDto;
     }
 }

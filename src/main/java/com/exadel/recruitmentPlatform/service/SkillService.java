@@ -10,6 +10,10 @@ public interface SkillService {
 
     List<Skill> getSkills(Set<Long> ids);
 
+    List<SkillDto> getSkills();
+
     SkillDto getSkillById(Long id);
+
+    Skill getSkill(Long id);
 
 }

@@ -46,8 +46,4 @@ public interface InternshipRequestRepository extends JpaRepository<InternshipReq
             " and (:fullName is null or concat(i.user.firstName, ' ', i.user.lastName) like :fullName) ")
     Page<InternshipRequest> findByFilterParam(Pageable pageable, Long internshipId, List<Long> specialityIds,
                                  List<InternshipRequestStatus> statuses, String fullName);
-
-    Integer countAllByInternshipId(Long internshipId);
-
-    Integer countAllByStatusAndInternshipId(InternshipRequestStatus status, Long internshipId);
 }

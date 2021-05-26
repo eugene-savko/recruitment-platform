@@ -28,7 +28,7 @@ public class InternshipController {
 
     @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @PostMapping
-    public ResponseEntity<InternshipResponseDto> save(@Valid @RequestBody InternshipDto internshipDto) {
+    public ResponseEntity<InternshipResponseDto> create(@Valid @RequestBody InternshipDto internshipDto) {
         return ResponseEntity.ok(internshipService.create(internshipDto));
     }
 

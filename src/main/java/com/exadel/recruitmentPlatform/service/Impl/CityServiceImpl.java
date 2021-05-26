@@ -9,7 +9,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +28,13 @@ public class CityServiceImpl implements CityService {
                 .findByName(cityName))
                 .orElseGet(() -> create(cityName));
         return city;
+    }
+
+    @Override
+    public List<City> save(Set<String> cities) {
+        return cities.stream()
+                .map(this::save)
+                .collect(Collectors.toList());
     }
 
     private City create(String cityName) {

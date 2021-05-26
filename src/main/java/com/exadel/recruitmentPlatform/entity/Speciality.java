@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -20,7 +21,7 @@ import java.util.List;
 public class Speciality extends BaseEntity{
 
     @ManyToMany(mappedBy = "specialities")
-    private List<Internship> internships;
+    private List<Internship> internships = new LinkedList<>();
 
     @Column(name = "name")
     private String name;
