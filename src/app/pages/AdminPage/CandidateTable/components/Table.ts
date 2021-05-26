@@ -38,7 +38,7 @@ const InternshipFilterSelect = styled(Select)`
 	text-transform: uppercase;
 	color: #3f51b5;
 	& .select__menu {
-		top: 25px;
+		top: 30px;
 		left: 0;
 	}
 	& .select__control {

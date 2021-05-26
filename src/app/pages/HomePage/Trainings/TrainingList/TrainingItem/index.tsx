@@ -31,12 +31,8 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 	status,
 	id,
 }) => {
-	const { internshipValue, setInternshipValue } = useContext(
-		FrontendLandingContext
-	);
-	const handleDetailsClick = () => {
-		setInternshipValue?.(id);
-	};
+	const { setInternshipValue } = useContext(FrontendLandingContext);
+
 	return (
 		<TrainingItemWrapper>
 			<MainInfo>
@@ -50,11 +46,17 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 						)
 					)}
 				</SubTitle>
-				<StatusLabel>{status}</StatusLabel>
+				<StatusLabel status={status}>{status}</StatusLabel>
 			</MainInfo>
 			<DescrtiptionInternship>{info}</DescrtiptionInternship>
-			<DetailsLink to={AppRoutePath.TRAINING} onClick={handleDetailsClick}>
-				<Details>Details</Details>
+			<DetailsLink to={AppRoutePath.TRAINING}>
+				<Details
+					onClick={() => {
+						setInternshipValue?.(id);
+					}}
+				>
+					Details
+				</Details>
 			</DetailsLink>
 		</TrainingItemWrapper>
 	);

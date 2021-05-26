@@ -32,20 +32,20 @@ export const App: React.FunctionComponent = () => {
 							<AdminPage />
 						</AdminPanelContextProvider>
 					</PrivateRouteAuthAdminPage>
-					{ROUTES?.map(({ path, exact, component: RouteComponent }) => (
-						<Route
-							key={path}
-							exact={exact}
-							path={path}
-							render={(props) => (
-								<Layout>
-									<FrontendLandingContextProvider>
+					<FrontendLandingContextProvider>
+						{ROUTES?.map(({ path, exact, component: RouteComponent }) => (
+							<Route
+								key={path}
+								exact={exact}
+								path={path}
+								render={(props) => (
+									<Layout>
 										<RouteComponent {...props} />
-									</FrontendLandingContextProvider>
-								</Layout>
-							)}
-						/>
-					))}
+									</Layout>
+								)}
+							/>
+						))}
+					</FrontendLandingContextProvider>
 					<Route
 						path="*"
 						render={() => (

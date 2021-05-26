@@ -5,7 +5,7 @@ export interface IFrontendLandingContext {
 	setInternshipValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 export const FrontendLandingContext = createContext<IFrontendLandingContext>({
-	internshipValue: 1,
+	internshipValue: 0,
 });
 
 export const FrontendLandingContextProvider: React.FunctionComponent<React.ReactNode> = ({
@@ -13,10 +13,7 @@ export const FrontendLandingContextProvider: React.FunctionComponent<React.React
 }) => {
 	const [internshipValue, setInternshipValue] = useState(1);
 	const memoizedInternshipValue = useMemo(
-		() => ({
-			internshipValue,
-			setInternshipValue,
-		}),
+		() => ({ internshipValue, setInternshipValue }),
 		[internshipValue]
 	);
 	return (

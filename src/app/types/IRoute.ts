@@ -1,9 +1,10 @@
-import { FunctionComponent } from 'react';
+import { ComponentType } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 interface IRoute {
 	exact: boolean;
 	path: string;
-	component: FunctionComponent<any>;
+	component: ComponentType<RouteComponentProps>;
 }
 
 export default IRoute;

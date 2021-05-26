@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import { Control, FieldValues, Controller } from 'react-hook-form';
 import { FormSelect, FormLabel, SelectFieldWrapper } from './components';
-import { IFilterOption } from './types';
+import { ISpecialityOption, IStatusOption } from './types';
 
 interface ISelectField {
-	data: Array<IFilterOption>;
+	data: Array<IStatusOption | ISpecialityOption>;
 	name: string;
+	label: string;
 	control: Control<FieldValues>;
 }
 
@@ -13,21 +14,31 @@ export const SelectField: React.FunctionComponent<ISelectField> = ({
 	data,
 	control,
 	name,
+	label,
 }) => {
 	const renderSelect = useCallback(({ onChange, value, ref }) => {
-		const getOptionLabel = useCallback((option: IFilterOption) => {
-			return option.name;
+		const getOptionLabel = useCallback((option) => {
+			if (option.name) {
+				return option.name;
+			}
+			return option.status;
 		}, []);
 
-		const getOptionValue = useCallback((option: IFilterOption) => {
-			return option.name;
+		const getOptionValue = useCallback((option) => {
+			if (option.name) {
+				return option.name;
+			}
+			return option.status;
 		}, []);
-		const handleSelectChange = useCallback((val: Array<IFilterOption>) => {
-			onChange(val);
-		}, []);
+		const handleSelectChange = useCallback(
+			(val: Array<IStatusOption | ISpecialityOption>) => {
+				onChange(val);
+			},
+			[]
+		);
 		return (
 			<SelectFieldWrapper>
-				<FormLabel>{name}</FormLabel>
+				<FormLabel>{label}</FormLabel>
 				<FormSelect
 					isMulti
 					variant="outlined"
