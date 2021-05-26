@@ -101,13 +101,6 @@ public class UserTimeServiceImpl implements UserTimeService {
             internshipRequest.setStatus(InternshipRequestStatus.TECHNICAL_SPECIALIST_INTERVIEW);
         }
 
-        if (userTimeRepository.findByUserId(candidate.getId()).stream()
-                .noneMatch(userTimeInstance -> userTime
-                        .getStartDateTime().toLocalTime().truncatedTo(ChronoUnit.SECONDS)
-                        .equals(userTimeInstance.getStartDateTime().toLocalTime().truncatedTo(ChronoUnit.SECONDS)))){
-            throw new ValidationException("Wrong time interval, it doesn't match the candidate's time priority");
-        }
-
         userTime.setStatus(SlotStatus.OCCUPIED);
 
         Interview interview = new Interview();
