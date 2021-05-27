@@ -16,6 +16,7 @@ export const BasicLayout: React.ComponentType<AppointmentForm.BasicLayoutProps> 
 	...restProps
 }) => {
 	const { userId } = useContext(AdminPanelContext);
+	console.log(`userId`, userId);
 	const { auth } = useContext(authContext);
 	const role = auth.dataRole?.role as string;
 	const [profileCandidate, setProfileCandidate] = useState<ICurrentCandidate>();

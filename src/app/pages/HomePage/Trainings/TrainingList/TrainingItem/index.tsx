@@ -49,7 +49,8 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 				<StatusLabel status={status}>{status}</StatusLabel>
 			</MainInfo>
 			<DescrtiptionInternship>{info}</DescrtiptionInternship>
-			<DetailsLink to={status !== 'Over' ? AppRoutePath.TRAINING : '#'}>
+
+			<DetailsLink to={AppRoutePath.TRAINING}>
 				<Details
 					onClick={() => {
 						setInternshipValue?.(id);
@@ -61,3 +62,4 @@ export const TrainingItem: React.FunctionComponent<ITrainingItemProps> = ({
 		</TrainingItemWrapper>
 	);
 };
+/* {status !== 'Over' ? AppRoutePath.TRAINING : '#'} */

@@ -10,6 +10,7 @@ import setStatusCandidate from 'app/API/setStatusCandidate';
 import { AdminPanelContext } from 'app/contexts/AdminPanelContext';
 
 // pop-up
+import { SwitcherRolesContext } from 'app/contexts/SwitcherRolesContext';
 import PopUp from '../PopUp';
 
 // style
@@ -26,7 +27,7 @@ import { Select } from './components';
 
 // type
 import { IFormFields, IFeedbackInfo, IListItemSelect } from '../types';
-import { SwitcherRolesContext } from '../../../../contexts/SwitcherRolesContext';
+import { AdminRoutePath } from '../../routes';
 
 interface IRecruiterFieldProps {
 	englishLevelProps: Array<IListItemSelect>;
@@ -56,7 +57,6 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 	const { register, handleSubmit } = useForm<IFormFields>();
 	const { userId } = useContext(AdminPanelContext);
 	const { setSwitchedRole } = useContext(SwitcherRolesContext);
-
 	useEffect(() => {
 		if (feedbackContent === undefined) {
 			setFeedbackRecruiter('');
@@ -150,14 +150,15 @@ const RecruiterField: React.FunctionComponent<IRecruiterFieldProps> = ({
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+						<Link
+							to={AdminRoutePath.SCHEDULE_RECRUITER}
+							style={{ textDecoration: 'none' }}
+						>
 							<ButtonMaterial
-								onClick={() => {
-									setSwitchedRole?.('RECRUITER');
-								}}
 								variant="outlined"
 								color="primary"
 								title="Schedule Recruiter"
+								onClick={() => setSwitchedRole?.('RECRUITER')}
 							>
 								Schedule
 							</ButtonMaterial>

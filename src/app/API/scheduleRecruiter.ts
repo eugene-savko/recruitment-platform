@@ -26,7 +26,7 @@ export const fetchCurrentCandidate = async (
 ): Promise<ICurrentCandidate> => {
 	try {
 		const { data } = await API({
-			url: `${URL_INTERNSHIP_REQUEST}${id}`,
+			url: `${URL_INTERNSHIP_REQUEST}/${id}`,
 			method: 'get',
 		});
 		return data;

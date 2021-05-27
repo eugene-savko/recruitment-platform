@@ -12,8 +12,8 @@ export const ButtonLeaveSchedule: React.FC = () => {
 
 	return (
 		<React.Fragment>
-			<IconButton>
-				<ScheduleButtonLeave onClick={leaveSchedule} />
+			<IconButton onClick={leaveSchedule}>
+				<ScheduleButtonLeave />
 			</IconButton>
 		</React.Fragment>
 	);

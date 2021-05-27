@@ -4,6 +4,7 @@ import { API } from './axios';
 import { URL_SEARCH_USERS } from './urls';
 
 export interface ITableUser {
+	internshipRequestId: number;
 	userId: number;
 	specialityName: string;
 	countryName: string;

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, Prompt } from 'react-router-dom';
+
 // API
 import updateFeedback from 'app/API/updateFeedback';
 
@@ -20,6 +21,7 @@ import {
 
 // type
 import { IFormFields, IFeedbackInfo } from '../types';
+import { AdminRoutePath } from '../../routes';
 
 interface ITechFieldProps {
 	feedbackContent: Array<IFeedbackInfo>;
@@ -43,7 +45,6 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 	const [isShown, setIsShown] = useState(false);
 	const [feedbackTech, setFeedbackTech] = useState<string | undefined>('');
 	const { handleSubmit } = useForm<IFormFields>();
-
 	const { setSwitchedRole } = useContext(SwitcherRolesContext);
 
 	useEffect(() => {
@@ -104,14 +105,15 @@ const TechField: React.FunctionComponent<ITechFieldProps> = ({
 						variant="outlined"
 					/>
 					<ContainerBth>
-						<Link to="/schedule-recruiter" style={{ textDecoration: 'none' }}>
+						<Link
+							to={AdminRoutePath.SCHEDULE_RECRUITER}
+							style={{ textDecoration: 'none' }}
+						>
 							<ButtonMaterial
 								variant="outlined"
 								color="primary"
 								title="Schedule Tech"
-								onClick={() => {
-									setSwitchedRole?.('SPECIALIST');
-								}}
+								onClick={() => setSwitchedRole?.('SPECIALIST')}
 							>
 								Schedule
 							</ButtonMaterial>

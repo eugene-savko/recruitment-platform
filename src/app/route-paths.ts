@@ -4,4 +4,5 @@ export const AppRoutePath = {
 	ABOUT: '/about',
 	QUESTIONS: '/questions',
 	TRAINING: '/training-page',
+	NOTFOUND: '/notfound',
 };

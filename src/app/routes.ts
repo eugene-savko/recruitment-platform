@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { TrainingPage } from './pages/TrainingPage';
 
 import IRoute from './types/IRoute';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 const ROUTES: Array<IRoute> = [
 	{
@@ -26,6 +27,11 @@ const ROUTES: Array<IRoute> = [
 		path: AppRoutePath.TRAINING,
 		exact: true,
 		component: TrainingPage,
+	},
+	{
+		path: AppRoutePath.NOTFOUND,
+		exact: true,
+		component: NotFoundPage,
 	},
 ];
 

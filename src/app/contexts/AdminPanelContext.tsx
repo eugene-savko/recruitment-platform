@@ -14,7 +14,7 @@ export const AdminPanelContext = createContext<IAdminPanelContext>({
 export const AdminPanelContextProvider: React.FunctionComponent<React.ReactNode> = ({
 	children,
 }) => {
-	const [userId, setUserId] = useState(77);
+	const [userId, setUserId] = useState(0);
 	const [internshipId, setInternshipId] = useState(1);
 	const adminPanelContextValue = useMemo(
 		() => ({ userId, setUserId, internshipId, setInternshipId }),

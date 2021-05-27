@@ -66,6 +66,7 @@ export const CandidateTable: React.FunctionComponent = () => {
 	// initial Data
 	const initialDataTable = [
 		{
+			internshipRequestId: 1,
 			userId: 1,
 			fullName: '',
 			specialityName: '',

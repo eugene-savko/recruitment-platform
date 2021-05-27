@@ -49,11 +49,6 @@ const editorCourse = {
 	exact: false,
 	component: CourseEditor,
 };
-const editorDetailsCourse = {
-	path: '/course-details-editor',
-	exact: false,
-	component: CourseDetailsEditor,
-};
 
 const homePage = {
 	path: '/*',
@@ -67,7 +62,6 @@ export const routesAdmin: Array<IRoute> = [
 	profile,
 	scheduleRecruiter,
 	editorCourse,
-	editorDetailsCourse,
 	homePage,
 ];
 

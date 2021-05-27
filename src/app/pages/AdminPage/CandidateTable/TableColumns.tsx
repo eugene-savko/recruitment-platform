@@ -38,8 +38,8 @@ const TableColumns: Column<ITableUser>[] = [
 		}: React.PropsWithChildren<
 			CellProps<ITableUser, string | undefined>
 		>): JSX.Element => {
-			const { userId } = cell.row.original;
-			return <TableCellButton text="View" id={userId} />;
+			const { internshipRequestId } = cell.row.original;
+			return <TableCellButton text="View" id={internshipRequestId} />;
 		},
 	},
 ];
