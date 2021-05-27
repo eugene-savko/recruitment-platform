@@ -14,6 +14,7 @@ const URL_INTERNSHIPS_SPECIALITIES = 'api/internships/specialities/';
 const URL_TIME_INTERVAL = 'api/timeInterval';
 const URL_SEARCH_USERS = 'api/internship-request/search';
 const URL_LIST_INTERNSHIP_USERS = 'api/internships/ids-names/';
+const URL_DASHBOARD_DATA = 'statistic/internship';
 
 export {
 	URL_LIST_INTERNSHIP_USERS,
@@ -31,4 +32,5 @@ export {
 	URL_CALENDAR_ROLES,
 	URL_CALENDAR,
 	URL_UPDATE_STATUS_CANDIDATE,
+	URL_DASHBOARD_DATA,
 };
