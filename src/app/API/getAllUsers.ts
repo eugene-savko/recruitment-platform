@@ -33,6 +33,5 @@ export const getAllUsers = async (
 			'Content-Type': 'application/json',
 		},
 	});
-	console.log(data);
 	return data;
 };

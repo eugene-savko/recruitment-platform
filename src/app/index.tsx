@@ -10,13 +10,12 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
 import { PrivateRouteAuthAdminPage } from './pages/AuthPage/Auth/hoc/PrivateRouteAuthAdminPage';
-
 import { AdminPanelContextProvider } from './contexts/AdminPanelContext';
 import { AppRoutePath } from './route-paths';
 import { AdminRoutePath } from './pages/AdminPage/routes';
 import { FrontendLandingContextProvider } from './contexts/FrontendLandingContext';
-import ROUTES from './routes';
 import { SwitcherRolesProvider } from './contexts/SwitcherRolesContext';
+import ROUTES from './routes';
 
 export const App: React.FunctionComponent = () => {
 	return (

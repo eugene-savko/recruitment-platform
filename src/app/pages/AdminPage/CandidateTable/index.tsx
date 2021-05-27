@@ -135,7 +135,6 @@ export const CandidateTable: React.FunctionComponent = () => {
 				const data = await getListInternships();
 				setInternships(data);
 			} catch (e) {
-				console.log(e.messsage);
 				setInternships(GLOBAL_FILTER_SELECT);
 			}
 		};
@@ -194,6 +193,7 @@ export const CandidateTable: React.FunctionComponent = () => {
 		(data) => {
 			setTableData((prev) => ({
 				...prev,
+				internshipId: !prev.internshipId ? 1 : prev.internshipId,
 				fullName: data.fullName ? data.fullName : '',
 				statuses:
 					data.statuses === 'statuses'

@@ -6,7 +6,6 @@ import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
-import { CourseDetailsEditor } from './CourseDetailsEditor/CourseDetailsEditor';
 
 const ADMIN_ROUTE_ROOT_PATH = '/admin';
 

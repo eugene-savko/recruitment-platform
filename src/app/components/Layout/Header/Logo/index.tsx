@@ -8,7 +8,7 @@ import { LogoWrapper } from '../components';
 
 const Logo: React.FunctionComponent = () => (
 	<React.Fragment>
-		<MaterialLink color="inherit" href="https://exadel.com/" noWrap>
+		<MaterialLink color="inherit" noWrap>
 			<svg width="0" height="0" className="hidden">
 				<symbol
 					fill="none"

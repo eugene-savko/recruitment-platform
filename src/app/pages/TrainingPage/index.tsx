@@ -1,6 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-
+import ReactHtmlParser from 'react-html-parser';
+import { FrontendLandingContext } from 'app/contexts/FrontendLandingContext';
+import getInternshipDescription, {
+	IIntenshipInfoInterface,
+} from 'app/API/getInternshipDescription';
 import {
 	HandleButton,
 	List,
@@ -17,14 +21,26 @@ import { SendForm } from './SendForm';
 
 export const TrainingPage: React.FunctionComponent = () => {
 	const [showForm, setShowForm] = useState(false);
-
+	const { internshipValue } = useContext(FrontendLandingContext);
+	const [infoInternship, setInfoInternship] = useState<IIntenshipInfoInterface>(
+		{ description: '', name: '', status: '', startDate: 0, endDate: 0 }
+	);
 	const showFormOnClick = useCallback(() => setShowForm(true), [showForm]);
-
+	useEffect(() => {
+		const fetchInternship = async () => {
+			const data = await getInternshipDescription(internshipValue);
+			setInfoInternship(data);
+		};
+		fetchInternship();
+	}, []);
+	if (internshipValue === 10) {
+		return <div>{ReactHtmlParser(infoInternship.description)}</div>;
+	}
 	return (
 		<Wrapper>
-			<Title>JavaScript internship program</Title>
+			<Title>{infoInternship.name}</Title>
 			<Share />
-			<SubInformation />
+			<SubInformation infoInternship={infoInternship} />
 			<Paragraph>
 				We are looking for a self-motivated and experienced Lead .NET Developer
 				to join our team! You will have the chance to push your development
@@ -41,12 +57,9 @@ export const TrainingPage: React.FunctionComponent = () => {
 			<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 
 			<List>
-				<ListItem>Produce code using .NET languages</ListItem>
-				<ListItem>Produce code using .NET languages</ListItem>
-				<ListItem>Produce code using .NET languages</ListItem>
-				<ListItem>Produce code using .NET languages</ListItem>
-				<ListItem>Produce code using .NET languages</ListItem>
-				<ListItem>Produce code using .NET languages</ListItem>
+				{infoInternship.skills?.map((elem) => (
+					<ListItem key={elem.id}>{elem.name}</ListItem>
+				))}
 			</List>
 
 			<Paragraph>
