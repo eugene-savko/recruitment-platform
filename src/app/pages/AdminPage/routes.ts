@@ -1,6 +1,6 @@
 import IRoute from 'app/types/IRoute';
 import IMapped from 'app/types/IMapped';
-import { DashBoard } from './DashBoard/DashBoard';
+import { DashBoard } from './DashBoard';
 import { Profile } from './Profile';
 import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
