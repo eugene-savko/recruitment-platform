@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Getter
@@ -23,5 +24,6 @@ public class Skill extends BaseEntity {
     private String subtype;
 
     @ManyToMany(mappedBy = "skills")
-    private List<Internship> internships;
+    private List<Internship> internships=new LinkedList<>();
+
 }

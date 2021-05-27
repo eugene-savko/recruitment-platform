@@ -43,6 +43,12 @@ public class InternshipDto extends BaseDto {
     private Set<Long> skills;
 
     @NotEmpty
-    private Set<Long> countries;
+    private Set<Long> users;
+
+    @NotEmpty
+    private Set<String> countries;
+
+    @NotEmpty
+    private Set<String> cities;
 
 }

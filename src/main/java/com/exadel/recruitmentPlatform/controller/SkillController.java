@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/skills")
@@ -19,4 +21,10 @@ public class SkillController {
     public SkillDto getSkill(@PathVariable Long id){
         return skillService.getSkillById(id);
     }
+
+    @GetMapping
+    public List<SkillDto> getSkills() {
+        return skillService.getSkills();
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.exadel.recruitmentPlatform.controller;
 
 import com.exadel.recruitmentPlatform.dto.InternshipDto;
+import com.exadel.recruitmentPlatform.dto.InternshipOnAdminPageResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipResponseDto;
 import com.exadel.recruitmentPlatform.dto.InternshipShortDto;
 import com.exadel.recruitmentPlatform.service.InternshipService;
@@ -27,7 +28,7 @@ public class InternshipController {
 
     @Secured({"ROLE_SPECIALIST", "ROLE_ADMIN"})
     @PostMapping
-    public ResponseEntity<InternshipResponseDto> save(@Valid @RequestBody InternshipDto internshipDto) {
+    public ResponseEntity<InternshipResponseDto> create(@Valid @RequestBody InternshipDto internshipDto) {
         return ResponseEntity.ok(internshipService.create(internshipDto));
     }
 

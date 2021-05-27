@@ -1,11 +1,10 @@
 package com.exadel.recruitmentPlatform.service.Impl;
 
-import com.exadel.recruitmentPlatform.dto.PageableResponseDto;
-import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.UserDto;
-import com.exadel.recruitmentPlatform.dto.mapper.PageableResponseMapper;
-import com.exadel.recruitmentPlatform.dto.mapper.UserShortMapper;
+import com.exadel.recruitmentPlatform.dto.UserResponseDto;
+import com.exadel.recruitmentPlatform.dto.UserShortDto;
 import com.exadel.recruitmentPlatform.dto.mapper.UserMapper;
+import com.exadel.recruitmentPlatform.dto.mapper.UserShortMapper;
 import com.exadel.recruitmentPlatform.entity.AuthenticatedUser;
 import com.exadel.recruitmentPlatform.entity.User;
 import com.exadel.recruitmentPlatform.entity.UserRole;
@@ -19,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final PageableResponseMapper pageableResponseMapper;
     private final UserShortMapper userShortMapper;
 
 
@@ -69,6 +68,17 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new EntityNotFoundException("User with id=" + id + " doesn't exist"));
     }
 
+    @Override
+    public User getById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User with id=" + id + " doesn't exist"));
+    }
+
+    @Override
+    public List<User> findByIds(Set<Long> ids) {
+        return userRepository.findByIdIn(ids);
+    }
+
     public UserDto getAuthenticatedUser(Authentication authentication) {
         AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
         return findById(user.getId());
@@ -77,5 +87,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserShortDto> getIdsAndNamesOfUsers(UserRole userRole, Long internshipId) {
         return userShortMapper.toDtos(userRepository.findByRoleAndInternships_Id(userRole, internshipId));
+    }
+
+    @Override
+    public List<UserResponseDto> getSpecialistUsers() {
+        List<User> administrativeUsers = userRepository.findByRoleIn(Set.of(UserRole.RECRUITER, UserRole.SPECIALIST));
+        return userMapper.toDtos(administrativeUsers);
     }
 }
