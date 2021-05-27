@@ -1,10 +1,23 @@
 import {
+	WrapperForm,
 	Form,
 	FormTitle,
 	FormButton,
 	FormSelect,
 	FormLabel,
 	FormInput,
+	WrapperFormInput,
+	WrapperTextField,
 } from './Form';
 
-export { Form, FormTitle, FormButton, FormSelect, FormLabel, FormInput };
+export {
+	WrapperForm,
+	Form,
+	FormTitle,
+	FormButton,
+	FormSelect,
+	FormLabel,
+	FormInput,
+	WrapperFormInput,
+	WrapperTextField,
+};

@@ -5,6 +5,12 @@ import {
 	Button as MaterialButton,
 } from '@material-ui/core';
 
+const WrapperForm = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
 const Form = styled.form`
 	margin-bottom: 10px;
 	padding: 16px;
@@ -23,13 +29,22 @@ const FormTitle = styled.h2`
 	color: #3f51b5;
 `;
 
+const WrapperFormInput = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+const WrapperTextField = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+`;
+
 const FormInput = styled(MaterialInput)`
 	margin: 10px 0 0 0;
-	border: 1px solid #3f51b5;
-	border-radius: 2px;
-	width: 300px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 4px;
 	background-color: #fff;
-	color: #3f51b5;
 	input {
 		height: 25px;
 		text-indent: 10px;
@@ -81,4 +96,14 @@ const FormButton = styled(MaterialButton)`
 		color: #fff;
 	}
 `;
-export { Form, FormTitle, FormButton, FormSelect, FormLabel, FormInput };
+export {
+	WrapperForm,
+	Form,
+	FormTitle,
+	FormButton,
+	FormSelect,
+	FormLabel,
+	FormInput,
+	WrapperFormInput,
+	WrapperTextField,
+};
