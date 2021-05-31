@@ -1,48 +1,113 @@
-import { FormControl, InputLabel, Select } from '@material-ui/core';
-import React, { useState } from 'react';
+import {
+	Box,
+	Chip,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+} from '@material-ui/core';
+import { fetchListCities, fetchListCountries } from 'app/API/CourseEditor';
+import React, { useState, useEffect } from 'react';
+import { Controller } from 'react-hook-form';
+import { Control } from 'react-hook-form/dist/types/form';
 
-interface ISelect {
-	value: string | number;
+interface IListContry {
+	id: number;
+	name: string;
+	iso2?: string;
+}
+interface IListCity {
+	id: number;
 	name: string;
 }
 
-export const SelectCountry: React.FC = () => {
-	const [course, setCourse] = useState<ISelect>({
-		value: '',
-		name: 'No course',
-	});
+interface IFormInput {
+	select: string;
+	nameCourse: string;
+}
+interface ISeclectCountryProps {
+	control: Control<IFormInput>;
+}
 
-	const handleChangeCourse = (
-		event: React.ChangeEvent<{ name?: string; value: unknown }>
-	) => {
-		const name = event.target.name as keyof typeof course;
-		setCourse({ ...course, [name]: event.target.value });
+export const SelectCountry = () => {
+	const [countryIso, setCountryIso] = useState('');
+	const [listCountry, setListCountry] = useState<IListContry[]>([]);
+	const [listCities, setListCities] = useState<IListCity[]>([]);
+	const [personName, setPersonName] = useState<string[]>([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setListCountry(await fetchListCountries());
+		};
+		fetchData();
+	}, []);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			if (countryIso !== '') {
+				setListCities(await fetchListCities(countryIso));
+			}
+		};
+		fetchData();
+	}, [countryIso]);
+
+	const handleChangeCountry = (e: any) => {
+		setCountryIso(e.target.value);
 	};
 
+	const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+		setPersonName(e.target.value as string[]);
+	};
 	return (
-		<FormControl margin="normal" variant="outlined" fullWidth>
-			<InputLabel htmlFor="outlined-age-native-simple">
-				List of country
-			</InputLabel>
-			<Select
-				native
-				value={course.value}
-				onChange={handleChangeCourse}
-				label="List of country"
-				inputProps={{
-					name: 'value',
-					id: 'outlined-age-native-simple',
-				}}
-			>
-				<option value="" disabled>
-					List of country
-				</option>
-				<option value={1}>Belarus</option>
-				<option value={2}>Ukraine</option>
-				<option value={4}>Poland</option>
-				<option value={5}>Russia</option>
-				<option value={6}>Latvia</option>
-			</Select>
-		</FormControl>
+		<React.Fragment>
+			<FormControl margin="normal" variant="outlined" fullWidth>
+				<InputLabel htmlFor="multiple-country">List of country</InputLabel>
+
+				<Select
+					id="multiple-country"
+					value={countryIso}
+					onChange={handleChangeCountry}
+					label="List of country"
+					inputProps={{
+						name: 'value',
+						id: 'outlined-country',
+					}}
+				>
+					<MenuItem value="" disabled>
+						List of country
+					</MenuItem>
+					{listCountry?.map(({ id, name, iso2 }) => (
+						<MenuItem key={id} value={iso2}>
+							{name}
+						</MenuItem>
+					))}
+				</Select>
+			</FormControl>
+			<div>
+				<FormControl margin="normal" fullWidth variant="outlined">
+					<InputLabel htmlFor="multiple-cities">List of cities</InputLabel>
+					<Select
+						value={personName}
+						onChange={handleChange}
+						multiple
+						label="List of cities "
+						id="multiple-cities"
+						renderValue={(selected) => (
+							<div style={{ display: 'flex', flexWrap: 'wrap' }}>
+								{(selected as string[]).map((value) => (
+									<Chip key={value} label={value} style={{ margin: 2 }} />
+								))}
+							</div>
+						)}
+					>
+						{listCities.map(({ name }) => (
+							<MenuItem key={name} value={name}>
+								{name}
+							</MenuItem>
+						))}
+					</Select>
+				</FormControl>
+			</div>
+		</React.Fragment>
 	);
 };
