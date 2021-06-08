@@ -7,7 +7,6 @@ import { Wrapper, Line, Strong, Label } from './components';
 export const SubInformation: React.FunctionComponent<{
 	infoInternship: IIntenshipInfoInterface;
 }> = ({ infoInternship }) => {
-	console.log(infoInternship);
 	return (
 		<Wrapper>
 			<Line>

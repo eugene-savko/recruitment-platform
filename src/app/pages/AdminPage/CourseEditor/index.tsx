@@ -1,95 +1,115 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { TextField, Button, Box } from '@material-ui/core';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { Button, Grid } from '@material-ui/core';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { CourseEditorWrapperSelect } from './components';
 import { CourseEditorPaper } from './components/CourseEditorPaper';
 import { SelectCountry } from './SelectCountry';
 import { SelectCourse } from './SelectCourse';
-import { InlineDatePicker } from './Calendar';
-import { SelectMultiRecruiter } from './SelectMultiRecruiter';
+import { Calendar } from './Calendar';
+import { NameCourse } from './NameCourse';
+import { SetRecruiter } from './SetRecruiter';
+import { DescriptionCourse } from './DescriptionCourse';
 
+interface IListContry {
+	id: number;
+	name: string;
+	iso2?: string;
+}
+interface IListCity {
+	id: number;
+	name: string;
+}
 export interface IFormInput {
-	select: string;
+	country: IListContry;
 	nameCourse: string;
-	cities: string;
+	cities: IListCity[];
 }
 
 const defaultValues = {
-	select: '',
-	nameCourse: '',
-	cities: '',
+	nameCourse: '1',
+	country: { id: 21, name: 'Belarus', iso2: 'BY' },
+	cities: [{ id: 15989, name: 'Minsk' }],
 };
 
 export const CourseEditor: React.FC = () => {
-	const { control, handleSubmit, register } = useForm<IFormInput>({
+	const methods = useForm<IFormInput>({
 		defaultValues,
 	});
+
+	const { handleSubmit } = methods;
 
 	const onSubmit: SubmitHandler<IFormInput> = (data) => {
 		console.log(data);
 	};
 	return (
 		<React.Fragment>
-			<CourseEditorPaper>
-				<CourseEditorWrapperSelect>
-					<SelectCourse />
-					<IconButton aria-label="delete">
-						<DeleteIcon fontSize="large" />
-					</IconButton>
-				</CourseEditorWrapperSelect>
-			</CourseEditorPaper>
+			<FormProvider {...methods}>
+				<CourseEditorPaper>
+					<CourseEditorWrapperSelect>
+						<SelectCourse />
 
-			<CourseEditorPaper>
-				<form noValidate onSubmit={handleSubmit(onSubmit)}>
-					<Box display="flex">
-						<Box flexGrow={1} mr={2}>
-							<SelectCountry />
-						</Box>
-						<Box flexGrow={1}>
-							<TextField
-								inputRef={register}
-								name="nameCourse"
-								defaultValue=""
-								label="Name of course"
-								margin="normal"
-								fullWidth
-								variant="outlined"
-								type="text"
-							/>
-						</Box>
-					</Box>
+						<IconButton aria-label="delete">
+							<DeleteIcon fontSize="large" />
+						</IconButton>
+					</CourseEditorWrapperSelect>
+				</CourseEditorPaper>
 
-					{/* <Box display="flex" justifyContent="space">
-						<Box>
-							<InlineDatePicker />
-						</Box>
-						<Box>
-							<InlineDatePicker />
-						</Box>
-						<Box>
-							<InlineDatePicker />
-						</Box>
-					</Box> */}
+				<CourseEditorPaper>
+					<form noValidate onSubmit={handleSubmit(onSubmit)}>
+						<NameCourse />
 
-					{/* <SelectMultiRecruiter />
+						<SelectCountry />
 
-					<TextField
-						margin="normal"
-						fullWidth
-						id="outlined-multiline-static"
-						label="Course description"
-						multiline
-						rows={12}
-						defaultValue="Describe course"
-						variant="outlined"
-					/> */}
-					<Button type="submit" variant="outlined" color="primary">
-						Create course
-					</Button>
-				</form>
-			</CourseEditorPaper>
+						<Grid
+							container
+							direction="row"
+							justify="space-between"
+							alignItems="center"
+						>
+							<Grid item>
+								<Calendar
+									name="startDate"
+									label="Start course"
+									id="startDateCourse"
+								/>
+							</Grid>
+							<Grid item>
+								<Calendar
+									name="endDate"
+									label="End course"
+									id="endDateCourse"
+								/>
+							</Grid>
+							<Grid item>
+								<Calendar
+									name="stopRecruitmentDate"
+									label="Finish of recruitment"
+									id="stopRecruitmentDateCourse"
+								/>
+							</Grid>
+						</Grid>
+
+						<SetRecruiter />
+
+						<DescriptionCourse />
+
+						<Button
+							style={{ marginRight: '16px' }}
+							type="submit"
+							variant="outlined"
+							color="primary"
+						>
+							Create course
+						</Button>
+
+						<Button type="submit" variant="outlined" color="primary">
+							Update course
+						</Button>
+					</form>
+				</CourseEditorPaper>
+			</FormProvider>
 		</React.Fragment>
 	);
 };

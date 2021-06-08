@@ -86,7 +86,7 @@ export const Filter: React.FunctionComponent = () => {
 				const specialities = await fetchSpecialities();
 				setSpecializationItems(specialities);
 			} catch (e) {
-				console.log('Not speciallities');
+				console.dir(e);
 			}
 		};
 		fetchData();

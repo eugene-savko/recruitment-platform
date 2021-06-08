@@ -1,15 +1,8 @@
-import {
-	Box,
-	Chip,
-	FormControl,
-	InputLabel,
-	MenuItem,
-	Select,
-} from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { fetchListCities, fetchListCountries } from 'app/API/CourseEditor';
 import React, { useState, useEffect } from 'react';
-import { Controller } from 'react-hook-form';
-import { Control } from 'react-hook-form/dist/types/form';
+import { Controller, useFormContext } from 'react-hook-form';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 interface IListContry {
 	id: number;
@@ -21,93 +14,89 @@ interface IListCity {
 	name: string;
 }
 
-interface IFormInput {
-	select: string;
+export interface IFormInput {
+	country: string;
 	nameCourse: string;
-}
-interface ISeclectCountryProps {
-	control: Control<IFormInput>;
+	cities: string;
 }
 
-export const SelectCountry = () => {
-	const [countryIso, setCountryIso] = useState('');
+export const SelectCountry: React.FC = () => {
+	const [cIso, setCiso] = useState('BY');
+	const [loadedListCountry, setLoadedListCountry] = useState(false);
 	const [listCountry, setListCountry] = useState<IListContry[]>([]);
 	const [listCities, setListCities] = useState<IListCity[]>([]);
-	const [personName, setPersonName] = useState<string[]>([]);
+	const { control, setValue } = useFormContext();
 
 	useEffect(() => {
-		const fetchData = async () => {
+		(async () => {
 			setListCountry(await fetchListCountries());
-		};
-		fetchData();
+		})();
 	}, []);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			if (countryIso !== '') {
-				setListCities(await fetchListCities(countryIso));
-			}
-		};
-		fetchData();
-	}, [countryIso]);
+		(async () => {
+			setListCities(await fetchListCities(cIso));
+			setLoadedListCountry(true);
+		})();
+	}, [cIso]);
 
-	const handleChangeCountry = (e: any) => {
-		setCountryIso(e.target.value);
-	};
-
-	const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-		setPersonName(e.target.value as string[]);
-	};
 	return (
 		<React.Fragment>
-			<FormControl margin="normal" variant="outlined" fullWidth>
-				<InputLabel htmlFor="multiple-country">List of country</InputLabel>
-
-				<Select
-					id="multiple-country"
-					value={countryIso}
-					onChange={handleChangeCountry}
-					label="List of country"
-					inputProps={{
-						name: 'value',
-						id: 'outlined-country',
-					}}
-				>
-					<MenuItem value="" disabled>
-						List of country
-					</MenuItem>
-					{listCountry?.map(({ id, name, iso2 }) => (
-						<MenuItem key={id} value={iso2}>
-							{name}
-						</MenuItem>
-					))}
-				</Select>
-			</FormControl>
-			<div>
-				<FormControl margin="normal" fullWidth variant="outlined">
-					<InputLabel htmlFor="multiple-cities">List of cities</InputLabel>
-					<Select
-						value={personName}
-						onChange={handleChange}
-						multiple
-						label="List of cities "
-						id="multiple-cities"
-						renderValue={(selected) => (
-							<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-								{(selected as string[]).map((value) => (
-									<Chip key={value} label={value} style={{ margin: 2 }} />
-								))}
-							</div>
+			<Controller
+				name="country"
+				control={control}
+				render={(props) => (
+					<Autocomplete
+						{...props}
+						options={listCountry}
+						onChange={(e, data) => {
+							props.onChange(data);
+							setCiso(data?.iso2);
+						}}
+						renderOption={(option) => <span>{option.name}</span>}
+						getOptionLabel={(option) => option.name}
+						getOptionSelected={(option, value) => option.name === value.name}
+						renderInput={(params) => (
+							<TextField
+								{...params}
+								label="Choose a country"
+								variant="outlined"
+								margin="normal"
+							/>
 						)}
-					>
-						{listCities.map(({ name }) => (
-							<MenuItem key={name} value={name}>
-								{name}
-							</MenuItem>
-						))}
-					</Select>
-				</FormControl>
-			</div>
+					/>
+				)}
+			/>
+			{loadedListCountry && (
+				<Controller
+					name="cities"
+					control={control}
+					render={() => (
+						<Autocomplete
+							multiple
+							disableCloseOnSelect
+							filterSelectedOptions
+							limitTags={2}
+							id="citiesList"
+							onChange={(e, data) => setValue('cities', data)}
+							options={listCities}
+							getOptionLabel={(option) => option.name}
+							getOptionSelected={(option, value) => option.name === value.name}
+							// defaultValue={[listCities[0]]}
+							renderInput={(params) => (
+								<TextField
+									{...params}
+									id="CitiesList"
+									name="city"
+									variant="outlined"
+									label="City"
+									margin="normal"
+								/>
+							)}
+						/>
+					)}
+				/>
+			)}
 		</React.Fragment>
 	);
 };

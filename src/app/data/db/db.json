@@ -1,0 +1,214 @@
+{
+  "candidate": [
+    {
+      "id": 21,
+      "firstName": "Julia",
+      "lastName": "Red",
+      "email": "julia.red@gmail.com",
+      "country": "Ukraine",
+      "city": "Kiev",
+      "phone": "+37529-689-45-89",
+      "otherInformation": "Hello!",
+      "speciality": "Java",
+      "englishLevel": "B1",
+      "cv": "some link",
+      "internship": "Java & Javascript Internship",
+      "interviews": [
+        {
+          "id": 1,
+          "feedback": "",
+          "englishLevel": null,
+          "fromUser": {
+            "id": 1,
+            "firstName": "Alice",
+            "lastName": "Blue",
+            "role": "SPECIALIST"
+          },
+          "startDateTime": 1622451600000,
+          "endDateTime": 1622453400000
+        },
+        {
+          "id": 2,
+          "feedback": "",
+          "englishLevel": null,
+          "fromUser": {
+            "id": 24,
+            "firstName": "George Green",
+            "lastName": "Green",
+            "role": "RECRUITER"
+          },
+          "startDateTime": 1622280600000,
+          "endDateTime": 1622460600000
+        }
+      ],
+      "startPriorityTime": 1622451600000,
+      "endPriorityTime": 1622460600000
+    },
+    {
+      "id": 1,
+      "lastName": "Immanuel",
+      "firstName": "Kant",
+      "startDateRecruiter": 1620810000000,
+      "endDateRecruiter": 1620815400000,
+      "nameTechSpecialist": "Kant",
+      "startDateTechSpecialist": 0,
+      "endDateTechSpecialist": 0,
+      "nameRecruiter": "Mashy Bluing",
+      "internshipId": 533,
+      "cv": "www.somesite.com",
+      "otherInformation": "some information",
+      "city": "Minsk",
+      "email": "joepink@gmail.com",
+      "periodTime": "from 16:00 to 17:00",
+      "country": "Belarus",
+      "englishLevel": "B1",
+      "englishLevelRecruiter": "A2",
+      "recruiterInterview": "Silvester Stalone"
+    },
+    {
+      "id": 2,
+      "lastName": "Arthur",
+      "firstName": "Schopenhauer",
+      "startDateRecruiter": 1620631800000,
+      "endDateRecruiter": 1620644400000,
+      "nameTechSpecialist": "Kant",
+      "startDateTechSpecialist": 0,
+      "endDateTechSpecialist": 0,
+      "nameRecruiter": "Mashy Bluing",
+      "internshipId": 533,
+      "cv": "www.somesite.com",
+      "otherInformation": "some information",
+      "city": "Brest",
+      "email": "arture@gmail.com",
+      "periodTime": "from 09:00 to 11:00",
+      "country": "Belarus",
+      "englishLevel": "C1",
+      "englishLevelRecruiter": "B2",
+      "recruiterInterview": "Ann Reading"
+    }
+  ],
+  "recruitersCompany": [
+    {
+      "id": 1,
+      "nameRecruiter":"Capitan",
+      "surnameRecruiter":"Marvel"
+    },
+    {
+      "id": 2,
+      "nameRecruiter":"Luck",
+      "surnameRecruiter":"Cage"
+    },
+    {
+      "id": 3,
+      "nameRecruiter":"Black",
+      "surnameRecruiter":"Panther"
+    },
+    {
+      "id": 4,
+      "nameRecruiter":"Tony",
+      "surnameRecruiter":"Stark"
+    },
+    {
+      "id": 5,
+      "nameRecruiter":"Pitter",
+      "surnameRecruiter":"Parker"
+    },
+    {
+      "id": 6,
+      "nameRecruiter":"Bruce",
+      "surnameRecruiter":"Banner"
+    },
+    {
+      "id": 7,
+      "nameRecruiter":"Natasha",
+      "surnameRecruiter":"Rostova"
+    },
+    {
+      "id": 8,
+      "nameRecruiter":"Steve",
+      "surnameRecruiter":"Rogers"
+    }
+  ],
+
+
+  "RECRUITER": [
+    {
+      "id": 1,
+      "text": "Ivan Graying",
+      "color": "indigo"
+    },
+    {
+      "id": 2,
+      "color": "teal",
+      "text": "Ann Reading"
+    },
+    {
+      "id": 3,
+      "color": "purple",
+      "text": "Kate Blacking"
+    },
+    {
+      "id": 4,
+      "text": "Toni Stark",
+      "color": "blue"
+    }
+  ],
+  "SPECIALIST": [
+    {
+      "id": 1,
+      "text": "Capitan America",
+      "color": "indigo"
+    },
+    {
+      "id": 2,
+      "color": "teal",
+      "text": "Doctor Strange"
+    },
+    {
+      "id": 3,
+      "color": "purple",
+      "text": "Black Widow"
+    },
+    {
+      "id": 4,
+      "text": "Iron Man",
+      "color": "blue"
+    }
+  ],
+  "schedulerRECRUITER1": [
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621413000000,
+      "startDate": 1621411200000,
+      "id": 1
+    },
+    {
+      "title": "",
+      "allDay": false,
+      "members": 24,
+      "endDate": 1622628000000,
+      "startDate": 1622626200000,
+      "id": 45
+    }
+  ],
+  "schedulerSPECIALIST1": [
+    {
+      "title": "",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1621413000000,
+      "startDate": 1621411200000,
+      "id": 1
+    },
+    {
+      "title": "Julia Red",
+      "allDay": false,
+      "members": 1,
+      "endDate": 1622188800000,
+      "startDate": 1622187000000,
+      "id": 2
+    }
+  ]
+}

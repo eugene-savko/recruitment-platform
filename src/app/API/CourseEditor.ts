@@ -27,7 +27,7 @@ export const fetchListCountries = async (): Promise<any> => {
 	}
 };
 
-export const fetchListCities = async (ciso: any) => {
+export const fetchListCities = async (ciso: any): Promise<any> => {
 	try {
 		const { data } = await axios({
 			method: 'GET',
@@ -39,6 +39,27 @@ export const fetchListCities = async (ciso: any) => {
 		});
 
 		return data;
+	} catch (error) {
+		alertError(error);
+		return error;
+	}
+};
+
+export const fetchListRecruitersEditor = async (): Promise<any> => {
+	try {
+		const { data } = await axios({
+			method: 'GET',
+			url: 'http://localhost:4000/recruitersCompany',
+		});
+		const listRecruiterEditor = data.map(
+			({ id, nameRecruiter, surnameRecruiter }: any) => {
+				return {
+					idRecruiter: id,
+					recruiter: `${nameRecruiter} ${surnameRecruiter}`,
+				};
+			}
+		);
+		return listRecruiterEditor;
 	} catch (error) {
 		alertError(error);
 		return error;

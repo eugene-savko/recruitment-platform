@@ -81,7 +81,6 @@ export const SendForm: React.FunctionComponent = () => {
 					otherInformation: textArea,
 				},
 			};
-			console.log(objectDto);
 			try {
 				const postFormData = async (): Promise<void> => {
 					API({
