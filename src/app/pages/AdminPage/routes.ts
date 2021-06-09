@@ -6,6 +6,7 @@ import { ScheduleRecruiter } from './ScheduleRecruiter/index';
 import { NotFoundPage } from './NotFound/index';
 import { CourseEditor } from './CourseEditor';
 import { CandidateTable } from './CandidateTable';
+import { CourseDetailsEditor } from './CourseDetailsEditor/CourseDetailsEditor';
 
 const ADMIN_ROUTE_ROOT_PATH = '/admin';
 
@@ -17,6 +18,7 @@ export const AdminRoutePath = {
 	SCHEDULE_RECRUITER: `${ADMIN_ROUTE_ROOT_PATH}/schedule-recruiter`,
 	SCHEDULE_TECHSPECIALIST: `${ADMIN_ROUTE_ROOT_PATH}/schedule-techspecialist`,
 	COURSE_EDITOR: `${ADMIN_ROUTE_ROOT_PATH}/course-editor`,
+	COURSE_EDITOR_DETAILS: `${ADMIN_ROUTE_ROOT_PATH}/course-editor-details`,
 };
 
 const dashboard = {
@@ -49,6 +51,12 @@ const editorCourse = {
 	component: CourseEditor,
 };
 
+const editorDetails = {
+	path: AdminRoutePath.COURSE_EDITOR_DETAILS,
+	exact: false,
+	component: CourseDetailsEditor,
+};
+
 const homePage = {
 	path: '/*',
 	exact: false,
@@ -61,6 +69,7 @@ export const routesAdmin: Array<IRoute> = [
 	profile,
 	scheduleRecruiter,
 	editorCourse,
+	editorDetails,
 	homePage,
 ];
 

@@ -3,6 +3,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import IMapped from 'app/types/IMapped';
+import ColorizeIcon from '@material-ui/icons/Colorize';
 import ISideBarItems from '../types/ISideBarItems';
 import { AdminRoutePath } from '../../routes';
 
@@ -29,17 +30,26 @@ const courseEditor: ISideBarItems = {
 	title: 'Course editor',
 };
 
+const courseDetailsEditor: ISideBarItems = {
+	href: AdminRoutePath.COURSE_EDITOR_DETAILS,
+	icon: ColorizeIcon,
+	title: 'Course details editor',
+};
+
 export const menuItemsAdmin: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	scheduleRecruiter,
 	courseEditor,
+	courseDetailsEditor,
 ];
+
 export const menuItemsRecruiter: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
 	scheduleRecruiter,
 ];
+
 export const menuItemsTechSpecialist: ISideBarItems[] = [
 	dashboard,
 	tableCandidate,
