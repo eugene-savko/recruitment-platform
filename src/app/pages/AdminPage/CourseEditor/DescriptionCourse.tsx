@@ -7,13 +7,14 @@ export const DescriptionCourse: React.FC = () => {
 
 	return (
 		<TextField
+			name="courseDescription"
 			inputRef={register}
 			margin="normal"
 			fullWidth
 			id="outlined-multiline-static"
 			label="Course description"
 			multiline
-			rows={12}
+			rows={6}
 			defaultValue=""
 			variant="outlined"
 		/>

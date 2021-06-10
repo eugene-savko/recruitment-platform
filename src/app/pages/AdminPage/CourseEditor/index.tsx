@@ -21,16 +21,31 @@ interface IListCity {
 	id: number;
 	name: string;
 }
+interface IListInterviewers {
+	idRecruiter: number;
+	recruiter: string;
+}
 export interface IFormInput {
 	country: IListContry;
 	nameCourse: string;
 	cities: IListCity[];
+	endDate: string;
+	startDate: string;
+	stopRecruitmentDate: string;
+	listRecruiters: IListInterviewers[];
+	courseDescription: string;
 }
 
-const defaultValues = {
-	nameCourse: '1',
+export const defaultValues = {
+	nameCourse: 'JavaScript & Java',
 	country: { id: 21, name: 'Belarus', iso2: 'BY' },
 	cities: [{ id: 15989, name: 'Minsk' }],
+	endDate: '2021-01-01T00:00',
+	startDate: '2021-01-01T00:00',
+	stopRecruitmentDate: '2021-01-01T00:00',
+	listRecruiters: [{ idRecruiter: 2, recruiter: 'Luck Cage' }],
+	courseDescription:
+		'3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.',
 };
 
 export const CourseEditor: React.FC = () => {

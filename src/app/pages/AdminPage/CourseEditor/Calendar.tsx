@@ -20,7 +20,6 @@ export const Calendar: React.FunctionComponent<ICalendar> = ({
 		<Controller
 			control={control}
 			name={name}
-			defaultValue={dateFormat(new Date(), "yyyy-mm-dd'T'HH:MM")}
 			render={({ onChange, value }) => {
 				return (
 					<TextField

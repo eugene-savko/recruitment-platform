@@ -3,6 +3,7 @@ import { fetchListCities, fetchListCountries } from 'app/API/CourseEditor';
 import React, { useState, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { defaultValues } from './index';
 
 interface IListContry {
 	id: number;
@@ -14,14 +15,8 @@ interface IListCity {
 	name: string;
 }
 
-export interface IFormInput {
-	country: string;
-	nameCourse: string;
-	cities: string;
-}
-
 export const SelectCountry: React.FC = () => {
-	const [cIso, setCiso] = useState('BY');
+	const [cIso, setCiso] = useState(defaultValues.country.iso2);
 	const [loadedListCountry, setLoadedListCountry] = useState(false);
 	const [listCountry, setListCountry] = useState<IListContry[]>([]);
 	const [listCities, setListCities] = useState<IListCity[]>([]);
@@ -53,6 +48,7 @@ export const SelectCountry: React.FC = () => {
 							props.onChange(data);
 							setCiso(data?.iso2);
 						}}
+						value={props.value}
 						renderOption={(option) => <span>{option.name}</span>}
 						getOptionLabel={(option) => option.name}
 						getOptionSelected={(option, value) => option.name === value.name}
@@ -71,18 +67,21 @@ export const SelectCountry: React.FC = () => {
 				<Controller
 					name="cities"
 					control={control}
-					render={() => (
+					render={({ value, onChange }) => (
 						<Autocomplete
 							multiple
 							disableCloseOnSelect
 							filterSelectedOptions
 							limitTags={2}
 							id="citiesList"
-							onChange={(e, data) => setValue('cities', data)}
+							value={value}
+							onChange={(e, data) => {
+								onChange(data);
+								setValue('cities', data);
+							}}
 							options={listCities}
 							getOptionLabel={(option) => option.name}
-							getOptionSelected={(option, value) => option.name === value.name}
-							// defaultValue={[listCities[0]]}
+							getOptionSelected={(option, val) => option.name === val.name}
 							renderInput={(params) => (
 								<TextField
 									{...params}
