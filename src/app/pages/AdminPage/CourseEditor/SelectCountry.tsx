@@ -1,9 +1,11 @@
 import { TextField } from '@material-ui/core';
 import { fetchListCities, fetchListCountries } from 'app/API/CourseEditor';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { defaultValues } from './index';
+// import { defaultValues } from './index';
+import { CourseEditorError } from './CourseEditorError';
+import { SelectCourseContext } from '../../../contexts/SelectCourseContext';
 
 interface IListContry {
 	id: number;
@@ -16,11 +18,12 @@ interface IListCity {
 }
 
 export const SelectCountry: React.FC = () => {
+	const { defaultValues } = useContext(SelectCourseContext);
 	const [cIso, setCiso] = useState(defaultValues.country.iso2);
 	const [loadedListCountry, setLoadedListCountry] = useState(false);
 	const [listCountry, setListCountry] = useState<IListContry[]>([]);
 	const [listCities, setListCities] = useState<IListCity[]>([]);
-	const { control, setValue } = useFormContext();
+	const { errors, control, setValue } = useFormContext();
 
 	useEffect(() => {
 		(async () => {
@@ -40,6 +43,7 @@ export const SelectCountry: React.FC = () => {
 			<Controller
 				name="country"
 				control={control}
+				rules={{ required: 'Choose a country' }}
 				render={(props) => (
 					<Autocomplete
 						{...props}
@@ -55,6 +59,7 @@ export const SelectCountry: React.FC = () => {
 						renderInput={(params) => (
 							<TextField
 								{...params}
+								style={{ marginBottom: '0px' }}
 								label="Choose a country"
 								variant="outlined"
 								margin="normal"
@@ -63,17 +68,26 @@ export const SelectCountry: React.FC = () => {
 					/>
 				)}
 			/>
+			<CourseEditorError
+				nameInputElement={errors.country}
+				messageError={errors.country?.message}
+			/>
+
 			{loadedListCountry && (
 				<Controller
 					name="cities"
 					control={control}
+					rules={{
+						validate: {
+							isEmptyListCities: (value) => value.length > 0 || 'Choose a city',
+						},
+					}}
 					render={({ value, onChange }) => (
 						<Autocomplete
 							multiple
 							disableCloseOnSelect
 							filterSelectedOptions
 							limitTags={2}
-							id="citiesList"
 							value={value}
 							onChange={(e, data) => {
 								onChange(data);
@@ -85,7 +99,7 @@ export const SelectCountry: React.FC = () => {
 							renderInput={(params) => (
 								<TextField
 									{...params}
-									id="CitiesList"
+									style={{ marginBottom: '0' }}
 									name="city"
 									variant="outlined"
 									label="City"
@@ -96,6 +110,11 @@ export const SelectCountry: React.FC = () => {
 					)}
 				/>
 			)}
+
+			<CourseEditorError
+				nameInputElement={errors.cities}
+				messageError={errors.cities?.message}
+			/>
 		</React.Fragment>
 	);
 };

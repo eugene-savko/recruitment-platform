@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, Grid } from '@material-ui/core';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import dateFormat from 'dateformat';
+
 import { CourseEditorWrapperSelect } from './components';
 import { CourseEditorPaper } from './components/CourseEditorPaper';
 import { SelectCountry } from './SelectCountry';
@@ -11,6 +13,8 @@ import { Calendar } from './Calendar';
 import { NameCourse } from './NameCourse';
 import { SetRecruiter } from './SetRecruiter';
 import { DescriptionCourse } from './DescriptionCourse';
+import { createCourse } from '../../../API/CourseEditor';
+import { SelectCourseContext } from '../../../contexts/SelectCourseContext';
 
 interface IListContry {
 	id: number;
@@ -21,41 +25,36 @@ interface IListCity {
 	id: number;
 	name: string;
 }
-interface IListInterviewers {
-	idRecruiter: number;
+export interface IListInterviewers {
 	recruiter: string;
+	idRecruiter: number;
 }
-export interface IFormInput {
-	country: IListContry;
+export interface IDefaultCourseInput {
+	id?: number;
+	courseId?: number;
 	nameCourse: string;
+	country: IListContry;
 	cities: IListCity[];
-	endDate: string;
-	startDate: string;
-	stopRecruitmentDate: string;
+	endDate: string | number;
+	startDate: string | number;
+	stopRecruitmentDate: string | number;
 	listRecruiters: IListInterviewers[];
 	courseDescription: string;
 }
 
-export const defaultValues = {
-	nameCourse: 'JavaScript & Java',
-	country: { id: 21, name: 'Belarus', iso2: 'BY' },
-	cities: [{ id: 15989, name: 'Minsk' }],
-	endDate: '2021-01-01T00:00',
-	startDate: '2021-01-01T00:00',
-	stopRecruitmentDate: '2021-01-01T00:00',
-	listRecruiters: [{ idRecruiter: 2, recruiter: 'Luck Cage' }],
-	courseDescription:
-		'3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.',
-};
-
 export const CourseEditor: React.FC = () => {
-	const methods = useForm<IFormInput>({
+	const { defaultValues } = useContext(SelectCourseContext);
+
+	console.log('defaultValues', defaultValues);
+
+	const methods = useForm<IDefaultCourseInput>({
 		defaultValues,
 	});
 
 	const { handleSubmit } = methods;
 
-	const onSubmit: SubmitHandler<IFormInput> = (data) => {
+	const onSubmit: SubmitHandler<IDefaultCourseInput> = (data) => {
+		createCourse(data);
 		console.log(data);
 	};
 	return (
@@ -74,7 +73,6 @@ export const CourseEditor: React.FC = () => {
 				<CourseEditorPaper>
 					<form noValidate onSubmit={handleSubmit(onSubmit)}>
 						<NameCourse />
-
 						<SelectCountry />
 
 						<Grid
@@ -111,7 +109,7 @@ export const CourseEditor: React.FC = () => {
 						<DescriptionCourse />
 
 						<Button
-							style={{ marginRight: '16px' }}
+							style={{ marginRight: '16px', marginTop: '8px' }}
 							type="submit"
 							variant="outlined"
 							color="primary"
@@ -119,7 +117,12 @@ export const CourseEditor: React.FC = () => {
 							Create course
 						</Button>
 
-						<Button type="submit" variant="outlined" color="primary">
+						<Button
+							style={{ marginTop: '8px' }}
+							type="submit"
+							variant="outlined"
+							color="primary"
+						>
 							Update course
 						</Button>
 					</form>

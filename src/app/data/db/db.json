@@ -1,136 +1,106 @@
 {
+  "courses": [
+    {
+      "id": 1,
+      "nameCourse": "JavaScript & Java"
+    },
+    {
+      "id": 2,
+      "nameCourse": ".Net & Devops"
+    },
+    {
+      "id": 3,
+      "nameCourse": "QA & HTML & CSS"
+    }
+  ],
   "candidate": [
     {
       "id": 21,
-      "firstName": "Julia",
-      "lastName": "Red",
-      "email": "julia.red@gmail.com",
-      "country": "Ukraine",
-      "city": "Kiev",
-      "phone": "+37529-689-45-89",
-      "otherInformation": "Hello!",
-      "speciality": "Java",
-      "englishLevel": "B1",
       "cv": "some link",
+      "city": "Kiev",
+      "email": "julia.red@gmail.com",
+      "phone": "+37529-689-45-89",
+      "country": "Ukraine",
+      "lastName": "Red",
+      "firstName": "Julia",
+      "speciality": "Java",
       "internship": "Java & Javascript Internship",
       "interviews": [
         {
           "id": 1,
           "feedback": "",
-          "englishLevel": null,
           "fromUser": {
             "id": 1,
-            "firstName": "Alice",
+            "role": "SPECIALIST",
             "lastName": "Blue",
-            "role": "SPECIALIST"
+            "firstName": "Alice"
           },
-          "startDateTime": 1622451600000,
-          "endDateTime": 1622453400000
+          "endDateTime": 1622453400000,
+          "englishLevel": null,
+          "startDateTime": 1622451600000
         },
         {
           "id": 2,
           "feedback": "",
-          "englishLevel": null,
           "fromUser": {
             "id": 24,
-            "firstName": "George Green",
+            "role": "RECRUITER",
             "lastName": "Green",
-            "role": "RECRUITER"
+            "firstName": "George Green"
           },
-          "startDateTime": 1622280600000,
-          "endDateTime": 1622460600000
+          "endDateTime": 1622460600000,
+          "englishLevel": null,
+          "startDateTime": 1622280600000
         }
       ],
-      "startPriorityTime": 1622451600000,
-      "endPriorityTime": 1622460600000
+      "englishLevel": "B1",
+      "endPriorityTime": 1622460600000,
+      "otherInformation": "Hello!",
+      "startPriorityTime": 1622451600000
     },
     {
       "id": 1,
-      "lastName": "Immanuel",
-      "firstName": "Kant",
-      "startDateRecruiter": 1620810000000,
-      "endDateRecruiter": 1620815400000,
-      "nameTechSpecialist": "Kant",
-      "startDateTechSpecialist": 0,
-      "endDateTechSpecialist": 0,
-      "nameRecruiter": "Mashy Bluing",
-      "internshipId": 533,
       "cv": "www.somesite.com",
-      "otherInformation": "some information",
       "city": "Minsk",
       "email": "joepink@gmail.com",
-      "periodTime": "from 16:00 to 17:00",
       "country": "Belarus",
+      "lastName": "Immanuel",
+      "firstName": "Kant",
+      "periodTime": "from 16:00 to 17:00",
+      "internshipId": 533,
       "englishLevel": "B1",
+      "nameRecruiter": "Mashy Bluing",
+      "endDateRecruiter": 1620815400000,
+      "otherInformation": "some information",
+      "startDateRecruiter": 1620810000000,
+      "nameTechSpecialist": "Kant",
+      "recruiterInterview": "Silvester Stalone",
+      "endDateTechSpecialist": 0,
       "englishLevelRecruiter": "A2",
-      "recruiterInterview": "Silvester Stalone"
+      "startDateTechSpecialist": 0
     },
     {
       "id": 2,
-      "lastName": "Arthur",
-      "firstName": "Schopenhauer",
-      "startDateRecruiter": 1620631800000,
-      "endDateRecruiter": 1620644400000,
-      "nameTechSpecialist": "Kant",
-      "startDateTechSpecialist": 0,
-      "endDateTechSpecialist": 0,
-      "nameRecruiter": "Mashy Bluing",
-      "internshipId": 533,
       "cv": "www.somesite.com",
-      "otherInformation": "some information",
       "city": "Brest",
       "email": "arture@gmail.com",
-      "periodTime": "from 09:00 to 11:00",
       "country": "Belarus",
+      "lastName": "Arthur",
+      "firstName": "Schopenhauer",
+      "periodTime": "from 09:00 to 11:00",
+      "internshipId": 533,
       "englishLevel": "C1",
+      "nameRecruiter": "Mashy Bluing",
+      "endDateRecruiter": 1620644400000,
+      "otherInformation": "some information",
+      "startDateRecruiter": 1620631800000,
+      "nameTechSpecialist": "Kant",
+      "recruiterInterview": "Ann Reading",
+      "endDateTechSpecialist": 0,
       "englishLevelRecruiter": "B2",
-      "recruiterInterview": "Ann Reading"
+      "startDateTechSpecialist": 0
     }
   ],
-  "recruitersCompany": [
-    {
-      "id": 1,
-      "nameRecruiter":"Capitan",
-      "surnameRecruiter":"Marvel"
-    },
-    {
-      "id": 2,
-      "nameRecruiter":"Luck",
-      "surnameRecruiter":"Cage"
-    },
-    {
-      "id": 3,
-      "nameRecruiter":"Black",
-      "surnameRecruiter":"Panther"
-    },
-    {
-      "id": 4,
-      "nameRecruiter":"Tony",
-      "surnameRecruiter":"Stark"
-    },
-    {
-      "id": 5,
-      "nameRecruiter":"Pitter",
-      "surnameRecruiter":"Parker"
-    },
-    {
-      "id": 6,
-      "nameRecruiter":"Bruce",
-      "surnameRecruiter":"Banner"
-    },
-    {
-      "id": 7,
-      "nameRecruiter":"Natasha",
-      "surnameRecruiter":"Rostova"
-    },
-    {
-      "id": 8,
-      "nameRecruiter":"Steve",
-      "surnameRecruiter":"Rogers"
-    }
-  ],
-
-
   "RECRUITER": [
     {
       "id": 1,
@@ -139,13 +109,13 @@
     },
     {
       "id": 2,
-      "color": "teal",
-      "text": "Ann Reading"
+      "text": "Ann Reading",
+      "color": "teal"
     },
     {
       "id": 3,
-      "color": "purple",
-      "text": "Kate Blacking"
+      "text": "Kate Blacking",
+      "color": "purple"
     },
     {
       "id": 4,
@@ -161,13 +131,13 @@
     },
     {
       "id": 2,
-      "color": "teal",
-      "text": "Doctor Strange"
+      "text": "Doctor Strange",
+      "color": "teal"
     },
     {
       "id": 3,
-      "color": "purple",
-      "text": "Black Widow"
+      "text": "Black Widow",
+      "color": "purple"
     },
     {
       "id": 4,
@@ -175,40 +145,264 @@
       "color": "blue"
     }
   ],
+  "listCourses": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "cities": [
+        {
+          "id": 15989,
+          "name": "Minsk"
+        }
+      ],
+      "country": {
+        "id": 21,
+        "name": "Belarus",
+        "iso2": "BY"
+      },
+      "endDate": 1624633740000,
+      "startDate": 1624633740000,
+      "nameCourse": "JavaScript & Java",
+      "listRecruiters": [
+        {
+          "recruiter": "Luck Cage",
+          "idRecruiter": 2
+        }
+      ],
+      "courseDescription": "3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.",
+      "stopRecruitmentDate": 1623769740000
+    },
+    {
+      "id": 2,
+      "courseId": 2,
+      "cities": [
+        {
+          "id": 8451,
+          "name": "Holetown"
+        },
+        {
+          "id": 8450,
+          "name": "Greenland"
+        }
+      ],
+      "country": {
+        "id": 20,
+        "name": "Barbados",
+        "iso2": "BB"
+      },
+      "endDate": 1624806540000,
+      "startDate": 1624806540000,
+      "nameCourse": "JA & Devops",
+      "listRecruiters": [
+        {
+          "recruiter": "Tony Stark",
+          "idRecruiter": 4
+        },
+        {
+          "recruiter": "Black Panther",
+          "idRecruiter": 3
+        },
+        {
+          "recruiter": "Luck Cage",
+          "idRecruiter": 2
+        }
+      ],
+      "courseDescription": "3-5 years of experience in technical program management, preferably ",
+      "stopRecruitmentDate": 1624460940000
+    },
+    {
+      "id": 3,
+      "cities": [
+        {
+          "id": 589,
+          "name": "Belas"
+        },
+        {
+          "id": 591,
+          "name": "Cabinda"
+        },
+        {
+          "id": 590,
+          "name": "Benguela"
+        },
+        {
+          "id": 593,
+          "name": "Caluquembe"
+        }
+      ],
+      "country": {
+        "id": 7,
+        "name": "Angola",
+        "iso2": "AO"
+      },
+      "endDate": 1624547340000,
+      "courseId": 3,
+      "startDate": 1624633740000,
+      "nameCourse": "C++ & DevOps+ NodeJS",
+      "listRecruiters": [
+        {
+          "recruiter": "Black Panther",
+          "idRecruiter": 3
+        },
+        {
+          "recruiter": "Luck Cage",
+          "idRecruiter": 2
+        },
+        {
+          "recruiter": "Capitan Marvel",
+          "idRecruiter": 1
+        }
+      ],
+      "courseDescription": "A Boolean which, if true, indicates that the input must have a value before the form can be submitted. You can assign a string to return an error message in the errors object.",
+      "stopRecruitmentDate": 1624633740000
+    },
+    {
+      "nameCourse": "C++ & DevOps+ NodeJS",
+      "courseDescription": "3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.",
+      "country": {
+        "id": 7,
+        "name": "Angola",
+        "iso2": "AO"
+      },
+      "startDate": 1624633740000,
+      "endDate": 1624547340000,
+      "stopRecruitmentDate": 1624633740000,
+      "listRecruiters": [
+        {
+          "recruiter": "Black Panther",
+          "idRecruiter": 3
+        },
+        {
+          "recruiter": "Luck Cage",
+          "idRecruiter": 2
+        },
+        {
+          "recruiter": "Capitan Marvel",
+          "idRecruiter": 1
+        }
+      ],
+      "cities": [
+        {
+          "id": 15989,
+          "name": "Minsk"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "nameCourse": "JA & Devops",
+      "courseDescription": "3-5 years of experience in technical program management, preferably ",
+      "country": {
+        "id": 20,
+        "name": "Barbados",
+        "iso2": "BB"
+      },
+      "startDate": 1624806540000,
+      "endDate": 1624806540000,
+      "stopRecruitmentDate": 1624460940000,
+      "listRecruiters": [
+        {
+          "recruiter": "Tony Stark",
+          "idRecruiter": 4
+        },
+        {
+          "recruiter": "Black Panther",
+          "idRecruiter": 3
+        },
+        {
+          "recruiter": "Luck Cage",
+          "idRecruiter": 2
+        }
+      ],
+      "cities": [
+        {
+          "id": 8451,
+          "name": "Holetown"
+        },
+        {
+          "id": 8450,
+          "name": "Greenland"
+        }
+      ],
+      "id": 5
+    }
+  ],
+  "recruitersCompany": [
+    {
+      "id": 1,
+      "nameRecruiter": "Capitan",
+      "surnameRecruiter": "Marvel"
+    },
+    {
+      "id": 2,
+      "nameRecruiter": "Luck",
+      "surnameRecruiter": "Cage"
+    },
+    {
+      "id": 3,
+      "nameRecruiter": "Black",
+      "surnameRecruiter": "Panther"
+    },
+    {
+      "id": 4,
+      "nameRecruiter": "Tony",
+      "surnameRecruiter": "Stark"
+    },
+    {
+      "id": 5,
+      "nameRecruiter": "Pitter",
+      "surnameRecruiter": "Parker"
+    },
+    {
+      "id": 6,
+      "nameRecruiter": "Bruce",
+      "surnameRecruiter": "Banner"
+    },
+    {
+      "id": 7,
+      "nameRecruiter": "Natasha",
+      "surnameRecruiter": "Rostova"
+    },
+    {
+      "id": 8,
+      "nameRecruiter": "Steve",
+      "surnameRecruiter": "Rogers"
+    }
+  ],
   "schedulerRECRUITER1": [
     {
+      "id": 1,
       "title": "Julia Red",
       "allDay": false,
       "members": 1,
       "endDate": 1621413000000,
-      "startDate": 1621411200000,
-      "id": 1
+      "startDate": 1621411200000
     },
     {
+      "id": 45,
       "title": "",
       "allDay": false,
       "members": 24,
       "endDate": 1622628000000,
-      "startDate": 1622626200000,
-      "id": 45
+      "startDate": 1622626200000
     }
   ],
   "schedulerSPECIALIST1": [
     {
+      "id": 1,
       "title": "",
       "allDay": false,
       "members": 1,
       "endDate": 1621413000000,
-      "startDate": 1621411200000,
-      "id": 1
+      "startDate": 1621411200000
     },
     {
+      "id": 2,
       "title": "Julia Red",
       "allDay": false,
       "members": 1,
       "endDate": 1622188800000,
-      "startDate": 1622187000000,
-      "id": 2
+      "startDate": 1622187000000
     }
   ]
 }

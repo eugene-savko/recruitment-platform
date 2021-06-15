@@ -1,15 +1,44 @@
 import { FormControl, InputLabel, Select } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { SelectCourseContext } from '../../../contexts/SelectCourseContext';
+import {
+	fetchCurrentCourse,
+	fetchListCourses,
+} from '../../../API/CourseEditor';
 
 interface ISelect {
 	value: string | number;
 	name: string;
 }
+
 export const SelectCourse: React.FC = () => {
 	const [course, setCourse] = useState<ISelect>({
 		value: '',
 		name: 'No course',
 	});
+
+	const [listCourses, setListCourses] = useState([]);
+	const { setDefaultValues } = useContext(SelectCourseContext);
+	const { setValue } = useFormContext();
+
+	useEffect(() => {
+		(async () => {
+			setListCourses(await fetchListCourses());
+		})();
+	}, []);
+
+	useEffect(() => {
+		if (course.value !== '') {
+			(async () => {
+				const courseFromServer = await fetchCurrentCourse(
+					course.value as string
+				);
+				setDefaultValues(courseFromServer);
+				setValue('nameCourse', courseFromServer.nameCourse);
+			})();
+		}
+	}, [course]);
 
 	const handleChangeCourse = (
 		event: React.ChangeEvent<{ name?: string; value: unknown }>
@@ -36,9 +65,11 @@ export const SelectCourse: React.FC = () => {
 					<option value="" disabled>
 						List of courses
 					</option>
-					<option value={1}>JS and Java</option>
-					<option value={2}>QA</option>
-					<option value={3}>Devops</option>
+					{listCourses.map(({ id, nameCourse }) => (
+						<option key={id} value={id}>
+							{nameCourse}
+						</option>
+					))}
 				</Select>
 			</FormControl>
 		</React.Fragment>

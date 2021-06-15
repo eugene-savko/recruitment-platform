@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { SelectCourseProvider } from 'app/contexts/SelectCourseContext';
 import { Header } from './Header';
 import { Sidebar } from './SideBar';
 import {
@@ -20,33 +21,35 @@ export const AdminPage: React.FunctionComponent = () => {
 
 	return (
 		<React.Fragment>
-			<AdminPageRoot>
-				<Header onShowHideSidebar={() => setSideBarOpen(true)} />
-				<Sidebar
-					closeSideBar={() => setSideBarOpen(false)}
-					openSideBar={isSideBarOpen}
-				/>
-				<AdminPageContentWrapper>
-					<AdminPageContent>
-						<Switch>
-							<Redirect
-								exact
-								from={AdminRoutePath.ROOT}
-								to={AdminRoutePath.DASHBOARD}
-							/>
-
-							{routesRole.map((route) => (
-								<Route
-									key={route.path}
-									exact={route.exact}
-									path={route.path}
-									component={route.component}
+			<SelectCourseProvider>
+				<AdminPageRoot>
+					<Header onShowHideSidebar={() => setSideBarOpen(true)} />
+					<Sidebar
+						closeSideBar={() => setSideBarOpen(false)}
+						openSideBar={isSideBarOpen}
+					/>
+					<AdminPageContentWrapper>
+						<AdminPageContent>
+							<Switch>
+								<Redirect
+									exact
+									from={AdminRoutePath.ROOT}
+									to={AdminRoutePath.DASHBOARD}
 								/>
-							))}
-						</Switch>
-					</AdminPageContent>
-				</AdminPageContentWrapper>
-			</AdminPageRoot>
+
+								{routesRole.map((route) => (
+									<Route
+										key={route.path}
+										exact={route.exact}
+										path={route.path}
+										component={route.component}
+									/>
+								))}
+							</Switch>
+						</AdminPageContent>
+					</AdminPageContentWrapper>
+				</AdminPageRoot>
+			</SelectCourseProvider>
 		</React.Fragment>
 	);
 };

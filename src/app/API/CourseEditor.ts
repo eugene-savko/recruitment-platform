@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
+import { IDefaultCourseInput } from '../pages/AdminPage/CourseEditor/index';
 
 const alertError = (serverError: AxiosError) => {
 	Swal.fire({
@@ -60,6 +61,54 @@ export const fetchListRecruitersEditor = async (): Promise<any> => {
 			}
 		);
 		return listRecruiterEditor;
+	} catch (error) {
+		alertError(error);
+		return error;
+	}
+};
+
+export const createCourse = async (
+	dataCourse: IDefaultCourseInput
+): Promise<any> => {
+	try {
+		const { data } = await axios({
+			method: 'POST',
+			url: 'http://localhost:4000/listCourses',
+			withCredentials: true,
+			data: dataCourse,
+		});
+		return data;
+	} catch (error) {
+		alertError(error);
+		return error;
+	}
+};
+
+export const fetchListCourses = async (): Promise<any> => {
+	try {
+		const { data } = await axios({
+			url: 'http://localhost:4000/courses',
+			method: 'GET',
+			withCredentials: true,
+		});
+		return data;
+	} catch (error) {
+		alertError(error);
+		return error;
+	}
+};
+
+export const fetchCurrentCourse = async (
+	idCourse: string
+): Promise<IDefaultCourseInput> => {
+	try {
+		const { data } = await axios({
+			url: `http://localhost:4000/courses/${idCourse}/listCourses`,
+			method: 'GET',
+			withCredentials: true,
+		});
+		const [transformData] = data;
+		return transformData;
 	} catch (error) {
 		alertError(error);
 		return error;
