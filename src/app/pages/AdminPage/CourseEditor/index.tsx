@@ -42,10 +42,12 @@ export interface IDefaultCourseInput {
 	courseDescription: string;
 }
 
+export type CourseInputItem = keyof IDefaultCourseInput;
+
 export const CourseEditor: React.FC = () => {
 	const { defaultValues } = useContext(SelectCourseContext);
 
-	console.log('defaultValues', defaultValues);
+	// console.log('defaultValues', defaultValues);
 
 	const methods = useForm<IDefaultCourseInput>({
 		defaultValues,

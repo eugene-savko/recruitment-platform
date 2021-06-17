@@ -325,6 +325,43 @@
         }
       ],
       "id": 5
+    },
+    {
+      "nameCourse": "JA & Devops",
+      "courseDescription": "3-5 years of experience in technical program management, preferably ",
+      "country": {
+        "id": 20,
+        "name": "Barbados",
+        "iso2": "BB"
+      },
+      "startDate": 1624806540000,
+      "endDate": 1624806540000,
+      "stopRecruitmentDate": 1624460940000,
+      "listRecruiters": [
+        {
+          "recruiter": "Tony Stark",
+          "idRecruiter": 4
+        },
+        {
+          "recruiter": "Black Panther",
+          "idRecruiter": 3
+        },
+        {
+          "recruiter": "Luck Cage",
+          "idRecruiter": 2
+        }
+      ],
+      "cities": [
+        {
+          "id": 8451,
+          "name": "Holetown"
+        },
+        {
+          "id": 8450,
+          "name": "Greenland"
+        }
+      ],
+      "id": 6
     }
   ],
   "recruitersCompany": [

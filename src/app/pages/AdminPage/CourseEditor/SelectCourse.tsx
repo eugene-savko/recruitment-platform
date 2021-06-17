@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+
 import { FormControl, InputLabel, Select } from '@material-ui/core';
 import React, { useState, useEffect, useContext } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -6,6 +9,7 @@ import {
 	fetchCurrentCourse,
 	fetchListCourses,
 } from '../../../API/CourseEditor';
+import { CourseInputItem } from '.';
 
 interface ISelect {
 	value: string | number;
@@ -22,6 +26,7 @@ export const SelectCourse: React.FC = () => {
 	const { setDefaultValues } = useContext(SelectCourseContext);
 	const { setValue } = useFormContext();
 
+	// const changeCourseInput = () => {};
 	useEffect(() => {
 		(async () => {
 			setListCourses(await fetchListCourses());
@@ -35,6 +40,10 @@ export const SelectCourse: React.FC = () => {
 					course.value as string
 				);
 				setDefaultValues(courseFromServer);
+				for (const key in courseFromServer) {
+					setValue(key, courseFromServer[key as CourseInputItem]);
+				}
+
 				setValue('nameCourse', courseFromServer.nameCourse);
 			})();
 		}
