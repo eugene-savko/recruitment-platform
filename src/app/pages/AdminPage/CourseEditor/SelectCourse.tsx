@@ -1,32 +1,40 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 
-import { FormControl, InputLabel, Select } from '@material-ui/core';
+import { FormControl, IconButton, InputLabel, Select } from '@material-ui/core';
 import React, { useState, useEffect, useContext } from 'react';
 import { useFormContext } from 'react-hook-form';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Swal from 'sweetalert2';
 import { SelectCourseContext } from '../../../contexts/SelectCourseContext';
 import {
+	deleteCourseDescription,
+	deleteNameCourse,
 	fetchCurrentCourse,
 	fetchListCourses,
 } from '../../../API/CourseEditor';
 import { CourseInputItem } from '.';
+import { CourseEditorWrapperSelect } from './components';
 
 interface ISelect {
 	value: string | number;
 	name: string;
 }
 
+interface IListCourses {
+	id: number;
+	nameCourse: string;
+}
+
 export const SelectCourse: React.FC = () => {
+	const { setValue, reset } = useFormContext();
+	const { defaultValues, setDefaultValues } = useContext(SelectCourseContext);
+	const [listCourses, setListCourses] = useState<IListCourses[]>([]);
 	const [course, setCourse] = useState<ISelect>({
 		value: '',
 		name: 'No course',
 	});
 
-	const [listCourses, setListCourses] = useState([]);
-	const { setDefaultValues } = useContext(SelectCourseContext);
-	const { setValue } = useFormContext();
-
-	// const changeCourseInput = () => {};
 	useEffect(() => {
 		(async () => {
 			setListCourses(await fetchListCourses());
@@ -43,8 +51,6 @@ export const SelectCourse: React.FC = () => {
 				for (const key in courseFromServer) {
 					setValue(key, courseFromServer[key as CourseInputItem]);
 				}
-
-				setValue('nameCourse', courseFromServer.nameCourse);
 			})();
 		}
 	}, [course]);
@@ -55,32 +61,58 @@ export const SelectCourse: React.FC = () => {
 		const name = event.target.name as keyof typeof course;
 		setCourse({ ...course, [name]: event.target.value });
 	};
+
+	const onDeleteCourse = () => {
+		if (course.value !== '') {
+			const filteredCourse = listCourses.filter(
+				({ id: courserId }) => courserId !== defaultValues.id
+			);
+			deleteCourseDescription(defaultValues.id);
+			deleteNameCourse(defaultValues.id);
+			reset();
+			setListCourses(filteredCourse);
+			setCourse({ value: '', name: 'No course' });
+		} else {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: `You try delete non-existent course`,
+			});
+		}
+	};
 	return (
 		<React.Fragment>
-			<FormControl variant="outlined" fullWidth>
-				<InputLabel htmlFor="outlined-age-native-simple">
-					List of courses
-				</InputLabel>
-				<Select
-					native
-					value={course.value}
-					onChange={handleChangeCourse}
-					label="List of courses"
-					inputProps={{
-						name: 'value',
-						id: 'outlined-age-native-simple',
-					}}
-				>
-					<option value="" disabled>
+			<CourseEditorWrapperSelect>
+				<FormControl variant="outlined" fullWidth>
+					<InputLabel htmlFor="outlined-age-native-simple">
 						List of courses
-					</option>
-					{listCourses.map(({ id, nameCourse }) => (
-						<option key={id} value={id}>
-							{nameCourse}
+					</InputLabel>
+
+					<Select
+						native
+						value={course.value}
+						onChange={handleChangeCourse}
+						label="List of courses"
+						inputProps={{
+							name: 'value',
+							id: 'outlined-age-native-simple',
+						}}
+					>
+						<option value="" disabled>
+							List of courses
 						</option>
-					))}
-				</Select>
-			</FormControl>
+						{listCourses.map(({ id, nameCourse }) => (
+							<option key={id} value={id}>
+								{nameCourse}
+							</option>
+						))}
+					</Select>
+				</FormControl>
+
+				<IconButton aria-label="delete" onClick={onDeleteCourse}>
+					<DeleteIcon fontSize="large" />
+				</IconButton>
+			</CourseEditorWrapperSelect>
 		</React.Fragment>
 	);
 };

@@ -1,10 +1,6 @@
 {
   "courses": [
     {
-      "id": 1,
-      "nameCourse": "JavaScript & Java"
-    },
-    {
       "id": 2,
       "nameCourse": ".Net & Devops"
     },
@@ -147,32 +143,6 @@
   ],
   "listCourses": [
     {
-      "id": 1,
-      "courseId": 1,
-      "cities": [
-        {
-          "id": 15989,
-          "name": "Minsk"
-        }
-      ],
-      "country": {
-        "id": 21,
-        "name": "Belarus",
-        "iso2": "BY"
-      },
-      "endDate": 1624633740000,
-      "startDate": 1624633740000,
-      "nameCourse": "JavaScript & Java",
-      "listRecruiters": [
-        {
-          "recruiter": "Luck Cage",
-          "idRecruiter": 2
-        }
-      ],
-      "courseDescription": "3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.",
-      "stopRecruitmentDate": 1623769740000
-    },
-    {
       "id": 2,
       "courseId": 2,
       "cities": [
@@ -208,7 +178,8 @@
         }
       ],
       "courseDescription": "3-5 years of experience in technical program management, preferably ",
-      "stopRecruitmentDate": 1624460940000
+      "stopRecruitmentDate": 1624460940000,
+      "courseEditorDetails": "<p><strong>Work at Exadel &ndash; Who We Are:</strong><br />Since 1998, Exadel has been engineering its own software products and custom software for clients of all sizes. Headquartered in Walnut Creek, California, Exadel currently has 1000+ employees in development centers across America, Europe, and Asia. Our people drive Exadel&rsquo;s success, and they are at the core of our values, so Exadel is a people-first cultured company.</p>\n<p><strong>About Our Customer:</strong><br />The customer is the world&rsquo;s leading private aviation company. A global group headquartered at the DIFC in Dubai, the customer&rsquo;s company integrates a unique portfolio of companies offering asset-light services to cover all key aspects of business aviation: guaranteed and on demand global flight coverage, aircraft leasing and finance, and cutting-edge aviation technology.</p>\n<p>The group&rsquo;s mission is to lead the change to provide clients with the most advanced flying services and the very best value, anytime, anywhere around the world. The customer&rsquo;s knowledge and understanding of all facets of the industry deliver the best end-to-end offering and technology to any business aviation client.</p>\n<p><strong>About Our Team and Project:</strong><br />The tech team at the customer&rsquo;s company consists of Business Intelligence Data Science (BIDS) and Pricing Intelligence Engineering (PIE) teams. The data engineering team in BIDS is responsible for the core functionality of revenue management and pricing model development across the organization. The team will help develop predictive and prescriptive models to optimize revenue, fleet utilization, demand models, supply models, dynamic pricing engine, and personalized pricing engine for the two-sided marketplace through quality data.</p>\n<p>As a Data Engineer in the BIDS organization, you have an unparalleled opportunity to use your skills to help answer high-impact open questions for the business team, help prototype ML algorithms, productize the algorithm in collaboration with the PIE team, and drive business insights through data. You will be collaborating with Product Managers, Engineers, other Data Scientists/Engineers, and Product Analysts solving many complex problems while having a lot of fun. The team is growing exponentially, offering ample opportunity to own additional responsibilities and disrupt the private jet aviation space. This is a unique opportunity for you as a data engineer to join a strong and high growth company early in its lifecycle and help the customer define and realize their vision for trustworthy data across the company.</p>\n<p><strong>Requirements:</strong></p>\n<ul>\n<li>5+ years of relevant industry experience</li>\n<li>Master&rsquo;s degree, preferably in Computer Science, or related field</li>\n<li>Advanced working experience with data warehouse and ETL</li>\n<li>Experience designing and deploying high performance systems with reliable monitoring and logging practices</li>\n<li>Advanced working knowledge and experience working with relational databases, query authoring and optimization (SQL)</li>\n<li>Experience with relational SQL and NoSQL databases, including Postgres and MongoDB</li>\n<li>Strong problem solving and coding skills with one of the following languages: Python/Java/Go</li>\n<li>Experience with BI and data visualization tools</li>\n<li>Excellent communication skills, both written and verbal</li>\n</ul>\n<p><strong>Responsibilities:</strong></p>\n<ul>\n<li>Developing and automating large scale, high-performance data processing systems to support the pricing engine and drive business growth</li>\n<li>Responsible for the design, development, and maintenance of data pipelines</li>\n<li>Performing data cleaning and validation across different sources to improve data quality</li>\n<li>Supporting data scientists and business partners in the company with various needs</li>\n<li>Creating and maintaining data dictionaries for clarity and transparency of the data</li>\n<li>Generating reports or dashboard to help business partners make data driven decisions</li>\n</ul>\n<p><strong>Advantages of Working with Exadel:</strong></p>\n<ul>\n<li>You can build your expertise with our Sales Support team, who provide assistance with existing and potential projects</li>\n<li>You can join any Exadel Community or create your own to communicate with like-minded colleagues</li>\n<li>You can participate in continuing education as a mentor or speaker</li>\n<li>You can take part in internal and external meetups as a speaker or listener. We support you in broadening your horizons and encourage knowledge sharing for all of our employees.</li>\n<li>You can learn English with the support of native speakers</li>\n<li>You can take part in cultural, sporting, charity, and entertainment events</li>\n<li>Working at Exadel means always upgrading your skills and proficiency, so we provide plenty of opportunities for professional development. If you&rsquo;re looking for a challenge that will lead you to the next level of your career, you&rsquo;ve found the right place.</li>\n<li>We work hard to ensure honest and open relations between employees and leadership, so our offices are friendly environments.</li>\n</ul>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 2px; top: -11px;\">\n<div class=\"gtx-trans-icon\">&nbsp;</div>\n</div>"
     },
     {
       "id": 3,
@@ -254,114 +225,8 @@
         }
       ],
       "courseDescription": "A Boolean which, if true, indicates that the input must have a value before the form can be submitted. You can assign a string to return an error message in the errors object.",
-      "stopRecruitmentDate": 1624633740000
-    },
-    {
-      "nameCourse": "C++ & DevOps+ NodeJS",
-      "courseDescription": "3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.",
-      "country": {
-        "id": 7,
-        "name": "Angola",
-        "iso2": "AO"
-      },
-      "startDate": 1624633740000,
-      "endDate": 1624547340000,
       "stopRecruitmentDate": 1624633740000,
-      "listRecruiters": [
-        {
-          "recruiter": "Black Panther",
-          "idRecruiter": 3
-        },
-        {
-          "recruiter": "Luck Cage",
-          "idRecruiter": 2
-        },
-        {
-          "recruiter": "Capitan Marvel",
-          "idRecruiter": 1
-        }
-      ],
-      "cities": [
-        {
-          "id": 15989,
-          "name": "Minsk"
-        }
-      ],
-      "id": 4
-    },
-    {
-      "nameCourse": "JA & Devops",
-      "courseDescription": "3-5 years of experience in technical program management, preferably ",
-      "country": {
-        "id": 20,
-        "name": "Barbados",
-        "iso2": "BB"
-      },
-      "startDate": 1624806540000,
-      "endDate": 1624806540000,
-      "stopRecruitmentDate": 1624460940000,
-      "listRecruiters": [
-        {
-          "recruiter": "Tony Stark",
-          "idRecruiter": 4
-        },
-        {
-          "recruiter": "Black Panther",
-          "idRecruiter": 3
-        },
-        {
-          "recruiter": "Luck Cage",
-          "idRecruiter": 2
-        }
-      ],
-      "cities": [
-        {
-          "id": 8451,
-          "name": "Holetown"
-        },
-        {
-          "id": 8450,
-          "name": "Greenland"
-        }
-      ],
-      "id": 5
-    },
-    {
-      "nameCourse": "JA & Devops",
-      "courseDescription": "3-5 years of experience in technical program management, preferably ",
-      "country": {
-        "id": 20,
-        "name": "Barbados",
-        "iso2": "BB"
-      },
-      "startDate": 1624806540000,
-      "endDate": 1624806540000,
-      "stopRecruitmentDate": 1624460940000,
-      "listRecruiters": [
-        {
-          "recruiter": "Tony Stark",
-          "idRecruiter": 4
-        },
-        {
-          "recruiter": "Black Panther",
-          "idRecruiter": 3
-        },
-        {
-          "recruiter": "Luck Cage",
-          "idRecruiter": 2
-        }
-      ],
-      "cities": [
-        {
-          "id": 8451,
-          "name": "Holetown"
-        },
-        {
-          "id": 8450,
-          "name": "Greenland"
-        }
-      ],
-      "id": 6
+      "courseEditorDetails": "<p><span style=\"background-color: #f1c40f;\">So what makes them so specia</span>l compared to their regular counterpart? Whereas a regular <span style=\"background-color: #f1c40f;\">Gas Mask</span> will make you immune to the deadly effects of the gas for 12 seconds,<span style=\"background-color: #236fa1;\"> the Warzone Durable</span> Gas Mask can protect you for&nbsp;<strong>25 seconds</strong>!</p>"
     }
   ],
   "recruitersCompany": [

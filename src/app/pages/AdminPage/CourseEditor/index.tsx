@@ -1,11 +1,8 @@
-import React, { useState, useContext } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import React, { useContext } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
-import dateFormat from 'dateformat';
+import Swal from 'sweetalert2';
 
-import { CourseEditorWrapperSelect } from './components';
 import { CourseEditorPaper } from './components/CourseEditorPaper';
 import { SelectCountry } from './SelectCountry';
 import { SelectCourse } from './SelectCourse';
@@ -13,8 +10,9 @@ import { Calendar } from './Calendar';
 import { NameCourse } from './NameCourse';
 import { SetRecruiter } from './SetRecruiter';
 import { DescriptionCourse } from './DescriptionCourse';
-import { createCourse } from '../../../API/CourseEditor';
+import { createCourse, updateCourse } from '../../../API/CourseEditor';
 import { SelectCourseContext } from '../../../contexts/SelectCourseContext';
+import { CourseDetailsEditor } from '../CourseDetailsEditor/CourseDetailsEditor';
 
 interface IListContry {
 	id: number;
@@ -40,6 +38,7 @@ export interface IDefaultCourseInput {
 	stopRecruitmentDate: string | number;
 	listRecruiters: IListInterviewers[];
 	courseDescription: string;
+	courseEditorDetails: string;
 }
 
 export type CourseInputItem = keyof IDefaultCourseInput;
@@ -47,29 +46,43 @@ export type CourseInputItem = keyof IDefaultCourseInput;
 export const CourseEditor: React.FC = () => {
 	const { defaultValues } = useContext(SelectCourseContext);
 
-	// console.log('defaultValues', defaultValues);
-
 	const methods = useForm<IDefaultCourseInput>({
 		defaultValues,
 	});
-
-	const { handleSubmit } = methods;
+	const { handleSubmit, getValues } = methods;
 
 	const onSubmit: SubmitHandler<IDefaultCourseInput> = (data) => {
-		createCourse(data);
 		console.log(data);
+		if (data.nameCourse === defaultValues.nameCourse) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: `You cant use this button to update course`,
+			});
+		} else {
+			createCourse(data);
+			Swal.fire({
+				icon: 'success',
+				text: `You successfully create course`,
+			});
+		}
 	};
+
+	const onUpdateCourse = () => {
+		const values = getValues();
+		const mergedUpdatedCourseInput = { ...defaultValues, ...values };
+		updateCourse(defaultValues.id, mergedUpdatedCourseInput);
+		Swal.fire({
+			icon: 'success',
+			text: `You successfully updated course`,
+		});
+	};
+
 	return (
 		<React.Fragment>
 			<FormProvider {...methods}>
 				<CourseEditorPaper>
-					<CourseEditorWrapperSelect>
-						<SelectCourse />
-
-						<IconButton aria-label="delete">
-							<DeleteIcon fontSize="large" />
-						</IconButton>
-					</CourseEditorWrapperSelect>
+					<SelectCourse />
 				</CourseEditorPaper>
 
 				<CourseEditorPaper>
@@ -110,6 +123,8 @@ export const CourseEditor: React.FC = () => {
 
 						<DescriptionCourse />
 
+						<CourseDetailsEditor />
+
 						<Button
 							style={{ marginRight: '16px', marginTop: '8px' }}
 							type="submit"
@@ -121,9 +136,10 @@ export const CourseEditor: React.FC = () => {
 
 						<Button
 							style={{ marginTop: '8px' }}
-							type="submit"
+							type="button"
 							variant="outlined"
 							color="primary"
+							onClick={onUpdateCourse}
 						>
 							Update course
 						</Button>

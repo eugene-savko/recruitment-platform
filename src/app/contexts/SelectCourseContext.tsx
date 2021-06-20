@@ -26,6 +26,7 @@ export const initValues: ISelectCourseContext = {
 		],
 		courseDescription:
 			'3-5 years of experience in technical program management, preferably in a related industry. Senior only, expert in Jira, certified (PMP and /or CSM/PSM) or equivalent TPM experience.',
+		courseEditorDetails: 'Same text course editor context',
 	},
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	setDefaultValues: (): void => {},

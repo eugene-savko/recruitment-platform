@@ -5,37 +5,47 @@ import { FrontendLandingContext } from 'app/contexts/FrontendLandingContext';
 import getInternshipDescription, {
 	IIntenshipInfoInterface,
 } from 'app/API/getInternshipDescription';
+import parse from 'html-react-parser';
 import {
 	HandleButton,
 	List,
-	ListItem,
 	Paragraph,
 	SubTitle,
 	Title,
 	Wrapper,
 } from './components';
-
 import { Share } from './Share';
 import { SubInformation } from './SubInformation';
 import { SendForm } from './SendForm';
+import { fetchCourse } from '../../API/CourseEditor';
 
 export const TrainingPage: React.FunctionComponent = () => {
 	const [showForm, setShowForm] = useState(false);
 	const { internshipValue } = useContext(FrontendLandingContext);
+	const [descriptin, setDescription] = useState('');
 	const [infoInternship, setInfoInternship] = useState<IIntenshipInfoInterface>(
 		{ description: '', name: '', status: '', startDate: 0, endDate: 0 }
 	);
 	const showFormOnClick = useCallback(() => setShowForm(true), [showForm]);
+
 	useEffect(() => {
-		const fetchInternship = async () => {
-			const data = await getInternshipDescription(internshipValue);
-			setInfoInternship(data);
-		};
-		fetchInternship();
+		(async () => {
+			setInfoInternship(await getInternshipDescription(internshipValue));
+		})();
 	}, []);
+
+	useEffect(() => {
+		(async () => {
+			setDescription(await fetchCourse(2));
+		})();
+	}, []);
+
+	console.log('internshipValue', internshipValue);
+
 	if (internshipValue === 10) {
 		return <div>{ReactHtmlParser(infoInternship.description)}</div>;
 	}
+
 	return (
 		<Wrapper>
 			<Title>{infoInternship.name}</Title>
@@ -56,11 +66,7 @@ export const TrainingPage: React.FunctionComponent = () => {
 			</Paragraph>
 			<SubTitle>Work at Exadel – Who We Are:</SubTitle>
 
-			<List>
-				{infoInternship.skills?.map((elem) => (
-					<ListItem key={elem.id}>{elem.name}</ListItem>
-				))}
-			</List>
+			<List>{parse(descriptin)}</List>
 
 			<Paragraph>
 				We are looking for a self-motivated and experienced Lead .NET Developer

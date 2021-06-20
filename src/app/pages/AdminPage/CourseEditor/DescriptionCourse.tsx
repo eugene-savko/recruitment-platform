@@ -4,8 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { CourseEditorError } from './CourseEditorError';
 
 export const DescriptionCourse: React.FC = () => {
-	const { register } = useFormContext();
-	const { errors } = useFormContext();
+	const { register, errors } = useFormContext();
 	return (
 		<React.Fragment>
 			<TextField
@@ -23,7 +22,6 @@ export const DescriptionCourse: React.FC = () => {
 				label="Course description"
 				multiline
 				rows={6}
-				defaultValue=""
 				variant="outlined"
 			/>
 			<CourseEditorError

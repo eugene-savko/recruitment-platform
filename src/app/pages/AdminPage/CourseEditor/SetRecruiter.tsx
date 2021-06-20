@@ -24,7 +24,6 @@ export const SetRecruiter: React.FC = () => {
 				rules={{
 					validate: {
 						isEmptyListRecruiters: (value) => {
-							console.log(value.length);
 							return value.length > 0 || 'Choose a recruiter';
 						},
 					},
